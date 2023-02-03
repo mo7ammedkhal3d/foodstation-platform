@@ -1,0 +1,17 @@
+﻿@model IEnumerable<CloudRestaurant.Models.Item>
+    @{ 
+        @Model
+    }
+<div class="container">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-lg-2">
+                <p>@item.Name</p>
+            </div>
+        }
+    </div>
+</div>>
+
+
+

@@ -1,0 +1,20 @@
+﻿@model IEnumerable<CloudRestaurant.Models.Category>
+
+@{
+    ViewBag.Title = "RestaurantCategories";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="jumbotron" style="margin: 20px; background-color: #224c4c; color: burlywood; border-radius: 100px; text-align: center">
+    <h1 style="font-weight:bold">Cloud-Restaurants</h1>
+    <h2 class="lead" style="background-color: teal; border-radius: 50px 20px;">@ViewBag.Name</h2>
+</div>
+<div class="row  container">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-2 thumbnail CategoryDivs" style=" margin-left:25px; margin-bottom:30px;">
+            <img src="~/Uploads/Categories/@item.ImgUrl" style="height: 170px; width:170%; border-radius: 130px;" />
+            <div class="CategoryName"><h3> @Html.DisplayFor(modelItem => item.Name)</h3></div>
+        </div>
+    }
+</div>

@@ -1,0 +1,435 @@
+﻿@using CloudRestaurant.Models.Repositories;
+@using CloudRestaurant.Models
+@model CloudRestaurant.Models.Item
+@{
+    var SelectedId = 5;
+    var selectedItem = new ItemRepository().Find(SelectedId);
+}
+
+<div class="row" id="_ItemParial">
+    @Html.Partial("_ItemPartial")
+</div>
+
+<!--Create Items -->
+
+<div class="modal fade" id="Modal-itemCreate">
+    <div class="modal-dialog">
+        <div class="modalContent-Item">
+            <div class="modal-header">
+                <h2 class="modal-title" style="text-align:center">بيانات العنصر</h2>
+            </div>
+            <div class="modal-body">
+                @using (Html.BeginForm("Create", "Items", FormMethod.Post, new { enctype = "multipart/form-data", @id = "CreateItemForm" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="row">
+                        <div class="form-horizontal" style="margin-top:50px">
+                            <div class="col-md-7" style="float: right">
+
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-5 ", @style = "float:right" })
+                                    <div class="col-md-7" style="float:right">
+                                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "input-fild", @id = "CIname" } })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-5", @style = "float:right" })
+                                    <div class="col-md-7" style="float:right">
+                                        @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "input-fild", @id = "CIprice" } })
+                                        @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.TimeOfDone, htmlAttributes: new { @class = "control-label col-md-5", @style = "float:right" })
+                                    <div class="col-md-7" style="float:right">
+                                        @Html.EditorFor(model => model.TimeOfDone, new { htmlAttributes = new { @class = "input-fild", @id = "CItimeOfDone" } })
+                                        @Html.ValidationMessageFor(model => model.TimeOfDone, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.CategoryId, "نوع الصنف", htmlAttributes: new { @class = "control-label col-md-5", @style = "float:right" })
+                                    <div class="col-md-7" style="float:right">
+                                        @Html.DropDownList("CategoryId", null, htmlAttributes: new { @class = "input-fild" })
+                                        @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.RestaurantId, "مقدمة من", htmlAttributes: new { @class = "control-label col-md-5", @style = "float:right" })
+                                    <div class="col-md-7" style="float:right">
+                                        @Html.DropDownList("RestaurantId", null, htmlAttributes: new { @class = "input-fild" })
+                                        @Html.ValidationMessageFor(model => model.RestaurantId, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-5" style="float:right">
+                                <div class="form-group">
+                                    <img id="CIimgUrl" class="modal-Img" alt="أضف صورة">
+                                    <label for="CIpicture" class="btn btn-primary modal-Btn">أضافة صورة</label>
+                                    <input id="CIpicture" class="modal-filein" type="file" name="upload" onchange="loadFile(event)" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+            <div class="modal-footer">
+                <div class="form-group">
+                    <div class="col-md-offset-3 col-md-6">
+                        <input value="أضافة" class="btn btn-success modal-BtnCreate" id="btnCreate" />
+                        <button id="btnCreateColse" type="button" class="btn modal-BtnClose" data-dismiss="modal" onclick="resetFilds(event)">أغلاق</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--Edit Item-->
+
+<div class="modal" id="Modal-itemEdit">
+    <div class="modal-dialog">
+        <div class="modalContent-Item">
+            <div class="modal-header">
+                <h2 class="modal-title" style="text-align:center">تعديل بينات العنصر</h2>
+            </div>
+            <div class="modal-body">
+                @using (Html.BeginForm("Edit", "Items", FormMethod.Post, new { enctype = "multipart/form-data", @id = "EditItemForm" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="row">
+
+                        <div class="form-horizontal" style="margin-top:50px">
+                            <div class="col-md-7" style="float: right">
+                                <input type="hidden" name="Id" id="hiddenId" />
+                                <input type="hidden" name="ImgUrl" id="hiddenImgUrl" />
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-5 ", @style = "float:right" })
+                                    <div class="col-md-7" style="float:right">
+                                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "input-fild", @id = "EIname" } })
+                                        <span id="errName"></span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-5", @style = "float:right" })
+                                    <div class="col-md-7" style="float:right">
+                                        @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "input-fild", @id = "EIprice" } })
+                                        @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.TimeOfDone, htmlAttributes: new { @class = "control-label col-md-5", @style = "float:right" })
+                                    <div class="col-md-7" style="float:right">
+                                        @Html.EditorFor(model => model.TimeOfDone, new { htmlAttributes = new { @class = "input-fild", @id = "EItimeOfDone" } })
+                                        @Html.ValidationMessageFor(model => model.TimeOfDone, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.CategoryId, "نوع الصنف", htmlAttributes: new { @class = "control-label col-md-5", @style = "float:right" })
+                                    <div class="col-md-7" style="float:right">
+                                        @Html.DropDownList("CategoryId", null, htmlAttributes: new { @class = "input-fild", @id = "EIcategory" })
+                                        @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.RestaurantId, "مقدمة من", htmlAttributes: new { @class = "control-label col-md-5", @style = "float:right" })
+                                    <div class="col-md-7" style="float:right">
+                                        @Html.DropDownList("RestaurantId", null, htmlAttributes: new { @class = "input-fild", @id = "EIrestaurant" })
+                                        @Html.ValidationMessageFor(model => model.RestaurantId, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-5" style="float:right">
+                                <div class="form-group">
+                                    <img id="EIimgUrl" class="modal-Img" alt="أضف صورة">
+                                    <label for="EIpicture" class="btn btn-primary modal-Btn">تغيير الصورة</label>
+                                    <input id="EIpicture" class="modal-filein" type="file" name="upload" onchange="loadFile(event)" />
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                }
+
+            </div>
+
+            <div class="modal-footer">
+                <div class="form-group">
+                    <div class="col-md-offset-3 col-md-6">
+                        <input id="btnEdit" type="button" value="تعديل" class="btn btn-primary modal-BtnCreate" />
+                        <button id="btnEditColse" type="button" class="btn modal-BtnClose" data-dismiss="modal" onclick="resetFilds(event)">أغلاق</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!--Delete Item-->
+
+<div class="modal" id="Modal-itemDelete">
+    <div class="modal-dialog">
+        <div class="modalContent-Item">
+            <div class="modal-header">
+                <h2 class="modal-title" style="text-align:center">هل تريد بالتأكيد حذف هذا العنصر ؟</h2>
+            </div>
+            <div class="modal-body">
+                @using (Html.BeginForm("Create", "Items", FormMethod.Post, new { enctype = "multipart/form-data", @id = "itemForm" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="row">
+                        <div class="form-horizontal" style="margin-top:50px">
+                            <div class="col-md-7" style="float:right">
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-5 ", @style = "float:right" })
+                                    <div class="col-md-7" style="float:right">
+                                        <input type="text" readonly class="input-fild" id="DIname" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-5", @style = "float:right" })
+                                    <div class="col-md-7" style="float:right">
+                                        <input type="text" readonly class="input-fild" id="DIprice">
+                                        @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.TimeOfDone, htmlAttributes: new { @class = "control-label col-md-5", @style = "float:right" })
+                                    <div class="col-md-7" style="float:right">
+                                        <input type="text" readonly class="input-fild" id="DItimeOfDone">
+                                        @Html.ValidationMessageFor(model => model.TimeOfDone, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.CategoryId, "نوع الصنف", htmlAttributes: new { @class = "control-label col-md-5", @style = "float:right" })
+                                    <div class="col-md-7" style="float:right">
+                                        <input type="text" class="input-fild" id="DIcategory">
+                                        @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.RestaurantId, "مقدمة من", htmlAttributes: new { @class = "control-label col-md-5", @style = "float:right" })
+                                    <div class="col-md-7" style="float:right">
+                                        <input type="text" readonly class="input-fild" id="DIrestaurant" />
+                                        @Html.ValidationMessageFor(model => model.RestaurantId, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-5" style="float:right">
+                                <div class="form-group">
+                                    <img id="DIimgUrl" class="modal-Img">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+            <div class="modal-footer">
+                <div class="form-group">
+                    <div class="col-md-offset-3 col-md-6">
+                        <input id="btnDelete" type="button" value="حـذف" class="btn btn-danger modal-BtnCreate" />
+                        <button id="btnDeleteColse" type="button" class="btn modal-BtnClose" data-dismiss="modal" onclick="resetFilds(event)">أغلاق</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script>
+
+        //Create Action
+
+        function TestSweetAlert(massage) {
+            swal({
+                //  title: title,
+                text: massage,
+                content: true,
+                // icon: "info", /*"success"  "erroe"*/
+                className: 'swal-IW',
+                //timer: 1300,
+                buttons: false,
+            });
+        };
+
+
+        var resetFilds = function (event) {
+            document.getElementById('CreateItemForm').reset();
+            var ImgUrl = document.getElementById('CIimgUrl');
+            ImgUrl.src = "";
+        };
+
+
+
+        var loadFile = function (event) {
+            var image = document.getElementById('CIimgUrl');
+            image.src = URL.createObjectURL(event.target.files[0]);
+        };
+
+        //Edit Action
+
+        var EditConfirm = function (_id) {
+            $("#itemId").val(_id)
+            $.ajax({
+                type: "Post",
+                url: "/Items/GetItem",
+                data: { id: _id },
+                success: function (item) {
+                    $("#Modal-itemEdit").modal('show');
+                    $("#EIname").val(item.Name)
+                    $("#EIprice").val(item.Price)
+                    $("#EItimeOfDone").val(item.TimeOfDone)
+                    $("#EIcategory").val(item.CategoryId)
+                    $("#EIrestaurant").val(item.RestaurantId)
+                    document.getElementById('EIimgUrl').src = "/Uploads/Items/" + item.ImgUrl;
+                    $("#hiddenId").val(_id)
+                    $("#hiddenImgUrl").val(item.ImgUrl)
+                }
+            });
+        };
+
+        // Delete Action
+
+        var DeleteConfirm = function (_id) {
+            $("#itemId").val(_id)
+            $.ajax({
+                type: "Post",
+                url: "/Items/GetItem",
+                data: { id: _id },
+                success: function (item) {
+                    $("#Modal-itemDelete").modal('show');
+                    $("#DIname").val(item.Name)
+                    $("#DIprice").val(item.Price)
+                    $("#DItimeOfDone").val(item.TimeOfDone)
+                    $("#DIcategory").val(item.Category)
+                    $("#DIrestaurant").val(item.Restaurant)
+                    document.getElementById('DIimgUrl').src = "/Uploads/Items/" + item.ImgUrl;
+                }
+            });
+        };
+
+
+        $(document).ready(function () {
+
+            $("#btnCreate").click(function () {
+
+                if ($("#CIname").val() == "") {
+                    TestSweetAlert("قم بأدخال الأسم");
+                } else if ($("#CIprice").val() == "") {
+                    TestSweetAlert("قم بأدخال السعر");
+                } else if ($("#CItimeOfDone").val() == "") {
+                    TestSweetAlert("قم بأدخال وقت التحظير");
+                } else if ($("#CIpicture").val() == "") {
+                    TestSweetAlert("قم بأضافة صورة للعنصر");
+                } else {
+                    var fileInput = document.getElementById('CIpicture');
+                    $.ajax({
+                        type: "Get",
+                        url: "/Items/IsImageExist",
+                        data: { upload: fileInput.files[0].name },
+                        success: function (Message) {
+                            if (Message == "") {
+                                document.getElementById('CreateItemForm').submit();
+                                var Colse = document.getElementById("btnCreateClose")
+                                Close.click()
+                                window.location.href = "/Items/Index"
+                            } else {
+                                TestSweetAlert(Message);
+                            }
+                        }
+                    });
+                }
+                return false;
+            });
+
+            $("#btnEdit").click(function () {
+
+                if ($("#EIname").val() == "") {
+                    TestSweetAlert("قم بأدخال الأسم");
+                } else if ($("#EIprice").val() == "") {
+                    TestSweetAlert("قم بأدخال السعر");
+                } else if ($("#EItimeOfDone").val() == "") {
+                    TestSweetAlert("قم بأدخال وقت التحظير");
+                } else if ($("#EIpicture").val() != "") {
+                    var fileInput = document.getElementById('EIpicture');
+                    $.ajax({
+                        type: "Get",
+                        url: "/Items/IsImageExist",
+                        data: { upload: fileInput.files[0].name },
+                        success: function (Message) {
+                            if (Message == "") {
+                                document.getElementById('EditItemForm').submit();
+                                var Colse = document.getElementById("btnCreateClose")
+                                Close.click()
+                                window.location.href = "/Items/Index"
+                            } else {
+                                TestSweetAlert(Message);
+                            }
+                        }
+                    });
+                } else {
+                    document.getElementById('EditItemForm').submit();
+                    var Colse = document.getElementById("btnCreateClose")
+                    Close.click()
+                    window.location.href = "/Items/Index"
+
+                }
+                return false;
+         });
+
+            $("#btnDelete").click(function () {
+                var itemId = $("#itemId").val();
+                $.ajax({
+                    type: "Post",
+                    url: "/Items/DeleteConfirmed",
+                    data: { id: itemId },
+                    success: function (result) {
+                        if (result) {
+                            $("#Modal-itemDelete").modal('hide');
+                            $("#itemId").val(null);
+                            $.ajax({
+                                url: '/Items/Refreash',
+                                contentType: 'application/html; charset=utf-8',
+                                type: 'GET',
+                                dataType: 'html',
+                                success: (function () {
+                                    $('#_ItemParial').html();
+                                })
+                             })
+                        } else {
+                            TestSweetAlert("حذث خطا ما أثناء عملية الحدف ");
+                        }
+                    }
+                });
+            })
+
+        });
+    </script>
+}
+
+
+
+
+
+
+

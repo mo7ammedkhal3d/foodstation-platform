@@ -1,0 +1,39 @@
+﻿@model IEnumerable<CloudRestaurant.Models.Category>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>الرائيسة</h2>
+
+<p>
+    @Html.ActionLink("إضافة صنف جديد", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ImgUrl)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Name)
+    </td>
+    <td>
+        <img src="~/Uploads/Categories/@Html.DisplayFor(modelItem => item.ImgUrl)" class="thumbnail"
+             style="width:48px;height:48px;" />
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+    </td>
+</tr>
+}
+
+</table>

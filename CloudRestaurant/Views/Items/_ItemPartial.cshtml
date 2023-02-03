@@ -1,0 +1,65 @@
+﻿<div>
+    <h2>قائمة العناصر </h2>
+</div>
+<div>
+    <p>
+        <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#Modal-itemCreate">أضافة عنصر</a>
+    </p>
+</div>
+<table class="table">
+    <tr class="btn-primary">
+
+        <th>
+            أسم العنصر
+        </th>
+        <th>
+            السعر
+        </th>
+        <th>
+            وقت التحظير
+        </th>
+        <th>
+            أسم المطعم
+        </th>
+        <th>
+            الصنف
+        </th>
+        <th>
+            الصورة
+        </th>
+        <th>
+            الأجراء
+        </th>
+    </tr>
+
+    @foreach (var item in ViewBag.items)
+    {
+<tr>
+    <td>
+        @item.Name
+    </td>
+    <td>
+        @item.Price
+    </td>
+
+    <td>
+        @item.TimeOfDone
+    </td>
+    <td>
+        @item.Restaurant.Name
+    </td>                                      
+    <td>
+        @item.Category.Name
+    </td>
+    <td>
+        <img src="~/Uploads/Items/@item.ImgUrl" class="thumbnail" style="width:48px;height:48px" />
+    </td>
+    <td>
+        <a class="glyphicon glyphicon-edit" id="showModal-itemDelete" style="font-size:20px" onclick="EditConfirm(@item.Id)"></a> |
+        <a class="glyphicon glyphicon-remove-circle" id="showModal-itemDelete" style="font-size:20px" onclick="DeleteConfirm(@item.Id)"></a>
+        <input type="hidden" id="itemId" />
+    </td>
+</tr>
+
+    }
+</table>
