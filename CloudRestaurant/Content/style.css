@@ -47,6 +47,8 @@ body {
 }
 
 
+
+
 .navbar-default .navbar-nav > li > a {
     color: #e7e7e7;
     font-family:myfont;
@@ -264,6 +266,12 @@ font-family: myfont;
 
 /*>>> Start Item Windwo <<<*/
 
+.Item-modal-body {
+    position: relative;
+    padding: 15px;
+    height: 365px;
+}
+
 .form-group .modal-Img {
     width: 245px;
     height: 233px;
@@ -286,7 +294,7 @@ font-family: myfont;
 .form-group .modal-Btn {
     display: block;
     margin-bottom: 12px;
-    margin-left: 75px;
+    margin-right: 75px;
     width: 100px;
     background-color: teal;
 }
