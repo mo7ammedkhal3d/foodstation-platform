@@ -147,7 +147,7 @@ namespace CloudRestaurant.Controllers
             return View(item);
         }
 
-        // GET: Items/Delete/5
+        // GET: Items/Edit/5
         public ActionResult GetItem(int? id)
         {   
            var item = itemRepository.Find(id);

@@ -48,5 +48,14 @@ namespace CloudRestaurant.Controllers
             return View(cato.Distinct().ToList());
 
         }
+
+        public ActionResult GetItem(int? id)
+        {        
+            var item = db.Items.Where(x => x.CategoryId == id).ToList();
+                ViewBag.Name = item.First().Category.Name;
+                return View(item);
+
+        }
+
     }
 }

@@ -73,7 +73,7 @@ font-family: myfont;
 
 .landing {
     height: 50vh;
-    background-image: url('../Uploads/Categories/Chef-bro.png');
+   background-image: url('../Uploads/Categories/Chef-bro.png');
     background-size: contain;
     background-attachment: fixed;
     background-repeat:repeat-x;
@@ -355,7 +355,10 @@ font-family: myfont;
 }
 
 
-
+.ItemDivs {
+    border-radius: 50px 50px;
+    padding: 10px;
+}
 
 
 .Item {
@@ -370,6 +373,14 @@ font-family: myfont;
     text-align: center;
     font-family: myfont2;
     padding: 0px;
+}
+.requstBotton {
+    color: white;
+    width: 120px;
+    padding:5px;
+    margin-right:15px;
+    background-color:teal;
+}
 }
 
 .table {
