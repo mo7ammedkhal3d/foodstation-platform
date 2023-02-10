@@ -412,8 +412,8 @@
                                 contentType: 'application/html; charset=utf-8',
                                 type: 'GET',
                                 dataType: 'html',
-                                success: (function () {
-                                    $('#_ItemParial').html();
+                                success: (function (result) {
+                                    $('#_ItemParial').html(result);
                                 })
                              })
                         } else {

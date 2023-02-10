@@ -64,7 +64,7 @@ namespace CloudRestaurant.Controllers
             ViewBag.items = items;
             ViewBag.CategoryId = new SelectList(categoryRepository.List(), "Id", "Name");
             ViewBag.RestaurantId = new SelectList(restaurantRepository.List(), "Id", "Name");
-            return PartialView("_ItemPartial");
+            return PartialView("_ItemPartial", items);
         }
 
         public JsonResult IsImageExist(string upload)
@@ -97,10 +97,10 @@ namespace CloudRestaurant.Controllers
                     upload.SaveAs(path);
                     item.ImgUrl = upload.FileName;
                     itemRepository.Add(item);
-                    return RedirectToAction("Refreash");
+                    return Json("تمت الأضافة قم بالرجوع الى الخلف وعمل رفرش للصفحة");
             }
 
-            return RedirectToAction("Refreash");
+            return RedirectToAction("لم تتمت الاضافة");
         }
 
         // GET: Items/Edit/5
