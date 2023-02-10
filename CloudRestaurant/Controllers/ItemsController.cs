@@ -64,7 +64,7 @@ namespace CloudRestaurant.Controllers
             ViewBag.items = items;
             ViewBag.CategoryId = new SelectList(categoryRepository.List(), "Id", "Name");
             ViewBag.RestaurantId = new SelectList(restaurantRepository.List(), "Id", "Name");
-            return PartialView("_ItemPartial");
+            return PartialView("_ItemPartial", items);
         }
 
         public JsonResult IsImageExist(string upload)
@@ -95,13 +95,13 @@ namespace CloudRestaurant.Controllers
             if (ModelState.IsValid)
             {
                 string path = Path.Combine(Server.MapPath("~/Uploads/Items/"), upload.FileName);
-                upload.SaveAs(path);
-                item.ImgUrl = upload.FileName;
-                itemRepository.Add(item);
-                result = "true";
-                return Json(result, JsonRequestBehavior.AllowGet);
+                    upload.SaveAs(path);
+                    item.ImgUrl = upload.FileName;
+                    itemRepository.Add(item);
+                    return Json("تمت الأضافة قم بالرجوع الى الخلف وعمل رفرش للصفحة");
             }
-            return Json(result, JsonRequestBehavior.AllowGet);
+
+             return Json("لم تتم الاضافة");
         }
 
         // GET: Items/Edit/5
