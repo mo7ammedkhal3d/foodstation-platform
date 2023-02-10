@@ -89,8 +89,9 @@ namespace CloudRestaurant.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         //[ValidateAntiForgeryToken] 
-        public ActionResult Create(Item item ,HttpPostedFileBase upload)
+        public ActionResult Create(Item item, HttpPostedFileBase upload)
         {
+            var result = "";
             if (ModelState.IsValid)
             {
                 string path = Path.Combine(Server.MapPath("~/Uploads/Items/"), upload.FileName);
@@ -100,7 +101,7 @@ namespace CloudRestaurant.Controllers
                     return Json("تمت الأضافة قم بالرجوع الى الخلف وعمل رفرش للصفحة");
             }
 
-            return RedirectToAction("لم تتمت الاضافة");
+             return Json("لم تتم الاضافة");
         }
 
         // GET: Items/Edit/5
@@ -147,7 +148,7 @@ namespace CloudRestaurant.Controllers
             return View(item);
         }
 
-        // GET: Items/Delete/5
+        // GET: Items/Edit/5
         public ActionResult GetItem(int? id)
         {   
            var item = itemRepository.Find(id);
