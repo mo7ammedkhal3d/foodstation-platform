@@ -89,18 +89,19 @@ namespace CloudRestaurant.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         //[ValidateAntiForgeryToken] 
-        public ActionResult Create(Item item ,HttpPostedFileBase upload)
+        public ActionResult Create(Item item, HttpPostedFileBase upload)
         {
+            var result = "";
             if (ModelState.IsValid)
             {
                 string path = Path.Combine(Server.MapPath("~/Uploads/Items/"), upload.FileName);
-                    upload.SaveAs(path);
-                    item.ImgUrl = upload.FileName;
-                    itemRepository.Add(item);
-                    return RedirectToAction("Refreash");
+                upload.SaveAs(path);
+                item.ImgUrl = upload.FileName;
+                itemRepository.Add(item);
+                result = "true";
+                return Json(result, JsonRequestBehavior.AllowGet);
             }
-
-            return RedirectToAction("Refreash");
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
 
         // GET: Items/Edit/5

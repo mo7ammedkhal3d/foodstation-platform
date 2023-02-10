@@ -348,10 +348,18 @@
                         url: "/Items/IsImageExist",
                         data: { upload: fileInput.files[0].name },
                         success: function (Message) {
-                            if (Message == "") {
-                                document.getElementById('CreateItemForm').submit();
-                                var Colse = document.getElementById("btnCreateClose")
-                                Close.click()
+                            if (Message =="") {
+                                var CreateItemForm = ('CreateItemForm').ser();
+                                    $.ajax({
+                                        url: '/Items/Refreash',
+                                        contentType: 'application/html; charset=utf-8',
+                                        type: 'GET',
+                                        dataType: 'html',
+                                        success: (function (result) {
+                                            $('#_ItemParial').html(result);
+                                        })
+                                    });
+                                document.getElementById("btnCreateClose").click();
                                 window.location.href = "/Items/Index"
                             } else {
                                 TestSweetAlert(Message);
@@ -361,6 +369,7 @@
                 }
                 return false;
             });
+
 
             $("#btnEdit").click(function () {
 
@@ -412,8 +421,8 @@
                                 contentType: 'application/html; charset=utf-8',
                                 type: 'GET',
                                 dataType: 'html',
-                                success: (function () {
-                                    $('#_ItemParial').html();
+                                success: (function (result) {
+                                    $('#_ItemParial').html(result);
                                 })
                              })
                         } else {
