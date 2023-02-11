@@ -436,11 +436,9 @@
     <Content Include="Views\Categories\Edit.cshtml" />
     <Content Include="Views\Categories\Index.cshtml" />
     <Content Include="Views\Home\GetRestaurantItems.cshtml" />
-    <Content Include="Views\Items\Edit.cshtml" />
     <Content Include="Views\Items\Index.cshtml" />
     <Content Include="Scripts\jquery\jquery.min.map" />
     <Content Include="Scripts\jquery\jquery.slim.min.map" />
-    <Content Include="Views\Items\Delete.cshtml" />
     <Content Include="Views\Items\_ItemPartial.cshtml" />
     <Content Include="Views\Home\RestaurantCategories.cshtml" />
     <Content Include="Views\Home\GetItem.cshtml" />
