@@ -52,14 +52,14 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.CategoryId, "نوع الصنف", htmlAttributes: new { @class = "control-label col-md-4", @style = "float:right" })
                                     <div class="col-md-8" style="float:right">
-                                        @Html.DropDownList("CategoryId", null, htmlAttributes: new { @class = "input-fild" })
+                                        @Html.DropDownList("CategoryId", null, htmlAttributes: new { @class = "input-fild", @id = "CIcategory" })
                                         @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.RestaurantId, "مقدمة من", htmlAttributes: new { @class = "control-label col-md-4", @style = "float:right" })
                                     <div class="col-md-8" style="float:right">
-                                        @Html.DropDownList("RestaurantId", null, htmlAttributes: new { @class = "input-fild" })
+                                        @Html.DropDownList("RestaurantId", null, htmlAttributes: new { @class = "input-fild" , @id= "CIrestaurant" })
                                         @Html.ValidationMessageFor(model => model.RestaurantId, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
@@ -69,7 +69,7 @@
                                 <div class="form-group">
                                     <img id="CIimgUrl" class="modal-Img" alt="أضف صورة">
                                     <label for="CIpicture" class="btn btn-primary modal-Btn">أضافة صورة</label>
-                                    <input id="CIpicture" class="modal-filein" type="file" name="upload" onchange="loadFile(event)" />
+                                    <input id="CIpicture" class="modal-filein" type="file" name="upload" onchange="CloadFile(event)" />
                                 </div>
                             </div>
                         </div>
@@ -155,7 +155,7 @@
                                 <div class="form-group">
                                     <img id="EIimgUrl" class="modal-Img" alt="أضف صورة">
                                     <label for="EIpicture" class="btn btn-primary modal-Btn">تغيير الصورة</label>
-                                    <input id="EIpicture" class="modal-filein" type="file" name="upload" onchange="loadFile(event)" />
+                                    <input id="EIpicture" class="modal-filein" type="file" name="upload" onchange="EloadFile(event)" />
                                 </div>
                             </div>
 
@@ -281,8 +281,13 @@
 
 
 
-        var loadFile = function (event) {
+        var CloadFile = function (event) {
             var image = document.getElementById('CIimgUrl');
+            image.src = URL.createObjectURL(event.target.files[0]);
+        };
+
+        var EloadFile = function (event) {
+            var image = document.getElementById('EIimgUrl');
             image.src = URL.createObjectURL(event.target.files[0]);
         };
 
@@ -348,19 +353,41 @@
                         url: "/Items/IsImageExist",
                         data: { upload: fileInput.files[0].name },
                         success: function (Message) {
-                            if (Message =="") {
-                                var CreateItemForm = ('CreateItemForm').ser();
-                                    $.ajax({
-                                        url: '/Items/Refreash',
-                                        contentType: 'application/html; charset=utf-8',
-                                        type: 'GET',
-                                        dataType: 'html',
-                                        success: (function (result) {
-                                            $('#_ItemParial').html(result);
-                                        })
-                                    });
-                                document.getElementById("btnCreateClose").click();
-                                window.location.href = "/Items/Index"
+                            if (Message == "") {
+                                var image = $("#CIpicture").get(0).files;
+                                var formdata = new FormData;
+                                formdata.append("Name", $("#CIname").val());
+                                formdata.append("Price", $("#CIprice").val());
+                                formdata.append("TimeOfDone", $("#CItimeOfDone").val());
+                                formdata.append("CategoryId", $("#CIcategory").val());
+                                formdata.append("RestaurantId", $("#CIrestaurant").val());
+                                formdata.append("upload", image[0]);
+                                $.ajax({
+                                    async: true,
+                                    type: "POST",
+                                    dataType: "JSON",
+                                    url: "/Items/Create",
+                                    data: formdata,
+                                    processData: false,
+                                    contentType: false,
+                                    success: function (result) {
+                                        if (result) {
+                                            $.ajax({
+                                                url: '/Items/Refreash',
+                                                contentType: 'application/html; charset=utf-8',
+                                                type: 'GET',
+                                                dataType: 'html',
+                                                success: (function (result) {
+                                                    $('#_ItemParial').html(result);
+                                                    var close = document.getElementById('btnCreateColse');
+                                                    close.click();
+                                                })
+                                            });
+                                        } else {
+                                            TestSweetAlert("حدث خطأما أثناء عملية الأضافة تاكد من أدخال الحقول بالشكل الصحيح وحاول مرة أخرى");
+                                        }
+                                    }
+                                });
                             } else {
                                 TestSweetAlert(Message);
                             }
@@ -387,24 +414,87 @@
                         data: { upload: fileInput.files[0].name },
                         success: function (Message) {
                             if (Message == "") {
-                                document.getElementById('EditItemForm').submit();
-                                var Colse = document.getElementById("btnCreateClose")
-                                Close.click()
-                                window.location.href = "/Items/Index"
+                                var image = $("#EIpicture").get(0).files;
+                                var formdata = new FormData;
+                                formdata.append("Id", $("#hiddenId").val());
+                                formdata.append("Name", $("#EIname").val());
+                                formdata.append("Price", $("#EIprice").val());
+                                formdata.append("TimeOfDone", $("#EItimeOfDone").val());
+                                formdata.append("ImgUrl", $("#hiddenImgUrl").val());
+                                formdata.append("CategoryId", $("#EIcategory").val());
+                                formdata.append("RestaurantId", $("#EIrestaurant").val());
+                                formdata.append("upload", image[0]);
+                                $.ajax({
+                                    async: true,
+                                    type: "POST",
+                                    dataType: "JSON",
+                                    url: "/Items/Edit",
+                                    data: formdata,
+                                    processData: false,
+                                    contentType: false,
+                                    success: function (result) {
+                                        if (result) {
+                                            $.ajax({
+                                                url: '/Items/Refreash',
+                                                contentType: 'application/html; charset=utf-8',
+                                                type: 'GET',
+                                                dataType: 'html',
+                                                success: (function (result) {
+                                                    $('#_ItemParial').html(result);
+                                                    var close = document.getElementById('btnEditColse');
+                                                    close.click();
+                                                })
+                                            });
+                                        } else {
+                                            TestSweetAlert("حدث خطأما أثناء عملية الأضافة تاكد من أدخال الحقول بالشكل الصحيح وحاول مرة أخرى");
+                                        }
+                                    }
+                                });
                             } else {
                                 TestSweetAlert(Message);
                             }
                         }
                     });
                 } else {
-                    document.getElementById('EditItemForm').submit();
-                    var Colse = document.getElementById("btnCreateClose")
-                    Close.click()
-                    window.location.href = "/Items/Index"
+                    var formdata = new FormData;
+                    formdata.append("Id", $("#hiddenId").val());
+                    formdata.append("Name", $("#EIname").val());
+                    formdata.append("Price", $("#EIprice").val());
+                    formdata.append("TimeOfDone", $("#EItimeOfDone").val());
+                    formdata.append("ImgUrl", $("#hiddenImgUrl").val());
+                    formdata.append("CategoryId", $("#EIcategory").val());
+                    formdata.append("RestaurantId", $("#EIrestaurant").val());
+                    $.ajax({
+                       async: true,
+                       type: "POST",
+                       dataType: "JSON",
+                       url: "/Items/Edit",
+                       data: formdata,
+                       processData: false,
+                       contentType: false,
+                       success: function (result) {
+                            if (result) {
+                                $.ajax({
+                                    url: '/Items/Refreash',
+                                    contentType: 'application/html; charset=utf-8',
+                                    type: 'GET',
+                                    dataType: 'html',
+                                    success: (function (result) {
+                                        $('#_ItemParial').html(result);
+                                        var close = document.getElementById('btnEditColse');
+                                        close.click();
+                                    })
+                                });
+                            } else {
+                                TestSweetAlert("حدث خطأما أثناء عملية الأضافة تاكد من أدخال الحقول بالشكل الصحيح وحاول مرة أخرى");
+                            }
+                       }
+                    });
 
                 }
+
                 return false;
-         });
+            });
 
             $("#btnDelete").click(function () {
                 var itemId = $("#itemId").val();

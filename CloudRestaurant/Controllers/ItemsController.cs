@@ -89,44 +89,45 @@ namespace CloudRestaurant.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         //[ValidateAntiForgeryToken] 
-        public ActionResult Create(Item item, HttpPostedFileBase upload)
+        public JsonResult Create(Item item, HttpPostedFileBase upload)
         {
-            var result = "";
+            var result = false;
             if (ModelState.IsValid)
             {
                 string path = Path.Combine(Server.MapPath("~/Uploads/Items/"), upload.FileName);
-                    upload.SaveAs(path);
-                    item.ImgUrl = upload.FileName;
-                    itemRepository.Add(item);
-                    return Json("تمت الأضافة قم بالرجوع الى الخلف وعمل رفرش للصفحة");
+                upload.SaveAs(path);
+                item.ImgUrl = upload.FileName;
+                itemRepository.Add(item);
+                result = true;    
+                return Json(result, JsonRequestBehavior.AllowGet);
             }
 
-             return Json("لم تتم الاضافة");
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
 
-        // GET: Items/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Item item = itemRepository.Find(id);
-            if (item == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.CategoryId = new SelectList(categoryRepository.List(), "Id", "Name", item.CategoryId);
-            ViewBag.RestaurantId = new SelectList(restaurantRepository.List(), "Id", "Name", item.RestaurantId);
-            return View(item);
-        }
+        //// GET: Items/Edit/5
+        //public ActionResult Edit(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    Item item = itemRepository.Find(id);
+        //    if (item == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    ViewBag.CategoryId = new SelectList(categoryRepository.List(), "Id", "Name", item.CategoryId);
+        //    ViewBag.RestaurantId = new SelectList(restaurantRepository.List(), "Id", "Name", item.RestaurantId);
+        //    return View(item);
+        //}
 
         // POST: Items/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(Item item, HttpPostedFileBase upload)
+        //[ValidateAntiForgeryToken]
+        public JsonResult Edit(Item item, HttpPostedFileBase upload)
         {
             if (ModelState.IsValid)
             {
@@ -140,12 +141,12 @@ namespace CloudRestaurant.Controllers
                     item.ImgUrl = upload.FileName;
                 }
                 itemRepository.Update(item);
-                return RedirectToAction("");
+                return Json(true, JsonRequestBehavior.AllowGet);
             }
 
             ViewBag.CategoryId = new SelectList(categoryRepository.List(), "Id", "Name", item.CategoryId);
             ViewBag.RestaurantId = new SelectList(restaurantRepository.List(), "Id", "Name", item.RestaurantId);
-            return View(item);
+            return Json(false, JsonRequestBehavior.AllowGet);
         }
 
         // GET: Items/Edit/5
