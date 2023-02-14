@@ -226,6 +226,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ItemsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\RequestsController.cs" />
     <Compile Include="Controllers\RestaurantsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -250,6 +251,10 @@
     <Compile Include="Migrations\202301190400432_AddImgUrlCol.designer.cs">
       <DependentUpon>202301190400432_AddImgUrlCol.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202302111925496_addRequestTable.cs" />
+    <Compile Include="Migrations\202302111925496_addRequestTable.designer.cs">
+      <DependentUpon>202302111925496_addRequestTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Item.cs" />
@@ -259,9 +264,12 @@
     <Compile Include="Models\Repositories\CategoryRepository.cs" />
     <Compile Include="Models\Repositories\ICloudRestaurantRepository.cs" />
     <Compile Include="Models\Repositories\ItemRepository.cs" />
+    <Compile Include="Models\Repositories\RequestRepository.cs" />
     <Compile Include="Models\Repositories\RestaurantRepository.cs" />
+    <Compile Include="Models\Request.cs" />
     <Compile Include="Models\Restaurant.cs" />
     <Compile Include="Models\ViewModels\ItemVM.cs" />
+    <Compile Include="Models\ViewModels\virtualBill.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -444,6 +452,12 @@
     <Content Include="Views\Items\_ItemPartial.cshtml" />
     <Content Include="Views\Home\RestaurantCategories.cshtml" />
     <Content Include="Views\Home\GetItem.cshtml" />
+    <Content Include="Views\Requests\Create.cshtml" />
+    <Content Include="Views\Requests\Delete.cshtml" />
+    <Content Include="Views\Requests\Details.cshtml" />
+    <Content Include="Views\Requests\Edit.cshtml" />
+    <Content Include="Views\Requests\Index.cshtml" />
+    <Content Include="Views\Home\GetBill.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -479,6 +493,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202301190400432_AddImgUrlCol.resx">
       <DependentUpon>202301190400432_AddImgUrlCol.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202302111925496_addRequestTable.resx">
+      <DependentUpon>202302111925496_addRequestTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
