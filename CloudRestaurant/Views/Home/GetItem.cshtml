@@ -1,7 +1,10 @@
 ﻿@model IEnumerable<CloudRestaurant.Models.Item>
+@using CloudRestaurant.Models.Repositories;
+@using CloudRestaurant.Models
 @{
     ViewBag.Title = "GetItem";
 }
+
 <div class="jumbotron" style="margin: 20px; background-color: #224c4c; color: burlywood; border-radius: 100px; text-align: center">
     <h2 style="font-weight:bold">Cloud-Restaurants</h2>
     <h4 style="background-color: teal;padding:8px; border-radius: 10px 50px;">@ViewBag.Name</h4>
@@ -9,18 +12,76 @@
 <div class="row  container">
     @foreach (var item in Model)
     {
-        <a href="GetItem/@item.Id">
 
-            <div class="col-md-2 thumbnail ItemDivs" style=" margin-left:25px; margin-bottom:30px;">
-                <img src="~/Uploads/Categories/@item.ImgUrl" style="height: 170px; width:170%; border-radius: 130px;" />
-                <div style="color:black"><h4> @Html.DisplayFor(modelItem => item.Name)</h4></div>
-                <span class="btn btn-primary requstBotton">
-                    <i class="glyphicon glyphicon-shopping-cart"></i>
-                    إضافة للسلة
-                </span>
-                
-            </div>
-        </a>
+        <div class="col-md-2 thumbnail ItemDivs" style=" margin-left:25px; margin-bottom:30px;">
+            <img src="~/Uploads/Categories/@item.ImgUrl" style="height: 170px; width:170%; border-radius: 130px;" />
+            <div style="color:black"><h4> @Html.DisplayFor(modelItem => item.Name)</h4></div>
+            <a class="btn btn-primary requstBotton" id="btnSubmit" onclick="EditConfirm(@item.Id)">
+                <i class="glyphicon glyphicon-shopping-cart"></i>
+                إضافة للسلة
+            </a>
+
+        </div>
+
     }
 </div>
+<div class="textContiner">
+    <input type="text" id="textbox" />
+</div>
 
+<!--Edit Item-->
+
+<div class="modal fade" id="mymodel">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <a href="#" class="close" data-dismiss="modal" style="color:red;">&times;</a>
+            <div class="modal-header">
+                <h3 class="modal-title" style="color:teal">فاتورتي</h3>
+            </div>
+            <div class="modal-body">
+
+                <table class="table table-striped" id="mytable">
+                    <tr class="btn-primary">
+
+                        <th style="color:black">
+                            أسم العنصر
+                        </th>
+                        <th style="color:black">
+                            السعر
+                        </th>
+                    </tr>
+                </table>
+
+
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-danger">Save</button>
+                <button class="btn btn-default">Cancel</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--Delete Item-->
+
+<script>
+    var EditConfirm = function (_id) {
+        $.ajax({
+            type: "Post",
+            url: "/Home/AddToBill",
+            data: { id: _id },
+            success: function (item) {
+              /* var element = '<tr><td><input type="text" id="e1"></td><td><input type="text" id="e2"></td></tr>'
+                $("#mytable").append(element);
+                $("#e1").val(item.Name);
+                $("#e2").val(item.Price);
+                $("#mymodel").modal('show');
+                $("#textbox").val(item);*/
+                return false;
+            }
+        });
+    };
+
+</script>

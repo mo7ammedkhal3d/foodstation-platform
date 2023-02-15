@@ -17,6 +17,7 @@ namespace CloudRestaurant
             container.RegisterType<ICloudRestaurantRepository<Restaurant>, RestaurantRepository>();
             container.RegisterType<ICloudRestaurantRepository<Category>, CategoryRepository>();
             container.RegisterType<ICloudRestaurantRepository<Item>, ItemRepository>();
+            container.RegisterType<ICloudRestaurantRepository<Request>, RequestRepository>();
             container.RegisterType<AccountController>(new InjectionConstructor());
             container.RegisterType<ManageController>(new InjectionConstructor());
 

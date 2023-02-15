@@ -38,6 +38,7 @@ namespace CloudRestaurant.Models
         public virtual Restaurant Restaurant { get; set; }
 
         public virtual Category Category { get; set; }
+        public virtual ICollection<Request> Requests { get; set; }
 
     }
 }

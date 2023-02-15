@@ -1,4 +1,5 @@
 ﻿using CloudRestaurant.Models;
+using CloudRestaurant.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,7 @@ namespace CloudRestaurant.Controllers
     public class HomeController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+       static List<Item> products = new List<Item>();
         public ActionResult Index()
         {
             return View(db.Restaurants.ToList());
@@ -57,5 +59,23 @@ namespace CloudRestaurant.Controllers
 
         }
 
+        public ActionResult AddToBill(int? id)
+        {
+            var element = new virtualBill();
+            var item = db.Items.Find(id);
+            products.Add(item);
+            Session["elements"]=products;
+            element.Name = item.Name;
+            element.Price=((int)item.Price);
+
+            return Json(element, JsonRequestBehavior.AllowGet);         
+
+        }
+        public ActionResult GetBill()
+        {
+            var list = new List<Item>();
+            list = (List<Item>)Session["elements"];
+             return View(products.ToList()); ;
+        }
     }
 }
