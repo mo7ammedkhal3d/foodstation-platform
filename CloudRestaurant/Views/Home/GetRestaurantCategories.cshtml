@@ -1,0 +1,66 @@
+﻿@model IEnumerable<CloudRestaurant.Models.Category>
+
+<div class="jumbotron" style="margin: 20px; background-color: #224c4c; color: burlywood; border-radius: 100px; text-align: center">
+    <h2 style="font-weight:bold">Cloud-Restaurants</h2>
+    <h4 style="background-color: teal;padding:8px; border-radius: 50px 10px;">@ViewBag.Name</h4>
+</div>
+
+<a onclick="getallItems()">
+    <div class="col-md-2 thumbnail CategoryDivs" style=" margin-left:25px; margin-bottom:30px;">
+        <img src="~/Uploads/Categories/Chef-bro.png" style="height: 170px; width:170%; border-radius: 130px;" />
+        <div class="CategoryName"><h4>الكل</h4></div>
+    </div>
+</a>
+
+<div class="row  container">
+    @foreach (var item in Model)
+    {
+        <a onclick="getItems(@item.Id)">
+            <div class="col-md-2 thumbnail CategoryDivs" style=" margin-left:25px; margin-bottom:30px;">
+                <img src="~/Uploads/Categories/@item.ImgUrl" style="height: 170px; width:170%; border-radius: 130px;" />
+                <div class="CategoryName"><h4> @Html.DisplayFor(modelItem => item.Name)</h4></div>
+            </div>
+        </a>
+    }
+</div>
+
+
+<div class="row" id="_SelectedCategoryItems">
+    @Html.Partial("_SelectedCategoryItems")
+</div>
+
+
+<script>
+    var _resturantId = @(ViewBag.restaurantId);
+
+    var getItems = function (_id) {
+        $.ajax({
+            type: "Get",
+            url: "/Home/GetCategoryItems",
+            data: { categoryId: _id, ResturantId: _resturantId },
+            success: function (items) {
+                $('#_SelectedCategoryItems').html(items);
+                return false;
+            }
+        });
+    };
+
+    var getallItems = function () {
+        $.ajax({
+            type: "Get",
+            url: "/Home/GetAllResturantAitems",
+            data: {ResturantId: _resturantId },
+            success: function (items) {
+                $('#_SelectedCategoryItems').html(items);
+                return false;
+            }
+        });
+    };
+
+</script>
+
+
+
+
+
+

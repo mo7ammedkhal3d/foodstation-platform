@@ -269,6 +269,22 @@ font-family: myfont;
     text-align: center;
     border-radius: 50px 20px;
 }
+
+.counter {
+    background-color: green;
+    width: 170px;
+    height: 32px;
+    border-radius: 8px 12px;
+    color: white
+}
+.counter input{
+    width: 100px;
+    height: 32px;
+    border-radius: 7px 8px;
+}
+
+
+
 /* end style for the Divs of Categories*/
 
 /*>>> End Home Windwo <<<*/
@@ -367,6 +383,7 @@ font-family: myfont;
 .ItemDivs {
     border-radius: 50px 50px;
     padding: 10px;
+    background-color: #f9f9f9
 }
 
 
@@ -383,14 +400,23 @@ font-family: myfont;
     font-family: myfont2;
     padding: 0px;
 }
+
 .requstBotton {
     color: white;
     width: 120px;
     padding:5px;
     margin-right:15px;
-    background-color:teal;
+    background-color:green;
 }
+
+.addBotton {
+    color: white;
+    width: 120px;
+    padding: 5px;
+    margin-right: 15px;
+    background-color: teal;
 }
+
 
 .table {
     width: 100%;

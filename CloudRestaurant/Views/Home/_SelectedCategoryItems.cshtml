@@ -1,0 +1,60 @@
+﻿<div class="row  container">
+    @foreach (var item in ViewBag.items)
+    {
+        <div class="col-md-2 thumbnail ItemDivs" style=" margin-left:25px; margin-bottom:30px;">
+            <img src="~/Uploads/Categories/@item.ImgUrl" style="height: 170px; width:170%; border-radius: 130px;" />
+            <div style="color:black"><h4>@item.Name</h4></div>
+            <div style="color:black"><h4>@item.Price</h4></div>
+            <a class="btn btn-primary requstBotton" id="btnadd+@item.Id" onclick="AddConfirm(@item.Id)">
+                <i class="glyphicon glyphicon-shopping-cart"></i>
+                إضافة للسلة
+            </a>
+
+            <div class="counter" id="counter+@item.Id" hidden>
+                <div class="col-md-7">
+                    <input id="txtCounter" type="text" readonly />
+                    <input type="hidden" />
+                </div>
+                <div class="col-md-1">
+                    <i class="fa-solid fa-angle-up"></i>
+                    <i class="fa-solid fa-angle-down"></i>
+                </div>
+                <div class="col-md-2">
+                    <i class="glyphicon glyphicon-shopping-cart"></i>
+                </div>
+                <div class="col-md-2">
+                    <i class="fa-solid fa-plus-large"></i>
+                </div>
+            </div>
+        </div>
+
+    }
+</div>
+
+
+
+<script>
+
+    var AddConfirm = function (_id) {
+        var st = "btnadd+"
+        var rt = "counter+"
+        document.getElementById(st + _id).style.display = 'none'
+        document.getElementById(rt + _id).style.display = 'block'
+        docment.getElementById('txtCounter').val("1")
+    };
+
+    var AddToBillConfirm = function (_id) {
+        $.ajax({
+            type: "Post",
+            url: "/Home/AddToBill",
+            data: { id: _id },
+            success: function (result) {
+                var btnAddtoBill = document.getElementById(_id)
+                btnAddtoBill.textContent = "تمت الأضافة"
+                btnAddtoBill.className = "addBotton"
+                return false;
+            }
+        });
+    };
+
+</script>

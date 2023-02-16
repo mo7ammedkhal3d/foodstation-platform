@@ -38,26 +38,6 @@ namespace CloudRestaurant.Controllers
             return View();
         }
 
-        //public PartialViewResult ProductionModelDetail(int id)
-        //{ 
-        //    ProductBAL obj = new ProductBAL(); 
-        //    List<ProductionStockDetailModel> productModellist = new List<ProductionStockDetailModel>(); 
-        //    List<ProductionStockDetailEntity> paintentity = obj.ProductionModelDetail(id); 
-        //    ProductionStockDetailModel productModel; 
-        //    if (paintentity != null)
-        //    { 
-        //        foreach (ProductionStockDetailEntity item in paintentity) 
-        //        { 
-        //            productModel = new ProductionStockDetailModel();
-        //            productModel.MakeId = item.MakeId; 
-        //            productModel.ModelId = item.ModelId;
-        //            productModel.PartId = item.PartId; 
-        //            productModellist.Add(productModel); 
-        //        }
-        //    } 
-        //    return PartialView(productModellist); 
-        //}
-
         public PartialViewResult Refreash()
         {
             var items = itemRepository.List();
@@ -105,23 +85,6 @@ namespace CloudRestaurant.Controllers
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
-        //// GET: Items/Edit/5
-        //public ActionResult Edit(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    Item item = itemRepository.Find(id);
-        //    if (item == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    ViewBag.CategoryId = new SelectList(categoryRepository.List(), "Id", "Name", item.CategoryId);
-        //    ViewBag.RestaurantId = new SelectList(restaurantRepository.List(), "Id", "Name", item.RestaurantId);
-        //    return View(item);
-        //}
-
         // POST: Items/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
@@ -165,13 +128,6 @@ namespace CloudRestaurant.Controllers
                 itemVM.CategoryId = item.CategoryId;
                 itemVM.RestaurantId = item.RestaurantId;
             }
-            //List<string> itemcontent = new List<string>();
-            //itemcontent.Add(item.Name);
-            //itemcontent.Add(item.Price.ToString());
-            //itemcontent.Add(item.TimeOfDone.ToString());
-            //itemcontent.Add(item.Category.Name);
-            //itemcontent.Add(item.Restaurant.Name);
-            //itemcontent.Add(item.ImgUrl); 
             return Json(itemVM ,JsonRequestBehavior.AllowGet);
         }
 

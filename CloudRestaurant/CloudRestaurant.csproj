@@ -320,6 +320,7 @@
     <Content Include="Content\font\glyphicons-halflings-regular.svg" />
     <Content Include="Content\font\index.html" />
     <Content Include="Content\normalize.css" />
+    <Content Include="Content\Site.js" />
     <Content Include="Content\style.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -443,19 +444,19 @@
     <Content Include="Views\Categories\Details.cshtml" />
     <Content Include="Views\Categories\Edit.cshtml" />
     <Content Include="Views\Categories\Index.cshtml" />
-    <Content Include="Views\Home\GetRestaurantItems.cshtml" />
     <Content Include="Views\Items\Index.cshtml" />
     <Content Include="Scripts\jquery\jquery.min.map" />
     <Content Include="Scripts\jquery\jquery.slim.min.map" />
     <Content Include="Views\Items\_ItemPartial.cshtml" />
-    <Content Include="Views\Home\RestaurantCategories.cshtml" />
-    <Content Include="Views\Home\GetItem.cshtml" />
+    <Content Include="Views\Home\GetRestaurantCategories.cshtml" />
     <Content Include="Views\Requests\Create.cshtml" />
     <Content Include="Views\Requests\Delete.cshtml" />
     <Content Include="Views\Requests\Details.cshtml" />
     <Content Include="Views\Requests\Edit.cshtml" />
     <Content Include="Views\Requests\Index.cshtml" />
     <Content Include="Views\Home\GetBill.cshtml" />
+    <Content Include="Views\Shared\_billItems.cshtml" />
+    <Content Include="Views\Home\_SelectedCategoryItems.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

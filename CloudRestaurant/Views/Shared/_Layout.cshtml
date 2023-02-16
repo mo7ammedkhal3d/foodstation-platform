@@ -60,9 +60,10 @@
                 </ul>
                 <!-- partial login-->
                 @Html.Partial("_LoginPartial")
-            <a href="@Url.Action("GetBill","Home")" class="Basket" style=" display: block; position: absolute; font-size: 23px; color: white; margin-top: 10px; padding: 10px; transform: translateX(8px);">
-                <i class="glyphicon glyphicon-shopping-cart"></i>
-            </a>
+
+                <a id="gitbill" class="Basket" style=" display: block; position: absolute; font-size: 23px; color: white; margin-top: 10px; padding: 10px; transform: translateX(8px);" onclick="gitbillConfirm()">
+                    <i class="glyphicon glyphicon-shopping-cart"></i>
+                </a>
             </div>
         </div>
     </nav>
@@ -72,13 +73,16 @@
         <div class="overlay">
         </div>
         <!-- <i class="fas fa-angle-left change-background fa-2x"></i>
-     <i class="fas fa-angle-right change-background" fa2x></i>-->
+        <i class="fas fa-angle-right change-background" fa2x></i>-->
     </div>
     <!-- end landing-->
 
     <div class="container">
         <div class="row" style="min-height:550px" dir="rtl">
             @RenderBody()
+            <div class="row" id="_billItems">
+                @Html.Partial("_billItems")
+            </div>
         </div>
     </div>
     <!-- Footer-->
@@ -131,6 +135,8 @@
     <script src="~/Scripts/jquery/jquery.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
     <script src="~/Scripts/sweetalert/sweetalert.min.js"></script>
+    <script src="~/Content/Site.js"></script>
+
     @RenderSection("scripts", required: false)
 </body>
 </html>
