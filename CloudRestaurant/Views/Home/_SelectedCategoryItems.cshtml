@@ -1,4 +1,5 @@
 ﻿<div class="row  container">
+
     @foreach (var item in ViewBag.items)
     {
         <div class="col-md-2 thumbnail ItemDivs" style=" margin-left:25px; margin-bottom:30px;">
@@ -22,9 +23,8 @@
                     <i class="fa-sharp fa-solid fa-plus btn plusSign" onclick="AddToBillConfirm(@item.Id)"></i>
                 </div>
             </div>
-
-        }
     </div>
+    }
 </div>
 
 
