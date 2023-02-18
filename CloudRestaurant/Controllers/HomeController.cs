@@ -16,13 +16,16 @@ namespace CloudRestaurant.Controllers
         private readonly ICloudRestaurantRepository<Item> itemRepository;
         private readonly ICloudRestaurantRepository<Restaurant> restaurantRepository;
         private readonly ICloudRestaurantRepository<Category> categoryRepository;
+        private readonly ICloudRestaurantRepository<Request> requestRepository;
 
         public HomeController(ICloudRestaurantRepository<Item> itemRepository,
-            ICloudRestaurantRepository<Restaurant> restaurantRepository, ICloudRestaurantRepository<Category> categoryRepository)
+            ICloudRestaurantRepository<Restaurant> restaurantRepository, ICloudRestaurantRepository<Category> categoryRepository,
+            ICloudRestaurantRepository<Request> requestRepository)
         {
             this.itemRepository = itemRepository;
             this.restaurantRepository = restaurantRepository;
             this.categoryRepository = categoryRepository;
+            this.requestRepository = requestRepository;
         }
 
 
@@ -77,23 +80,25 @@ namespace CloudRestaurant.Controllers
 
 
         public ActionResult AddToBill(int? id)
-        {
-            var element = new virtualBill();
+        {      
             var item = itemRepository.Find(id);
             products.Add(item);
-            Session["elements"]=products;
-            element.Name = item.Name;
-            element.Price=((int)item.Price);
 
-            return Json(true, JsonRequestBehavior.AllowGet);         
+            return Json(true, JsonRequestBehavior.AllowGet);
 
         }
 
-        public PartialViewResult GetBill()
+        public ActionResult GetBill()
         {
             var list = new List<Item>();
             var items = (List<Item>)Session["elements"];
-            return PartialView("_billItems", items);
+            return View(products.ToList());
+        }
+        public ActionResult DeleteItemFromBill(int id)
+        {
+            var item =products.Find(x=> x.Id == id);
+            products.Remove(item);
+            return RedirectToAction("GetBill");
         }
     }
 }
