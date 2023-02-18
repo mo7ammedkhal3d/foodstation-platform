@@ -10,20 +10,16 @@
                 إضافة للسلة
             </a>
 
-            <div class="counter" id="counter+@item.Id" hidden>
-                <div class="col-md-7">
-                    <input id="txtCounter" type="text" readonly />
-                    <input type="hidden" />
+            <div class="row counter" id="counter+@item.Id" hidden>
+                <div class="col-md-7" style="padding:0px">
+                    <input id="txtDisplayNumber+@item.Id" type="text" readonly  style="text-align:center;color:black"/>
                 </div>
-                <div class="col-md-1">
-                    <i class="fa-solid fa-angle-up"></i>
-                    <i class="fa-solid fa-angle-down"></i>
+                <div class="col-md-2" style="padding:0px">
+                    <i class="fa-solid fa-angle-up btn ArrowSign" onclick="increase(@item.Id)"></i>
+                    <i class="fa-solid fa-angle-down btn ArrowSign" onclick="decrease(@item.Id)"></i>
                 </div>
-                <div class="col-md-2">
-                    <i class="glyphicon glyphicon-shopping-cart"></i>
-                </div>
-                <div class="col-md-2">
-                    <i class="fa-solid fa-plus-large"></i>
+                <div class="col-md-3 " style="padding:0px">
+                    <i class="fa-sharp fa-solid fa-plus btn plusSign" onclick="AddToBillConfirm(@item.Id)"></i>
                 </div>
             </div>
         </div>
@@ -36,25 +32,34 @@
 <script>
 
     var AddConfirm = function (_id) {
-        var st = "btnadd+"
-        var rt = "counter+"
-        document.getElementById(st + _id).style.display = 'none'
-        document.getElementById(rt + _id).style.display = 'block'
-        docment.getElementById('txtCounter').val("1")
+        document.getElementById("btnadd+" + _id).style.display = 'none'
+        document.getElementById("counter+" + _id).style.display = 'block'
+        document.getElementById("txtDisplayNumber+" + _id).value = 1;
     };
 
     var AddToBillConfirm = function (_id) {
+        document.getElementById("btnadd+" + _id).style.display = 'block'
+        document.getElementById("counter+" + _id).style.display = 'none'
         $.ajax({
             type: "Post",
             url: "/Home/AddToBill",
             data: { id: _id },
             success: function (result) {
-                var btnAddtoBill = document.getElementById(_id)
+                var btnAddtoBill = document.getElementById("btnadd+"+_id)
                 btnAddtoBill.textContent = "تمت الأضافة"
                 btnAddtoBill.className = "addBotton"
                 return false;
             }
         });
+    };
+
+    var increase = function (_id) {
+        document.getElementById("txtDisplayNumber+" + _id).value++;
+    };
+
+    var decrease = function (_id) {
+        if ($("#txtDisplayNumber+" + _id).val()!="1")
+        document.getElementById("txtDisplayNumber+"+ _id).value -= 1;
     };
 
 </script>
