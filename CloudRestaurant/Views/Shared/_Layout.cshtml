@@ -61,8 +61,8 @@
                 <!-- partial login-->
                 @Html.Partial("_LoginPartial")
 
-                <a id="gitbill" class="Basket" style=" display: block; position: absolute; font-size: 23px; color: white; margin-top: 10px; padding: 10px; transform: translateX(8px);" onclick="gitbillConfirm()">
-                    <i class="glyphicon glyphicon-shopping-cart"></i>
+                <a href="@Url.Action("GetBill", "Home")" id="BasketId" class="Basket" style=" display: block; position: absolute; font-size: 23px; color: white; margin-top: 10px; padding: 10px; transform: translateX(8px);">
+                    <i class="glyphicon glyphicon-shopping-cart" id="Bas"></i>
                 </a>
             </div>
         </div>

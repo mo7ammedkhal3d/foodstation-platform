@@ -2,19 +2,52 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<div style="background-color:teal; height:600px">
+    <h2 class="header" style="text-align: center; color: white; font-weight: bold; text-decoration: underline black; padding: 10px;">الفاتورة</h2>
+    <div class="TableDiv" style=" width: 500px; margin: auto; border: 2px solid burlywood; background: teal; height: auto; text-align: center; text-decoration: underline;">
+        <table class="table table-striped" id="mytable">
+            <tr class="btn-primary">
 
+                <th style="color:black">
+                    أسم العنصر
+                </th>
+                <th style="color:black">
+                    السعر
+                </th>
+                <th style="color:black">
+                    إلغا
+                </th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                   
+                        @item.Name
+                    </td>
+                    <td>
+                        @item.Price
+                        
+                    </td>   
+                    <td>
+                        <i class="fa fa-backspace" onclick="DeleteItem(@item.Id)"></i>
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<script>
+    var DeleteItem = function (_id) {
+        $.ajax({
+            type: "Post",
+            url: "/Home/DeleteItemFromBill",
+            data: { id: _id },
+            success: function (result) {
+                document.getElementById("BasketId").click();
+                return false;
+            }
+        });
+    };
+</script>
