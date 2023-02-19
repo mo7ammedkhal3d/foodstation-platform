@@ -13,7 +13,7 @@
 </a>
 
 <div class="row  container">
-    <div class="AllCategories">
+    <div class="AllCategories container">
         @foreach (var item in Model)
         {
             <a onclick="getItems(@item.Id)">
@@ -27,7 +27,7 @@
 </div>
 
 
-<div class="row" id="_SelectedCategoryItems">
+<div class="row" id="_SelectedCategoryItems" style=" background-color: teal; border-radius: 20px; margin: 30px auto;">
     @Html.Partial("_SelectedCategoryItems")
 </div>
 
