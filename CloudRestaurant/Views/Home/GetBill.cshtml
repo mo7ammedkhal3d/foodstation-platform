@@ -1,10 +1,12 @@
-﻿@model IEnumerable<CloudRestaurant.Models.Item>
+﻿@model IEnumerable<CloudRestaurant.Models.ViewModels.VirtualBill>
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
+    decimal Total=0;
 }
 <div style="background-color:teal; height:600px">
+    <a style=" margin-right: 150px; margin-top: 10px;" href="@Url.Action("GetRestaurantCategories", "Home" ,new { id =ViewBag.CateogriesId })" class="btn btn-primary"><i class="fa fa-home"></i></a>
     <h2 class="header" style="text-align: center; color: white; font-weight: bold; text-decoration: underline black; padding: 10px;">الفاتورة</h2>
-    <div class="TableDiv" style=" width: 500px; margin: auto; border: 2px solid burlywood; background: teal; height: auto; text-align: center; text-decoration: underline;">
+    <div class="TableDiv" style=" width: 500px; margin: auto; border: 2px solid burlywood; background: teal; height: auto; text-align: center;">
         <table class="table table-striped" id="mytable">
             <tr class="btn-primary">
 
@@ -12,7 +14,13 @@
                     أسم العنصر
                 </th>
                 <th style="color:black">
+                    الكمية
+                </th>
+                <th style="color:black">
                     السعر
+                </th>
+                <th style="color:black">
+                    الإجمالي
                 </th>
                 <th style="color:black">
                     إلغا
@@ -20,25 +28,40 @@
             </tr>
             @foreach (var item in Model)
             {
+                <span hidden>@(Total= Total + (item.ItemPrice * item.ItemQuantity))</span>
                 <tr>
                     <td>
-                   
-                        @item.Name
+                        @item.ItemName
                     </td>
                     <td>
-                        @item.Price
-                        
-                    </td>   
+                        <i class="fa fa-plus-circle Icon" onclick="IncreasQuantity(@item.ItemId)"></i>
+                        @item.ItemQuantity
+                        <i class="fa fa-minus-circle Icon" onclick="decreasQuantity(@item.ItemId)"></i>
+                    </td>
                     <td>
-                        <i class="fa fa-backspace" onclick="DeleteItem(@item.Id)"></i>
+                        @item.ItemPrice
+
+                    </td>
+                    <td>
+                        @(item.ItemPrice*item.ItemQuantity)
+
+                    </td>
+                    <td>
+                        <i class="fa fa-x" onclick="DeleteItem(@item.ItemId)"></i>
                     </td>
                 </tr>
             }
         </table>
     </div>
+    <div style="margin-right: 676px ; font-weight:bold">
+        <span>إجمالي الفاتورة</span>
+        <label style="color:white">@Total</label>
+    </div>
 </div>
 
+
 <script>
+
     var DeleteItem = function (_id) {
         $.ajax({
             type: "Post",
@@ -50,4 +73,28 @@
             }
         });
     };
+
+    var IncreasQuantity = function (_id) {
+        $.ajax({
+            type: "Post",
+            url: "/Home/IncreasQuantity",
+            data: { id: _id },
+            success: function (result) {
+                document.getElementById("BasketId").click();
+                return false;
+            }
+        });
+    };
+    var decreasQuantity = function (_id) {
+        $.ajax({
+            type: "Post",
+            url: "/Home/decreasQuantity",
+            data: { id: _id },
+            success: function (result) {
+                document.getElementById("BasketId").click();
+                return false;
+            }
+        });
+    };
+
 </script>
