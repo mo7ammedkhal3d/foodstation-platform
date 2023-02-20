@@ -1,52 +1,53 @@
-﻿<div class="row  container" style="min-height:500px">
+﻿<div class="row  container" style="min-height:500px;">
 
     @foreach (var item in ViewBag.items)
     {
-        <div class="col-md-2 thumbnail ItemDivs" style=" margin-left:25px; margin-bottom:30px; width:auto;height:100px">
-            <img src="~/Uploads/Categories/@item.ImgUrl" style="height: 90px; width: 90px; border-radius: 130px" />
-            <div style="color:black"><h6 style="font-weight:bold">@item.Name</h6></div>
-            <div style="color:black"><h6>@item.Price</h6></div>
-            <a class="btn btn-primary requstBotton" id="btnadd+@item.Id" onclick="AddConfirm(@item.Id)">
-                <i class="glyphicon glyphicon-shopping-cart" style="font-size:10px"></i>
-                <span style="font-size:10px">إضافة للسلة</span>
-            </a>
+    <div class="col-md-2 thumbnail ItemDivs" style=" margin-left:25px; margin-bottom:30px; width:auto;height:100px">
+        <img src="~/Uploads/Categories/@item.ImgUrl" style="height: 90px; width: 90px; border-radius: 130px" />
+        <div style="color:black"><h6 style="font-weight:bold">@item.Name</h6></div>
+        <div style="color:black"><h6>@item.Price</h6></div>
+        <button class="btn btn-primary requstBotton" id="btnadd+@item.Id" onclick="AddToBillConfirm(@item.Id)">
+            <i class="glyphicon glyphicon-shopping-cart" style="font-size:10px"></i>
+            <span style="font-size:10px">إضافة للسلة</span>
+        </button>
 
-            <div class="row counter" id="counter+@item.Id" hidden>
-                <div class="col-md-7" style="padding:0px">
-                    <input id="txtDisplayNumber+@item.Id" type="text" readonly  style="text-align:center;color:black"/>
-                </div>
-                <div class="col-md-2" style="padding:0px">
-                    <i class="fa-solid fa-angle-up btn ArrowSign" onclick="increase(@item.Id)"></i>
-                    <i class="fa-solid fa-angle-down btn ArrowSign" onclick="decrease(@item.Id)"></i>
-                </div>
-                <div class="col-md-3 " style="padding:0px">
-                    <i class="fa-sharp fa-solid fa-plus btn plusSign" onclick="AddToBillConfirm(@item.Id)"></i>
-                </div>
-            </div>
+        <!--<div class="row counter" id="counter+item.Id" hidden>
+          <div class="col-md-7" style="padding:0px">
+              <input id="txtDisplayNumber+item.Id" type="text" readonly  style="text-align:center;color:black"/>
+          </div>
+          <div class="col-md-2" style="padding:0px">
+              <i class="fa-solid fa-angle-up btn ArrowSign" onclick="increase(item.Id)"></i>
+              <i class="fa-solid fa-angle-down btn ArrowSign" onclick="decrease(item.Id)"></i>
+          </div>
+          <div class="col-md-3 " style="padding:0px">
+              <i class="fa-sharp fa-solid fa-plus btn plusSign" onclick="AddToBillConfirm(item.Id)"></i>
+          </div>
+      </div>-->
     </div>
+
     }
 </div>
 
 
 
 <script>
-
+/*
     var AddConfirm = function (_id) {
         document.getElementById("btnadd+" + _id).style.display = 'none'
         document.getElementById("counter+" + _id).style.display = 'block'
         document.getElementById("txtDisplayNumber+" + _id).value = 1;
-    };
+    };*/
 
     var AddToBillConfirm = function (_id) {
-        document.getElementById("btnadd+" + _id).style.display = 'block'
-        document.getElementById("counter+" + _id).style.display = 'none'
+        /*document.getElementById("btnadd+" + _id).style.display = 'block'
+        document.getElementById("counter+" + _id).style.display = 'none'*/
         $.ajax({
             type: "Post",
             url: "/Home/AddToBill",
             data: { id: _id },
             success: function (result) {
                 var btnAddtoBill = document.getElementById("btnadd+"+_id)
-                btnAddtoBill.textContent = "تمت الأضافة"
+                btnAddtoBill.textContent ="إضافة مرة اخرى"
                 btnAddtoBill.className = "addBotton"
                 return false;
             }
