@@ -456,7 +456,7 @@
     <Content Include="Views\Requests\Edit.cshtml" />
     <Content Include="Views\Requests\Index.cshtml" />
     <Content Include="Views\Home\GetBill.cshtml" />
-    <Content Include="Views\Shared\_billItems.cshtml" />
+    <Content Include="Views\Shared\_ManageMdalPartial.cshtml" />
     <Content Include="Views\Home\_SelectedCategoryItems.cshtml" />
     <Content Include="Views\Roles\Index.cshtml" />
     <Content Include="Views\Roles\Create.cshtml" />
