@@ -5,15 +5,15 @@
     <h4 style="background-color: teal;padding:8px; border-radius: 50px 10px;">@ViewBag.Name</h4>
 </div>
 
-<a onclick="getallItems()">
-    <div class="col-md-2 thumbnail CategoryDivs" style=" margin-left:25px; margin-bottom:30px;">
-        <img src="~/Uploads/Categories/Chef-bro.png" style="height: 90px; width:90px; border-radius: 130px;" />
-        <div class="CategoryName"><h4>الكل</h4></div>
-    </div>
-</a>
+<div class="row AllCategories">
+    <div class="container ">
 
-<div class="row  container">
-    <div class="AllCategories container">
+        <a onclick="getallItems()">
+            <div class="col-md-2 thumbnail CategoryDivs" style=" margin-left:25px; margin-bottom:30px;">
+                <img src="~/Uploads/Categories/Chef-bro.png" style="height: 90px; width:90px; border-radius: 130px;" />
+                <div class="CategoryName"><h4>الكل</h4></div>
+            </div>
+        </a>
         @foreach (var item in Model)
         {
             <a onclick="getItems(@item.Id)">
@@ -23,11 +23,11 @@
                 </div>
             </a>
         }
+
     </div>
 </div>
 
-
-<div class="row" id="_SelectedCategoryItems" style=" background-color: teal; border-radius: 20px; margin: 30px auto;">
+<div class="row" id="_SelectedCategoryItems">
     @Html.Partial("_SelectedCategoryItems")
 </div>
 

@@ -313,10 +313,16 @@ font-family: myfont;
     width: 100px;
     height: 100px;
 }
+
 .AllCategories {
-    background: burlywood;
-    height: 100px;
+    background-image: radial-gradient(#ffe5c4, #ffb4b400);
+    height: 120px;
     border-radius: 20px;
+    padding: 20px 10px 0px 0px;
+}
+
+.AllCategories a {
+ float:right
 }
 
 .CategoryName {
@@ -451,12 +457,30 @@ padding: 0px;
     margin-top: 50px;
 }
 
+.ItemsDisplay {
+    background-color: #efefef59;
+    border-radius: 20px 20px;
+    margin: 60px 0px 30px 0px;
+    padding: 25px 0px 0px 0px;
+}
 
 .ItemDivs {
-    border-radius: 50px 50px;
-    margin-top:10px;
-    padding: 10px;
-    background-color: #f9f9f9
+    float: right;
+    border-radius: 25px 25px 26px 27px;
+    margin: 0px 0px 12px 30px;
+    background-image: linear-gradient(180deg, #f5f5f5 53%, #008080);
+    width: 118px;
+    height: 212px;
+}
+
+.ItemDivs img{
+    height: 120px;
+    width: 100px;
+}
+
+.ItemDivs h6{
+    color:black;
+    font-weight:bold
 }
 
 
@@ -476,25 +500,33 @@ padding: 0px;
 
 .requstBotton {
     color: white;
-    width: 80px;
+    width: 116px;
     padding: 5px;
-    background-color: #306220;
-    margin: auto;
-    border-radius: 10px;
-    border: 1px solid white;
-    margin-top: -5px;
+    margin-left: 6px;
+    background-color: #478f30;
+    border-radius: 0px 0px 26px 27px;
+    border: 1px solid #999;
+    margin-top: 5px;
+    margin: 1px -4px 0px 0px;
 }
 
 .addBotton {
     color: white;
+    width: 116px;
     padding: 5px;
-    margin: auto;
-    font-size:10px;
-    border-radius: 10px;
-    border: 1px solid white;
-    margin-top: -5px;
+    margin-left: 6px;
+    border-radius: 0px 0px 26px 27px;
+    border: 1px solid #999;
+    margin-top: 5px;
+    margin: 1px -4px 0px 0px;
     background-color: #286090;
 }
+
+.requstBotton,.addBotton {
+    font-size:12px
+}
+
+
 .addBotton:active {
     background-color: blue;
 }
