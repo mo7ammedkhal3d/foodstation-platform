@@ -102,25 +102,49 @@ font-family: myfont;
    /*** End Navbar ***/
 
 /*** Start _ManageMdalPartial ***/
-.modal-open .modal .ManageModal {
-    overflow-y: hidden;
+.modal.left.fade .ManageModal {
+    width: 262px
 }
 
-
-.ManageModal {
-    width: 300px;  
-    margin-top:40px;
-    height:610px
+.ManageModalContent {
+    background-image: linear-gradient(45deg, #099797b3, transparent);
+}
+.ManageModalHeader {
+    padding: 10px;
+    border-bottom: 1px solid #004040;
 }
 
-.btnMange{
-    margin-top:15px;
+.ManageModalHeader .modal-icon{
+    font-size: 22px;
+    float: left;
+    margin: 0px 0px 0px 15px;
 }
 
-.btnMange a {
-    width: 300px;
-    margin-bottom: 2px;
-    margin-right: -39px;
+.ManageModalHeader .title{
+    display: inline;
+    float: left;
+    margin: 6px 1px 0px 15px;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+ManageModalClose {
+    font-size: 30px;
+    color: red;
+}
+
+.modal.left .ManageModalBody {
+    padding: 0px;
+}
+
+.ulMange {
+    margin: 15px 1px 0px 0px;
+    padding: 0px 0px 0px 0px;
+}
+
+.ulMange a {
+    width: 258px;
+    margin: 0px 0px 1px 0px;
 }
 
 

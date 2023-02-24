@@ -321,6 +321,7 @@
     <Content Include="Content\font\glyphicons-halflings-regular.svg" />
     <Content Include="Content\font\index.html" />
     <Content Include="Content\normalize.css" />
+    <Content Include="Content\sidebar.css" />
     <Content Include="Content\Site.js" />
     <Content Include="Content\style.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
