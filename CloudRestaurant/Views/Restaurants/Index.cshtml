@@ -1,47 +1,178 @@
-﻿@model IEnumerable<CloudRestaurant.Models.Restaurant>
+﻿@model CloudRestaurant.Models.Restaurant
 
-@{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
+<div class="row" id="_RestaurantPartial">
+    @Html.Partial("_RestaurantPartial")
+</div>
 
-<h2>Index</h2>
+<!--Create Restaurants -->
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ImgUrl)
-        </th>
-        <th></th>
-    </tr>
+<div class="modal fade" id="Modal-restaurantCreate">
+    <div class="modal-dialog">
+        <div class="modalContent-Item">
+            <div class="modal-header">
+                <h2 class="modal-title" style="text-align:center">بيانات المطعم</h2>
+            </div>
+            <div class="Restaurant-modal-body">
+                @using (Html.BeginForm("Create", "Restaurants", FormMethod.Post, new { enctype = "multipart/form-data", @id = "CreateRestaurantForm" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="row">
+                        <div class="form-horizontal" style="margin-top:50px">
+                            <div class="col-md-7" style="float: right">
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            <img src="~/Uploads/Restaurants/@Html.DisplayFor(modelItem => item.ImgUrl)" class="thumbnail"
-                 style="width:48px;height:48px;" />
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id})
-        </td>
-    </tr>
-}
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-4", @style = "float:right" })
+                                    <div class="col-md-8" style="float:right">
+                                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "input-fild", @id = "CRname" } })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-4", @style = "float:right" })
+                                    <div class="col-md-8" style="float:right">
+                                        @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "input-fild", @id = "CRdescription" } })
+                                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
 
-</table>
+                            <div class="col-md-5" style="float:right">
+                                <div class="form-group">
+                                    <img id="CRimgUrl" class="modal-Img" alt="أضف صورة">
+                                    <label for="CRpicture" class="btn btn-primary modal-Btn">أضافة صورة</label>
+                                    <input id="CRpicture" class="modal-filein" type="file" name="upload" onchange="CRloadFile(event)" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+            <div class="modal-footer">
+                <div class="form-group">
+                    <div class="col-md-offset-3 col-md-6">
+                        <input value="أضافة" class="btn btn-success modal-BtnCreate" id="btnRestaurantCreate" />
+                        <button id="btnCreateColse" type="button" class="btn modal-BtnClose" data-dismiss="modal" onclick="RresetFilds(event)">أغلاق</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--Edit Restaurants -->
+
+<div class="modal" id="Modal-restaurantEdit">
+    <div class="modal-dialog">
+        <div class="modalContent-Item">
+            <div class="modal-header">
+                <h2 class="modal-title" style="text-align:center">تعديل بينات المطعم</h2>
+            </div>
+            <div class="Restaurant-modal-body">
+                @using (Html.BeginForm("Edit", "Restaurants", FormMethod.Post, new { enctype = "multipart/form-data", @id = "EditRestaurantForm" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="row">
+                        <div class="form-horizontal" style="margin-top:50px">
+                            <div class="col-md-7" style="float: right">
+                                <input type="hidden" name="Id" id="hiddenId" />
+                                <input type="hidden" name="ImgUrl" id="hiddenImgUrl" />
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-4 ", @style = "float:right" })
+                                    <div class="col-md-8" style="float:right">
+                                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "input-fild", @id = "ERname" } })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-4", @style = "float:right" })
+                                    <div class="col-md-8" style="float:right">
+                                        @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "input-fild", @id = "ERdescription" } })
+                                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-5" style="float:right">
+                                <div class="form-group">
+                                    <img id="ERimgUrl" class="modal-Img" alt="أضف صورة">
+                                    <label for="ERpicture" class="btn btn-primary modal-Btn">تغيير الصورة</label>
+                                    <input id="ERpicture" class="modal-filein" type="file" name="upload" onchange="ERloadFile(event)" />
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                }
+
+            </div>
+
+            <div class="modal-footer">
+                <div class="form-group">
+                    <div class="col-md-offset-3 col-md-6">
+                        <input id="btnRestaurantEdit" type="button" value="تعديل" class="btn btn-primary modal-BtnCreate" />
+                        <button id="btnEditColse" type="button" class="btn modal-BtnClose" data-dismiss="modal" onclick="resetFilds(event)">أغلاق</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!--Delete Restaurants -->
+
+<div class="modal" id="Modal-restaurantDelete">
+    <div class="modal-dialog">
+        <div class="modalContent-Item">
+            <div class="modal-header">
+                <h2 class="modal-title" style="text-align:center">هل تريد بالتأكيد حذف هذا المطعم ؟</h2>
+            </div>
+            <div class="Restaurant-modal-body">
+                @using (Html.BeginForm("Create", "Restaurant", FormMethod.Post, new { enctype = "multipart/form-data", @id = "itemForm" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="row">
+                        <div class="form-horizontal" style="margin-top:50px">
+                            <div class="col-md-7" style="float:right">
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-4 ", @style = "float:right" })
+                                    <div class="col-md-8" style="float:right">
+                                        <input type="text" readonly class="input-fild" id="DRname" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-4", @style = "float:right" })
+                                    <div class="col-md-8" style="float:right">
+                                        <input type="text" readonly class="input-fild" id="DRdescription">
+                                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-5" style="float:right">
+                                <div class="form-group">
+                                    <img id="DRimgUrl" class="modal-Img">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+            <div class="modal-footer">
+                <div class="form-group">
+                    <div class="col-md-offset-3 col-md-6">
+                        <input id="btnRestaurantDelete" type="button" value="حـذف" class="btn btn-danger modal-BtnCreate" />
+                        <button id="btnDeleteColse" type="button" class="btn modal-BtnClose" data-dismiss="modal" onclick="resetFilds(event)">أغلاق</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

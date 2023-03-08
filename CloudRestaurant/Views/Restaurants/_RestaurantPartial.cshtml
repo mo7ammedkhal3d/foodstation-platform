@@ -1,0 +1,45 @@
+﻿<div>
+    <h2>قائمة المطاعم</h2>
+</div>
+<div>
+    <p>
+        <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#Modal-restaurantCreate">أضافة مطعم</a>
+    </p>
+</div>
+<table class="table">
+    <tr class="btn-primary">
+
+        <th>
+            أسم المطعم
+        </th>
+        <th>
+            الوصف
+        </th>
+        <th>
+            الصورة
+        </th>
+        <th>
+            الأجراء
+        </th>
+    </tr>
+
+    @foreach (var item in ViewBag.restaurants)
+    {
+        <tr>
+            <td>
+                @item.Name
+            </td>
+            <td>
+                @item.Description
+            </td>
+            <td>
+                <img src="~/Uploads/Restaurants/@item.ImgUrl" class="thumbnail" style="width:48px;height:48px" />
+            </td>
+            <td>
+                <a class="glyphicon glyphicon-edit" style="font-size:20px" onclick="EditRestaurantConfirm(@item.Id)"></a> |
+                <a class="glyphicon glyphicon-remove-circle" style="font-size:20px" onclick="DeleteRestaurantConfirm(@item.Id)"></a>
+                <input type="hidden" id="RestaurantId" />
+            </td>
+        </tr>
+    }
+</table>

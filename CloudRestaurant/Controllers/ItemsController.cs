@@ -28,6 +28,11 @@ namespace CloudRestaurant.Controllers
             this.categoryRepository = categoryRepository;
         }
 
+        public ItemsController()
+        {
+            
+        }
+
         // GET: Items
         public ActionResult Index()
         {
@@ -60,8 +65,7 @@ namespace CloudRestaurant.Controllers
                 }
                 else
 
-                return Json(Message, JsonRequestBehavior.AllowGet);
-          
+                return Json(Message, JsonRequestBehavior.AllowGet);         
         }
 
         // POST: Items/Create
