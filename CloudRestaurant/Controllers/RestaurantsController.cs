@@ -9,137 +9,162 @@ using System.Web;
 using System.Web.Mvc;
 using CloudRestaurant.Models;
 using CloudRestaurant.Models.Repositories;
+using CloudRestaurant.Models.ViewModels;
 
 namespace CloudRestaurant.Controllers
 {
     public class RestaurantsController : Controller
     {
         private readonly ICloudRestaurantRepository<Restaurant> restaurantRepository;
+        private readonly ICloudRestaurantRepository<Item> itemRepository;
 
-        public RestaurantsController(ICloudRestaurantRepository<Restaurant> restaurantRepository)
+        public RestaurantsController(ICloudRestaurantRepository<Restaurant> restaurantRepository , ICloudRestaurantRepository<Item> itemRepository)
         {
             this.restaurantRepository = restaurantRepository;
+            this.itemRepository = itemRepository;
         }
 
 
         public ActionResult Index()
         {
-            return View(restaurantRepository.List());
-        }
-
-        // GET: Restaurants/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Restaurant restaurant = restaurantRepository.Find(id);
-            if (restaurant == null)
-            {
-                return HttpNotFound();
-            }
-            return View(restaurant);
-        }
-
-        // GET: Restaurants/Create
-        public ActionResult Create()
-        {
+            ViewBag.restaurants = restaurantRepository.List();
             return View();
+        }
+
+        public PartialViewResult Refreash()
+        {
+            var restaurants = restaurantRepository.List();
+            ViewBag.restaurants = restaurants;
+            return PartialView("_RestaurantPartial", restaurants);
+        }
+
+        public JsonResult IsImageExist(string upload)
+        {
+            var Message = "";
+
+            string path = Path.Combine(Server.MapPath("~/Uploads/Restaurants/"), upload);
+            if (System.IO.File.Exists(path))
+            {
+                Message = "الصورة التي قمت بتحديها موجودة بالفعل لمطعم أخر قم بأختيار صورة مختلفة";
+
+                return Json(Message, JsonRequestBehavior.AllowGet);
+            }
+            else
+
+                return Json(Message, JsonRequestBehavior.AllowGet);
         }
 
         // POST: Restaurants/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(Restaurant restaurant, HttpPostedFileBase upload)
+        //[ValidateAntiForgeryToken] 
+        public JsonResult Create(Restaurant restaurant, HttpPostedFileBase upload)
         {
-            if(ModelState.IsValid)
-            { 
+            var result = false;
+            if (ModelState.IsValid)
+            {
                 string path = Path.Combine(Server.MapPath("~/Uploads/Restaurants/"), upload.FileName);
-                if (System.IO.File.Exists(path))
-                {
-                    ViewBag.Path = "the file is oready exists";
-                    return View("Create");
-                }
-                else
-                {
-                    upload.SaveAs(path);
-                    restaurant.ImgUrl = upload.FileName;
-                    restaurantRepository.Add(restaurant);
-                    return RedirectToAction("Index");
-                }
+                upload.SaveAs(path);
+                restaurant.ImgUrl = upload.FileName;
+                restaurantRepository.Add(restaurant);
+                result = true;
+                return Json(result, JsonRequestBehavior.AllowGet);
             }
-            return View(restaurant);
+
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
 
-        // GET: Restaurants/Edit/5
-        public ActionResult Edit(int? id)
+
+        // GET: Restaurant/Edit/5
+        public ActionResult GetRestaurant(int? id)
         {
-            if (id == null)
+            var restaurant = restaurantRepository.Find(id);
+            RestaurantVM restaurantVM = new RestaurantVM();
+            if (restaurant != null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                restaurantVM.Name = restaurant.Name;
+                restaurantVM.Description = restaurant.Description;
+                restaurantVM.ImgUrl = restaurant.ImgUrl;
             }
-            Restaurant restaurant = restaurantRepository.Find(id);
-            if (restaurant == null)
-            {
-                return HttpNotFound();
-            }
-            return View(restaurant);
+            return Json(restaurantVM, JsonRequestBehavior.AllowGet);
         }
+
 
         // POST: Restaurants/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(Restaurant restaurant, HttpPostedFileBase upload)
+        //[ValidateAntiForgeryToken]
+        public JsonResult Edit(Restaurant restaurant, HttpPostedFileBase upload)
         {
-            string OldPath = Path.Combine(Server.MapPath("~/Uploads/Restaurants"), restaurant.ImgUrl);
             if (ModelState.IsValid)
             {
+                string oldPath = Path.Combine(Server.MapPath("~/Uploads/Restaurants"), restaurant.ImgUrl);
+
                 if (upload != null)
                 {
-                    string oldPath = Path.Combine(Server.MapPath("~/Uploads/Restaurants"), restaurant.ImgUrl);
                     System.IO.File.Delete(oldPath);
                     string path = Path.Combine(Server.MapPath("~/Uploads/Restaurants"), upload.FileName);
                     upload.SaveAs(path);
                     restaurant.ImgUrl = upload.FileName;
                 }
                 restaurantRepository.Update(restaurant);
-                return RedirectToAction("Index");
-            }          
-            return View(restaurant);
-        }
+                return Json(true, JsonRequestBehavior.AllowGet);
+            }
 
-        // GET: Restaurants/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Restaurant restaurant = restaurantRepository.Find(id);
-            if (restaurant == null)
-            {
-                return HttpNotFound();
-            }
-            return View(restaurant);
+            return Json(false, JsonRequestBehavior.AllowGet);
         }
 
         // POST: Restaurants/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        public JsonResult DeleteConfirmed(int id)
         {
-            Restaurant restaurant = restaurantRepository.Find(id);
-            string OldPath = Path.Combine(Server.MapPath("~/Uploads/Restaurants"), restaurant.ImgUrl);
+            var message = "";
+            var restaurant = restaurantRepository.Find(id);
+            var items = itemRepository.List().Where(x => x.RestaurantId == restaurant.Id);
+            if (items.Count() > 0)
+            {
+                message = "haveItem";
+                return Json(message, JsonRequestBehavior.AllowGet);
+            }
+
+            if(restaurant == null)
+            {
+                message = "لايوجد مطعم بالمعرف المرسل الى السرفر";
+                return Json(message, JsonRequestBehavior.AllowGet);
+            }
+
+            string OldPath = Path.Combine(Server.MapPath("~/Uploads/Restaurants/"), restaurant.ImgUrl);
             System.IO.File.Delete(OldPath);
             restaurantRepository.Delete(id);
-            return RedirectToAction("Index");
+
+            return Json(message, JsonRequestBehavior.AllowGet);
         }
 
+
+        // POST: Restaurants/DeletewithItems/5
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        public ActionResult DeleteRestaurantandItems(int id)
+        {
+            var restaurant = restaurantRepository.Find(id);
+            var items = itemRepository.List().Where(x => x.RestaurantId == restaurant.Id);
+
+            foreach (var item in items)
+            {
+                string itemOldPath = Path.Combine(Server.MapPath("~/Uploads/Items/"), item.ImgUrl);
+                System.IO.File.Delete(itemOldPath);
+                itemRepository.Delete(item.Id);
+            }
+
+            string OldPath = Path.Combine(Server.MapPath("~/Uploads/Restaurants/"), restaurant.ImgUrl);
+            System.IO.File.Delete(OldPath);
+            restaurantRepository.Delete(id);
+
+            return Json(true, JsonRequestBehavior.AllowGet);
+        }
 
         //protected override void Dispose(bool disposing)
         //{

@@ -454,27 +454,36 @@ padding: 0px;
     text-align: center
 }
 
-.swal-IW {     /* IW ---> Item windwo */
-    width: 464px !important;
-    height: 83px !important;
+.swal-IW { /* IW ---> Item windwo */
+    width: fit-content;
+    height: fit-content;
+    padding: 10px;
     border: 1px solid teal;
     position: inherit;
 }
 
 .swal-IW .swal-text{
-    font-size: 17px;
+font-size: 17px;
     color: black;
-
+    text-align: center;
 }
 
 .swal-IW .swal-text:first-child{
-        margin-top: 30px;
+    margin: 0px 0px 0px 0px;
 }
 
 /*>>> End Item Windwo <<<*/
 
+/*>>> Start ٌRestaurant Windwo <<<*/
+
+.Restaurant-modal-body {
+    position: relative;
+    padding: 15px;
+    height: 365px;
+}
 
 
+/*>>> End ٌRestaurant Windwo <<<*/
 
 .DivRest {
     border-radius: 10px;
