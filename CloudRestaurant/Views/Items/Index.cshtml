@@ -1,10 +1,4 @@
-﻿@using CloudRestaurant.Models.Repositories;
-@using CloudRestaurant.Models
-@model CloudRestaurant.Models.Item
-@{
-    var SelectedId = 5;
-    var selectedItem = new ItemRepository().Find(SelectedId);
-}
+﻿@model CloudRestaurant.Models.Item
 
 <div class="row" id="_ItemParial">
     @Html.Partial("_ItemPartial")
@@ -69,7 +63,7 @@
                                 <div class="form-group">
                                     <img id="CIimgUrl" class="modal-Img" alt="أضف صورة">
                                     <label for="CIpicture" class="btn btn-primary modal-Btn">أضافة صورة</label>
-                                    <input id="CIpicture" class="modal-filein" type="file" name="upload" onchange="CloadFile(event)" />
+                                    <input id="CIpicture" class="modal-filein" type="file" name="upload" onchange="CIloadFile(event)" />
                                 </div>
                             </div>
                         </div>
@@ -80,8 +74,8 @@
             <div class="modal-footer">
                 <div class="form-group">
                     <div class="col-md-offset-3 col-md-6">
-                        <input value="أضافة" class="btn btn-success modal-BtnCreate" id="btnCreate" />
-                        <button id="btnCreateColse" type="button" class="btn modal-BtnClose" data-dismiss="modal" onclick="resetFilds(event)">أغلاق</button>
+                        <input value="أضافة" class="btn btn-success modal-BtnCreate" id="btnItemCreate" />
+                        <button id="btnCreateColse" type="button" class="btn modal-BtnClose" data-dismiss="modal" onclick="IresetFilds(event)">أغلاق</button>
                     </div>
                 </div>
             </div>
@@ -113,7 +107,6 @@
                                     @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-4 ", @style = "float:right" })
                                     <div class="col-md-8" style="float:right">
                                         @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "input-fild", @id = "EIname" } })
-                                        <span id="errName"></span>
                                     </div>
                                 </div>
 
@@ -155,7 +148,7 @@
                                 <div class="form-group">
                                     <img id="EIimgUrl" class="modal-Img" alt="أضف صورة">
                                     <label for="EIpicture" class="btn btn-primary modal-Btn">تغيير الصورة</label>
-                                    <input id="EIpicture" class="modal-filein" type="file" name="upload" onchange="EloadFile(event)" />
+                                    <input id="EIpicture" class="modal-filein" type="file" name="upload" onchange="EIloadFile(event)" />
                                 </div>
                             </div>
 
@@ -168,7 +161,7 @@
             <div class="modal-footer">
                 <div class="form-group">
                     <div class="col-md-offset-3 col-md-6">
-                        <input id="btnEdit" type="button" value="تعديل" class="btn btn-primary modal-BtnCreate" />
+                        <input id="btnItemEdit" type="button" value="تعديل" class="btn btn-primary modal-BtnCreate" />
                         <button id="btnEditColse" type="button" class="btn modal-BtnClose" data-dismiss="modal" onclick="resetFilds(event)">أغلاق</button>
                     </div>
                 </div>
@@ -245,7 +238,7 @@
             <div class="modal-footer">
                 <div class="form-group">
                     <div class="col-md-offset-3 col-md-6">
-                        <input id="btnDelete" type="button" value="حـذف" class="btn btn-danger modal-BtnCreate" />
+                        <input id="btnItemDelete" type="button" value="حـذف" class="btn btn-danger modal-BtnCreate" />
                         <button id="btnDeleteColse" type="button" class="btn modal-BtnClose" data-dismiss="modal" onclick="resetFilds(event)">أغلاق</button>
                     </div>
                 </div>

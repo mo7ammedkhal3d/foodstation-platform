@@ -477,83 +477,49 @@ body {
         text-align: center;
     }
 
-    .form-group .modal-Lbl {
-        display: block;
-        text-align: center;
-        margin-bottom: 12px;
-        margin-left: 8px;
-    }
 
-    .form-group .modal-Btn {
-        display: block;
-        margin-bottom: 12px;
-        margin-right: 75px;
-        width: 100px;
-        background-color: teal;
-    }
+.input-fild {
+    height: 30px;
+    border-radius: 14px 6px;
+    display: block;
+    width: 220px;
+    border: 1px solid teal;
+    border-bottom: 1px solid #757575;
+    text-align: center
+}
 
-    .form-group .modal-filein {
-        display: block;
-        margin-left: 40px;
-        visibility: hidden
-    }
+.swal-IW { 
+    width: 464px !important;
+    height: 83px !important;
+    border: 1px solid teal;
+    position: inherit;
+}
 
-    .form-group .modal-BtnCreate {
-        width: 100px;
-        margin-left: 20px;
-        margin-right: 20px;
-    }
+.swal-IW .swal-text {
+font-size: 17px;
+color: black;
+}
 
+.swal-IW .swal-text:first-child {
+    margin-top: 30px;
+}
 
-    .form-group .modal-BtnClose {
-        width: 100px;
-        margin: 0px 20px 0px 7px;
-    }
-
-    .input-fild {
-        height: 30px;
-        border-radius: 14px 6px;
-        display: block;
-        width: 220px;
-        border: 1px solid teal;
-        border-bottom: 1px solid #757575;
-        text-align: center
-    }
-
-/* IW ---> Item windwo */
-
-    .swal-IW { 
-        width: 464px !important;
-        height: 83px !important;
-        border: 1px solid teal;
-        position: inherit;
-    }
-
-        .swal-IW .swal-text {
-            font-size: 17px;
-            color: black;
-        }
-
-            .swal-IW .swal-text:first-child {
-                margin-top: 30px;
-            }
-
-    /*>>> End Item Windwo <<<*/
+/*>>> End Item Windwo <<<*/
 
 
 
 
-    .DivRest {
-        border-radius: 10px;
-        margin-top: 50px;
-    }
+.DivRest {
+border-radius: 10px;
+margin-top: 50px;
+}
 
-    .ItemsDisplay {
-        background-color: #efefef59;
-        border-radius: 20px 20px;
-        margin: 60px 0px 30px 0px;
-        padding: 25px 0px 0px 0px;
-    }
+.ItemsDisplay {
+background-color: #efefef59;
+border-radius: 20px 20px;
+margin: 60px 0px 30px 0px;
+padding: 25px 0px 0px 0px;
+}
 
     .ItemDivs {
         float: right;

@@ -34,32 +34,32 @@
 
     @foreach (var item in ViewBag.items)
     {
-<tr>
-    <td>
-        @item.Name
-    </td>
-    <td>
-        @item.Price
-    </td>
+        <tr>
+            <td>
+                @item.Name
+            </td>
+            <td>
+                @item.Price
+            </td>
 
-    <td>
-        @item.TimeOfDone
-    </td>
-    <td>
-        @item.Restaurant.Name
-    </td>                                      
-    <td>
-        @item.Category.Name
-    </td>
-    <td>
-        <img src="~/Uploads/Items/@item.ImgUrl" class="thumbnail" style="width:48px;height:48px" />
-    </td>
-    <td>
-        <a class="glyphicon glyphicon-edit" id="showModal-itemDelete" style="font-size:20px" onclick="EditConfirm(@item.Id)"></a> |
-        <a class="glyphicon glyphicon-remove-circle" id="showModal-itemDelete" style="font-size:20px" onclick="DeleteConfirm(@item.Id)"></a>
-        <input type="hidden" id="itemId" />
-    </td>
-</tr>
+            <td>
+                @item.TimeOfDone
+            </td>
+            <td>
+                @item.Restaurant.Name
+            </td>                                      
+            <td>
+                @item.Category.Name
+            </td>
+            <td>
+                <img src="~/Uploads/Items/@item.ImgUrl" class="thumbnail" style="width:48px;height:48px" />
+            </td>
+            <td>
+                <a class="glyphicon glyphicon-edit" id="showModal-itemDelete" style="font-size:20px" onclick="EditItemConfirm(@item.Id)"></a> |
+                <a class="glyphicon glyphicon-remove-circle" id="showModal-itemDelete" style="font-size:20px" onclick="DeleteItemConfirm(@item.Id)"></a>
+                <input type="hidden" id="itemId" />
+            </td>
+        </tr>
 
     }
 </table>
