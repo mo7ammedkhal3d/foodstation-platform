@@ -3,21 +3,19 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron" style="margin: 20px; background-color: teal; color: burlywood; border-radius: 15px; text-align: center">
-    <h1 style="font-weight:bold">Cloud-Restaurants</h1>
-    <p class="lead">أهلا بك في المطاعم السحابية هنا نوفر لك جميع وجبات المطاعم والكافيهات والبوفيهات يمكنك تصفح المطاعم والطلب من أي مطعم بوقت واحد ومن مكان واحد المطاعم السحابية اختيارك الأفضل </p>
-</div>
-<div class="row DivRest container">
-    @foreach (var item in Model)
-    {
-        <a href="@Url.Action("GetRestaurantCategories", "Home", new {id=item.Id})">
-            <div class="col-md-2 thumbnail Restaurant" style=" margin-left:25px; margin-bottom:30px; height:350px">
-                <img src="~/Uploads/Restaurants/@item.ImgUrl" style="height: 200px; width: 100%; border-radius: 20px;" />
-                <h3> @Html.DisplayFor(modelItem => item.Name)</h3>
-                <h5> @Html.DisplayFor(modelItem => item.Description)</h5>
-            </div>
-        </a>
-    }
+<div>
+    <div class="row DivRest container">
+        @foreach (var item in Model)
+        {
+            <a href="@Url.Action("GetRestaurantCategories", "Home", new {id=item.Id})">
+                <div class="col-md-2 thumbnail Restaurant" style=" margin-left:25px; margin-bottom:30px; height:350px">
+                    <img src="~/Uploads/Restaurants/@item.ImgUrl" style="height: 200px; width: 100%; border-radius: 20px;" />
+                    <h3> @Html.DisplayFor(modelItem => item.Name)</h3>
+                    <h5> @Html.DisplayFor(modelItem => item.Description)</h5>
+                </div>
+            </a>
+        }
+    </div>
 </div>
 
 

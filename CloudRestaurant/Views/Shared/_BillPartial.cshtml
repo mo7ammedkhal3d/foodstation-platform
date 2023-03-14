@@ -1,0 +1,59 @@
+﻿@model IEnumerable<CloudRestaurant.Models.ViewModels.VirtualBill>
+@{
+    decimal Total = 0;
+}
+<div class="container row" style="background-color:#f7f2f2">
+    <a href="@Url.Action("GetRestaurantCategories", "Home" ,new { id =ViewBag.CateogriesId })" class="btn btn-primary" style="margin-top:10px;font-size:22px"><i class="fa fa-home"></i></a>
+    <h2 style="text-align: center; font-weight: bold; padding: 10px;">الفاتورة</h2>
+    <div class="col-md-12">
+        <table class="table table-striped">
+            <tr class="btn-primary">
+
+                <th style="color:black">
+                    أسم العنصر
+                </th>
+                <th style="color:black">
+                    الكمية
+                </th>
+                <th style="color:black">
+                    السعر
+                </th>
+                <th style="color:black">
+                    الإجمالي
+                </th>
+                <th style="color:black">
+                    إلغا
+                </th>
+            </tr>
+            @foreach (var item in ViewBag.products)
+            {
+                <span hidden>@(Total= Total + (item.ItemPrice * item.ItemQuantity))</span>
+                <tr>
+                    <td>
+                        @item.ItemName
+                    </td>
+                    <td>
+                        <i class="fa fa-plus-circle Icon" onclick="IncreasQuantity(@item.ItemId)"></i>
+                        @item.ItemQuantity
+                        <i class="fa fa-minus-circle Icon" onclick="decreasQuantity(@item.ItemId)"></i>
+                    </td>
+                    <td>
+                        @item.ItemPrice
+
+                    </td>
+                    <td>
+                        @(item.ItemPrice*item.ItemQuantity)
+
+                    </td>
+                    <td>
+                        <i class="fa fa-x" onclick="DeleteItem(@item.ItemId)"></i>
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+    <div style="font-weight:bold">
+        <span>إجمالي الفاتورة: </span>
+        <label style="color:black">@Total</label>
+    </div>
+</div>

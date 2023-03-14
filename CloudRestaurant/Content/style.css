@@ -20,146 +20,211 @@ body {
    /*--- Start Header ---*/
 
 .logoSize {
-    position: absolute;
     font-size: 40px;
-    color: black;
-    transform: translateX(-20px);
-}
-
-   /** Start Navbar **/
-
-.navbar-default {
-    background-color: Teal;
-    border-color: #000;
-    border-bottom-width: thin;
-}
-
-.navbar-right {
-    float: right !important;
-    margin-right: 20px;
-}
-.navbar-right ~ .navbar-right {
-    margin-right: 300px;
-}
-
-.navbar-left {
-    float: left !important;
-    margin-left: 53px;
-}
-
-
-
-
-.navbar-default .navbar-nav > li > a {
     color: #e7e7e7;
-    font-family:myfont;
 }
-.navbar-default .navbar-nav > li > a:hover {
-color: #908ccb;
-font-family: myfont;
+@media (max-width:767px) {
+    .logoSize {
+        margin-top: -10px;
+    }
 }
-.nav > li {
-    position: relative;
-    display: block;
-    height: 70px;
-    padding-top: 10px;
-    font-weight:bold;
-}
+    /** Start Navbar **/
+
+    .navbar-default {
+        background-color: Teal;
+        border-color: #000;
+        border-bottom-width: thin;
+    }
+
+    .navbar-right {
+        float: right !important;
+        margin-right: 20px;
+    }
+
+        .navbar-right ~ .navbar-right {
+            margin-right: 300px;
+        }
+
+    .navbar-left {
+        float: left !important;
+        margin-left: 53px;
+    }
+
+
+
+
+    .navbar-default .navbar-nav > li > a {
+        color: #e7e7e7;
+        font-family: myfont;
+    }
+
+        .navbar-default .navbar-nav > li > a:hover {
+            color: #908ccb;
+            font-family: myfont;
+        }
+
+    .nav > li {
+        position: relative;
+        display: block;
+        height: 70px;
+        padding-top: 10px;
+        font-weight: bold;
+    }
+
 .Basket {
     display: block;
     position: absolute;
     font-size: 23px;
-    color: white;
+    color: #e7e7e7;
     margin-top: 10px;
     padding: 10px;
     transform: translateX(8px);
 }
-/* this style for icon of delete item and increase and decrease icon from bill*/
-.Icon {
-    margin: 5px;
-    font-size: 15px;
-}
-.Icon:hover {
-    color: blue;
-}
-.Icon:active {
+    /* this style for icon of delete item and increase and decrease icon from bill*/
+    .Icon {
+        margin: 5px;
+        font-size: 15px;
+    }
+
+        .Icon:hover {
+            color: blue;
+        }
+
+        .Icon:active {
+            color: red;
+        }
+
+    .fa-x {
+        color: black;
+        font-size: 23px;
+    }
+
+        .fa-x:hover {
+            color: darkred;
+            font-size: 22.5px
+        }
+    /* end style for icon of delete ittem from bill*/
+    .Basket:hover {
+        background-color: #008095;
+        border-radius: 20px;
+    }
+
+    /*** End Navbar ***/
+
+    /*** Start _ManageMdalPartial ***/
+    .modal.left.fade .ManageModal {
+        width: 262px
+    }
+
+    .ManageModalContent {
+        background-image: linear-gradient(45deg, #099797b3, transparent);
+    }
+
+    .ManageModalHeader {
+        padding: 10px;
+        border-bottom: 1px solid #004040;
+    }
+
+        .ManageModalHeader .modal-icon {
+            font-size: 22px;
+            float: left;
+            margin: 0px 0px 0px 15px;
+        }
+
+        .ManageModalHeader .title {
+            display: inline;
+            float: left;
+            margin: 6px 1px 0px 15px;
+            font-weight: 600;
+            font-size: 15px;
+        }
+
+    ManageModalClose {
+        font-size: 30px;
         color: red;
+    }
+
+    .modal.left .ManageModalBody {
+        padding: 0px;
+    }
+
+    .ulMange {
+        margin: 15px 1px 0px 0px;
+        padding: 0px 0px 0px 0px;
+    }
+
+        .ulMange a {
+            width: 258px;
+            margin: 0px 0px 1px 0px;
+        }
+
+
+    /*** End _ManageMdalPartial ***/
+
+
+    /*** Start Landing ***/
+
+    .landing {
+        height: 50vh;
+        background-size: contain;
+        background-attachment: fixed;
+        background-repeat: repeat-x;
+        position: relative;
+    }
+@media (max-width:990px) {
+    .landing {
+        margin-bottom:270px;
+    }
 }
-.fa-x {
-    color: black;
-    font-size: 23px;
-}
-.fa-x:hover {
-    color: darkred;
-    font-size: 22.5px
-}
-/* end style for icon of delete ittem from bill*/
-.Basket:hover {
-    background-color: #008095;
-    border-radius: 20px;
-}
-
-   /*** End Navbar ***/
-
-/*** Start _ManageMdalPartial ***/
-.modal.left.fade .ManageModal {
-    width: 262px
-}
-
-.ManageModalContent {
-    background-image: linear-gradient(45deg, #099797b3, transparent);
-}
-.ManageModalHeader {
-    padding: 10px;
-    border-bottom: 1px solid #004040;
-}
-
-.ManageModalHeader .modal-icon{
-    font-size: 22px;
-    float: left;
-    margin: 0px 0px 0px 15px;
-}
-
-.ManageModalHeader .title{
-    display: inline;
-    float: left;
-    margin: 6px 1px 0px 15px;
-    font-weight: 600;
-    font-size: 15px;
-}
-
-ManageModalClose {
-    font-size: 30px;
-    color: red;
-}
-
-.modal.left .ManageModalBody {
-    padding: 0px;
-}
-
-.ulMange {
-    margin: 15px 1px 0px 0px;
-    padding: 0px 0px 0px 0px;
-}
-
-.ulMange a {
-    width: 258px;
-    margin: 0px 0px 1px 0px;
-}
-
-
-/*** End _ManageMdalPartial ***/
-
-
-  /*** Start Landing ***/
-
-.landing {
+.ladingHalf {
     height: 50vh;
-   background-image: url('../Uploads/Categories/Chef-bro.png');
     background-size: contain;
-    background-attachment: fixed;
-    background-repeat:repeat-x;
+    background-color: teal;
+    text-align:center;
     position: relative;
+    padding: 20px;
+    color: #e7e7e7;
+}
+.section-title h2 {
+    font-size: 32px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    position: relative;
+    color: #37517e;
+}
+.landingImg {
+    height: 100%;
+    width:350px;
+    margin-left: 70px;
+    animation: up-down 2s ease-in-out infinite alternate-reverse both;
+}
+@media (max-width:990px) {
+    .landingImg {
+        margin-right: 50px;
+        width:600px;
+        margin-right:0px;
+    }
+}
+@-webkit-keyframes up-down {
+    0% {
+        transform: translateY(15px);
+    }
+
+    100% {
+        transform: translateY(-15px);
+    }
+}
+
+@keyframes up-down {
+    0% {
+        transform: translateY(15px);
+    }
+
+    100% {
+        transform: translateY(-15px);
+    }
 }
 
 .landing .overlay {
@@ -171,496 +236,471 @@ ManageModalClose {
     background-color: rgb(0 0 0 / 10%);
 }
 
-.landing .text {
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 50%;
-    padding: 30px;
-    background-color: var(--transparent-color);
-    color: white;
-    display: flex;
-    justify-content: flex-end;
-}
+        .landing .text {
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50%;
+            padding: 30px;
+            background-color: var(--transparent-color);
+            color: white;
+            display: flex;
+            justify-content: flex-end;
+        }
 
-@media (max-width:767px) {
-.landing .text {
-    width: 100%;
-}
+    @media (max-width:767px) {
+        .landing .text {
+            width: 100%;
+        }
 
-.landing .text .content {
-    width: 100%;
-}
-
-}
-.landing .bullets .active {
-    background-color: var(--main-color);
-}
-
-.landing .text .content {
-    max-width: 500px;
-}
-
-.landing .text .content h2 {
-    font-size: 30px;
-    font-weight: normal;
-    line-height: 1.6;
-    margin-bottom: 15px;
-}
-
-.landing .text .content p {
-    font-size: 13px;
-    line-height: 1.6;
-}
-
-.landing .change-background {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    color: white;
-}
-
-@media (max-width:767px) {
-    .landing .change-background {
-        display: none;
+            .landing .text .content {
+                width: 100%;
+            }
     }
-}
 
-.landing .fa-angle-left {
-    left: 30px;
-}
+    .landing .bullets .active {
+        background-color: var(--main-color);
+    }
 
-.landing .fa-angle-right {
-    right: 30px;
-}
+    .landing .text .content {
+        max-width: 500px;
+    }
 
-.modalContent-Item {
-    height: 545px;
-    width: 650px;
-    background-color: #FFF;
-}
+        .landing .text .content h2 {
+            font-size: 30px;
+            font-weight: normal;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
 
+        .landing .text .content p {
+            font-size: 13px;
+            line-height: 1.6;
+        }
 
-.landing .bullets {
-    left: 50%;
-    list-style: none;
-    position: absolute;
-    transform: translateX(-50%);
-    bottom: 30px;
-    display: flex;
-}
+    .landing .change-background {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        color: white;
+    }
 
-.landing .bullets li {
-    width: 15px;
-    height: 15px;
-    border: 1px solid white;
-    border-radius: 50%;
-    margin-right: 5px;
-}
+    @media (max-width:767px) {
+        .landing .change-background {
+            display: none;
+        }
+    }
 
-.landing .bullets .active {
-    background-color: var(--main-color);
-}
-/*** End Landing ***/
+    .landing .fa-angle-left {
+        left: 30px;
+    }
 
-/*--- End Header ---*/
+    .landing .fa-angle-right {
+        right: 30px;
+    }
 
-/*--- Start Main ----*/
-
-/*>>> Start Login Windwo <<<*/
-
-.login-Div {
-    padding: 15px;
-    margin-top: 40px;
-}
-
-.main-Photo{
-    padding:15px;
-    margin-top:55px;
-}
+    .modalContent-Item {
+        height: 545px;
+        width: 650px;
+        background-color: #FFF;
+    }
 
 
-.main-Photo .login-image {
-    width: 300px;
-    margin-left:40px;
-}
+    .landing .bullets {
+        left: 50%;
+        list-style: none;
+        position: absolute;
+        transform: translateX(-50%);
+        bottom: 30px;
+        display: flex;
+    }
+
+        .landing .bullets li {
+            width: 15px;
+            height: 15px;
+            border: 1px solid white;
+            border-radius: 50%;
+            margin-right: 5px;
+        }
+
+        .landing .bullets .active {
+            background-color: var(--main-color);
+        }
+    /*** End Landing ***/
+
+    /*--- End Header ---*/
+
+    /*--- Start Main ----*/
+
+    /*>>> Start Login Windwo <<<*/
+
+    .login-Div {
+        padding: 15px;
+        margin-top: 40px;
+    }
+
+    .main-Photo {
+        padding: 15px;
+        margin-top: 55px;
+    }
 
 
-
-/*>>> End Login Windwo <<<*/
-
-/*>>> Start Register Windwo <<<*/
-
-.Register-Div {
-    padding: 15px;
-    margin-top: 20px;
-    width: 640px;
-    height: 15px;
-    border: 1px solid white;
-    border-radius: 50%;
-    margin-right: 5px;
-}
-
-/*>>> End Register Windwo <<<*/
-
-
-
-/*>>> Start Home Windwo <<<*/
-
-.Restaurant {
-    max-height: 420px;
-    max-width: 305px;
-    min-height: 346px;
-    min-width: 260px;
-    border-radius: 20px;
-    border-color: teal;
-    background-color: darkslategray;
-    color: burlywood;
-    text-align: center;
-    font-family: myfont2;
-    padding: 0px;
-}
-
-.Restaurant:hover {
-    background-color: teal;
-    transform: translateX(10px);
-    transform: translateY(10px);
-    border-radius: 10px;
-}
-
-/* this style for the Divs of Categories*/
-.CategoryDivs {
-    background-color: teal;
-    border-radius: 50px 50px;
-    padding: 10px;
-    width: 100px;
-    height: 100px;
-}
-
-.AllCategories {
-    background-image: radial-gradient(#ffe5c4, #ffb4b400);
-    height: 120px;
-    border-radius: 20px;
-    padding: 20px 10px 0px 0px;
-}
-
-.AllCategories a {
- float:right
-}
-
-.CategoryName {
-    background-color: #123636;
-    color: burlywood;
-    text-align: center;
-    border-radius: 50px 20px;
-}
-
-.counter {
-    background-color: green;
-    width: fit-content;
-    height: 34px;
-    border-radius: 4px 4px;
-    color: white;
-    margin-right: 22px;
-}
-.counter input{
-    width: 72px;
-    height: 34px;
-    border-radius: 7px 8px;
-}
-
-.counter .plusSign{
-    padding: 0px;
-    margin-top: 6px;
-    margin-right: 5px;
-    text-align: center;
-    font-size: 20px
-}
-
-.counter .ArrowSign{
-padding: 0px;
-    margin: -2px;
-}
+        .main-Photo .login-image {
+            width: 300px;
+            margin-left: 40px;
+        }
 
 
 
+    /*>>> End Login Windwo <<<*/
+
+    /*>>> Start Register Windwo <<<*/
+
+    .Register-Div {
+        padding: 15px;
+        margin-top: 20px;
+        width: 640px;
+        height: 15px;
+        border: 1px solid white;
+        border-radius: 50%;
+        margin-right: 5px;
+    }
+
+    /*>>> End Register Windwo <<<*/
 
 
-/* end style for the Divs of Categories*/
 
-/*>>> End Home Windwo <<<*/
+    /*>>> Start Home Windwo <<<*/
 
-/*>>> Start Item Windwo <<<*/
+    .Restaurant {
+        max-height: 420px;
+        max-width: 305px;
+        min-height: 346px;
+        min-width: 260px;
+        border-radius: 20px;
+        border-color: teal;
+        background-color: darkslategray;
+        color: burlywood;
+        text-align: center;
+        font-family: myfont2;
+        padding: 0px;
+    }
 
-.Item-modal-body {
-    position: relative;
-    padding: 15px;
-    height: 365px;
-}
+        .Restaurant:hover {
+            background-color: teal;
+            transform: translateX(10px);
+            transform: translateY(10px);
+            border-radius: 10px;
+        }
 
-.form-group .modal-Img {
-    width: 245px;
-    height: 233px;
-    display: block;
-    font-size: 30px;
-    margin-left: 18px;
-    margin-bottom: 10px;
-    border-radius: 25px 6px;
-    border: 1px solid teal;
-    text-align: center;
-}
+    /* this style for the Divs of Categories*/
+    .CategoryDivs {
+        background-color: teal;
+        border-radius: 50px 50px;
+        padding: 10px;
+        width: 100px;
+        height: 100px;
+    }
 
-.form-group .modal-Lbl {
-    display: block;
-    text-align: center;
-    margin-bottom: 12px;
-    margin-left: 8px;
-}
+    .AllCategories {
+        background-image: radial-gradient(#ffe5c4, #ffb4b400);
+        height: 120px;
+        border-radius: 20px;
+        padding: 20px 10px 0px 0px;
+    }
 
-.form-group .modal-Btn {
-    display: block;
-    margin-bottom: 12px;
-    margin-right: 75px;
-    width: 100px;
-    background-color: teal;
-}
+        .AllCategories a {
+            float: right
+        }
 
-.form-group .modal-filein {
-    display: block;
-    margin-left: 40px;
-    visibility: hidden
-}
+    .CategoryName {
+        background-color: #123636;
+        color: burlywood;
+        text-align: center;
+        border-radius: 50px 20px;
+    }
 
-.form-group .modal-BtnCreate {
-    width: 100px;
-    margin-left: 20px;
-    margin-right: 20px;
-}
+    .counter {
+        background-color: green;
+        width: fit-content;
+        height: 34px;
+        border-radius: 4px 4px;
+        color: white;
+        margin-right: 22px;
+    }
+
+        .counter input {
+            width: 72px;
+            height: 34px;
+            border-radius: 7px 8px;
+        }
+
+        .counter .plusSign {
+            padding: 0px;
+            margin-top: 6px;
+            margin-right: 5px;
+            text-align: center;
+            font-size: 20px
+        }
+
+        .counter .ArrowSign {
+            padding: 0px;
+            margin: -2px;
+        }
 
 
-.form-group .modal-BtnClose {
-    width: 100px;
-    margin: 0px 20px 0px 7px;
-}
 
-.input-fild {
-    height: 30px;
-    border-radius: 14px 6px;
-    display: block;
-    width: 220px;
-    border: 1px solid teal;
-    border-bottom: 1px solid #757575;
-    text-align: center
-}
 
-.swal-IW {     /* IW ---> Item windwo */
-    width: 464px !important;
-    height: 83px !important;
-    border: 1px solid teal;
-    position: inherit;
-}
 
-.swal-IW .swal-text{
-    font-size: 17px;
-    color: black;
+    /* end style for the Divs of Categories*/
 
-}
+    /*>>> End Home Windwo <<<*/
 
-.swal-IW .swal-text:first-child{
+    /*>>> Start Item Windwo <<<*/
+
+    .Item-modal-body {
+        position: relative;
+        padding: 15px;
+        height: 365px;
+    }
+
+    .form-group .modal-Img {
+        width: 245px;
+        height: 233px;
+        display: block;
+        font-size: 30px;
+        margin-left: 18px;
+        margin-bottom: 10px;
+        border-radius: 25px 6px;
+        border: 1px solid teal;
+        text-align: center;
+    }
+
+    .form-group .modal-Lbl {
+        display: block;
+        text-align: center;
+        margin-bottom: 12px;
+        margin-left: 8px;
+    }
+
+    .form-group .modal-Btn {
+        display: block;
+        margin-bottom: 12px;
+        margin-right: 75px;
+        width: 100px;
+        background-color: teal;
+    }
+
+    .form-group .modal-filein {
+        display: block;
+        margin-left: 40px;
+        visibility: hidden
+    }
+
+    .form-group .modal-BtnCreate {
+        width: 100px;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+
+    .form-group .modal-BtnClose {
+        width: 100px;
+        margin: 0px 20px 0px 7px;
+    }
+
+    .input-fild {
+        height: 30px;
+        border-radius: 14px 6px;
+        display: block;
+        width: 220px;
+        border: 1px solid teal;
+        border-bottom: 1px solid #757575;
+        text-align: center
+    }
+
+/* IW ---> Item windwo */
+
+    .swal-IW { 
+        width: 464px !important;
+        height: 83px !important;
+        border: 1px solid teal;
+        position: inherit;
+    }
+
+        .swal-IW .swal-text {
+            font-size: 17px;
+            color: black;
+        }
+
+            .swal-IW .swal-text:first-child {
+                margin-top: 30px;
+            }
+
+    /*>>> End Item Windwo <<<*/
+
+
+
+
+    .DivRest {
+        border-radius: 10px;
+        margin-top: 50px;
+    }
+
+    .ItemsDisplay {
+        background-color: #efefef59;
+        border-radius: 20px 20px;
+        margin: 60px 0px 30px 0px;
+        padding: 25px 0px 0px 0px;
+    }
+
+    .ItemDivs {
+        float: right;
+        border-radius: 25px 25px 26px 27px;
+        margin: 0px 0px 12px 30px;
+        background-image: linear-gradient(180deg, #f5f5f5 53%, #008080);
+        width: 118px;
+        height: 212px;
+    }
+
+        .ItemDivs img {
+            height: 120px;
+            width: 100px;
+        }
+
+        .ItemDivs h6 {
+            color: black;
+            font-weight: bold
+        }
+
+
+    .Item {
+        max-height: 420px;
+        max-width: 305px;
+        min-height: 420px;
+        min-width: 305px;
+        border-radius: 20px;
+        border-color: teal;
+        background-color: #fbfbfb;
+        color: black;
+        text-align: center;
+        font-family: myfont2;
+        padding: 0px;
+    }
+
+    .requstBotton {
+        color: white;
+        width: 116px;
+        padding: 5px;
+        margin-left: 6px;
+        background-color: #478f30;
+        border-radius: 0px 0px 26px 27px;
+        border: 1px solid #999;
+        margin-top: 5px;
+        margin: 1px -4px 0px 0px;
+    }
+
+    .addBotton {
+        color: white;
+        width: 116px;
+        padding: 5px;
+        margin-left: 6px;
+        border-radius: 0px 0px 26px 27px;
+        border: 1px solid #999;
+        margin-top: 5px;
+        margin: 1px -4px 0px 0px;
+        background-color: #286090;
+    }
+
+    .requstBotton, .addBotton {
+        font-size: 12px
+    }
+
+
+        .addBotton:active {
+            background-color: blue;
+        }
+
+
+    .table {
+        width: 100%;
+        max-width: 100%;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+        .table th {
+            text-align: center
+        }
+
+
+
+
+
+    /* end landing */
+    #LoginDive {
         margin-top: 30px;
-}
+    }
 
-/*>>> End Item Windwo <<<*/
+    .manPhoto {
+        padding: 15px;
+        margin-top: 55px;
+    }
 
+    .logimage {
+        width: 300px;
+        margin-left: 40px;
+    }
 
-
-
-.DivRest {
-    border-radius: 10px;
-    margin-top: 50px;
-}
-
-.ItemsDisplay {
-    background-color: #efefef59;
-    border-radius: 20px 20px;
-    margin: 60px 0px 30px 0px;
-    padding: 25px 0px 0px 0px;
-}
-
-.ItemDivs {
-    float: right;
-    border-radius: 25px 25px 26px 27px;
-    margin: 0px 0px 12px 30px;
-    background-image: linear-gradient(180deg, #f5f5f5 53%, #008080);
-    width: 118px;
-    height: 212px;
-}
-
-.ItemDivs img{
-    height: 120px;
-    width: 100px;
-}
-
-.ItemDivs h6{
-    color:black;
-    font-weight:bold
-}
+    .logDiv {
+        padding: 15px;
+        margin-top: 40px;
+    }
 
 
-.Item {
-    max-height: 420px;
-    max-width: 305px;
-    min-height: 420px;
-    min-width: 305px;
-    border-radius: 20px;
-    border-color: teal;
-    background-color: #fbfbfb;
-    color: black;
-    text-align: center;
-    font-family: myfont2;
-    padding: 0px;
-}
+    .form-control {
+        background-color: #f9fcfd;
+        border: 1.5px solid teal;
+        margin-left: 40px;
+    }
 
-.requstBotton {
-    color: white;
-    width: 116px;
-    padding: 5px;
-    margin-left: 6px;
-    background-color: #478f30;
-    border-radius: 0px 0px 26px 27px;
-    border: 1px solid #999;
-    margin-top: 5px;
-    margin: 1px -4px 0px 0px;
-}
-
-.addBotton {
-    color: white;
-    width: 116px;
-    padding: 5px;
-    margin-left: 6px;
-    border-radius: 0px 0px 26px 27px;
-    border: 1px solid #999;
-    margin-top: 5px;
-    margin: 1px -4px 0px 0px;
-    background-color: #286090;
-}
-
-.requstBotton,.addBotton {
-    font-size:12px
-}
-
-
-.addBotton:active {
-    background-color: blue;
-}
-
-
-.table {
-    width: 100%;
-    max-width: 100%;
-    margin-bottom: 20px;
-    text-align: center;
-}
-
-.table th{
-    text-align:center
-}
+    /*--- End Main---*/
 
 
 
+    /*--- Start Fotter style---*/
+    .myfooter {
+        background-color: Teal;
+        padding-top: 10px;
+        font-family: myfont;
+        text-align: justify;
+        margin-bottom: 0px;
+        margin-right:0px;
+    }
 
+    .subfooter {
+        background-color: black;
+        color: white;
+        padding: 5px;
+        text-align: center;
+    }
 
-/* end landing */
-#LoginDive{
-margin-top:30px;
-}
+    .myfooter a {
+        color: azure;
+    }
 
-.manPhoto{
-padding:15px;
-margin-top:55px;
-}
+    .myfooter p {
+        color: azure;
+    }
 
-.logimage {
-width: 300px;
-margin-left:40px;
-}
+    .myfooter h3, ul, p {
+        margin-bottom: 20px;
+        font-family: myfont2;
+        list-style-type: none;
+    }
 
-.logDiv{
-padding:15px;
-margin-top:40px;
-}
-
-
-.form-control {
-    background-color: #f9fcfd;
-    border: 1.5px solid teal;
-    margin-left: 40px;
-}
-
-/*--- End Main---*/
-
-
-
-/*--- Start Fotter style---*/
-
-.myfooter {
-    width: 100%;
-}
-
-.myfooter {
-    background-color: Teal;
-    padding-top: 10px;
-    font-family: myfont;
-    text-align: justify;
-    margin-bottom: 0px;
-}
-
-.subfooter {
-    background-color: black;
-    color: white;
-    padding: 5px;
-    text-align: center;
-}
-
-.myfooter a {
-    color: azure;
-}
-
-.myfooter p {
-    color: azure;
-}
-
-.myfooter h3, ul, p {
-    margin-bottom: 20px;
-    font-family: myfont2;
-    list-style-type: none;
-}
-
-.Psubfooter {
-    padding: 5px;
-    margin: 0;
-}
-
-/*--- end Fotter style---*/
-/*Start bill style
-.header {
-    background-color: red;
-    text-align: center;
-    color: teal;
-    font-weight: bold;
-    text-decoration: underline black;
-    padding: 10px;
-    background-color: red;
-}
-
-.TableDiv {
-    width: 400px;
-    margin: auto;
-    border: 2px solid burlywood;
-    background: teal;
-    height: auto;
-    text-align: center;
-    text-decoration: underline;
-}*/
-/*End bill style*/
+    .Psubfooter {
+        padding: 5px;
+        margin: 0;
+    }

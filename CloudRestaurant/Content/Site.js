@@ -11,7 +11,53 @@ var gitbillConfirm = function () {
         }
     });
     };
+// start Bill javaScript
 
+var DeleteItem = function (_id) {
+    $.ajax({
+        type: "Post",
+        url: "/Home/DeleteItemFromBill",
+        data: { id: _id },
+        success: function (result) {
+            document.getElementById("BasketId").click();
+            return false;
+        }
+    });
+};
+
+var IncreasQuantity = function (_id) {
+    $.ajax({
+        type: "Post",
+        url: "/Home/IncreasQuantity",
+        data: { id: _id },
+        success: function (result) {
+            $.ajax({
+                url: "/Home/Refreash",
+                contentType: 'application/html; charset=utf-8',
+                type: 'GET',
+                dataType: 'html',
+                success: (function (result) {
+                    $('#_BillPartial').html(result);
+                })
+            });
+           // document.getElementById("BasketId").click();
+            return false;
+        }
+    });
+};
+var decreasQuantity = function (_id) {
+    $.ajax({
+        type: "Post",
+        url: "/Home/decreasQuantity",
+        data: { id: _id },
+        success: function (result) {
+            document.getElementById("BasketId").click();
+            return false;
+        }
+    });
+};
+
+// end bill javaScript
 
 
 // Item-Page
