@@ -330,6 +330,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="images\bro.png" />
     <Content Include="images\favicon.ico" />
+    <Content Include="images\hero-img.png" />
     <Content Include="images\logo.png" />
     <Content Include="images\Regi.jpg" />
     <Content Include="Scripts\bootstrap.js" />
@@ -460,6 +461,7 @@
     <Content Include="Views\Roles\Create.cshtml" />
     <Content Include="Views\Roles\Edit.cshtml" />
     <Content Include="Views\Roles\Delete.cshtml" />
+    <Content Include="Views\Shared\_BillPartial.cshtml" />
     <Content Include="Views\Restaurants\_RestaurantPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>

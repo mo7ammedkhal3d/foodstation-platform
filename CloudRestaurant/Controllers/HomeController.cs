@@ -49,6 +49,11 @@ namespace CloudRestaurant.Controllers
             return View();
            
         }
+        public PartialViewResult Refreash()
+        {
+            ViewBag.products = products;
+            return PartialView("_BillPartial",products);
+        }
         public ActionResult GetRestaurantCategories(int? id)
         {
             Session["CategoriesId"] = id;
@@ -102,9 +107,7 @@ namespace CloudRestaurant.Controllers
 
         public ActionResult GetBill()
         {
-            ViewBag.CateogriesId = Session["CategoriesId"];
-            /*var list = new List<Item>();
-            var items = (List<Item>)Session["elements"];*/
+            ViewBag.products = products;
             return View(products.ToList());
         }
         public ActionResult DeleteItemFromBill(int id)
@@ -117,13 +120,13 @@ namespace CloudRestaurant.Controllers
         {
             var item = products.Find(x => x.ItemId == id);
             item.ItemQuantity = item.ItemQuantity + 1;
-            return RedirectToAction("GetBill");
+            return Json(true,JsonRequestBehavior.AllowGet);
         }
         public ActionResult decreasQuantity(int id)
         {
             var item = products.Find(x => x.ItemId == id);
             item.ItemQuantity = item.ItemQuantity - 1;
-            return RedirectToAction("GetBill");
+            return RedirectToAction("Index");
         }
     }
 }

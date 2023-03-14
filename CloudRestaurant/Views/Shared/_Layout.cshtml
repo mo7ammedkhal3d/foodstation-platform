@@ -68,16 +68,23 @@
     </nav>
     <!-- Navbar-->
     <!-- start landing-->
-    <div class="landing">
-        <div class="overlay">
+    <div class="landing row">
+        <div class="col-md-6 ladingHalf">
+            <div style="margin:10px 2px 2px 25px ; text-align:justify;">
+                <h1 style=" font-size: 45px;  font-weight: bold;">Cloud-Restaurants</h1>
+                <p style=" font-size: 20px;text-transform:uppercase;">You can browse all Restaurant and order all ***</p>
+                <p class="lead">أهلا بك في المطاعم السحابية هنا نوفر لك جميع وجبات المطاعم والكافيهات والبوفيهات يمكنك تصفح المطاعم والطلب من أي مطعم بوقت واحد ومن مكان واحد المطاعم السحابية اختيارك الأفضل </p>
+
+            </div>
         </div>
-        <!-- <i class="fas fa-angle-left change-background fa-2x"></i>
-        <i class="fas fa-angle-right change-background" fa2x></i>-->
+        <div class="col-md-6 ladingHalf" data-aos="zoom-in" data-aos-delay="200">
+            <img src="~/images/hero-img.png" class="img-responsive landingImg"/>
+        </div>
     </div>
     <!-- end landing-->
 
     <div class="container">
-        <div class="row" style="min-height:550px" dir="rtl">
+        <div style="min-height:550px">
             @RenderBody()
             <div class="row" id="_billItems">
                 @Html.Partial("_ManageMdalPartial")
@@ -86,9 +93,8 @@
     </div>
     <!-- Footer-->
 
-    <footer class="navbar myfooter">
-        <div class="container-fluid">
-            <div class="row">
+    <footer class="myfooter">
+        <div class="container-fluid row">
                 <div class="col-md-4">
                     <h3>
                         <i class="glyphicon glyphicon-question-sign"></i>
@@ -122,8 +128,6 @@
                         <li><a href="#">اترك لنا رسالة</a></li>
                     </ul>
                 </div>
-            </div>
-
         </div>
         <div class="subfooter">
             <p class="Psubfooter">2017 - جميع الحقوق محفوظة لموقع التوظيف</p>
