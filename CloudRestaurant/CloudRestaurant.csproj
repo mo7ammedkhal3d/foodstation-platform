@@ -329,6 +329,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="images\bro.png" />
+    <Content Include="images\christopher-burns-Kj2SaNHG-hg-unsplash.jpg" />
     <Content Include="images\favicon.ico" />
     <Content Include="images\hero-img.png" />
     <Content Include="images\logo.png" />
@@ -422,7 +423,7 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\GetRestaurants.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
@@ -463,6 +464,7 @@
     <Content Include="Views\Roles\Delete.cshtml" />
     <Content Include="Views\Shared\_BillPartial.cshtml" />
     <Content Include="Views\Restaurants\_RestaurantPartial.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -39,7 +39,7 @@
         $.ajax({
             type: "Get",
             url: "/Home/GetCategoryItems",
-            data: { categoryId: _id, ResturantId: _resturantId },
+            data: { categoryId: _id, restaurantId: _resturantId },
             success: function (items) {
                 $('#_SelectedCategoryItems').html(items);
                 return false;
@@ -50,8 +50,8 @@
     var getallItems = function () {
         $.ajax({
             type: "Get",
-            url: "/Home/GetAllResturantAitems",
-            data: {ResturantId: _resturantId },
+            url: "/Home/GetAllRestaurantItems",
+            data: { restaurantId: _resturantId },
             success: function (items) {
                 $('#_SelectedCategoryItems').html(items);
                 return false;

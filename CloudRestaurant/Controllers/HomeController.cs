@@ -11,7 +11,6 @@ namespace CloudRestaurant.Controllers
 {
     public class HomeController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
         static List<VirtualBill> products = new List<VirtualBill>();
         private readonly ICloudRestaurantRepository<Item> itemRepository;
         private readonly ICloudRestaurantRepository<Restaurant> restaurantRepository;
@@ -28,8 +27,12 @@ namespace CloudRestaurant.Controllers
             this.requestRepository = requestRepository;
         }
 
-
         public ActionResult Index()
+        {
+            return View();
+        }
+
+        public ActionResult GetRestaurants()
         {
             return View(restaurantRepository.List());
         }
@@ -49,37 +52,39 @@ namespace CloudRestaurant.Controllers
             return View();
            
         }
+
         public PartialViewResult Refreash()
         {
             ViewBag.products = products;
             return PartialView("_BillPartial",products);
         }
+
         public ActionResult GetRestaurantCategories(int? id)
         {
             Session["RestaurantId"] = id;
-            var Categories = from item in db.Items
-                       join categ in db.Categories on item.CategoryId equals categ.Id
+            var Categories = from item in itemRepository.List()
+                       join category in categoryRepository.List() on item.CategoryId equals category.Id
                        where item.RestaurantId == id
-                       select categ;
+                       select category;
 
-            ViewBag.items = db.Items.Where(x => x.RestaurantId == id).ToList();
-            var Resturant = db.Restaurants.Where(x => x.Id == id).Single();
-            ViewBag.Name = Resturant.Name;
-            ViewBag.restaurantId = Resturant.Id;
+            ViewBag.items = itemRepository.List().Where(x => x.RestaurantId == id).ToList();
+            var Restaurant = restaurantRepository.List().Where(x => x.Id == id).Single();
+            ViewBag.Name = Restaurant.Name;
+            ViewBag.restaurantId = Restaurant.Id;
             return View(Categories.Distinct().ToList());
         }
 
-
-       public  PartialViewResult GetCategoryItems(int ResturantId,int categoryId)
+       
+       public  PartialViewResult GetCategoryItems(int restaurantId, int categoryId)
         {
-            var items = db.Items.Where(x => x.CategoryId == categoryId && x.RestaurantId == ResturantId).ToList();
+            var items = itemRepository.List().Where(x => x.CategoryId == categoryId && x.RestaurantId == restaurantId).ToList();
             ViewBag.items = items;  
             return PartialView("_SelectedCategoryItems", items);
         }
 
-        public PartialViewResult GetAllResturantAitems(int ResturantId)
+        public PartialViewResult GetAllRestaurantItems(int restaurantId)
         {
-            var items = db.Items.Where(x =>x.RestaurantId == ResturantId).ToList();
+            var items = itemRepository.List().Where(x =>x.RestaurantId == restaurantId).ToList();
             ViewBag.items = items;
             return PartialView("_SelectedCategoryItems", items);
         }
@@ -107,23 +112,26 @@ namespace CloudRestaurant.Controllers
 
         public ActionResult GetBill()
         {
-            ViewBag.Restuarant = Session["RestaurantId"];
+            ViewBag.Restaurant = Session["RestaurantId"];
             ViewBag.products = products;
             return View(products.ToList());
         }
+
         public ActionResult DeleteItemFromBill(int id)
         {
             var item =products.Find(x=> x.ItemId == id);
             products.Remove(item);
             return RedirectToAction("GetBill");
         }
+
         public ActionResult IncreasQuantity(int id)
         {
             var item = products.Find(x => x.ItemId == id);
             item.ItemQuantity = item.ItemQuantity + 1;
             return Json(true,JsonRequestBehavior.AllowGet);
         }
-        public ActionResult decreasQuantity(int id)
+
+        public ActionResult DecreasQuantity(int id)
         {
             var item = products.Find(x => x.ItemId == id);
             item.ItemQuantity = item.ItemQuantity - 1;
