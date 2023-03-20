@@ -10,6 +10,7 @@
 
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/font-awesome/css/fontawesome.min.css" rel="stylesheet" />
+    <link href="~/Content/fontawesome/css/all.css" rel="stylesheet" />
     <link href="~/Content/font-awesome/css/solid.min.css" rel="stylesheet" />
     <link href="~/Content/sidebar.css" rel="stylesheet" />
     <link href="~/Content/style.css" rel="stylesheet" />
@@ -52,7 +53,7 @@
                     </li>
                     <li>
                         <a href="/Home/Index">
-                            الرائسية
+                            الرئيسية
                             <i class="glyphicon glyphicon-home"></i>
                         </a>
                     </li>
@@ -77,68 +78,84 @@
                 <h1 style=" font-size: 45px;  font-weight: bold;">Cloud-Restaurants</h1>
                 <p style=" font-size: 20px;text-transform:uppercase;">You can browse all Restaurant and order all ***</p>
                 <p class="lead">أهلا بك في المطاعم السحابية هنا نوفر لك جميع وجبات المطاعم والكافيهات والبوفيهات يمكنك تصفح المطاعم والطلب من أي مطعم بوقت واحد ومن مكان واحد المطاعم السحابية اختيارك الأفضل </p>
-
             </div>
         </div>
 
     </div>
     <!-- end landing-->
-
-    <div class="container" style="direction:rtl">
+    <main>
         <div style="min-height:550px">
             @RenderBody()
             <div class="row" id="_billItems">
                 @Html.Partial("_ManageMdalPartial")
             </div>
         </div>
-    </div>
+    </main>
+    
+
+
     <!-- Footer-->
 
-    <footer class="myfooter">
-        <div class="container-fluid row">
-                <div class="col-md-4">
-                    <h3>
-                        <i class="glyphicon glyphicon-question-sign"></i>
-                        من نحن ؟
-                    </h3>
-                    <p>
-                        السلام عليكم ورحمة الله وبركاته أنا محمد الديني وهذا هو اول مشروع في تطوير مواقع الويب مع الاستاذ القدير خالد السعداني جزاه الله الف خير
-                    </p>
+    <footer>
+        <div class="row">
+            <div class="col">
+                <img src="~/images/favicon.ico" class="logo">
+                <p>
+                    منصة FOODSTATION
+                    أختيارك الأفصل هنا بامكانك تصفح جميع المطاعم والكافيهات ومعرفة الأصناف نوفر لك سلالسة في الوصول
+                    لو كنت مال مطعم نوفر لك تسويق للاصناف مع الأسعار أشترك معنا بأحدى الأشتراكات المتاحة لتتميز بخدماتنا الجميلة 
+                </p>
+            </div>
+            <div class="col">
+                <h3>
+                    المكتب <div class="underline"><span></span></div>
+                </h3>
+                <p>الشارع العام</p>
+                <p>حي السلام, مقابل مكتب البريد</p>
+                <p>المكلا . PIN 560066, اليمن</p>
+                <p class="email-id">Occ716528@gmail.com</p>
+                <h4>+967 - 770485277 </h4>
+            </div>
+            <div class="col">
+                <h3>
+                    روابط <div class="underline"><span></span></div>
+                </h3>
+                <ul>
+                    <li><a href="">الرئيسية</a></li>
+                    <li><a href="">الخدمات</a></li>
+                    <li><a href="">حول الموقع</a></li>
+                    <li><a href="">المميزات</a></li>
+                    <li><a href="">تواصل معنا</a></li>
+                </ul>
+            </div>
+            <div class="col">
+                <h3>
+                    أخر الأخبار <div class="underline"><span></span></div>
+                </h3>
+                <form>
+                    <i class="fa-regular fa-envelope"></i>
+                    <input type="email" placeholder="أدخل الإيميل الخاص بك" required>
+                    <button type="submit"><i class="fa-solid fa-arrow-left"></i></button>
+                </form>
+                <div class="social-icons">
+                    <i class="fab fa-facebook-f"></i>
+                    <i class="fab fa-twitter"></i>
+                    <i class="fab fa-whatsapp"></i>
+                    <i class="fab fa-instagram"></i>
+                    <i class="fab fa-pinterest"></i>
                 </div>
-                <div class="col-md-4">
-                    <h3>
-                        <i class="glyphicon glyphicon-globe"></i>
-                        روابط خامة
-                    </h3>
-                    <ul>
-                        <li><a href="#">وظايف للقطاع العام</a></li>
-                        <li><a href="#">وظايف للقطاع الخاص</a></li>
-                        <li><a href="#">وظايف خارج البلاد</a></li>
-                        <li><a href="#">وظايف متنوعة</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-4">
-                    <h3>
-                        <i class="glyphicon glyphicon-envelope"></i>
-                        تواصل معنا
-                    </h3>
-                    <ul>
-                        <li><a href="#">صفحتنا على الفيسبوك</a></li>
-                        <li><a href="#">صفحتنا على التويتر</a></li>
-                        <li><a href="#">صفحتنا على اليوتيوب</a></li>
-                        <li><a href="#">اترك لنا رسالة</a></li>
-                    </ul>
-                </div>
+            </div>
         </div>
-        <div class="subfooter">
-            <p class="Psubfooter">2017 - جميع الحقوق محفوظة لموقع التوظيف</p>
-        </div>
+        <hr>
+        <p style="direction:rtl" class="copyright">ASM-Group &copy; 2023 - جميع الحقوق محفوظة</p>
     </footer>
+
 
     <script src="~/Scripts/jquery/jquery.min.js"></script>
     <script src="~/Scripts/jquery/jquery.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
     <script src="~/Scripts/sweetalert/sweetalert.min.js"></script>
+    <script src="~/Content/font-awesome/js/fontawesome.min.js"></script>
     <script src="~/Content/Site.js"></script>
 
     @RenderSection("scripts", required: false)
