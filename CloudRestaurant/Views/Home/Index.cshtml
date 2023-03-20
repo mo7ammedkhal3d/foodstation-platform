@@ -1,24 +1,175 @@
-﻿@model IEnumerable<CloudRestaurant.Models.Restaurant>
-@{
-    ViewBag.Title = "Home Page";
-}
+﻿<!-- start about  -->
+<div class="about">
+    <div class="container">
+        <div class="main-heading">
+            <h2>About us</h2>
+            <p>Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem blandit aliquet elit, eget tincidunt</p>
+        </div>
+    </div>
+</div>
+<!-- End about  -->
+<!-- start stats  -->
+<div class="stats">
+    <div class="container">
+        <div class="box">
+            <i class="fas fa-mug-hot"></i>
+            <div class="number">1,236</div>
+            <p>coffee Drinking</p>
+        </div>
 
-<div>
-    <div class="row DivRest container">
-        @foreach (var item in Model)
-        {
-            <a href="@Url.Action("GetRestaurantCategories", "Home", new {id=item.Id})">
-                <div class="col-md-2 thumbnail Restaurant" style=" margin-left:25px; margin-bottom:30px; height:350px">
-                    <img src="~/Uploads/Restaurants/@item.ImgUrl" style="height: 200px; width: 100%; border-radius: 20px;" />
-                    <h3> @Html.DisplayFor(modelItem => item.Name)</h3>
-                    <h5> @Html.DisplayFor(modelItem => item.Description)</h5>
-                </div>
-            </a>
-        }
+        <div class="box">
+            <i class="far fa-folder"></i>
+            <div class="number">256</div>
+            <p>completed projuct</p>
+        </div>
+
+        <div class="box">
+            <i class="fas fa-envelope"></i>
+            <div class="number">1,743</div>
+            <p>mail send</p>
+        </div>
+
+        <div class="box">
+            <i class="fas fa-trophy"></i>
+            <div class="number">17</div>
+            <p>Awords Recesived</p>
+        </div>
+        <a class="btn btn-success" href="/Home/GetRestaurants" > تصفح المطاعم</a>
+        <a class="btn btn-success"> GBS تصفح عبر الـ</a>
     </div>
 </div>
 
+<!-- start stats  -->
+<!-- start services  -->
+<div class="services">
+    <div class="container">
+        <div class="main-heading">
+            <h2>Services</h2>
+            <p>Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem blandit aliquet elit, eget tincidunt</p>
+        </div>
+        <div class="services-container">
+            <div class="srv-box">
+                <i class="fas fa-desktop fa-3x"></i>
+                <div class="text">
+                    <h3>Vorem amet intuive</h3>
+                    <p>
+                        Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Mauris
+                        blandit aliquet elit, eget tincidunt.
+                    </p>
+                </div>
+            </div>
+            <div class="srv-box">
+                <i class="fas fa-cog fa-3x"></i>
+                <div class="text">
+                    <h3>Vorem amet intuive</h3>
+                    <p>
+                        Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Mauris
+                        blandit aliquet elit, eget tincidunt.
+                    </p>
+                </div>
+            </div>
+            <div class="srv-box">
+                <i class="fas fa-pencil-ruler fa-3x"></i>
+                <div class="text">
+                    <h3>Vorem amet intuive</h3>
+                    <p>
+                        Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Mauris
+                        blandit aliquet elit, eget tincidunt.
+                    </p>
+                </div>
+            </div>
+            <div class="srv-box">
+                <i class="fas fa-camera fa-3x"></i>
+                <div class="text">
+                    <h3>Vorem amet intuive</h3>
+                    <p>
+                        Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Mauris
+                        blandit aliquet elit, eget tincidunt.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End services  -->
+<!-- start pricing  -->
+<div class="pricing">
+    <div class="container">
+        <div class="main-heading">
+            <h2>pricing</h2>
+            <p>
+                Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem blandit aliquet elit,
+                eget tincidunt
+            </p>
+        </div>
+        <div class="plans">
+            <div class="plan">
+                <div class="head">
+                    <h3>Basic</h3>
+                    <span>19</span>
+                </div>
+                <ul>
+                    <li>Feature No 1</li>
+                    <li>Extra Feature </li>
+                    <li>Extra Feature No 1</li>
+                    <li>Feature</li>
+                </ul>
+                <div class="foot">
+                    <a href="#">Bay Now</a>
+                </div>
+            </div>
 
+            <div class="plan">
+                <div class="head">
+                    <h3>Premium</h3>
+                    <span>29</span>
+                </div>
+                <ul>
+                    <li>Feature No 1</li>
+                    <li>Extra Feature </li>
+                    <li>Extra Feature No 1</li>
+                    <li>Feature</li>
+                </ul>
+                <div class="foot">
+                    <a href="#">Bay Now</a>
+                </div>
+            </div>
 
+            <div class="plan">
+                <div class="head">
+                    <h3>Pro</h3>
+                    <span>39</span>
+                </div>
+                <ul>
+                    <li>Feature No 1</li>
+                    <li>Extra Feature </li>
+                    <li>Extra Feature No 1</li>
+                    <li>Feature</li>
+                </ul>
+                <div class="foot">
+                    <a href="#">Bay Now</a>
+                </div>
+            </div>
 
+            <div class="plan">
+                <div class="head">
+                    <h3>Platnum</h3>
+                    <span>49</span>
+                </div>
+                <ul>
+                    <li>Feature No 1</li>
+                    <li>Extra Feature </li>
+                    <li>Extra Feature No 1</li>
+                    <li>Feature</li>
+                </ul>
+                <div class="foot">
+                    <a href="#">Bay Now</a>
+                </div>
+            </div>
+        </div>
+        <p class="contact-text">Contact us if you have special request</p>
+        <a href="#" class="contact-link">Contact us</a>
+    </div>
+</div>
 
+<!-- End pricing  -->
