@@ -56,7 +56,7 @@ namespace CloudRestaurant.Controllers
         }
         public ActionResult GetRestaurantCategories(int? id)
         {
-            Session["CategoriesId"] = id;
+            Session["RestaurantId"] = id;
             var Categories = from item in db.Items
                        join categ in db.Categories on item.CategoryId equals categ.Id
                        where item.RestaurantId == id
@@ -107,6 +107,7 @@ namespace CloudRestaurant.Controllers
 
         public ActionResult GetBill()
         {
+            ViewBag.Restuarant = Session["RestaurantId"];
             ViewBag.products = products;
             return View(products.ToList());
         }
