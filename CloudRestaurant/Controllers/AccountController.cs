@@ -71,7 +71,7 @@ namespace CloudRestaurant.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View(model);
+                return View("Index","Home");
             }
 
             // This doesn't count login failures towards account lockout
@@ -88,7 +88,7 @@ namespace CloudRestaurant.Controllers
                 case SignInStatus.Failure:
                 default:
                     ModelState.AddModelError("", "Invalid login attempt.");
-                    return View(model);
+                    return RedirectToAction("Index","Home");
             }
         }
 
