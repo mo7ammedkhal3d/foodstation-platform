@@ -33,9 +33,9 @@
                         @item.ItemName
                     </td>
                     <td>
-                        <i class="fa fa-plus-circle Icon" onclick="IncreasQuantity(@item.ItemId)"></i>
+                        <i class="fa-solid fa-plus Icon" onclick="IncreasQuantity(@item.ItemId)"></i>
                         @item.ItemQuantity
-                        <i class="fa fa-minus-circle Icon" onclick="decreasQuantity(@item.ItemId)"></i>
+                        <i class="fa-solid fa-minus Icon" onclick="decreasQuantity(@item.ItemId)"></i>
                     </td>
                     <td>
                         @item.ItemPrice
@@ -46,7 +46,7 @@
 
                     </td>
                     <td>
-                        <i class="fa fa-x" onclick="DeleteItem(@item.ItemId)"></i>
+                        <i class="fa-solid fa-trash-can Action-Icon" style="color: #ff2600;" onclick="DeleteItem(@item.ItemId)"></i>
                     </td>
                 </tr>
             }

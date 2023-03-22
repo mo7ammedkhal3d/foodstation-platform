@@ -1,24 +1,625 @@
-﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+﻿@font-face{
+    font-family:myfont;
+    src:url('font/GE_SS_Two_Bold.otf')
 }
 
-/* Set padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+@font-face {
+    font-family: myfont2;
+    src: url('font/DroidKufi-Regular.ttf')
 }
 
-/* Override the default bootstrap behavior where horizontal description lists 
-   will truncate terms that are too long to fit in the left column 
-*/
-.dl-horizontal dt {
-    white-space: normal;
+
+:root {
+    --background-color: linear-gradient(to left, #00093c, #2d0b00);
+    --main-color: #19c8fa;
+    --transparent-color: rgb(15 116 143 /70%);
+    --section-padding: 100px;
 }
 
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
+/*#region Global-properties*/
+
+body {
+    font-family: myfont2;
+    background-color: #fff;
 }
+
+.Action-Icon {
+    font-size: 20px;
+}
+
+.Action-Icon:hover {
+    color: darkred;
+    cursor: pointer;
+}
+
+.table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.table th {
+    text-align: center
+}
+
+/*#endregion Global-properties*/
+
+/*#region Login*/
+
+.login-Div {
+    padding: 15px;
+    margin-top: 40px;
+}
+
+.main-Photo {
+    padding: 15px;
+    margin-top: 55px;
+}
+
+
+.main-Photo .login-image {
+    width: 300px;
+    margin-left: 40px;
+}
+/*#endregion Login*/
+
+/*#region Register*/
+
+.Register-Div {
+    padding: 15px;
+    margin-top: 20px;
+    width: 640px;
+    height: 15px;
+    border: 1px solid white;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+.manPhoto {
+    padding: 15px;
+    margin-top: 55px;
+}
+/*#endregion Register*/
+
+/*#region Home */
+
+/*#region Index */
+
+/*#region About*/
+
+.about {
+    padding-top: var(--section-padding);
+    overflow: hidden;
+    text-align: center;
+}
+
+@media (max-width:767px) {
+    .about img {
+        bottom: -60px;
+        margin-top: -60px;
+    }
+}
+
+/*#endregion About*/
+
+/*#region Stats  */
+
+.stats {
+    padding-top: var(--section-padding);
+    padding-bottom: var(--section-padding);
+    background-image: url('../images/christopher-burns-Kj2SaNHG-hg-unsplash.jpg');
+    text-align: center;
+    background-size: cover;
+    position: relative;
+}
+
+    .stats::before {
+        content: " ";
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgb(0 0 0 / 50%);
+    }
+
+    .stats .container {
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+        .stats .container .box {
+            color: white;
+            padding: 50px;
+            background-color: var(--transparent-color);
+            margin-bottom: 5px;
+        }
+
+@media (max-width:767px) { /* this term called mobile first thats mean you start design in mobile */
+    .stats .container .box {
+        flex-basis: 100%;
+    }
+}
+
+@media (min-width:768px) { /* here we want in asmall screen to bos in the comtainer for that we give the box 50% */
+    .stats .container .box {
+        flex-basis: 50%;
+    }
+}
+
+@media (min-width:991px) { /* here we want in medium and large  screen four  boxs in the screen we give the box 25% */
+    .stats .container .box {
+        flex-basis: 25%;
+    }
+}
+
+.stats .container .box i {
+    background-color: black;
+    width: 40px;
+    height: 40px;
+    padding: 10px;
+    border-radius: 50%;
+    margin: 0 auto 20px
+}
+
+.stats .container .box .number {
+    font-size: 45px;
+    font-weight: bold;
+    margin: 0 0 10px;
+}
+
+.stats .container .box p {
+    font-size: 14px;
+    text-transform: capitalize;
+}
+
+/*#endregion stats*/
+
+/*#region Services */
+
+.services {
+    padding-top: var(--section-padding);
+    padding-bottom: var(--section-padding);
+}
+
+@media (min-width:768px) {
+    .services .services-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+        gap: 40px 60px;
+    }
+}
+
+.services .srv-box {
+    display: flex;
+}
+
+    .services .srv-box i {
+        margin-right: 50px;
+        color: #464e18;
+    }
+
+@media (max-width:767px) {
+    .services .srv-box {
+        flex-direction: column;
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+        .services .srv-box i {
+            margin: 0 0 20px;
+        }
+}
+
+.services .srv-box .text h3 {
+    margin-bottom: 30px;
+    color: var(--main-color);
+}
+
+.services .srv-box .text p {
+    line-height: 2;
+    color: #777;
+}
+/*#endregion Services/
+
+
+
+/* End services */
+
+/*#region Pricing  */
+
+.pricing {
+    padding-top: var(--section-padding);
+    padding-bottom: var(--section-padding);
+}
+.pricing .plans {
+    display: grid;
+    grid-template-columns: repeat(auto-fill  ,minmax(220px , 1fr));
+    gap: 15px;
+}
+.pricing .plans .plan {
+   background-color: #fcfcfc;
+   text-align: center;
+}
+.pricing .plans .plan .head {
+    padding: 35px 20px;
+    border-top: 1px solid var(--main-color);
+    border-bottom: 1px solid var(--main-color);
+}
+.pricing .plans .plan .head h3 {
+    font-weight: normal;
+    text-transform: uppercase;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+.pricing .plans .plan .head span{
+    font-size: 50px;
+    font-weight: bold;
+}
+.pricing .plans .plan .head span::before {
+   content: "$";
+   position: relative;
+   font-size: 15px;
+   top: -30px;
+   left: -5px;
+}
+.pricing .plans .plan .head span::after {
+   content: "/Mo";
+   content: "/Mo";
+   position: relative;
+   bottom: 0;
+   font-size: 10px;
+}
+.pricing .plans .plan ul {
+    border-bottom: 1px solid var(--main-color);
+    
+}
+.pricing .plans .plan ul li {
+    padding: 20px;
+    position: relative;
+}
+.pricing .plans .plan ul li:not(:last-child)::after {
+    content: "";
+    width: 120px;
+    height: 1px;
+    background-color: var(--main-color);
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+
+}
+.pricing .plans .plan .foot a {
+    display: block;
+    padding: 20px;
+    text-decoration: none;
+    border: 1px solid var(--main-color);
+    width: fit-content;
+    margin: 20px auto;
+}
+.pricing .contact-text {
+    text-align: center;
+    margin-top: 30px;
+}
+.pricing .contact-link {
+    display: block;
+    text-decoration: none;
+    background-color: var(--main-color);
+    width: fit-content;
+    padding: 15px 25px;
+    margin: 20px auto;
+    color: white;
+}
+
+/*#endregion Pricing*/
+
+/*#region Component*/
+.main-heading {
+    text-align: center;
+
+}
+.main-heading h2 {
+    font-weight: normal;
+    font-size: 40px;
+    position: relative;
+    margin-bottom: 60px;
+    text-transform: uppercase;
+
+}
+ .main-heading h2::after {
+    content: "";
+    left: 50%;
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 2px solid black;
+    bottom: -36px;
+    transform: translateX(-50%);
+    background-color: white;
+}
+.main-heading h2::before {
+    content: "";
+    position: absolute;
+    height: 2px;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -30px;
+    width: 120px;
+    background-color: black;
+}
+.main-heading p {
+    width: 520px;
+    margin: 0 auto 100px;
+    line-height: 2;
+    color: #777;
+    max-width: 100%;
+}
+
+/*#endregion Component*/
+
+/*#endregion Index*/
+
+/*#region GetRestaurants*/
+
+.Restaurant {
+    max-height: 420px;
+    max-width: 305px;
+    min-height: 346px;
+    min-width: 260px;
+    border-radius: 20px;
+    border-color: teal;
+    background-color: darkslategray;
+    color: burlywood;
+    text-align: center;
+    font-family: myfont2;
+    padding: 0px;
+}
+
+.Restaurant:hover {
+    background-color: teal;
+    transform: translateX(10px);
+    transform: translateY(10px);
+    border-radius: 10px;
+}
+
+
+/*#endregion*/
+
+/*#region GetRestaurantCategories*/
+.DivRest {
+border-radius: 10px;
+margin-top: 50px;
+}
+
+.ItemsDisplay {
+background-color: #efefef59;
+border-radius: 20px 20px;
+margin: 60px 0px 30px 0px;
+padding: 25px 0px 0px 0px;
+}
+
+.ItemDivs {
+    float: right;
+    border-radius: 25px 25px 26px 27px;
+    margin: 0px 0px 12px 30px;
+    background-image: linear-gradient(180deg, #f5f5f5 53%, #008080);
+    width: 118px;
+    height: 212px;
+}
+
+.ItemDivs img {
+    height: 120px;
+    width: 100px;
+}
+
+.ItemDivs h6 {
+    color: black;
+    font-weight: bold
+}
+
+.CategoryDivs {
+    background-color: teal;
+    border-radius: 50px 50px;
+    padding: 10px;
+    width: 100px;
+    height: 100px;
+}
+
+.AllCategories {
+    background-image: radial-gradient(#ffe5c4, #ffb4b400);
+    height: 120px;
+    border-radius: 20px;
+    padding: 20px 10px 0px 0px;
+}
+
+.AllCategories a {
+    float: right
+}
+
+.CategoryName {
+    background-color: #123636;
+    color: burlywood;
+    text-align: center;
+    border-radius: 50px 20px;
+}
+
+.counter {
+    background-color: green;
+    width: fit-content;
+    height: 34px;
+    border-radius: 4px 4px;
+    color: white;
+    margin-right: 22px;
+}
+
+.counter input {
+    width: 72px;
+    height: 34px;
+    border-radius: 7px 8px;
+}
+
+.counter .plusSign {
+    padding: 0px;
+    margin-top: 6px;
+    margin-right: 5px;
+    text-align: center;
+    font-size: 20px
+}
+
+.counter .ArrowSign {
+    padding: 0px;
+    margin: -2px;
+}
+
+.requstBotton {
+    color: white;
+    width: 116px;
+    padding: 5px;
+    margin-left: 6px;
+    background-color: #478f30;
+    border-radius: 0px 0px 26px 27px;
+    border: 1px solid #999;
+    margin-top: 5px;
+    margin: 2px 0px 0px -4px;
+}
+
+.addBotton {
+    color: white;
+    width: 116px;
+    padding: 5px;
+    margin-left: 6px;
+    border-radius: 0px 0px 26px 27px;
+    border: 1px solid #999;
+    margin-top: 5px;
+    margin: 2px 0px 0px -4px;
+    background-color: #286090;
+}
+
+.requstBotton, .addBotton {
+    font-size: 12px
+}
+
+
+.addBotton:active {
+    background-color: blue;
+}
+
+/*#endregion GetRestaurantCategories*/
+
+/*#endregion Home*/
+
+/*#region Item-Index*/
+
+.modalContent-Item {
+    height: 545px;
+    width: 650px;
+    background-color: #FFF;
+} 
+
+.Item-modal-body {
+    position: relative;
+    padding: 15px;
+    height: 365px;
+}
+
+.form-group .modal-Img {
+    width: 245px;
+    height: 233px;
+    display: block;
+    font-size: 30px;
+    margin-left: 18px;
+    margin-bottom: 10px;
+    border-radius: 25px 6px;
+    border: 1px solid teal;
+    text-align: center;
+}
+
+.form-group .modal-Lbl {
+    display: block;
+    text-align: center;
+    margin-bottom: 12px;
+    margin-left: 8px;
+}
+
+.form-group .modal-Btn {
+    display: block;
+    margin-left: 85px;
+    width: 100px;
+    background-color: teal;
+}
+
+.form-group .modal-filein {
+    display: block;
+    margin-left: 40px;
+    visibility: hidden
+}
+
+.form-group .modal-BtnCreate {
+    width: 100px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+
+.form-group .modal-BtnClose {
+    width: 100px;
+    margin: 0px 20px 0px 7px;
+}
+
+.input-fild {
+    height: 30px;
+    border-radius: 14px 6px;
+    display: block;
+    width: 220px;
+    border: 1px solid teal;
+    border-bottom: 1px solid #757575;
+    text-align: center
+}
+
+.swal-IW { /* IW ---> Item windwo */
+    width: fit-content;
+    height: fit-content;
+    padding: 10px;
+    border: 1px solid teal;
+    position: inherit;
+}
+
+.swal-IW .swal-text{
+font-size: 17px;
+    color: black;
+    text-align: center;
+}
+
+.swal-IW .swal-text:first-child{
+    margin: 0px 0px 0px 0px;
+    }
+/*#endregion Item*/
+
+/*#region Restaurant-Index*/
+
+.Restaurant-modal-body {
+    position: relative;
+    padding: 15px;
+    height: 365px;
+}
+/*#endregion Restaurant-Index*/
+
+
+
+#LoginDive {
+    margin-top: 30px;
+}
+
+.logimage {
+    width: 300px;
+    margin-left: 40px;
+}
+
+.logDiv {
+    padding: 15px;
+    margin-top: 40px;
+}
+
