@@ -3,19 +3,22 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width,initial scale=1" />
-    <title>Kloud Restaurant</title>
+    <title>FOODSTATION</title>
     <link rel="icon" type="image/x-icon" href="~/images/favicon.ico" />
     <meta name="viewport" content="width=device-width" />
 
 
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/font-awesome/css/fontawesome.min.css" rel="stylesheet" />
-    <link href="~/Content/fontawesome/css/all.css" rel="stylesheet" />
-    <link href="~/Content/font-awesome/css/solid.min.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome/css/all.css" rel="stylesheet" />
+    <link href="~/Content/layoutStyle.css" rel="stylesheet" />
     <link href="~/Content/sidebar.css" rel="stylesheet" />
-    <link href="~/Content/style.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+
 </head>
 <body>
+
+    <!-- Navbar-->
     <nav class="navbar navbar-default navbar-fixed-top">
         <div>
             <div class="navbar-header navbar-right">
@@ -41,7 +44,6 @@
                         <a href="#">
                             حول الموقع
                             <i class="glyphicon glyphicon-info-sign"></i>
-
                         </a>
                     </li>
                     <li>
@@ -67,11 +69,12 @@
             </div>
         </div>
     </nav>
-    <!-- Navbar-->
-    <!-- start landing-->
+    <!-- End Navbar-->
+
+    <!-- Landing-->
     <div class="landing row">
         <div class="col-md-6 ladingHalf" data-aos="zoom-in" data-aos-delay="200">
-            <img src="~/images/hero-img.png" class="img-responsive landingImg" />
+            <img src="~/images/hero-img.png" class="img-fluid landingImg" />
         </div>
         <div class="col-md-6 ladingHalf">
             <div style="margin:10px 2px 2px 25px ; text-align:justify;">
@@ -82,20 +85,18 @@
         </div>
 
     </div>
-    <!-- end landing-->
-    <main>
-        <div style="min-height:550px">
+    <!-- End landing-->
+
+    <!--Main-->
+    <main style="min-height:550px">
             @RenderBody()
             <div class="row" id="_billItems">
                 @Html.Partial("_ManageMdalPartial")
             </div>
-        </div>
     </main>
-    
-
+    <!--End main-->
 
     <!-- Footer-->
-
     <footer>
         <div class="row">
             <div class="col">
@@ -103,13 +104,13 @@
                 <p>
                     منصة FOODSTATION
                     أختيارك الأفصل هنا بامكانك تصفح جميع المطاعم والكافيهات ومعرفة الأصناف نوفر لك سلالسة في الوصول
-                    لو كنت مال مطعم نوفر لك تسويق للاصناف مع الأسعار أشترك معنا بأحدى الأشتراكات المتاحة لتتميز بخدماتنا الجميلة 
+                    لو كنت مال مطعم نوفر لك تسويق للاصناف مع الأسعار أشترك معنا بأحدى الأشتراكات المتاحة لتتميز بخدماتنا الجميلة
                 </p>
             </div>
             <div class="col">
-                <h3>
+                <div class="footerTitle">
                     المكتب <div class="underline"><span></span></div>
-                </h3>
+                </div>
                 <p>الشارع العام</p>
                 <p>حي السلام, مقابل مكتب البريد</p>
                 <p>المكلا . PIN 560066, اليمن</p>
@@ -117,9 +118,9 @@
                 <h4>+967 - 770485277 </h4>
             </div>
             <div class="col">
-                <h3>
+                <div class="footerTitle">
                     روابط <div class="underline"><span></span></div>
-                </h3>
+                </div>
                 <ul>
                     <li><a href="">الرئيسية</a></li>
                     <li><a href="">الخدمات</a></li>
@@ -129,9 +130,9 @@
                 </ul>
             </div>
             <div class="col">
-                <h3>
+                <div class="footerTitle">
                     أخر الأخبار <div class="underline"><span></span></div>
-                </h3>
+                </div>
                 <form>
                     <i class="fa-regular fa-envelope"></i>
                     <input type="email" placeholder="أدخل الإيميل الخاص بك" required>
@@ -149,7 +150,7 @@
         <hr>
         <p style="direction:rtl" class="copyright">ASM-Group &copy; 2023 - جميع الحقوق محفوظة</p>
     </footer>
-
+    <!--End footer-->
 
     <script src="~/Scripts/jquery/jquery.min.js"></script>
     <script src="~/Scripts/jquery/jquery.js"></script>

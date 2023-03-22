@@ -36,8 +36,8 @@
                 <img src="~/Uploads/Restaurants/@item.ImgUrl" class="thumbnail" style="width:48px;height:48px" />
             </td>
             <td>
-                <a class="glyphicon glyphicon-edit" style="font-size:20px" onclick="EditRestaurantConfirm(@item.Id)"></a> |
-                <a class="glyphicon glyphicon-remove-circle" style="font-size:20px" onclick="DeleteRestaurantConfirm(@item.Id)"></a>
+                <a  style="font-size:20px" onclick="EditRestaurantConfirm(@item.Id)"><i class="fa-solid fa-pen-to-square Action-Icon" style="color: #005eff;"></i></a> |
+                <a  style="font-size:20px" onclick="DeleteRestaurantConfirm(@item.Id)"><i class="fa-solid fa-trash-can Action-Icon" style="color: #ff2600;"></i></a>
                 <input type="hidden" id="RestaurantId" />
             </td>
         </tr>
