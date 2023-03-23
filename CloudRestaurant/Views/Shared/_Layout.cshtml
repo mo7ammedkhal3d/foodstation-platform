@@ -3,19 +3,22 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width,initial scale=1" />
-    <title>Kloud Restaurant</title>
+    <title>FOODSTATION</title>
     <link rel="icon" type="image/x-icon" href="~/images/favicon.ico" />
     <meta name="viewport" content="width=device-width" />
 
+
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/font-awesome/css/fontawesome.min.css" rel="stylesheet" />
-    <link href="~/Content/fontawesome/css/all.css" rel="stylesheet" />
-    <link href="~/Content/font-awesome/css/solid.min.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome/css/all.css" rel="stylesheet" />
+    <link href="~/Content/layoutStyle.css" rel="stylesheet" />
     <link href="~/Content/sidebar.css" rel="stylesheet" />
-    <link href="~/Content/styleLogin.css" rel="stylesheet" />
-    <link href="~/Content/style.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+
 </head>
 <body>
+
+    <!-- Navbar-->
     <nav class="navbar navbar-default navbar-fixed-top">
         <div>
             <div class="navbar-header navbar-right">
@@ -25,7 +28,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a href="#" class="navbar-brand">
-                    <span class="btnLogin-popup btn btn-default logoSize">Login</span>
+                    <i class="fa fa-mortar-board logoSize"></i>
                 </a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
@@ -41,7 +44,6 @@
                         <a href="#">
                             حول الموقع
                             <i class="glyphicon glyphicon-info-sign"></i>
-
                         </a>
                     </li>
                     <li>
@@ -67,103 +69,34 @@
             </div>
         </div>
     </nav>
-    <!-- Navbar-->
-    <!-- start landing-->
-    <div class="landing">
-        <div>
-            <div class="col-md-6 ladingHalf" data-aos="zoom-in" data-aos-delay="200">
-                <img src="~/images/hero-img.png" class="img-responsive landingImg" />
-            </div>
-            <div class="col-md-6 ladingHalf">
-                <div style="margin:10px 2px 2px 25px ; text-align:justify;">
-                    <h1 style=" font-size: 45px;  font-weight: bold;">Cloud-Restaurants</h1>
-                    <p style=" font-size: 20px;text-transform:uppercase;">You can browse all Restaurant and order all ***</p>
-                    <p class="lead">أهلا بك في المطاعم السحابية هنا نوفر لك جميع وجبات المطاعم والكافيهات والبوفيهات يمكنك تصفح المطاعم والطلب من أي مطعم بوقت واحد ومن مكان واحد المطاعم السحابية اختيارك الأفضل </p>
-                </div>
+    <!-- End Navbar-->
+
+    <!-- Landing-->
+    <div class="landing row">
+        <div class="col-md-6 ladingHalf" data-aos="zoom-in" data-aos-delay="200">
+            <img src="~/images/hero-img.png" class="img-fluid landingImg" />
+        </div>
+        <div class="col-md-6 ladingHalf">
+            <div style="margin:10px 2px 2px 25px ; text-align:justify;">
+                <h1 style=" font-size: 45px;  font-weight: bold;">Cloud-Restaurants</h1>
+                <p style=" font-size: 20px;text-transform:uppercase;">You can browse all Restaurant and order all ***</p>
+                <p class="lead">أهلا بك في المطاعم السحابية هنا نوفر لك جميع وجبات المطاعم والكافيهات والبوفيهات يمكنك تصفح المطاعم والطلب من أي مطعم بوقت واحد ومن مكان واحد المطاعم السحابية اختيارك الأفضل </p>
             </div>
         </div>
 
     </div>
-    <!-- end landing-->
-    <main>
-        <!--start login and register window-->
-        <div class="wrapper ">
-            <span class="icon-close">
-                <i class="glyphicon glyphicon-remove"></i>
-            </span>
-            <div class="form-box login">
-                <h2>Login</h2>
-                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                {
-                    @Html.AntiForgeryToken()
-                    <div class="input-box">
-                        <span class="icon"><i class="glyphicon glyphicon-user"></i></span>
-                        <input type="text" required name="UserName">
-                        <label>UserName</label>
-                    </div>
-                    <div class="input-box">
-                        <span class="icon"><i class="glyphicon glyphicon-lock"></i></span>
-                        <input type="password" required name="Password">
-                        <label>password</label>
-                    </div>
-                    <div class="remember-forgot">
-                        <label><input type="checkbox">Remember me</label>
-                        <a href="#">forgot password</a>
-                    </div>
-                    <button type="submit" class="btnLogin">Login</button>
-                    <div class="login-register">
-                        <p>
-                            Don't have an account
-                            <a href="#" class="register-like">Register</a>
-                        </p>
-                    </div>
-                }
-            </div>
-            <div class="form-box register">
-                <h2>Registeration </h2>
-                <form action="post">
-                    <div class="input-box">
-                        <span class="icon"><i class="glyphicon glyphicon-user"></i></span>
-                        <input type="text" required>
-                        <label>UserName</label>
-                    </div>
-                    <div class="input-box">
-                        <span class="icon"><i class="glyphicon glyphicon-envelope"></i></span>
-                        <input type="email" required>
-                        <label>Email</label>
-                    </div>
-                    <div class="input-box">
-                        <span class="icon"><i class="glyphicon glyphicon-lock"></i></span>
-                        <input type="password" required>
-                        <label>password</label>
-                    </div>
-                    <div class="remember-forgot">
-                        <label><input type="checkbox">agree to the terns & conditions</label>
-                        <a href="#">forgot password</a>
-                    </div>
-                    <button type="submit" class="btnLogin">Register</button>
-                    <div class="login-register">
-                        <p>
-                            Already have an account?
-                            <a href="#" class="login-like">Login</a>
-                        </p>
-                    </div>
-                </form>
-            </div>
-        </div>
-        <!--End login and register window-->
-        <div style="min-height:550px">
+    <!-- End landing-->
+
+    <!--Main-->
+    <main style="min-height:550px">
             @RenderBody()
             <div class="row" id="_billItems">
                 @Html.Partial("_ManageMdalPartial")
             </div>
-        </div>
     </main>
-
-
+    <!--End main-->
 
     <!-- Footer-->
-
     <footer>
         <div class="row">
             <div class="col">
@@ -175,9 +108,9 @@
                 </p>
             </div>
             <div class="col">
-                <h3>
+                <div class="footerTitle">
                     المكتب <div class="underline"><span></span></div>
-                </h3>
+                </div>
                 <p>الشارع العام</p>
                 <p>حي السلام, مقابل مكتب البريد</p>
                 <p>المكلا . PIN 560066, اليمن</p>
@@ -185,9 +118,9 @@
                 <h4>+967 - 770485277 </h4>
             </div>
             <div class="col">
-                <h3>
+                <div class="footerTitle">
                     روابط <div class="underline"><span></span></div>
-                </h3>
+                </div>
                 <ul>
                     <li><a href="">الرئيسية</a></li>
                     <li><a href="">الخدمات</a></li>
@@ -197,9 +130,9 @@
                 </ul>
             </div>
             <div class="col">
-                <h3>
+                <div class="footerTitle">
                     أخر الأخبار <div class="underline"><span></span></div>
-                </h3>
+                </div>
                 <form>
                     <i class="fa-regular fa-envelope"></i>
                     <input type="email" placeholder="أدخل الإيميل الخاص بك" required>
@@ -217,7 +150,7 @@
         <hr>
         <p style="direction:rtl" class="copyright">ASM-Group &copy; 2023 - جميع الحقوق محفوظة</p>
     </footer>
-
+    <!--End footer-->
 
     <script src="~/Scripts/jquery/jquery.min.js"></script>
     <script src="~/Scripts/jquery/jquery.js"></script>
@@ -225,8 +158,6 @@
     <script src="~/Scripts/sweetalert/sweetalert.min.js"></script>
     <script src="~/Content/font-awesome/js/fontawesome.min.js"></script>
     <script src="~/Content/Site.js"></script>
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
     @RenderSection("scripts", required: false)
 </body>

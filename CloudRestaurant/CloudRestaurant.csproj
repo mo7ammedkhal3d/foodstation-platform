@@ -321,6 +321,7 @@
     <Content Include="Content\font\fontawesome-webfont.svg" />
     <Content Include="Content\font\glyphicons-halflings-regular.svg" />
     <Content Include="Content\font\index.html" />
+    <Content Include="Content\layoutStyle.css" />
     <Content Include="Content\normalize.css" />
     <Content Include="Content\sidebar.css" />
     <Content Include="Content\Site.js" />
@@ -328,15 +329,12 @@
     <Content Include="Content\styleLogin.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
     <Content Include="images\bro.png" />
     <Content Include="images\christopher-burns-Kj2SaNHG-hg-unsplash.jpg" />
     <Content Include="images\favicon.ico" />
     <Content Include="images\hero-img.png" />
     <Content Include="images\logo.png" />
     <Content Include="images\Regi.jpg" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\font\DroidKufi-Regular.ttf" />
     <Content Include="Content\font\DroidNaskh-Bold.ttf" />
     <Content Include="Content\font\DroidNaskh-Regular.ttf" />
@@ -368,14 +366,12 @@
     <Content Include="Content\font\TanseekModernProArabic3.ttf" />
     <Content Include="Content\font\trado.ttf" />
     <Content Include="libman.json" />
-    <Content Include="Content\font-awesome\webfonts\fa-brands-400.ttf" />
-    <Content Include="Content\font-awesome\webfonts\fa-brands-400.woff2" />
-    <Content Include="Content\font-awesome\webfonts\fa-regular-400.ttf" />
-    <Content Include="Content\font-awesome\webfonts\fa-regular-400.woff2" />
-    <Content Include="Content\font-awesome\webfonts\fa-solid-900.ttf" />
-    <Content Include="Content\font-awesome\webfonts\fa-solid-900.woff2" />
-    <Content Include="Content\font-awesome\webfonts\fa-v4compatibility.ttf" />
-    <Content Include="Content\font-awesome\webfonts\fa-v4compatibility.woff2" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -447,8 +443,6 @@
     <Content Include="Views\Categories\Edit.cshtml" />
     <Content Include="Views\Categories\Index.cshtml" />
     <Content Include="Views\Items\Index.cshtml" />
-    <Content Include="Scripts\jquery\jquery.min.map" />
-    <Content Include="Scripts\jquery\jquery.slim.min.map" />
     <Content Include="Views\Items\_ItemPartial.cshtml" />
     <Content Include="Views\Home\GetRestaurantCategories.cshtml" />
     <Content Include="Views\Requests\Create.cshtml" />
@@ -466,23 +460,25 @@
     <Content Include="Views\Shared\_BillPartial.cshtml" />
     <Content Include="Views\Restaurants\_RestaurantPartial.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Scripts\jquery\jquery.min.map" />
+    <Content Include="Scripts\jquery\jquery.slim.min.map" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Uploads\Items\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\bootstrap.min.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Content\bootstrap-theme.min.css.map" />
-    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\font-awesome\webfonts\fa-brands-400.ttf" />
+    <Content Include="Content\font-awesome\webfonts\fa-brands-400.woff2" />
+    <Content Include="Content\font-awesome\webfonts\fa-regular-400.ttf" />
+    <Content Include="Content\font-awesome\webfonts\fa-regular-400.woff2" />
+    <Content Include="Content\font-awesome\webfonts\fa-solid-900.ttf" />
+    <Content Include="Content\font-awesome\webfonts\fa-solid-900.woff2" />
+    <Content Include="Content\font-awesome\webfonts\fa-v4compatibility.ttf" />
+    <Content Include="Content\font-awesome\webfonts\fa-v4compatibility.woff2" />
     <None Include="packages.config" />
-    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202301051721576_Create-Database.resx">

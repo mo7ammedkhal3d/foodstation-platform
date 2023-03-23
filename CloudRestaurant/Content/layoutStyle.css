@@ -1,0 +1,522 @@
+﻿@font-face{
+    font-family:myfont;
+    src:url('font/GE_SS_Two_Bold.otf')
+}
+
+@font-face {
+    font-family: myfont2;
+    src: url('font/DroidKufi-Regular.ttf')
+}
+
+:root {
+    --background-color: linear-gradient(to left, #00093c, #2d0b00);
+    --main-color: #19c8fa;
+    --transparent-color: rgb(15 116 143 /70%);
+    --section-padding: 100px;
+}
+
+
+/*#region Global-properties*/
+
+body {
+    font-family: myfont2;
+    background-color: #fff;
+}
+
+.Action-Icon {
+    font-size: 20px;
+}
+
+.Action-Icon:hover {
+    color: darkred;
+    cursor: pointer;
+}
+
+.table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.table th {
+    text-align: center
+}
+
+/*#endregion Global-properties*/
+
+/*#region Navbar*/
+
+.logoSize {
+    font-size: 40px;
+    color: #e7e7e7;
+}
+
+@media (max-width:767px) {
+    .logoSize {
+        margin-top: -10px;
+    }
+}
+
+.navbar-default {
+    background: var(--background-color);
+    border-color: #000;
+    border-bottom-width: thin;
+}
+
+.navbar-right {
+    float: right !important;
+    margin-right: 20px;
+}
+
+.navbar-right ~ .navbar-right {
+    margin-right: 300px;
+}
+
+.navbar-left {
+    float: left !important;
+    margin-left: 53px;
+}
+
+.navbar-default .navbar-nav > li > a {
+    color: #e7e7e7;
+    font-family: myfont;
+}
+
+.navbar-default .navbar-nav > li > a:hover {
+    color: #908ccb;
+    font-family: myfont;
+}
+
+.nav > li {
+    position: relative;
+    display: block;
+    height: 70px;
+    padding-top: 10px;
+    font-weight: bold;
+}
+
+
+
+/*#endregion Navbar*/
+
+/*#region Landing */
+
+.landing {
+    height: 50vh;
+    background-size: contain;
+    background-attachment: fixed;
+    background-repeat: repeat-x;
+    position: relative;
+    background: var(--background-color);
+}
+@media (max-width:990px) {
+    .landing {
+        margin-bottom:270px;
+    }
+}
+.ladingHalf {
+    height: 50vh;
+    background-size: contain;
+    background-color: transparent;
+    text-align:center;
+    position: relative;
+    padding: 20px;
+    color: #e7e7e7;
+}
+.section-title h2 {
+    font-size: 32px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    position: relative;
+    color: #37517e;
+}
+.landingImg {
+    height: 100%;
+    width:350px;
+    margin-left: 70px;
+    animation: up-down 2s ease-in-out infinite alternate-reverse both;
+}
+@media (max-width:990px) {
+    .landingImg {
+        margin-right: 50px;
+        width:600px;
+        margin-right:0px;
+    }
+}
+@-webkit-keyframes up-down {
+    0% {
+        transform: translateY(15px);
+    }
+
+    100% {
+        transform: translateY(-15px);
+    }
+}
+
+@keyframes up-down {
+    0% {
+        transform: translateY(15px);
+    }
+
+    100% {
+        transform: translateY(-15px);
+    }
+}
+
+.landing .overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0 0 0 / 10%);
+}
+
+.landing .text {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50%;
+    padding: 30px;
+    background-color: var(--transparent-color);
+    color: white;
+    display: flex;
+    justify-content: flex-end;
+}
+
+@media (max-width:767px) {
+    .landing .text {
+        width: 100%;
+    }
+
+        .landing .text .content {
+            width: 100%;
+        }
+}
+
+.landing .bullets .active {
+    background-color: var(--main-color);
+}
+
+.landing .text .content {
+    max-width: 500px;
+}
+
+.landing .text .content h2 {
+    font-size: 30px;
+    font-weight: normal;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.landing .text .content p {
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.landing .change-background {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: white;
+}
+
+@media (max-width:767px) {
+    .landing .change-background {
+        display: none;
+    }
+}
+
+.landing .fa-angle-left {
+    left: 30px;
+}
+
+.landing .fa-angle-right {
+    right: 30px;
+}
+
+.landing .bullets {
+    left: 50%;
+    list-style: none;
+    position: absolute;
+    transform: translateX(-50%);
+    bottom: 30px;
+    display: flex;
+}
+
+.landing .bullets li {
+    width: 15px;
+    height: 15px;
+    border: 1px solid white;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+.landing .bullets .active {
+    background-color: var(--main-color);
+}
+
+/*#endregion  Landing*/
+
+/*#region _BillPartial*/
+
+.Basket {
+    display: block;
+    position: absolute;
+    font-size: 23px;
+    color: #e7e7e7;
+    margin-top: 10px;
+    padding: 10px;
+    transform: translateX(8px);
+}
+
+
+    .Basket:hover {
+        background-color: #008095;
+        border-radius: 20px;
+    }
+
+.Icon {
+    margin: 5px;
+    font-size: 15px;
+}
+
+    .Icon:hover {
+        color: blue;
+        cursor: pointer;
+    }
+
+    .Icon:active {
+        color: red;
+    }
+
+
+/*#endregion _BillPartial*/
+
+/*#region _ManageMdalPartial*/
+
+.modal.left.fade .ManageModal {
+    width: 262px
+}
+
+.ManageModalContent {
+    background-image: linear-gradient(45deg, #099797b3, transparent);
+}
+
+.ManageModalHeader {
+    padding: 10px;
+    border-bottom: 1px solid #004040;
+}
+
+    .ManageModalHeader .modal-icon {
+        font-size: 22px;
+        float: left;
+        margin: 0px 0px 0px 15px;
+    }
+
+    .ManageModalHeader .title {
+        display: inline;
+        float: left;
+        margin: 6px 1px 0px 15px;
+        font-weight: 600;
+        font-size: 15px;
+    }
+
+ManageModalClose {
+    font-size: 30px;
+    color: red;
+}
+
+.modal.left .ManageModalBody {
+    padding: 0px;
+}
+
+.ulMange {
+    margin: 15px 1px 0px 0px;
+    padding: 0px 0px 0px 0px;
+}
+
+    .ulMange a {
+        width: 258px;
+        margin: 0px 0px 1px 0px;
+    }
+
+/*#endregion _ManageMdalPartial*/
+
+/*#region Fotter*/
+
+footer {
+    width: 100%;
+    position: absolute;
+    background: var(--background-color);
+    color: #fff;
+    padding: 100px 0 30px;
+    border-top-right-radius: 125px;
+    font-size: 13px;
+    line-height: 20px;
+    direction: rtl
+}
+
+footer .row {
+    width: 85%;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+footer .row .col {
+    flex-basis: 25%;
+    padding: 10px;
+}
+
+footer .row .col:nth-child(2),
+footer .row .col:nth-child(3) {
+    flex-basis: 15%;
+}
+
+footer .row .col .logo {
+    width: 80px;
+    margin-bottom: 30px;
+}
+
+footer .row .col .footerTitle {
+    width: fit-content;
+    margin-bottom: 40px;
+    position: relative;
+    font-size:20px
+}
+
+.email-id {
+    width: fit-content;
+    border-bottom: 1px solid #ccc;
+    margin: 20px 0;
+}
+
+footer .row .col ul{
+    padding:0;
+}
+
+footer .row .col ul li {
+    list-style: none;
+    margin-bottom: 12px;
+}
+
+footer .row .col ul li a {
+    text-decoration: none;
+    color: #fff;
+}
+
+footer .row .col form {
+    padding-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 50px;
+}
+
+footer .row .col form .fa-regular {
+    font-size: 18px;
+    margin-left: 10px;
+}
+
+footer .row .col form input {
+    width: 100%;
+    background: transparent;
+    color: #ccc;
+    border: 0;
+    outline: none;
+}
+
+footer .row .col form button {
+    background: transparent;
+    border: 0;
+    outline: none;
+    cursor: pointer;
+}
+
+footer .row .col form button .fa-solid {
+    font-size: 16px;
+    color: #ccc;
+}
+
+footer .row .col .social-icons .fab {
+    width: 34px;
+    height: 38px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 40px;
+    font-size: 20px;
+    color: #000;
+    background: #fff;
+    margin-right: 15px;
+    cursor: pointer;
+}
+
+footer hr {
+    width: 90%;
+    border: 0;
+    border-bottom: 1px solid #ccc;
+    margin: 20px auto;
+}
+
+footer .copyright {
+    text-align: center;
+}
+
+footer .row .col .underline {
+    width: 100%;
+    height: 5px;
+    background: #767676;
+    border-radius: 3px;
+    position: absolute;
+    top: 25px;
+    left: 0;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+footer .row .col .underline span {
+    width: 15px;
+    height: 100%;
+    background: #fff;
+    border-radius: 3px;
+    position: absolute;
+    top: 0;
+    left: 10px;
+    animation: moving 2s linear infinite;
+}
+
+@keyframes moving {
+    0% {
+        right: -20px;
+    }
+
+    100% {
+        right: 100%;
+    }
+}
+
+@media (max-width:700px) {
+    footer {
+        bottom: unset;
+    }
+
+    footer .row .col {
+        flex-basis: 100%;
+    }
+
+    footer .row .col:nth-child(2),
+    footer .row .col:nth-child(3) {
+        flex-basis: 100%;
+    }
+}
+
+/*#endregion*/
+
