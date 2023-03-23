@@ -13,6 +13,7 @@
     <link href="~/Content/font-awesome/css/all.css" rel="stylesheet" />
     <link href="~/Content/layoutStyle.css" rel="stylesheet" />
     <link href="~/Content/sidebar.css" rel="stylesheet" />
+    <link href="~/Content/styleLogin.css" rel="stylesheet" />
     <link href="~/Content/Site.css" rel="stylesheet" />
 
 </head>
@@ -28,7 +29,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a href="#" class="navbar-brand">
-                    <i class="fa fa-mortar-board logoSize"></i>
+                    <span class="btnLogin-popup btn btn-default logoSize">Login</span>
                 </a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
@@ -70,13 +71,12 @@
         </div>
     </nav>
     <!-- End Navbar-->
-
     <!-- Landing-->
-    <div class="landing row">
+    <div class="landing">
         <div class="col-md-6 ladingHalf" data-aos="zoom-in" data-aos-delay="200">
             <img src="~/images/hero-img.png" class="img-fluid landingImg" />
         </div>
-        <div class="col-md-6 ladingHalf">
+        <div class="col-md-6 text">
             <div style="margin:10px 2px 2px 25px ; text-align:justify;">
                 <h1 style=" font-size: 45px;  font-weight: bold;">Cloud-Restaurants</h1>
                 <p style=" font-size: 20px;text-transform:uppercase;">You can browse all Restaurant and order all ***</p>
@@ -87,15 +87,81 @@
     </div>
     <!-- End landing-->
 
+    <!--start login and register window-->
+    <div class="wrapper ">
+        <span class="icon-close">
+            <i class="glyphicon glyphicon-remove"></i>
+        </span>
+        <div class="form-box login">
+            <h2>Login</h2>
+            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="input-box">
+                    <span class="icon"><i class="glyphicon glyphicon-user"></i></span>
+                    <input type="text" required name="UserName">
+                    <label>UserName</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><i class="glyphicon glyphicon-lock"></i></span>
+                    <input type="password" required name="Password">
+                    <label>password</label>
+                </div>
+                <div class="remember-forgot">
+                    <label><input type="checkbox">Remember me</label>
+                    <a href="#">forgot password</a>
+                </div>
+                <button type="submit" class="btnLogin">Login</button>
+                <div class="login-register">
+                    <p>
+                        Don't have an account
+                        <a href="#" class="register-like">Register</a>
+                    </p>
+                </div>
+            }
+        </div>
+        <div class="form-box register">
+            <h2>Registeration </h2>
+            <form action="post">
+                <div class="input-box">
+                    <span class="icon"><i class="glyphicon glyphicon-user"></i></span>
+                    <input type="text" required>
+                    <label>UserName</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><i class="glyphicon glyphicon-envelope"></i></span>
+                    <input type="email" required>
+                    <label>Email</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><i class="glyphicon glyphicon-lock"></i></span>
+                    <input type="password" required>
+                    <label>password</label>
+                </div>
+                <div class="remember-forgot">
+                    <label><input type="checkbox">agree to the terns & conditions</label>
+                    <a href="#">forgot password</a>
+                </div>
+                <button type="submit" class="btnLogin">Register</button>
+                <div class="login-register">
+                    <p>
+                        Already have an account?
+                        <a href="#" class="login-like">Login</a>
+                    </p>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!--End login and register window-->
+
     <!--Main-->
     <main style="min-height:550px">
-            @RenderBody()
-            <div class="row" id="_billItems">
-                @Html.Partial("_ManageMdalPartial")
-            </div>
+        @RenderBody()
+        <div class="row" id="_billItems">
+            @Html.Partial("_ManageMdalPartial")
+        </div>
     </main>
     <!--End main-->
-
     <!-- Footer-->
     <footer>
         <div class="row">

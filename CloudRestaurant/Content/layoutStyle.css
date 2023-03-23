@@ -48,9 +48,13 @@ body {
 /*#region Navbar*/
 
 .logoSize {
-    font-size: 40px;
-    color: #e7e7e7;
+    font-size: 20px;
+    background: transparent;
 }
+
+    .logoSize:hover {
+        background: #e7e7e7;
+    }
 
 @media (max-width:767px) {
     .logoSize {
@@ -62,6 +66,7 @@ body {
     background: var(--background-color);
     border-color: #000;
     border-bottom-width: thin;
+    border-color:transparent;
 }
 
 .navbar-right {
@@ -103,16 +108,17 @@ body {
 /*#region Landing */
 
 .landing {
+    position:relative;
     height: 50vh;
     background-size: contain;
     background-attachment: fixed;
     background-repeat: repeat-x;
-    position: relative;
+    top:65px;
     background: var(--background-color);
 }
 @media (max-width:990px) {
     .landing {
-        margin-bottom:270px;
+        top: 51px;
     }
 }
 .ladingHalf {
@@ -135,15 +141,16 @@ body {
 }
 .landingImg {
     height: 100%;
-    width:350px;
+    width: 350px;
     margin-left: 70px;
     animation: up-down 2s ease-in-out infinite alternate-reverse both;
 }
+
 @media (max-width:990px) {
     .landingImg {
-        margin-right: 50px;
-        width:600px;
-        margin-right:0px;
+        position: relative;
+        margin: auto;
+        width: 500px;
     }
 }
 @-webkit-keyframes up-down {
@@ -177,18 +184,17 @@ body {
 
 .landing .text {
     position: absolute;
-    left: 0;
-    top: 50%;
+    right: 0;
+    top: 40%;
     transform: translateY(-50%);
     width: 50%;
     padding: 30px;
-    background-color: var(--transparent-color);
     color: white;
     display: flex;
     justify-content: flex-end;
 }
 
-@media (max-width:767px) {
+@media (max-width:990px) {
     .landing .text {
         width: 100%;
     }
