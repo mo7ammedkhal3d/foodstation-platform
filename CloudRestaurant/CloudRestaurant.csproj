@@ -325,6 +325,9 @@
     <Content Include="Content\normalize.css" />
     <Content Include="Content\sidebar.css" />
     <Content Include="Content\Site.js" />
+    <Content Include="Content\style.css" />
+    <Content Include="Content\styleLogin.css" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="images\bro.png" />
     <Content Include="images\christopher-burns-Kj2SaNHG-hg-unsplash.jpg" />
