@@ -126,6 +126,7 @@
             @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
             {
                 @Html.AntiForgeryToken()
+                @Html.ValidationSummary("", new { @class = "text-danger" })
                 <div class="input-box">
                     <span class="icon"><i class="glyphicon glyphicon-user"></i></span>
                     <input name="UserName" type="text" required>
@@ -147,8 +148,10 @@
                     <label>ConfirmPassword</label>
                 </div>
                 <div class="remember-forgot">
-                    <label><input type="checkbox">agree to the terns & co
-                    ditions</label>
+                    <label>
+                        <input type="checkbox">agree to the terns & co
+                        ditions
+                    </label>
                     <a href="#">forgot password</a>
                 </div>
                 <button type="submit" class="btnLogin">Register</button>
