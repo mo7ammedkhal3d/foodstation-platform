@@ -7,7 +7,7 @@
  /* start login style*/
  .wrapper{
 
-    position: relative;
+    position: absolute;
     width: 400px;
     height: 440px;
     background: transparent;
@@ -20,7 +20,7 @@
     align-items: center;
     overflow: hidden;
     transform: scale(0);
-    top:10px;
+    top:40px;
     left:auto;
     right:auto;
     margin:auto;
@@ -35,6 +35,7 @@
     }
 }
 .wrapper.active-popup{
+    position:relative;
     transform: scale(1 );
 }
 .wrapper.active{
