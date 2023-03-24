@@ -123,24 +123,32 @@
         </div>
         <div class="form-box register">
             <h2>Registeration </h2>
-            <form action="post">
+            @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
                 <div class="input-box">
                     <span class="icon"><i class="glyphicon glyphicon-user"></i></span>
-                    <input type="text" required>
+                    <input name="UserName" type="text" required>
                     <label>UserName</label>
                 </div>
                 <div class="input-box">
                     <span class="icon"><i class="glyphicon glyphicon-envelope"></i></span>
-                    <input type="email" required>
+                    <input name="Email" type="email" required>
                     <label>Email</label>
                 </div>
                 <div class="input-box">
                     <span class="icon"><i class="glyphicon glyphicon-lock"></i></span>
-                    <input type="password" required>
+                    <input name="Password" type="password" required>
                     <label>password</label>
                 </div>
+                <div class="input-box">
+                    <span class="icon"><i class="glyphicon glyphicon-lock"></i></span>
+                    <input name="ConfirmPassword" type="password" required>
+                    <label>ConfirmPassword</label>
+                </div>
                 <div class="remember-forgot">
-                    <label><input type="checkbox">agree to the terns & conditions</label>
+                    <label><input type="checkbox">agree to the terns & co
+                    ditions</label>
                     <a href="#">forgot password</a>
                 </div>
                 <button type="submit" class="btnLogin">Register</button>
@@ -150,7 +158,7 @@
                         <a href="#" class="login-like">Login</a>
                     </p>
                 </div>
-            </form>
+            }
         </div>
     </div>
     <!--End login and register window-->
