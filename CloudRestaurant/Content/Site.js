@@ -10,8 +10,10 @@ var gitbillConfirm = function () {
             $("#Modal-billItems").modal('show');
         }
     });
-    };
-// start Bill javaScript
+};
+
+
+//#region _BillPartial
 
 var DeleteItem = function (_id) {
     $.ajax({
@@ -57,11 +59,11 @@ var decreasQuantity = function (_id) {
     });
 };
 
-// end bill javaScript
 
 
-// custom function for Sweet massage
+//#endregion _BillPartial
 
+//#region custom function for Sweet massage
 function TestSweetAlert(massage) {
     swal({
         //  title: title,
@@ -74,8 +76,9 @@ function TestSweetAlert(massage) {
     });
 };
 
+//#endregion custom function for Sweet massage
 
-// Restaurant-Page
+//#region Restaurant-Dashboard
 
 //Create Action
 
@@ -350,78 +353,76 @@ $(document).ready(function () {
     });
 });
 
+//#endregion Restaurant-Dashboard
 
- //End Restaurant-Page
+//#region Item-Dashboard
 
+//Create Action
 
+// Reset filds whene cancel add    
 
- // Item-Page
-
- //Create Action
-
- // Reset filds whene cancel add    
-        
 var IresetFilds = function (event) {
     document.getElementById('CreateItemForm').reset();
-var ImgUrl = document.getElementById('CIimgUrl');
-ImgUrl.src = "";
-    };
+    var ImgUrl = document.getElementById('CIimgUrl');
+    ImgUrl.src = "";
+};
 
 // Upload picture to show  for create Action 
 
 var CIloadFile = function (event) {
-        var image = document.getElementById('CIimgUrl');
-image.src = URL.createObjectURL(event.target.files[0]);
-    };
+    var image = document.getElementById('CIimgUrl');
+    image.src = URL.createObjectURL(event.target.files[0]);
+};
 
 
 // Upload picture to show  for edit Action 
 
 var EIloadFile = function (event) {
-        var image = document.getElementById('EIimgUrl');
-image.src = URL.createObjectURL(event.target.files[0]);
-    };
+    var image = document.getElementById('EIimgUrl');
+    image.src = URL.createObjectURL(event.target.files[0]);
+};
 
 // Edit Action
 
 var EditItemConfirm = function (_id) {
-        $("#itemId").val(_id)
-            $.ajax({
-                type: "Post",
-                url: "/Items/GetItem",
-                data: {id: _id },
-                success: function (item) {
-                    $("#Modal-itemEdit").modal('show');
-                $("#EIname").val(item.Name)
-                $("#EIprice").val(item.Price)
-                $("#EItimeOfDone").val(item.TimeOfDone)
-                $("#EIcategory").val(item.CategoryId)
-                $("#EIrestaurant").val(item.RestaurantId)
-                document.getElementById('EIimgUrl').src = "/Uploads/Items/" + item.ImgUrl;
-                $("#hiddenId").val(_id)
-                $("#hiddenImgUrl").val(item.ImgUrl)}                               
-            });
+    $("#itemId").val(_id)
+    $.ajax({
+        type: "Post",
+        url: "/Items/GetItem",
+        data: { id: _id },
+        success: function (item) {
+            $("#Modal-itemEdit").modal('show');
+            $("#EIname").val(item.Name)
+            $("#EIprice").val(item.Price)
+            $("#EItimeOfDone").val(item.TimeOfDone)
+            $("#EIcategory").val(item.CategoryId)
+            $("#EIrestaurant").val(item.RestaurantId)
+            document.getElementById('EIimgUrl').src = "/Uploads/Items/" + item.ImgUrl;
+            $("#hiddenId").val(_id)
+            $("#hiddenImgUrl").val(item.ImgUrl)
+        }
+    });
 };
 
 // Delete Action
 
 var DeleteItemConfirm = function (_id) {
-        $("#itemId").val(_id)
-            $.ajax({
+    $("#itemId").val(_id)
+    $.ajax({
         type: "Post",
-    url: "/Items/GetItem",
-    data: {id: _id },
-    success: function (item) {
-        $("#Modal-itemDelete").modal('show');
-    $("#DIname").val(item.Name)
-    $("#DIprice").val(item.Price)
-    $("#DItimeOfDone").val(item.TimeOfDone)
-    $("#DIcategory").val(item.Category)
-    $("#DIrestaurant").val(item.Restaurant)
-    document.getElementById('DIimgUrl').src = "/Uploads/Items/" + item.ImgUrl;
-                }
-            });
-        };
+        url: "/Items/GetItem",
+        data: { id: _id },
+        success: function (item) {
+            $("#Modal-itemDelete").modal('show');
+            $("#DIname").val(item.Name)
+            $("#DIprice").val(item.Price)
+            $("#DItimeOfDone").val(item.TimeOfDone)
+            $("#DIcategory").val(item.Category)
+            $("#DIrestaurant").val(item.Restaurant)
+            document.getElementById('DIimgUrl').src = "/Uploads/Items/" + item.ImgUrl;
+        }
+    });
+};
 
 
 $(document).ready(function () {
@@ -437,53 +438,53 @@ $(document).ready(function () {
         } else if ($("#CIpicture").val() == "") {
             TestSweetAlert("قم بأضافة صورة للعنصر");
         } else {
-                    var fileInput = document.getElementById('CIpicture');
-                    $.ajax({
-                        type: "Get",
-                        url: "/Items/IsImageExist",
-                        data: { upload: fileInput.files[0].name },
-                        success: function (Message) {
-                            if (Message == "") {
-                                var image = $("#CIpicture").get(0).files;
-                                var formdata = new FormData;
-                                formdata.append("Name", $("#CIname").val());
-                                formdata.append("Price", $("#CIprice").val());
-                                formdata.append("TimeOfDone", $("#CItimeOfDone").val());
-                                formdata.append("CategoryId", $("#CIcategory").val());
-                                formdata.append("RestaurantId", $("#CIrestaurant").val());
-                                formdata.append("upload", image[0]);
-                                $.ajax({
-                                    async: true,
-                                    type: "POST",
-                                    dataType: "JSON",
-                                    url: "/Items/Create",
-                                    data: formdata,
-                                    processData: false,
-                                    contentType: false,
-                                    success: function (result) {
-                                        if (result) {
-                                            $.ajax({
-                                                url: '/Items/Refreash',
-                                                contentType: 'application/html; charset=utf-8',
-                                                type: 'GET',
-                                                dataType: 'html',
-                                                success: (function (result) {
-                                                    $('#_ItemParial').html(result);
-                                                    var close = document.getElementById('btnCreateColse');
-                                                    close.click();
-                                                })
-                                            });
-                                        } else {
-                                            TestSweetAlert("حدث خطأما أثناء عملية الأضافة تاكد من أدخال الحقول بالشكل الصحيح وحاول مرة أخرى");
-                                        }
-                                    }
-                                });
-                            } else {
-                                TestSweetAlert(Message);
+            var fileInput = document.getElementById('CIpicture');
+            $.ajax({
+                type: "Get",
+                url: "/Items/IsImageExist",
+                data: { upload: fileInput.files[0].name },
+                success: function (Message) {
+                    if (Message == "") {
+                        var image = $("#CIpicture").get(0).files;
+                        var formdata = new FormData;
+                        formdata.append("Name", $("#CIname").val());
+                        formdata.append("Price", $("#CIprice").val());
+                        formdata.append("TimeOfDone", $("#CItimeOfDone").val());
+                        formdata.append("CategoryId", $("#CIcategory").val());
+                        formdata.append("RestaurantId", $("#CIrestaurant").val());
+                        formdata.append("upload", image[0]);
+                        $.ajax({
+                            async: true,
+                            type: "POST",
+                            dataType: "JSON",
+                            url: "/Items/Create",
+                            data: formdata,
+                            processData: false,
+                            contentType: false,
+                            success: function (result) {
+                                if (result) {
+                                    $.ajax({
+                                        url: '/Items/Refreash',
+                                        contentType: 'application/html; charset=utf-8',
+                                        type: 'GET',
+                                        dataType: 'html',
+                                        success: (function (result) {
+                                            $('#_ItemParial').html(result);
+                                            var close = document.getElementById('btnCreateColse');
+                                            close.click();
+                                        })
+                                    });
+                                } else {
+                                    TestSweetAlert("حدث خطأما أثناء عملية الأضافة تاكد من أدخال الحقول بالشكل الصحيح وحاول مرة أخرى");
+                                }
                             }
-                        }
-                    });
+                        });
+                    } else {
+                        TestSweetAlert(Message);
+                    }
                 }
+            });
+        }
         return false;
     });
 
@@ -496,54 +497,54 @@ $(document).ready(function () {
         } else if ($("#EItimeOfDone").val() == "") {
             TestSweetAlert("قم بأدخال وقت التحظير");
         } else if ($("#EIpicture").val() != "") {
-                    var fileInput = document.getElementById('EIpicture');
-                    $.ajax({
-                        type: "Get",
-                        url: "/Items/IsImageExist",
-                        data: {upload: fileInput.files[0].name },
-                        success: function (Message) {
-                                if (Message == "") {
-                                    var image = $("#EIpicture").get(0).files;
-                                    var formdata = new FormData;
-                                    formdata.append("Id", $("#hiddenId").val());
-                                    formdata.append("Name", $("#EIname").val());
-                                    formdata.append("Price", $("#EIprice").val());
-                                    formdata.append("TimeOfDone", $("#EItimeOfDone").val());
-                                    formdata.append("ImgUrl", $("#hiddenImgUrl").val());
-                                    formdata.append("CategoryId", $("#EIcategory").val());
-                                    formdata.append("RestaurantId", $("#EIrestaurant").val());
-                                    formdata.append("upload", image[0]);
+            var fileInput = document.getElementById('EIpicture');
+            $.ajax({
+                type: "Get",
+                url: "/Items/IsImageExist",
+                data: { upload: fileInput.files[0].name },
+                success: function (Message) {
+                    if (Message == "") {
+                        var image = $("#EIpicture").get(0).files;
+                        var formdata = new FormData;
+                        formdata.append("Id", $("#hiddenId").val());
+                        formdata.append("Name", $("#EIname").val());
+                        formdata.append("Price", $("#EIprice").val());
+                        formdata.append("TimeOfDone", $("#EItimeOfDone").val());
+                        formdata.append("ImgUrl", $("#hiddenImgUrl").val());
+                        formdata.append("CategoryId", $("#EIcategory").val());
+                        formdata.append("RestaurantId", $("#EIrestaurant").val());
+                        formdata.append("upload", image[0]);
+                        $.ajax({
+                            async: true,
+                            type: "POST",
+                            dataType: "JSON",
+                            url: "/Items/Edit",
+                            data: formdata,
+                            processData: false,
+                            contentType: false,
+                            success: function (result) {
+                                if (result) {
                                     $.ajax({
-                                        async: true,
-                                        type: "POST",
-                                        dataType: "JSON",
-                                        url: "/Items/Edit",
-                                        data: formdata,
-                                        processData: false,
-                                        contentType: false,
-                                        success: function (result) {
-                                                if (result) {
-                                                    $.ajax({
-                                                        url: '/Items/Refreash',
-                                                        contentType: 'application/html; charset=utf-8',
-                                                        type: 'GET',
-                                                        dataType: 'html',
-                                                        success: (function (result) {
-                                                            $('#_ItemParial').html(result);
-                                                            var close = document.getElementById('btnEditColse');
-                                                            close.click();
-                                                        })
-                                                    });
-                                                } else {
-                                                    TestSweetAlert("حدث خطأما أثناء عملية الأضافة تاكد من أدخال الحقول بالشكل الصحيح وحاول مرة أخرى");
-                                                    }
-                                        }
+                                        url: '/Items/Refreash',
+                                        contentType: 'application/html; charset=utf-8',
+                                        type: 'GET',
+                                        dataType: 'html',
+                                        success: (function (result) {
+                                            $('#_ItemParial').html(result);
+                                            var close = document.getElementById('btnEditColse');
+                                            close.click();
+                                        })
                                     });
                                 } else {
-                                    TestSweetAlert(Message);
+                                    TestSweetAlert("حدث خطأما أثناء عملية الأضافة تاكد من أدخال الحقول بالشكل الصحيح وحاول مرة أخرى");
                                 }
-                        }
-                    });
+                            }
+                        });
+                    } else {
+                        TestSweetAlert(Message);
+                    }
+                }
+            });
         } else {
             var formdata = new FormData;
             formdata.append("Id", $("#hiddenId").val());
@@ -554,34 +555,34 @@ $(document).ready(function () {
             formdata.append("CategoryId", $("#EIcategory").val());
             formdata.append("RestaurantId", $("#EIrestaurant").val());
             $.ajax({
-                    async: true,
-                    type: "POST",
-                    dataType: "JSON",
-                    url: "/Items/Edit",
-                    data: formdata,
-                    processData: false,
-                    contentType: false,
-                    success: function (result) {
-                        if (result) {
-                            $.ajax({
-                                url: '/Items/Refreash',
-                                contentType: 'application/html; charset=utf-8',
-                                type: 'GET',
-                                dataType: 'html',
-                                success: (function (result) {
-                                    $('#_ItemParial').html(result);
-                                    var close = document.getElementById('btnEditColse');
-                                    close.click();
-                                })
-                            });
-                        } else {
-                                TestSweetAlert("حدث خطأما أثناء عملية الأضافة تاكد من أدخال الحقول بالشكل الصحيح وحاول مرة أخرى");
-                        }
+                async: true,
+                type: "POST",
+                dataType: "JSON",
+                url: "/Items/Edit",
+                data: formdata,
+                processData: false,
+                contentType: false,
+                success: function (result) {
+                    if (result) {
+                        $.ajax({
+                            url: '/Items/Refreash',
+                            contentType: 'application/html; charset=utf-8',
+                            type: 'GET',
+                            dataType: 'html',
+                            success: (function (result) {
+                                $('#_ItemParial').html(result);
+                                var close = document.getElementById('btnEditColse');
+                                close.click();
+                            })
+                        });
+                    } else {
+                        TestSweetAlert("حدث خطأما أثناء عملية الأضافة تاكد من أدخال الحقول بالشكل الصحيح وحاول مرة أخرى");
                     }
+                }
             });
 
         }
-    return false;
+        return false;
     });
 
     $("#btnItemDelete").click(function () {
@@ -589,7 +590,7 @@ $(document).ready(function () {
         $.ajax({
             type: "Post",
             url: "/Items/DeleteConfirmed",
-            data: {id: itemId },
+            data: { id: itemId },
             success: function (result) {
                 if (result) {
                     $("#Modal-itemDelete").modal('hide');
@@ -600,11 +601,11 @@ $(document).ready(function () {
                         type: 'GET',
                         dataType: 'html',
                         success: (function (result) {
-                                $('#_ItemParial').html(result);
+                            $('#_ItemParial').html(result);
                         })
                     })
                 } else {
-                        TestSweetAlert("حذث خطا ما أثناء عملية الحدف ");
+                    TestSweetAlert("حذث خطا ما أثناء عملية الحدف ");
                 }
             }
         });
@@ -612,8 +613,10 @@ $(document).ready(function () {
 });
 
 
-//End Item-Page
-// start code of login and register window
+//#endregion Item-Dashboard
+
+//#region login and register window
+
 const wrapper = document.querySelector(".wrapper ");
 const loginLinke = document.querySelector(".login-like");
 const registerLinke = document.querySelector(".register-like");
@@ -632,4 +635,36 @@ ptnpopup.addEventListener('click', () => {
 iconClose.addEventListener('click', () => {
     wrapper.classList.remove('active-popup');
 });
-// End code of login and register window
+
+//#endregion login and register window
+
+//#region GetrestaurantCategories 
+debugger;
+var _resturantId = document.getElementById('restaurantId').val();
+
+var getItems = function (_id) {
+    $.ajax({
+        type: "Get",
+        url: "/Home/GetCategoryItems",
+        data: { categoryId: _id, restaurantId: _resturantId },
+        success: function (items) {
+            $('#_SelectedCategoryItems').html(items);
+            return false;
+        }
+    });
+};
+
+var getallItems = function () {
+    $.ajax({
+        type: "Get",
+        url: "/Home/GetAllRestaurantItems",
+        data: { restaurantId: _resturantId },
+        success: function (items) {
+            $('#_SelectedCategoryItems').html(items);
+            return false;
+        }
+    });
+};
+
+//#endregion GetrestaurantCategories
+

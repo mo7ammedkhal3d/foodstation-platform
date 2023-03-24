@@ -1,5 +1,6 @@
 ﻿@model IEnumerable<CloudRestaurant.Models.Category>
 
+<input id="restaurantId" type="hidden" value="@(ViewBag.restaurantId)">
 <div class="jumbotron" style="margin: 20px; background-color: #224c4c; color: burlywood;height:150px ;border-radius: 100px; text-align: center">
     <h2 style="font-weight:bold ; margin-top:5px">Cloud-Restaurants</h2>
     <h4 style="background-color: teal;padding:8px; border-radius: 50px 10px;">@ViewBag.Name</h4>
@@ -32,34 +33,7 @@
 </div>
 
 
-<script>
-    var _resturantId = @(ViewBag.restaurantId);
 
-    var getItems = function (_id) {
-        $.ajax({
-            type: "Get",
-            url: "/Home/GetCategoryItems",
-            data: { categoryId: _id, restaurantId: _resturantId },
-            success: function (items) {
-                $('#_SelectedCategoryItems').html(items);
-                return false;
-            }
-        });
-    };
-
-    var getallItems = function () {
-        $.ajax({
-            type: "Get",
-            url: "/Home/GetAllRestaurantItems",
-            data: { restaurantId: _resturantId },
-            success: function (items) {
-                $('#_SelectedCategoryItems').html(items);
-                return false;
-            }
-        });
-    };
-
-</script>
 
 
 
