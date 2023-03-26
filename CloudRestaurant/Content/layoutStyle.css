@@ -32,6 +32,15 @@ body {
     cursor: pointer;
 }
 
+.mainDiv{
+    min-height: 550px;
+    top: 50px;
+    bottom: 30px;
+    position: relative;
+    margin-bottom: 30px;
+}
+
+
 .table {
     width: 100%;
     max-width: 100%;
@@ -346,10 +355,10 @@ ManageModalClose {
     padding: 0px 0px 0px 0px;
 }
 
-    .ulMange a {
-        width: 258px;
-        margin: 0px 0px 1px 0px;
-    }
+.ulMange a {
+    width: 258px;
+    margin: 0px 0px 1px 0px;
+}
 
 /*#endregion _ManageMdalPartial*/
 

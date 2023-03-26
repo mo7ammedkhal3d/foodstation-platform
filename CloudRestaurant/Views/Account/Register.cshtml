@@ -14,8 +14,8 @@
             <hr style=" border-top: 1.5px solid teal; " />
             @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
             {
-                @Html.AntiForgeryToken()
-                @Html.ValidationSummary("", new { @class = "text-danger" })
+                @*@Html.AntiForgeryToken()
+                @Html.ValidationSummary("", new { @class = "text-danger" })*@
                 <div class="form-group">
                     <div class="col-md-9">
                         @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
