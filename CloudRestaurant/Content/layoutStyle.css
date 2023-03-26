@@ -1,21 +1,4 @@
-﻿@font-face{
-    font-family:myfont;
-    src:url('font/GE_SS_Two_Bold.otf')
-}
-
-@font-face {
-    font-family: myfont2;
-    src: url('font/DroidKufi-Regular.ttf')
-}
-
-:root {
-    --background-color: linear-gradient(to left, #00093c, #2d0b00);
-    --main-color: #19c8fa;
-    --transparent-color: rgb(15 116 143 /70%);
-    --section-padding: 100px;
-}
-
-
+﻿
 /*#region Global-properties*/
 
 body {
