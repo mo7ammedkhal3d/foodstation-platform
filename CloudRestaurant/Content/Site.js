@@ -640,7 +640,7 @@ iconClose.addEventListener('click', () => {
 
 //#region GetrestaurantCategories 
 debugger;
-var _resturantId = document.getElementById('restaurantId').val();
+var _resturantId = $("#restaurantId").val();
 
 var getItems = function (_id) {
     $.ajax({
