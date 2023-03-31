@@ -1,6 +1,7 @@
 ﻿using CloudRestaurant.Models;
 using CloudRestaurant.Models.Repositories;
 using CloudRestaurant.Models.ViewModels;
+using Microsoft.Ajax.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,21 +17,37 @@ namespace CloudRestaurant.Controllers
         private readonly ICloudRestaurantRepository<Restaurant> restaurantRepository;
         private readonly ICloudRestaurantRepository<Category> categoryRepository;
         private readonly ICloudRestaurantRepository<Request> requestRepository;
+        private readonly ICloudRestaurantRepository<Region> regionRepository;
 
         public HomeController(ICloudRestaurantRepository<Item> itemRepository,
             ICloudRestaurantRepository<Restaurant> restaurantRepository, ICloudRestaurantRepository<Category> categoryRepository,
-            ICloudRestaurantRepository<Request> requestRepository)
+            ICloudRestaurantRepository<Request> requestRepository , ICloudRestaurantRepository<Region> regionRepository)
         {
             this.itemRepository = itemRepository;
             this.restaurantRepository = restaurantRepository;
             this.categoryRepository = categoryRepository;
             this.requestRepository = requestRepository;
+            this.regionRepository = regionRepository;
         }
 
         public ActionResult Index()
         {
             return View();
         }
+
+        public ActionResult GetRegions()
+        {
+            return View(regionRepository.List());
+        }
+
+
+        //public JSON GetSelectedRegion(int id)
+        //{
+        //    Session["RegionId"] = id;   
+
+        //    return Json(Response , JsonRequestBehavior.AllowGet);
+        //}
+
 
         public ActionResult GetRestaurants()
         {

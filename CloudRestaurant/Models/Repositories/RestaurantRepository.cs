@@ -8,7 +8,12 @@ namespace CloudRestaurant.Models.Repositories
 {
     public class RestaurantRepository : ICloudRestaurantRepository<Restaurant>
     {
-        ApplicationDbContext db = new ApplicationDbContext();
+        private readonly ApplicationDbContext db;
+
+        public RestaurantRepository(ApplicationDbContext _db)
+        {
+            db = _db;
+        }
 
         public void Add(Restaurant newrestaurant)
         {
@@ -33,14 +38,12 @@ namespace CloudRestaurant.Models.Repositories
 
         public IList<Restaurant> List()
         {
-            var restaurants = db.Restaurants.ToList();
-
-            return restaurants;
+            return db.Restaurants.ToList();
         }
 
-        public void Update(Restaurant modifyrestaurant)
+        public void Update(Restaurant modifyRestaurant)
         {
-            db.Entry(modifyrestaurant).State = EntityState.Modified;
+            db.Entry(modifyRestaurant).State = EntityState.Modified;
             db.SaveChanges();
         }
     }

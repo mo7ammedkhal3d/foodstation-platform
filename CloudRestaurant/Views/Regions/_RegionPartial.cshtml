@@ -1,0 +1,31 @@
+﻿@model IEnumerable<CloudRestaurant.Models.Region>
+
+<p>
+    @Html.ActionLink("أضافة منطقة", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            أسم المدينة
+        </th>
+        <th>
+            الدولة
+        </th>
+    </tr>
+
+    @foreach (var item in ViewBag.Regions)
+    {
+        <tr>
+            <td>
+                @item.Name
+            </td>
+            <td>
+                @item.Country.Name
+            </td>
+            <td>
+                @Html.ActionLink("", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+</table>
