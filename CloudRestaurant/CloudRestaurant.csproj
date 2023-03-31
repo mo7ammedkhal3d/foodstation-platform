@@ -266,6 +266,10 @@
     <Compile Include="Migrations\202303311341119_AddRestaurantNoCol.designer.cs">
       <DependentUpon>202303311341119_AddRestaurantNoCol.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202303311949431_DeleteRestaurantNo.cs" />
+    <Compile Include="Migrations\202303311949431_DeleteRestaurantNo.designer.cs">
+      <DependentUpon>202303311949431_DeleteRestaurantNo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Country.cs" />
@@ -527,6 +531,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202303311341119_AddRestaurantNoCol.resx">
       <DependentUpon>202303311341119_AddRestaurantNoCol.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202303311949431_DeleteRestaurantNo.resx">
+      <DependentUpon>202303311949431_DeleteRestaurantNo.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

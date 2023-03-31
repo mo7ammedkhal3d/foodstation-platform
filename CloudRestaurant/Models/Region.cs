@@ -17,8 +17,6 @@ namespace CloudRestaurant.Models
 
         public int CountryId { get; set; }
 
-        public int RestaurantNo { get; set; }
-
         public virtual Country Country { get; set; }
 
         public virtual ICollection<Restaurant> Restaurants { get; set; }

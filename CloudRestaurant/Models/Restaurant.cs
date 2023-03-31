@@ -22,7 +22,7 @@ namespace CloudRestaurant.Models
         public string ImgUrl { get; set; }
         [Required]
         [DisplayName("المنطقة")]
-        public string RegionName { get; set; }
+        public string RegionId { get; set; }
 
         public virtual Region Region { get; set; }
         public virtual ICollection<RestaurantDiningTypes> RestaurantDiningTypes { get; set; }
