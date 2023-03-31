@@ -15,6 +15,7 @@ namespace CloudRestaurant.Controllers
     public class RegionsController : Controller
     {
         private readonly ICloudRestaurantRepository<Region> regionRepository;
+        ApplicationDbContext db = new ApplicationDbContext();
 
         public RegionsController(ICloudRestaurantRepository<Region> regionRepository)
         {
@@ -24,10 +25,11 @@ namespace CloudRestaurant.Controllers
         // GET: Regions
         public ActionResult Index()
         {
-            ViewBag.Regions = regionRepository.List();
+            var Regions= regionRepository.List();
+            ViewBag.Regions = Regions;
             ViewBag.Countries = regionRepository.List();
 
-            return View();
+            return View(db.Regions.ToList());
         }
 
         //// GET: Regions/Create
