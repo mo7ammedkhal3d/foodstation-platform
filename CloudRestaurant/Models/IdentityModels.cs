@@ -38,5 +38,9 @@ namespace CloudRestaurant.Models
         public System.Data.Entity.DbSet<CloudRestaurant.Models.Item> Items { get; set; }
 
         public System.Data.Entity.DbSet<CloudRestaurant.Models.Request> Requests { get; set; }
+
+        public System.Data.Entity.DbSet<CloudRestaurant.Models.Region> Regions { get; set; }
+
+        public System.Data.Entity.DbSet<CloudRestaurant.Models.Country> Countries { get; set; }
     }
 }

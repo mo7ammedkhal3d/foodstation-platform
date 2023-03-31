@@ -8,7 +8,12 @@ namespace CloudRestaurant.Models.Repositories
 {
     public class CategoryRepository : ICloudRestaurantRepository<Category>
     {
-        ApplicationDbContext db = new ApplicationDbContext();
+        private readonly ApplicationDbContext db;
+
+        public CategoryRepository(ApplicationDbContext _db)
+        {
+            db = _db;
+        }
 
         public void Add(Category newcategory)
         {
@@ -38,9 +43,9 @@ namespace CloudRestaurant.Models.Repositories
             return Categories;
         }
 
-        public void Update(Category modifycategory)
+        public void Update(Category modifyCategory)
         {
-            db.Entry(modifycategory).State = EntityState.Modified;
+            db.Entry(modifyCategory).State = EntityState.Modified;
             db.SaveChanges();
         }
     }

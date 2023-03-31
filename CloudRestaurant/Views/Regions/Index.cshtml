@@ -1,0 +1,49 @@
+﻿@model CloudRestaurant.Models.Region
+
+<div class="container" id="_RegionPartial" style="direction:rtl"> 
+    @Html.Partial("_RegionPartial")
+</div>
+
+<!--Create Region-->
+
+<div class="modal fade" id="Modal-regionCreate">
+    <div class="modal-dialog">
+        <div class="modalContent-Item">
+            <div class="modal-header">
+                <h2 class="modal-title" style="text-align:center">أضافة منطقة</h2>
+            </div>
+            <div class="Restaurant-modal-body">
+                @using (Html.BeginForm("Create", "Regions", FormMethod.Post, new { enctype = "multipart/form-data", @id = "CreateRegionForm" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="row">
+                        <div class="form-horizontal" style="margin-top:50px">
+                            <div class="col-md-7" style="float: right">
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-4", @style = "float:right" })
+                                    <div class="col-md-8" style="float:right">
+                                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "input-fild", @id = "CRname" } })
+                                    </div>
+                                    @Html.LabelFor("Countries", htmlAttributes: new { @class = "control-label col-md-4", @style = "float:right" })
+                                    <div class="col-md-8" style="float:right">
+                                        @Html.EditorFor("Countries", new { htmlAttributes = new { @class = "input-fild", @id = "CRname" } })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+            <div class="modal-footer">
+                <div class="form-group">
+                    <div class="col-md-offset-3 col-md-6">
+                        <input value="أضافة" class="btn btn-success modal-BtnCreate" id="btnRestaurantCreate" />
+                        <button id="btnCreateColse" type="button" class="btn modal-BtnClose" data-dismiss="modal" onclick="RresetFilds(event)">أغلاق</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

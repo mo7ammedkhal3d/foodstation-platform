@@ -14,7 +14,13 @@ namespace CloudRestaurant.Models
         [Required]
         [DisplayName("اسم المنطقة")]
         public string Name { get; set; }
+
+        public int CountryId { get; set; }
+
+        public int RestaurantNo { get; set; }
+
         public virtual Country Country { get; set; }
+
         public virtual ICollection<Restaurant> Restaurants { get; set; }
     }
 }

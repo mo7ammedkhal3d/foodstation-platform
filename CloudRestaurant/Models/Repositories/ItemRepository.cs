@@ -8,7 +8,13 @@ namespace CloudRestaurant.Models.Repositories
 {
     public class ItemRepository : ICloudRestaurantRepository<Item>
     {
-        ApplicationDbContext db = new ApplicationDbContext();
+        private readonly ApplicationDbContext db;
+
+        public ItemRepository(ApplicationDbContext _db)
+        {
+            db = _db;
+        }
+
         public void Add(Item newItem)
         {
             db.Items.Add(newItem);
@@ -29,8 +35,7 @@ namespace CloudRestaurant.Models.Repositories
 
         public IList<Item> List()
         {
-            var items = db.Items.ToList();  
-            return items;   
+            return db.Items.ToList();
         }
 
         public void Update(Item modifyItem)

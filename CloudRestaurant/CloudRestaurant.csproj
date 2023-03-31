@@ -223,9 +223,11 @@
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
+    <Compile Include="Controllers\CountriesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ItemsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\RegionsController.cs" />
     <Compile Include="Controllers\RequestsController.cs" />
     <Compile Include="Controllers\RestaurantsController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
@@ -260,6 +262,10 @@
     <Compile Include="Migrations\202303272137081_AddDataBaseTables.designer.cs">
       <DependentUpon>202303272137081_AddDataBaseTables.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202303311341119_AddRestaurantNoCol.cs" />
+    <Compile Include="Migrations\202303311341119_AddRestaurantNoCol.designer.cs">
+      <DependentUpon>202303311341119_AddRestaurantNoCol.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Country.cs" />
@@ -273,8 +279,10 @@
     <Compile Include="Models\ParticipationFeatures.cs" />
     <Compile Include="Models\Region.cs" />
     <Compile Include="Models\Repositories\CategoryRepository.cs" />
+    <Compile Include="Models\Repositories\CountryRepository.cs" />
     <Compile Include="Models\Repositories\ICloudRestaurantRepository.cs" />
     <Compile Include="Models\Repositories\ItemRepository.cs" />
+    <Compile Include="Models\Repositories\RegionRepository.cs" />
     <Compile Include="Models\Repositories\RequestRepository.cs" />
     <Compile Include="Models\Repositories\RestaurantRepository.cs" />
     <Compile Include="Models\Request.cs" />
@@ -473,10 +481,14 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery\jquery.min.map" />
     <Content Include="Scripts\jquery\jquery.slim.min.map" />
+    <Content Include="Views\Regions\Index.cshtml" />
+    <Content Include="Views\Home\GetRegions.cshtml" />
+    <Content Include="Views\Regions\_RegionPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Uploads\Items\" />
+    <Folder Include="Views\Countries\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\font-awesome\webfonts\fa-brands-400.ttf" />
@@ -514,6 +526,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202303272137081_AddDataBaseTables.resx">
       <DependentUpon>202303272137081_AddDataBaseTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202303311341119_AddRestaurantNoCol.resx">
+      <DependentUpon>202303311341119_AddRestaurantNoCol.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

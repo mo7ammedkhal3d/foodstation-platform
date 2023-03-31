@@ -8,7 +8,12 @@ namespace CloudRestaurant.Models.Repositories
 {
     public class RequestRepository : ICloudRestaurantRepository<Request>
     {
-        ApplicationDbContext db = new ApplicationDbContext();
+        private readonly ApplicationDbContext db;
+
+        public RequestRepository(ApplicationDbContext _db)
+        {
+            db = _db;
+        }
         public void Add(Request request)
         {
             db.Requests.Add(request);
@@ -29,13 +34,13 @@ namespace CloudRestaurant.Models.Repositories
 
         public IList<Request> List()
         {
-            var request = db.Requests.ToList();
-            return request;
+            var requests = db.Requests.ToList();
+            return requests;
         }
 
-        public void Update(Request request)
+        public void Update(Request modifyRequest)
         {
-            db.Entry(request).State = EntityState.Modified;
+            db.Entry(modifyRequest).State = EntityState.Modified;
             db.SaveChanges();
         }
     }
