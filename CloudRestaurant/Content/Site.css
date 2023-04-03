@@ -607,6 +607,7 @@ font-size: 17px;
     height: 365px;
 }
 /*#endregion Restaurant-Index*/
+
 .Region .form-horizontal {
     text-align: center;
     width: fit-content;
@@ -621,3 +622,48 @@ font-size: 17px;
 .Region .modal-BtnDelete {
     width: 100px;
 }
+/*#region Country-Index*/
+
+.Country .modalContent {
+    height: 240px;
+    width: 400px;
+    background-color: #FFF;
+    margin: 126px 0px 0px 106px;
+}
+
+.Country .modal-header {
+    height: 60px;
+}
+
+.Country .modal-body {
+    height: 114px;
+}
+
+.Country .modal-footer {
+    height: 66px;
+    padding: 15px 50px 15px 70px;
+}
+
+.Country .modal-title {
+    font-size: 20px;
+    font-family: sans-serif;
+    text-align:center
+}
+
+.Country .input-fild {
+
+}
+
+.Country .modal-BtnCreate {
+    width: 100px;
+    margin: 0px 20px 0px 20px;
+    float: right;
+}
+
+
+.Country .modal-BtnClose {
+    width: 100px;
+    margin: 0px 20px 0px 20px;
+}
+
+/*#endregion Country-Index*/

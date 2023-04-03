@@ -1,0 +1,35 @@
+﻿<div>
+    <h2>قائمة الدول</h2>
+</div>
+
+<div>
+    <p>
+        <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#Modal-countryCreate">أضافة دولة</a>
+    </p>
+</div>
+
+<table class="table">
+    <tr class="btn-primary">
+        <th>
+            أسم الدولة
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in ViewBag.Countries)
+    {
+        <tr>
+            <td>
+                @item.Name
+                <input id="CountryName+@item.Id" type="hidden" value="@item.Name" />
+            </td>
+            <td>
+                <a style="font-size:20px" onclick="EditCountryConfirm(@item.Id)"><i class="fa-solid fa-pen-to-square Action-Icon" style="color: #005eff;"></i></a> |
+                <a style="font-size:20px" onclick="DeleteCountryConfirm(@item.Id)"><i class="fa-solid fa-trash-can Action-Icon" style="color: #ff2600;"></i></a>
+                <input type="hidden" id="CountryId" />
+            </td>
+        </tr>
+    }
+
+</table>
+
