@@ -146,7 +146,7 @@ namespace CloudRestaurant.Controllers
         {
             if (disposing)
             {
-               // db.Dispose();
+                categoryRepository.Dispose();
             }
             base.Dispose(disposing);
         }

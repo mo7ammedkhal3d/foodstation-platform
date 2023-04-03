@@ -166,13 +166,14 @@ namespace CloudRestaurant.Controllers
             return Json(true, JsonRequestBehavior.AllowGet);
         }
 
-        //protected override void Dispose(bool disposing)
-        //{
-        //    if (disposing)                    MK187  ???! 
-        //    {
-        //        restaurantRepository.db.Dispose();
-        //    }
-        //    base.Dispose(disposing);
-        //}
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                restaurantRepository.Dispose();
+                itemRepository.Dispose();
+            }
+            base.Dispose(disposing);
+        }
     }
 }

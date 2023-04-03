@@ -154,5 +154,18 @@ namespace CloudRestaurant.Controllers
             item.ItemQuantity = item.ItemQuantity - 1;
             return RedirectToAction("Index");
         }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                restaurantRepository.Dispose();
+                itemRepository.Dispose();
+                categoryRepository.Dispose();
+                regionRepository.Dispose();
+                requestRepository.Dispose();
+            }
+            base.Dispose(disposing);
+        }
     }
 }
