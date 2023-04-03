@@ -5,7 +5,7 @@
 </div>
 <div>
     <p>
-        <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#Modal-restaurantCreate">أضافة منطقة</a>
+        <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#Modal-regionCreate">أضافة منطقة</a>
     </p>
 </div>
 <div>
@@ -29,9 +29,9 @@
                     @item.Country.Name
                 </td>
                 <td>
-                    <a style="font-size:20px" onclick="EditItemConfirm(@item.Id)"><i class="fa-solid fa-pen-to-square Action-Icon" style="color: #005eff;"></i></a> |
-                    <a id="showModal-itemDelete" style="font-size:20px" onclick="DeleteItemConfirm(@item.Id)"><i class="fa-solid fa-trash-can Action-Icon" style="color: #ff2600;"></i></a>
-                    <input type="hidden" id="itemId" />
+                    <a style="font-size:20px" onclick="EditRegionConfirm(@item.Id)"><i class="fa-solid fa-pen-to-square Action-Icon" style="color: #005eff;"></i></a> |
+                    <a id="showModal-itemDelete" style="font-size:20px" onclick="DeleteRegionConfirm(@item.Id)"><i class="fa-solid fa-trash-can Action-Icon" style="color: #ff2600;"></i></a>
+                    <input type="hidden" id="RegionId" />
                 </td>
             </tr>
         }
