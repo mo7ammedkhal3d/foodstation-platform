@@ -9,17 +9,20 @@ using System.Web;
 using System.Web.Mvc;
 using CloudRestaurant.Models;
 using CloudRestaurant.Models.Repositories;
+using CloudRestaurant.Models.ViewModels;
 
 namespace CloudRestaurant.Controllers
 {
     public class RegionsController : Controller
     {
         private readonly ICloudRestaurantRepository<Region> regionRepository;
+        private readonly ICloudRestaurantRepository<Country> countryRepository;
         ApplicationDbContext db = new ApplicationDbContext();
 
-        public RegionsController(ICloudRestaurantRepository<Region> regionRepository)
+        public RegionsController(ICloudRestaurantRepository<Region> regionRepository, ICloudRestaurantRepository<Country> countryRepository)
         {
             this.regionRepository = regionRepository;
+            this.countryRepository = countryRepository;
         }
 
         // GET: Regions
@@ -28,8 +31,66 @@ namespace CloudRestaurant.Controllers
             var Regions= regionRepository.List();
             ViewBag.Regions = Regions;
             ViewBag.Countries = regionRepository.List();
+            ViewBag.CountryId = new SelectList(countryRepository.List(), "Id", "Name");
 
-            return View(db.Regions.ToList());
+            return View();
+        }
+        public PartialViewResult Refreash()
+        {
+            var Regions = regionRepository.List();
+            ViewBag.Regions = Regions;
+            return PartialView("_RegionPartial", Regions);
+        }
+
+        [HttpPost]
+        //[ValidateAntiForgeryToken] 
+        public JsonResult Create(Region region)
+        {
+            var result = false;
+            if (ModelState.IsValid)
+            {
+                regionRepository.Add(region);
+                result = true;
+                return Json(result, JsonRequestBehavior.AllowGet);
+            }
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult DeleteConfirmed(int id)
+        {
+            bool result = false;
+            var item = regionRepository.Find(id);
+            if (item != null)
+            {
+                result = true;
+                regionRepository.Delete(id);
+            }
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult GetRegion(int? id)
+        {
+            var region = regionRepository.Find(id);
+            RegionVm regionVm = new RegionVm();
+            if (region != null)
+            {
+                regionVm.Name = region.Name;
+                regionVm.CountryId = region.CountryId;  
+                return Json(regionVm, JsonRequestBehavior.AllowGet);
+            }
+            return Json(false, JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
+        //[ValidateAntiForgeryToken]
+        public JsonResult Edit(Region region)
+        {
+            if (ModelState.IsValid)
+            {
+                regionRepository.Update(region);
+                return Json(true, JsonRequestBehavior.AllowGet);
+            }
+
+            return Json(false, JsonRequestBehavior.AllowGet);
         }
 
         //// GET: Regions/Create
