@@ -78,6 +78,153 @@ function TestSweetAlert(massage) {
 
 //#endregion custom function for Sweet massage
 
+//#region Country-Dashboard
+
+var CresetFilds = function (event) {
+    document.getElementById('CreateCountryForm').reset();
+};
+
+var EditCountryConfirm = function (_id) {
+    $("#Modal-countryEdit").modal('show');
+    $("#ECname").val(document.getElementById('CountryName+' + _id).value)
+    $("#CountryId").val(_id)
+};
+
+var DeleteCountryConfirm = function (_id) {
+    $.ajax({
+        type: "Post",
+        url: "/Countries/DeleteConfirmed",
+        data: { id: _id },
+        success: function (message) {
+            if (message == "") {
+                $.ajax({
+                    url: '/Countries/Refreash',
+                    contentType: 'application/html; charset=utf-8',
+                    type: 'GET',
+                    dataType: 'html',
+                    success: (function (result) {
+                        $('#_CountryPartial').html(result);
+                    })
+                });
+            } else if (message == "haveItem") {
+                swal({
+                    // title: "Are you sure?",
+                    text: "هذا الدولة مرتبطة بعدد من المناطق هل تريد بالفعل حذفها",
+                    className: 'swal-IW',
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                }).then((result) => {
+                    if (result == true) {
+                        $.ajax({
+                            type: 'GET',
+                            url: '/Countries/DeleteCountryAndRegions',
+                            data: { id: _id },
+                            contentType: 'application/html; charset=utf-8',
+                            dataType: 'html',
+                            success: (function (result) {
+                                $.ajax({
+                                    url: '/Countries/Refreash',
+                                    contentType: 'application/html; charset=utf-8',
+                                    type: 'GET',
+                                    dataType: 'html',
+                                    success: (function (result) {
+                                        $('#_CountryPartial').html(result);
+                                    })
+                                });
+                            })
+                        })
+                    }
+                });
+            }
+        },
+    });
+    return false;
+};
+
+
+
+$(document).ready(function () {
+
+    $("#btnCreateCountry").click(function () {
+    if ($("#CCname").val() == "") {
+        TestSweetAlert("قم بأدخال الأسم");
+    } else {
+        var formdata = new FormData;
+        formdata.append("Name", $("#CCname").val());
+        $.ajax({
+            async: true,
+            type: "POST",
+            dataType: "JSON",
+            url: "/Countries/Create",
+            data: formdata,
+            processData: false,
+            contentType: false,
+            success: function (result) {
+                if (result) {
+                    $.ajax({
+                        url: '/Countries/Refreash',
+                        contentType: 'application/html; charset=utf-8',
+                        type: 'GET',
+                        dataType: 'html',
+                        success: (function (result) {
+                            $('#_CountryPartial').html(result);
+                            var close = document.getElementById('btnCreateColse');
+                            close.click();
+                        })
+                    });
+                } else {
+                    TestSweetAlert("حدث خطأما أثناء عملية الأضافة تاكد من أدخال الحقول بالشكل الصحيح وحاول مرة أخرى");
+                }
+            }
+        });
+    }
+    
+    return false;
+});
+
+    $("#btnEditCountry").click(function () {
+        if ($("#ECname").val() == "") {
+            TestSweetAlert("قم بأدخال الأسم");
+        } else {
+            var formdata = new FormData;
+            formdata.append("Id", $("#CountryId").val());
+            formdata.append("Name", $("#ECname").val());
+            $.ajax({
+                async: true,
+                type: "POST",
+                dataType: "JSON",
+                url: "/Countries/Edit",
+                data: formdata,
+                processData: false,
+                contentType: false,
+                success: function (result) {
+                    if (result) {
+                        $.ajax({
+                            url: '/Countries/Refreash',
+                            contentType: 'application/html; charset=utf-8',
+                            type: 'GET',
+                            dataType: 'html',
+                            success: (function (result) {
+                                $('#_CountryPartial').html(result);
+                                var close = document.getElementById('btnEditColse');
+                                close.click();
+                            })
+                        });
+                    } else {
+                        TestSweetAlert("حدث خطأما أثناء عملية الأضافة تاكد من أدخال الحقول بالشكل الصحيح وحاول مرة أخرى");
+                    }
+                }
+            });
+        }
+        return false;
+    });
+        
+});
+    
+
+//#endregion Country-Dashboard
+
 //#region Restaurant-Dashboard
 
 //Create Action
@@ -146,7 +293,6 @@ var DeleteRestaurantConfirm = function (_id) {
 $(document).ready(function () {
 
     $("#btnRestaurantCreate").click(function () {
-        debugger;
         if ($("#CRname").val() == "") {
             TestSweetAlert("قم بأدخال الأسم");
         } else if ($("#CRdescription").val() == "") {
