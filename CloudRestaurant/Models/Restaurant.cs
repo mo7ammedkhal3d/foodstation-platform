@@ -20,13 +20,17 @@ namespace CloudRestaurant.Models
 
         [DisplayName("صورة المطعم")]
         public string ImgUrl { get; set; }
+
         [Required]
         [DisplayName("المنطقة")]
         public string RegionId { get; set; }
 
         public virtual Region Region { get; set; }
+
         public virtual ICollection<RestaurantDiningTypes> RestaurantDiningTypes { get; set; }
+
         public virtual ICollection<RestaurantParticipation> RestaurantParticipations { get; set; }
+
         public virtual ICollection<Item> Items { get; set; }
         
     }

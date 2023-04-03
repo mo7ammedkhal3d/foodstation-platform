@@ -91,5 +91,14 @@ namespace CloudRestaurant.Controllers
                 return View(deletedRole);
             }
         }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
     }
 }

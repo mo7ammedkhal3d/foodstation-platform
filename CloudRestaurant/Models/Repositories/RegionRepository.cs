@@ -46,5 +46,10 @@ namespace CloudRestaurant.Models.Repositories
             db.Entry(modifyRegion).State = EntityState.Modified;
             db.SaveChanges();
         }
+
+        public void Dispose()
+        {
+            db.Dispose();
+        }
     }
 }

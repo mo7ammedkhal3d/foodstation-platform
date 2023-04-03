@@ -18,5 +18,7 @@ namespace CloudRestaurant.Models.Repositories
 
         void Delete(int Id);
 
+        void Dispose();
+
     }
 }

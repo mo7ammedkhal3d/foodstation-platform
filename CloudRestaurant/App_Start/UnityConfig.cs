@@ -16,6 +16,7 @@ namespace CloudRestaurant
 
             container.RegisterType<ICloudRestaurantRepository<Country>, CountryRepository>();
             container.RegisterType<ICloudRestaurantRepository<Region>, RegionRepository>();
+            container.RegisterType<ICloudRestaurantRepository<DiningType>, DiningTypeRepository>();
             container.RegisterType<ICloudRestaurantRepository<Restaurant>, RestaurantRepository>();
             container.RegisterType<ICloudRestaurantRepository<Category>, CategoryRepository>();
             container.RegisterType<ICloudRestaurantRepository<Item>, ItemRepository>();
