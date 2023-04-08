@@ -34,6 +34,21 @@
                                         @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.RegionId, "المنطقة", htmlAttributes: new { @class = "control-label col-md-4", @style = "float:right" })
+                                    <div class="col-md-8" style="float:right">
+                                        @Html.DropDownList("RegionId", null, htmlAttributes: new { @class = "input-fild", @id = "CIrestaurant" })
+                                        @Html.ValidationMessageFor(model => model.RegionId, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <!--<div class="form-group">
+                                    <label class="control-label col-md-4" style="float:right">نوع الأكل</label>-->
+                                    @*@Html.LabelFor("DiningTypeId", "المنطقة", htmlAttributes: new { @class = "control-label col-md-4", @style = "float:right" })*@
+                                    @*<div class="col-md-8" style="float:right">*@
+                                        @*@Html.ListBox("diningType", null, htmlAttributes: new { @class = "input-fild", @id = "CIrestaurant" })
+                                        @Html.ValidationMessageFor(model => model.RegionId, "", new { @class = "text-danger" })*@
+                                    @*</div>
+                                </div>*@
                             </div>
 
                             <div class="col-md-5" style="float:right">
@@ -59,7 +74,6 @@
         </div>
     </div>
 </div>
-
 
 <!--Edit Restaurants -->
 

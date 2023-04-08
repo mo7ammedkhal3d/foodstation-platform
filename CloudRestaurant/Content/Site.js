@@ -225,6 +225,130 @@ $(document).ready(function () {
 
 //#endregion Country-Dashboard
 
+//#region  Region-Dashboard
+
+$("#btnRegionCreate").click(function () {
+    if ($("#CRname").val() == "") {
+        TestSweetAlert("قم بأدخال اسم المنطقة");
+    } else {
+        var formdata = new FormData;
+        formdata.append("Name", $("#CRname").val());
+        formdata.append("CountryId", $("#RCountryId").val());
+        $.ajax({
+            async: true,
+            type: "POST",
+            dataType: "JSON",
+            url: "/Regions/Create",
+            data: formdata,
+            processData: false,
+            contentType: false,
+            success: function (result) {
+                if (result) {
+                    $.ajax({
+                        url: '/Regions/Refreash',
+                        contentType: 'application/html; charset=utf-8',
+                        type: 'GET',
+                        dataType: 'html',
+                        success: (function (result) {
+                            $('#_RegionPartial').html(result);
+                            var close = document.getElementById('btnCreateColse');
+                            close.click();
+                        })
+                    });
+                } else {
+                    TestSweetAlert("حدث خطأما أثناء عملية الأضافة تاكد من أدخال الحقول بالشكل الصحيح وحاول مرة أخرى");
+                }
+            }
+        });
+    }
+    return false;
+});
+
+//#Delete Region 
+
+var DeleteRegionConfirm = function (_id) {
+    $("#RegionId").val(_id)
+    $("#Modal-RegionDelete").modal('show');
+
+};
+
+$("#btnRegionDelete").click(function () {
+    var RegionId = $("#RegionId").val();
+    $.ajax({
+        type: "Post",
+        url: "/Regions/DeleteConfirmed",
+        data: { id: RegionId },
+        success: function (result) {
+            if (result) {
+                $("#Modal-RegionDelete").modal('hide');
+                $("#RegionId").val(null);
+                $.ajax({
+                    url: '/Regions/Refreash',
+                    contentType: 'application/html; charset=utf-8',
+                    type: 'GET',
+                    dataType: 'html',
+                    success: (function (result) {
+                        $('#_RegionPartial').html(result);
+                    })
+                })
+            } else {
+                TestSweetAlert("حذث خطا ما أثناء عملية الحدف ");
+            }
+        }
+    });
+})
+
+var EditRegionConfirm = function (_id) {
+    $("#RegionId").val(_id)
+    $.ajax({
+        type: "Post",
+        url: "/Regions/GetRegion",
+        data: { id: _id },
+        success: function (region) {
+            $("#Modal-regionEdit").modal('show');
+            $("#ERname").val(region.Name)
+            $("#ERCountryId").val(region.CountryId)
+            $("#hiddenId").val(_id)
+        }
+    });
+};
+
+$("#btnRegionEdit").click(function () {
+    var formdata = new FormData;
+    formdata.append("Id", $("#hiddenId").val());
+    formdata.append("Name", $("#ERname").val());
+    formdata.append("CountryId", $("#ERCountryId").val());
+    $.ajax({
+        async: true,
+        type: "POST",
+        dataType: "JSON",
+        url: "/Regions/Edit",
+        data: formdata,
+        processData: false,
+        contentType: false,
+        success: function (result) {
+            if (result) {
+                $.ajax({
+                    url: '/Regions/Refreash',
+                    contentType: 'application/html; charset=utf-8',
+                    type: 'GET',
+                    dataType: 'html',
+                    success: (function (result) {
+                        $('#_RegionPartial').html(result);
+                        var close = document.getElementById('btnEditColse');
+                        close.click();
+                    })
+                });
+            } else {
+                TestSweetAlert("حدث خطأما أثناء عملية الأضافة تاكد من أدخال الحقول بالشكل الصحيح وحاول مرة أخرى");
+            }
+        }
+    });
+
+});
+
+//#endregion region-Dashboard
+
 //#region Restaurant-Dashboard
 
 //Create Action
@@ -785,6 +909,7 @@ iconClose.addEventListener('click', () => {
 //#endregion login and register window
 
 //#region GetrestaurantCategories 
+
 debugger;
 var _resturantId = $("#restaurantId").val();
 
@@ -812,128 +937,5 @@ var getallItems = function () {
     });
 };
 
-//#end region GetrestaurantCategories
+//#endregion GetrestaurantCategories
 
-//# Start region of region java Code
-$("#btnRegionCreate").click(function () {
-    if ($("#CRname").val() == "") {
-        TestSweetAlert("قم بأدخال اسم المنطقة");
-    } else {
-    var formdata = new FormData;
-    formdata.append("Name", $("#CRname").val());
-    formdata.append("CountryId", $("#RCountryId").val());
-    $.ajax({
-        async: true,
-        type: "POST",
-        dataType: "JSON",
-        url: "/Regions/Create",
-        data: formdata,
-        processData: false,
-        contentType: false,
-        success: function (result) {
-            if (result) {
-                $.ajax({
-                    url: '/Regions/Refreash',
-                    contentType: 'application/html; charset=utf-8',
-                    type: 'GET',
-                    dataType: 'html',
-                    success: (function (result) {
-                        $('#_RegionPartial').html(result);
-                        var close = document.getElementById('btnCreateColse');
-                        close.click();
-                    })
-                });
-            } else {
-                TestSweetAlert("حدث خطأما أثناء عملية الأضافة تاكد من أدخال الحقول بالشكل الصحيح وحاول مرة أخرى");
-            }
-        }
-    });
-}
-    return false;
-});
-
-//#Delete Region 
-
-var DeleteRegionConfirm = function (_id) {
-    $("#RegionId").val(_id)
-    $("#Modal-RegionDelete").modal('show');
-
-};
-
-$("#btnRegionDelete").click(function () {
-    var RegionId = $("#RegionId").val();
-    $.ajax({
-        type: "Post",
-        url: "/Regions/DeleteConfirmed",
-        data: { id: RegionId },
-        success: function (result) {
-            if (result) {
-                $("#Modal-RegionDelete").modal('hide');
-                $("#RegionId").val(null);
-                $.ajax({
-                    url: '/Regions/Refreash',
-                    contentType: 'application/html; charset=utf-8',
-                    type: 'GET',
-                    dataType: 'html',
-                    success: (function (result) {
-                        $('#_RegionPartial').html(result);
-                    })
-                })
-            } else {
-                TestSweetAlert("حذث خطا ما أثناء عملية الحدف ");
-            }
-        }
-    });
-})
-
-var EditRegionConfirm = function (_id) {
-    $("#RegionId").val(_id)
-    $.ajax({
-        type: "Post",
-        url: "/Regions/GetRegion",
-        data: { id: _id },
-        success: function (region) {
-            $("#Modal-regionEdit").modal('show');
-            $("#ERname").val(region.Name)
-            $("#ERCountryId").val(region.CountryId)
-            $("#hiddenId").val(_id)
-
-        }
-    });
-};
-
-$("#btnRegionEdit").click(function () {
-    var formdata = new FormData;
-    formdata.append("Id", $("#hiddenId").val());
-    formdata.append("Name", $("#ERname").val());
-    formdata.append("CountryId", $("#ERCountryId").val());
-    $.ajax({
-        async: true,
-        type: "POST",
-        dataType: "JSON",
-        url: "/Regions/Edit",
-        data: formdata,
-        processData: false,
-        contentType: false,
-        success: function (result) {
-            if (result) {
-                $.ajax({
-                    url: '/Regions/Refreash',
-                    contentType: 'application/html; charset=utf-8',
-                    type: 'GET',
-                    dataType: 'html',
-                    success: (function (result) {
-                        $('#_RegionPartial').html(result);
-                        var close = document.getElementById('btnEditColse');
-                        close.click();
-                    })
-                });
-            } else {
-                TestSweetAlert("حدث خطأما أثناء عملية الأضافة تاكد من أدخال الحقول بالشكل الصحيح وحاول مرة أخرى");
-            }
-        }
-    });
-          
-});
-
-//# End region of region java code
