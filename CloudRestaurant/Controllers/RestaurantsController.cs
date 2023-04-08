@@ -17,17 +17,24 @@ namespace CloudRestaurant.Controllers
     {
         private readonly ICloudRestaurantRepository<Restaurant> restaurantRepository;
         private readonly ICloudRestaurantRepository<Item> itemRepository;
+        private readonly ICloudRestaurantRepository<Region> regionRepository;
+        private readonly ICloudRestaurantRepository<DiningType> diningTypeRepository;
 
-        public RestaurantsController(ICloudRestaurantRepository<Restaurant> restaurantRepository , ICloudRestaurantRepository<Item> itemRepository)
+        public RestaurantsController(ICloudRestaurantRepository<Restaurant> restaurantRepository , ICloudRestaurantRepository<Item> itemRepository
+            ,ICloudRestaurantRepository<Region> regionRepository , ICloudRestaurantRepository<DiningType> diningTypeRepository)
         {
             this.restaurantRepository = restaurantRepository;
             this.itemRepository = itemRepository;
+            this.regionRepository = regionRepository;
+            this.diningTypeRepository = diningTypeRepository;
         }
 
 
         public ActionResult Index()
         {
             ViewBag.restaurants = restaurantRepository.List();
+            ViewBag.RegionId = new SelectList(regionRepository.List(), "Id", "Name");
+          //  ViewBag.DiningTypeId = new IEnumerable<SelectListItem> ();
             return View();
         }
 

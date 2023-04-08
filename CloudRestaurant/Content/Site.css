@@ -608,20 +608,27 @@ font-size: 17px;
 }
 /*#endregion Restaurant-Index*/
 
+/*#region Region-Index*/
+
 .Region .form-horizontal {
     text-align: center;
     width: fit-content;
     margin: auto;
     padding: 10px;
 }
+
 .Region .modal-footer {
     padding: 15px;
     text-align: center;
     border-top: 1px solid #e5e5e5;
 }
+
 .Region .modal-BtnDelete {
     width: 100px;
 }
+
+/*#endregion Region-Index*/
+
 /*#region Country-Index*/
 
 .Country .modalContent {

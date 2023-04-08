@@ -297,6 +297,7 @@
     <Compile Include="Models\RestaurantParticipation.cs" />
     <Compile Include="Models\ViewModels\ItemVM.cs" />
     <Compile Include="Models\ViewModels\RegionVm.cs" />
+    <Compile Include="Models\ViewModels\RestaurantDiningTypesVM.cs" />
     <Compile Include="Models\ViewModels\RestaurantVM.cs" />
     <Compile Include="Models\ViewModels\VirtualBill.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
