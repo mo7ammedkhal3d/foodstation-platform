@@ -9,11 +9,17 @@ namespace CloudRestaurant.Models
 {
     public class DiningType
     {
+        public DiningType()
+        {
+            this.Restaurants = new HashSet<Restaurant>();
+        }
+
         public int Id { get; set; }
 
         [Required]
         [DisplayName("النوع")]
         public string Name { get; set; }
-        public virtual ICollection<RestaurantDiningTypes> RestaurantDiningTypes  { get; set; }
+
+        public virtual ICollection<Restaurant> Restaurants { get; set; }
     }
 }

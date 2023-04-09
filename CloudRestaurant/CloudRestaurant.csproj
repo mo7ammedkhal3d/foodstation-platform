@@ -271,6 +271,10 @@
     <Compile Include="Migrations\202303311949431_DeleteRestaurantNo.designer.cs">
       <DependentUpon>202303311949431_DeleteRestaurantNo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202304090344459_Reconfig-MtoMRelation.cs" />
+    <Compile Include="Migrations\202304090344459_Reconfig-MtoMRelation.designer.cs">
+      <DependentUpon>202304090344459_Reconfig-MtoMRelation.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Country.cs" />
@@ -281,7 +285,6 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Participation.cs" />
-    <Compile Include="Models\ParticipationFeatures.cs" />
     <Compile Include="Models\Region.cs" />
     <Compile Include="Models\Repositories\CategoryRepository.cs" />
     <Compile Include="Models\Repositories\CountryRepository.cs" />
@@ -293,8 +296,6 @@
     <Compile Include="Models\Repositories\RestaurantRepository.cs" />
     <Compile Include="Models\Request.cs" />
     <Compile Include="Models\Restaurant.cs" />
-    <Compile Include="Models\RestaurantDiningTypes.cs" />
-    <Compile Include="Models\RestaurantParticipation.cs" />
     <Compile Include="Models\ViewModels\ItemVM.cs" />
     <Compile Include="Models\ViewModels\RegionVm.cs" />
     <Compile Include="Models\ViewModels\RestaurantDiningTypesVM.cs" />
@@ -540,6 +541,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202303311949431_DeleteRestaurantNo.resx">
       <DependentUpon>202303311949431_DeleteRestaurantNo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202304090344459_Reconfig-MtoMRelation.resx">
+      <DependentUpon>202304090344459_Reconfig-MtoMRelation.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

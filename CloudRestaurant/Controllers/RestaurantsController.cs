@@ -34,7 +34,8 @@ namespace CloudRestaurant.Controllers
         {
             ViewBag.restaurants = restaurantRepository.List();
             ViewBag.RegionId = new SelectList(regionRepository.List(), "Id", "Name");
-          //  ViewBag.DiningTypeId = new IEnumerable<SelectListItem> ();
+            ViewBag.DiningTypes = new MultiSelectList(diningTypeRepository.List(), "Id", "Name");
+
             return View();
         }
 
