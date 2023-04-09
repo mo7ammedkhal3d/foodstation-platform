@@ -9,12 +9,20 @@ namespace CloudRestaurant.Models
 {
     public class Participation
     {
+        public Participation()
+        {
+            this.Restaurants = new HashSet<Restaurant>();
+            this.Features = new HashSet<Feature>();
+        }
+
         public int Id { get; set; }
 
         [Required]
         [DisplayName("نوع الإشتراك")]
         public string Name { get; set; }
-        public virtual ICollection<RestaurantParticipation> RestaurantParticipations { get; set; }
-        public virtual ICollection<ParticipationFeatures> ParticipationFeatures { get; set; }
+
+        public virtual ICollection<Restaurant> Restaurants { get; set; }
+
+        public virtual ICollection<Feature> Features { get; set; }
     }
 }

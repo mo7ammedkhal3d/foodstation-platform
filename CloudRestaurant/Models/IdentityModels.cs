@@ -31,6 +31,11 @@ namespace CloudRestaurant.Models
             return new ApplicationDbContext();
         }
 
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+        }
+
         public System.Data.Entity.DbSet<CloudRestaurant.Models.Restaurant> Restaurants { get; set; }
 
         public System.Data.Entity.DbSet<CloudRestaurant.Models.Category> Categories { get; set; }
@@ -44,5 +49,8 @@ namespace CloudRestaurant.Models
         public System.Data.Entity.DbSet<CloudRestaurant.Models.Country> Countries { get; set; }
 
         public System.Data.Entity.DbSet<CloudRestaurant.Models.DiningType> DiningTypes { get; set; }
+
     }
+
+
 }

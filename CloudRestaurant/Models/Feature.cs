@@ -9,10 +9,17 @@ namespace CloudRestaurant.Models
 {
     public class Feature
     {
+        public Feature()
+        {
+            this.Participations = new HashSet<Participation>();
+        }
+
         public int Id { get; set; }
+
         [Required]
         [DisplayName(" وصف الميزة")]
         public string  Description{ get; set; }
-        public virtual ICollection<ParticipationFeatures> ParticipationFeatures { get; set;}
+
+        public virtual ICollection<Participation> Participations{ get; set;}
     }
 }
