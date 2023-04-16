@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -19,6 +20,9 @@ namespace CloudRestaurant.Models
         [Required]
         [DisplayName("النوع")]
         public string Name { get; set; }
+
+        [NotMapped]
+        public bool IsSelected { get; set; }
 
         public virtual ICollection<Restaurant> Restaurants { get; set; }
     }

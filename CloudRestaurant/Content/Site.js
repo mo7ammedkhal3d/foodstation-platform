@@ -409,6 +409,7 @@ var DeleteRestaurantConfirm = function (_id) {
             $("#Modal-restaurantDelete").modal('show');
             $("#DRname").val(Restaurant.Name)
             $("#DRdescription").val(Restaurant.Description)
+            $("#DRregion").val(Restaurant.Region)
             document.getElementById('DRimgUrl').src = "/Uploads/Restaurants/" + Restaurant.ImgUrl;
         }
     });
@@ -437,6 +438,7 @@ $(document).ready(function () {
                         formdata.append("Name", $("#CRname").val());
                         formdata.append("Description", $("#CRdescription").val());
                         formdata.append("upload", image[0]);
+                        formdata.append("RegionId", $("#CRregion").val())
                         $.ajax({
                             async: true,
                             type: "POST",
@@ -485,12 +487,14 @@ $(document).ready(function () {
                 data: { upload: fileInput.files[0].name },
                 success: function (Message) {
                     if (Message == "") {
+                        debugger;
                         var image = $("#ERpicture").get(0).files;
                         var formdata = new FormData;
                         formdata.append("Id", $("#hiddenId").val());
                         formdata.append("Name", $("#ERname").val());
                         formdata.append("Description", $("#ERdescription").val());
                         formdata.append("ImgUrl", $("#hiddenImgUrl").val());  ///
+                        formdata.append("RegionId", $("#ERregion").val())
                         formdata.append("upload", image[0]);
                         $.ajax({
                             async: true,
@@ -501,6 +505,7 @@ $(document).ready(function () {
                             processData: false,
                             contentType: false,
                             success: function (result) {
+                                debugger;
                                 if (result) {
                                     $.ajax({
                                         url: '/Restaurants/Refreash',
@@ -514,7 +519,7 @@ $(document).ready(function () {
                                         })
                                     });
                                 } else {
-                                    TestSweetAlert("حدث خطأما أثناء عملية الأضافة تاكد من أدخال الحقول بالشكل الصحيح وحاول مرة أخرى");
+                                    TestSweetAlert("حدث خطأما أثناء عملية التعديل تاكد من تعديل الحقول بالشكل الصحيح وحاول مرة أخرى");
                                 }
                             }
                         });
@@ -529,6 +534,7 @@ $(document).ready(function () {
             formdata.append("Name", $("#ERname").val());
             formdata.append("Description", $("#ERdescription").val());
             formdata.append("ImgUrl", $("#hiddenImgUrl").val());
+            formdata.append("RegionId", $("#ERregion").val())
             $.ajax({
                 async: true,
                 type: "POST",
@@ -910,7 +916,6 @@ iconClose.addEventListener('click', () => {
 
 //#region GetrestaurantCategories 
 
-debugger;
 var _resturantId = $("#restaurantId").val();
 
 var getItems = function (_id) {

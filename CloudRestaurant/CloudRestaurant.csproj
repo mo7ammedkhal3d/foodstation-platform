@@ -275,6 +275,14 @@
     <Compile Include="Migrations\202304090344459_Reconfig-MtoMRelation.designer.cs">
       <DependentUpon>202304090344459_Reconfig-MtoMRelation.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202304110420125_AddStatusCol.cs" />
+    <Compile Include="Migrations\202304110420125_AddStatusCol.designer.cs">
+      <DependentUpon>202304110420125_AddStatusCol.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202304112157480_DeleteStatusCol.cs" />
+    <Compile Include="Migrations\202304112157480_DeleteStatusCol.designer.cs">
+      <DependentUpon>202304112157480_DeleteStatusCol.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Country.cs" />
@@ -300,6 +308,7 @@
     <Compile Include="Models\ViewModels\RegionVm.cs" />
     <Compile Include="Models\ViewModels\RestaurantDiningTypesVM.cs" />
     <Compile Include="Models\ViewModels\RestaurantVM.cs" />
+    <Compile Include="Models\ViewModels\SelectDiningTypeVM.cs" />
     <Compile Include="Models\ViewModels\VirtualBill.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -429,7 +438,6 @@
     <Content Include="Uploads\Categories\Shawarma-rafiki.png" />
     <Content Include="Uploads\Categories\Valentine%27s Day dinner-rafiki.png" />
     <Content Include="Uploads\Categories\World Chocolate day-rafiki.png" />
-    <Content Include="Uploads\Restaurants\Night date-cuate.png" />
     <Content Include="Uploads\Restaurants\Res6.jpg" />
     <Content Include="Uploads\Restaurants\Res5.png" />
     <Content Include="Uploads\Restaurants\Res1.jpg" />
@@ -544,6 +552,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202304090344459_Reconfig-MtoMRelation.resx">
       <DependentUpon>202304090344459_Reconfig-MtoMRelation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202304110420125_AddStatusCol.resx">
+      <DependentUpon>202304110420125_AddStatusCol.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202304112157480_DeleteStatusCol.resx">
+      <DependentUpon>202304112157480_DeleteStatusCol.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
