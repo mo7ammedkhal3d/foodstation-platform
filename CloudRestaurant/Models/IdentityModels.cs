@@ -36,19 +36,13 @@ namespace CloudRestaurant.Models
             base.OnModelCreating(modelBuilder);
         }
 
-        public System.Data.Entity.DbSet<CloudRestaurant.Models.Restaurant> Restaurants { get; set; }
-
-        public System.Data.Entity.DbSet<CloudRestaurant.Models.Category> Categories { get; set; }
-
-        public System.Data.Entity.DbSet<CloudRestaurant.Models.Item> Items { get; set; }
-
-        public System.Data.Entity.DbSet<CloudRestaurant.Models.Request> Requests { get; set; }
-
-        public System.Data.Entity.DbSet<CloudRestaurant.Models.Region> Regions { get; set; }
-
-        public System.Data.Entity.DbSet<CloudRestaurant.Models.Country> Countries { get; set; }
-
-        public System.Data.Entity.DbSet<CloudRestaurant.Models.DiningType> DiningTypes { get; set; }
+        public DbSet<Restaurant> Restaurants { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Item> Items { get; set; }
+        public DbSet<Request> Requests { get; set; }
+        public DbSet<Region> Regions { get; set; }
+        public DbSet<Country> Countries { get; set; }
+        public DbSet<DiningType> DiningTypes { get; set; }
 
     }
 

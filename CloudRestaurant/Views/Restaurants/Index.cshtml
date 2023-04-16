@@ -1,4 +1,4 @@
-﻿@model CloudRestaurant.Models.Restaurant
+﻿@model CloudRestaurant.Models.ViewModels.RestaurantDiningTypesVM
 
 <div class="container" id="_RestaurantPartial" style="direction:rtl">
     @Html.Partial("_RestaurantPartial")
@@ -37,17 +37,19 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.RegionId, "المنطقة", htmlAttributes: new { @class = "control-label col-md-4", @style = "float:right" })
                                     <div class="col-md-8" style="float:right">
-                                        @Html.DropDownList("RegionId", null, htmlAttributes: new { @class = "input-fild", @id = "CIrestaurant" })
+                                        @Html.DropDownList("RegionId", null, htmlAttributes: new { @class = "input-fild", @id = "CRregion" })
                                         @Html.ValidationMessageFor(model => model.RegionId, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-md-4" style="float:right">نوع الأكل</label>
-                                    @Html.LabelFor(m =>m.RestaurantDiningTypes, "المنطقة", htmlAttributes: new { @class = "control-label col-md-4", @style = "float:right" })
-                                    <div class="col-md-8" style="float:right">
-                                        @Html.ListBox("DiningTypes", null, htmlAttributes: new { @class = "input-fild", @id = "CIrestaurant" })
-                                        @Html.ValidationMessageFor(model => model.RegionId, "", new { @class = "text-danger" })
-                                    </div> 
+                                    @*<ul style="list-style:none">
+                                    @foreach(var Item in Model.diningTypes)
+                                     {
+                                        @Html.CheckBoxFor(diningType.Select)
+                                        @Html.CheckBoxFor(Item.IsSelected)
+                                       <li><input type="checkbox" name="diningTypes" value="@Item.Id" />@Item.Name</li> 
+                                     }
+                                    </ul>*@
                                 </div>
                             </div>
 
@@ -107,7 +109,13 @@
                                         @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
-
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.RegionId, "المنطقة", htmlAttributes: new { @class = "control-label col-md-4", @style = "float:right" })
+                                    <div class="col-md-8" style="float:right">
+                                        @Html.DropDownList("RegionId", null, htmlAttributes: new { @class = "input-fild", @id = "ERregion" })
+                                        @Html.ValidationMessageFor(model => model.RegionId, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
                             </div>
 
                             <div class="col-md-5" style="float:right">
@@ -137,7 +145,6 @@
     </div>
 </div>
 
-
 <!--Delete Restaurants -->
 
 <div class="modal" id="Modal-restaurantDelete">
@@ -165,6 +172,13 @@
                                     <div class="col-md-8" style="float:right">
                                         <input type="text" readonly class="input-fild" id="DRdescription">
                                         @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.RegionId, "المنطقة", htmlAttributes: new { @class = "control-label col-md-4", @style = "float:right" })
+                                    <div class="col-md-8" style="float:right">
+                                        <input type="text" readonly class="input-fild" id="DRregion" />
+                                        @Html.ValidationMessageFor(model => model.RegionId, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
                             </div>
