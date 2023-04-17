@@ -12,5 +12,9 @@ namespace CloudRestaurant.Models.ViewModels
         public string Description { get; set; }
 
         public string ImgUrl { get; set; }
+
+        public int RegionId { get; set; }
+
+        public string Region { get; set; }
     }
 }

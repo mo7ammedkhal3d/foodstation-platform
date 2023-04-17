@@ -390,6 +390,7 @@ var EditRestaurantConfirm = function (_id) {
             $("#Modal-restaurantEdit").modal('show');
             $("#ERname").val(restaurant.Name)
             $("#ERdescription").val(restaurant.Description)
+            $("#ERregion").val(restaurant.RegionId)
             document.getElementById('ERimgUrl').src = "/Uploads/Restaurants/" + restaurant.ImgUrl;
             $("#hiddenId").val(_id)
             $("#hiddenImgUrl").val(restaurant.ImgUrl)

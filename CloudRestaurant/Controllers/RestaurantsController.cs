@@ -123,7 +123,8 @@ namespace CloudRestaurant.Controllers
             {
                 restaurantVM.Name = restaurant.Name;
                 restaurantVM.Description = restaurant.Description;
-                restaurant.Region = restaurant.Region;
+                restaurantVM.Region = restaurant.Region.Name;
+                restaurantVM.RegionId = restaurant.RegionId;    
                 restaurantVM.ImgUrl = restaurant.ImgUrl;
             }
             return Json(restaurantVM, JsonRequestBehavior.AllowGet);
