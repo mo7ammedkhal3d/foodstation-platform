@@ -1,16 +1,17 @@
 ﻿@using Microsoft.AspNet.Identity
 @if (Request.IsAuthenticated)
 {
-    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-left" }))
+    using (Html.BeginForm("LogOff" +
+        "", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-left" }))
     {
         @Html.AntiForgeryToken()
 
         <ul class="nav navbar-nav navbar-left">
             <li>
-                @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                @Html.ActionLink(" مرحبا " + User.Identity.GetUserName() + " ! ", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" ,style="direction:rtl" })
             </li>
-            <li><a href="javascript:document.getElementById('logoutForm').submit()">Log Off</a></li>
-            <li><a href="#"  data-toggle="modal" data-target="#Modal-Manage">Manage</a> </li>
+            <li><a href="javascript:document.getElementById('logoutForm').submit()">تسجيل الخروج</a></li>
+            <li style="direction:rtl"><a href="#"  data-toggle="modal" data-target="#Modal-Manage"><i class="fa-solid fa-list-check" style="margin-left:10px"></i>إذارة</a> </li>
         </ul>
     }
 }
