@@ -304,6 +304,7 @@
     <Compile Include="Models\Repositories\RestaurantRepository.cs" />
     <Compile Include="Models\Request.cs" />
     <Compile Include="Models\Restaurant.cs" />
+    <Compile Include="Models\ViewModels\CategoryVM.cs" />
     <Compile Include="Models\ViewModels\ItemVM.cs" />
     <Compile Include="Models\ViewModels\RegionVm.cs" />
     <Compile Include="Models\ViewModels\RestaurantDiningTypesVM.cs" />
@@ -425,19 +426,16 @@
     <Content Include="Scripts\jquery\jquery.slim.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\sweetalert\sweetalert.min.js" />
-    <Content Include="Uploads\Categories\Catering service-rafiki.png" />
+    <Content Include="Uploads\Categories\174280.jpg" />
+    <Content Include="Uploads\Categories\278143.png" />
+    <Content Include="Uploads\Categories\656442.jpg" />
     <Content Include="Uploads\Categories\Chef-bro.png" />
-    <Content Include="Uploads\Categories\Coffee shop-bro.png" />
     <Content Include="Uploads\Categories\Combo offer-amico.png" />
     <Content Include="Uploads\Categories\Drive thru-rafiki.png" />
     <Content Include="Uploads\Categories\Night date-cuate.png" />
     <Content Include="Uploads\Categories\Night date-pana.png" />
-    <Content Include="Uploads\Categories\Pasta-bro %281%29.png" />
     <Content Include="Uploads\Categories\Pizza maker-amico.png" />
     <Content Include="Uploads\Categories\Shawarma-pana.png" />
-    <Content Include="Uploads\Categories\Shawarma-rafiki.png" />
-    <Content Include="Uploads\Categories\Valentine%27s Day dinner-rafiki.png" />
-    <Content Include="Uploads\Categories\World Chocolate day-rafiki.png" />
     <Content Include="Uploads\Restaurants\Res6.jpg" />
     <Content Include="Uploads\Restaurants\Res5.png" />
     <Content Include="Uploads\Restaurants\Res1.jpg" />
@@ -470,13 +468,9 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Restaurants\Index.cshtml" />
-    <Content Include="Views\Categories\Create.cshtml" />
-    <Content Include="Views\Categories\Delete.cshtml" />
-    <Content Include="Views\Categories\Details.cshtml" />
-    <Content Include="Views\Categories\Edit.cshtml" />
-    <Content Include="Views\Categories\Index.cshtml" />
-    <Content Include="Views\Items\Index.cshtml" />
+    <Content Include="Views\Restaurants\RestaurantIndex.cshtml" />
+    <Content Include="Views\Categories\CategoryIndex.cshtml" />
+    <Content Include="Views\Items\ItemIndex.cshtml" />
     <Content Include="Views\Items\_ItemPartial.cshtml" />
     <Content Include="Views\Home\GetRestaurantCategories.cshtml" />
     <Content Include="Views\Requests\Create.cshtml" />
@@ -487,7 +481,7 @@
     <Content Include="Views\Home\GetBill.cshtml" />
     <Content Include="Views\Shared\_ManageMdalPartial.cshtml" />
     <Content Include="Views\Home\_SelectedCategoryItems.cshtml" />
-    <Content Include="Views\Roles\Index.cshtml" />
+    <Content Include="Views\Roles\RoleIndex.cshtml" />
     <Content Include="Views\Roles\Create.cshtml" />
     <Content Include="Views\Roles\Edit.cshtml" />
     <Content Include="Views\Roles\Delete.cshtml" />
@@ -496,11 +490,13 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery\jquery.min.map" />
     <Content Include="Scripts\jquery\jquery.slim.min.map" />
-    <Content Include="Views\Regions\Index.cshtml" />
+    <Content Include="Views\Regions\RegionIndex.cshtml" />
     <Content Include="Views\Home\GetRegions.cshtml" />
     <Content Include="Views\Regions\_RegionPartial.cshtml" />
-    <Content Include="Views\Countries\Index.cshtml" />
+    <Content Include="Views\Countries\CountryIndex.cshtml" />
     <Content Include="Views\Countries\_CountryPartial.cshtml" />
+    <Content Include="Views\Shared\_LoginAndRegister.cshtml" />
+    <Content Include="Views\Categories\_CategoryPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

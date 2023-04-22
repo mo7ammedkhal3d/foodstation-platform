@@ -28,9 +28,9 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a href="#" class="navbar-brand">
+                <div href="#" class="navbar-brand">
                     <span class="btnLogin-popup btn btn-default logoSize">Login</span>
-                </a>
+                </div>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
@@ -48,7 +48,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="/Restaurants/Index">
+                        <a href="/Categories/CategoryIndex">
                             أصناف العروض
                             <i class="glyphicon glyphicon-folder-open"></i>
 
@@ -89,81 +89,7 @@
     <!-- End landing-->
 
     <!--start login and register window-->
-    <div class="wrapper" >
-        <span class="icon-close">
-            <i class="glyphicon glyphicon-remove"></i>
-        </span>
-        <div class="form-box login">
-            <h2>Login</h2>
-            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-            {
-                @Html.AntiForgeryToken()
-                <div class="input-box">
-                    <span class="icon"><i class="glyphicon glyphicon-user"></i></span>
-                    <input type="text" required name="UserName">
-                    <label>UserName</label>
-                </div>
-                <div class="input-box">
-                    <span class="icon"><i class="glyphicon glyphicon-lock"></i></span>
-                    <input type="password" required name="Password">
-                    <label>password</label>
-                </div>
-                <div class="remember-forgot">
-                    <label><input type="checkbox">Remember me</label>
-                    <a href="#">forgot password</a>
-                </div>
-                <button type="submit" class="btnLogin">Login</button>
-                <div class="login-register">
-                    <p>
-                        Don't have an account
-                        <a href="#" class="register-like">Register</a>
-                    </p>
-                </div>
-            }
-        </div>
-        <div class="form-box register">
-            <h2>Registeration </h2>
-            @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-            {
-                @Html.AntiForgeryToken()
-                @Html.ValidationSummary("", new { @class = "text-danger" })
-                <div class="input-box">
-                    <span class="icon"><i class="glyphicon glyphicon-user"></i></span>
-                    <input name="UserName" type="text" required>
-                    <label>UserName</label>
-                </div>
-                <div class="input-box">
-                    <span class="icon"><i class="glyphicon glyphicon-envelope"></i></span>
-                    <input name="Email" type="email" required>
-                    <label>Email</label>
-                </div>
-                <div class="input-box">
-                    <span class="icon"><i class="glyphicon glyphicon-lock"></i></span>
-                    <input name="Password" type="password" required>
-                    <label>password</label>
-                </div>
-                <div class="input-box">
-                    <span class="icon"><i class="glyphicon glyphicon-lock"></i></span>
-                    <input name="ConfirmPassword" type="password" required>
-                    <label>ConfirmPassword</label>
-                </div>
-                <div class="remember-forgot">
-                    <label>
-                        <input type="checkbox">agree to the terns & co
-                        ditions
-                    </label>
-                    <a href="#">forgot password</a>
-                </div>
-                <button type="submit" class="btnLogin">Register</button>
-                <div class="login-register">
-                    <p>
-                        Already have an account?
-                        <a href="#" class="login-like">Login</a>
-                    </p>
-                </div>
-            }
-        </div>
-    </div>
+    @Html.Partial("_LoginAndRegister")
     <!--End login and register window-->
 
     <!--Main-->
@@ -174,6 +100,7 @@
         </div>
     </main>
     <!--End main-->
+
     <!-- Footer-->
     <footer>
         <div class="row">

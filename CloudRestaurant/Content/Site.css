@@ -45,43 +45,6 @@ body {
 
 /*#endregion Global-properties*/
 
-/*#region Login*/
-
-.login-Div {
-    padding: 15px;
-    margin-top: 40px;
-}
-
-.main-Photo {
-    padding: 15px;
-    margin-top: 55px;
-}
-
-
-.main-Photo .login-image {
-    width: 300px;
-    margin-left: 40px;
-}
-/*#endregion Login*/
-
-/*#region Register*/
-
-.Register-Div {
-    padding: 15px;
-    margin-top: 20px;
-    width: 640px;
-    height: 15px;
-    border: 1px solid white;
-    border-radius: 50%;
-    margin-right: 5px;
-}
-
-.manPhoto {
-    padding: 15px;
-    margin-top: 55px;
-}
-/*#endregion Register*/
-
 /*#region Home */
 
 /*#region Index */
@@ -514,17 +477,21 @@ padding: 25px 0px 0px 0px;
 
 /*#region Item-Index*/
 
-.modalContent-Item {
+.Item .modalContent {
     height: 545px;
     width: 650px;
     background-color: #FFF;
 } 
 
-.Item-modal-body {
+.Item .modal-body {
     position: relative;
     padding: 15px;
     height: 365px;
 }
+
+/*#endregion Item*/
+
+/*#region modal Form */
 
 .form-group .modal-Img {
     width: 245px;
@@ -580,6 +547,10 @@ padding: 25px 0px 0px 0px;
     text-align: center
 }
 
+/*#endregion modal Form*/
+
+/*#region Sweet-Massage*/
+
 .swal-IW { /* IW ---> Item windwo */
     width: fit-content;
     height: fit-content;
@@ -597,16 +568,96 @@ font-size: 17px;
 .swal-IW .swal-text:first-child{
     margin: 0px 0px 0px 0px;
     }
-/*#endregion Item*/
+
+/*#endregion Sweet-Massage*/
 
 /*#region Restaurant-Index*/
 
-.Restaurant-modal-body {
+.Restaurants .modal-body {
     position: relative;
     padding: 15px;
     height: 365px;
 }
+
+.Restaurants .modalContent {
+    height: 545px;
+    width: 650px;
+    background-color: #FFF;
+} 
+
 /*#endregion Restaurant-Index*/
+
+/*#region Category-Index*/
+
+.Category .modalContent {
+    height: 500px;
+    width: 439px;
+    background-color: #FFF;
+    margin: 126px 0px 0px 106px;
+}
+
+.Category .modal-header {
+    height: 60px;
+}
+
+.Category .modal-body {
+    height: 372px;
+}
+
+.Category .modalCenter {
+    top: 30% !important;
+    transform: translateY(-50%) !important;
+}
+
+.Category .form-group .modal-filein {
+    display: block;
+    margin-left: 40px;
+    display:none
+}
+
+.Category .form-group .modal-Img {
+    width: 200px;
+    height: 200px;
+    display: block;
+    font-size: 30px;
+    margin-left: 29%;
+    margin-bottom: 10px;
+    border-radius: 25px 6px;
+    border: 1px solid teal;
+    text-align: center;
+}
+
+.Category .modal-footer {
+    height: 70px;
+    padding: 15px 50px 15px 70px;
+}
+
+.Category .modal-title {
+    font-size: 20px;
+    font-family: sans-serif;
+    text-align: center
+}
+
+.Category .form-group .modal-Btn {
+    display: block;
+    margin-left: 40%;
+    width: 100px;
+    background-color: teal;
+}
+
+.Category .modal-BtnCreate {
+    width: 100px;
+    margin: 0px 20px 0px 20px;
+    float: right;
+}
+
+
+.Category .modal-BtnClose {
+    width: 100px;
+    margin: 0px 20px 0px 20px;
+}
+
+/*#endregion Category-Index*/
 
 /*#region Region-Index*/
 

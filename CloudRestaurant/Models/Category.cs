@@ -10,7 +10,7 @@ namespace CloudRestaurant.Models
     {
         public int Id { get; set; }
 
-        [DisplayName("اسم العنصر")]
+        [DisplayName("اسم الصنف")]
         public string Name { get; set; }
 
 

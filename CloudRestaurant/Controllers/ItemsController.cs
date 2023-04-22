@@ -34,7 +34,7 @@ namespace CloudRestaurant.Controllers
         }
 
         // GET: Items
-        public ActionResult Index()
+        public ActionResult ItemIndex()
         {
             var items = itemRepository.List();   
             ViewBag.items = items;

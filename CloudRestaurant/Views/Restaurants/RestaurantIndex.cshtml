@@ -1,0 +1,206 @@
+﻿@model CloudRestaurant.Models.ViewModels.RestaurantDiningTypesVM
+
+<div class="container" id="_RestaurantPartial" style="direction:rtl">
+    @Html.Partial("_RestaurantPartial")
+</div>
+
+<!--Create Restaurants -->
+
+<div class="modal fade Restaurants" id="Modal-restaurantCreate">
+    <div class="modal-dialog">
+        <div class="modalContent">
+            <div class="modal-header">
+                <h2 class="modal-title" style="text-align:center">بيانات المطعم</h2>
+            </div>
+            <div class="modal-body">
+                @using (Html.BeginForm("Create", "Restaurants", FormMethod.Post, new { enctype = "multipart/form-data", @id = "CreateRestaurantForm" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="row">
+                        <div class="form-horizontal" style="margin-top:50px">
+                            <div class="col-md-7" style="float: right">
+
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-4", @style = "float:right" })
+                                    <div class="col-md-8" style="float:right">
+                                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "input-fild", @id = "CRname" } })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-4", @style = "float:right" })
+                                    <div class="col-md-8" style="float:right">
+                                        @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "input-fild", @id = "CRdescription" } })
+                                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.RegionId, "المنطقة", htmlAttributes: new { @class = "control-label col-md-4", @style = "float:right" })
+                                    <div class="col-md-8" style="float:right">
+                                        @Html.DropDownList("RegionId", null, htmlAttributes: new { @class = "input-fild", @id = "CRregion" })
+                                        @Html.ValidationMessageFor(model => model.RegionId, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @*<ul style="list-style:none">
+                                    @foreach(var Item in Model.diningTypes)
+                                     {
+                                        @Html.CheckBoxFor(diningType.Select)
+                                        @Html.CheckBoxFor(Item.IsSelected)
+                                       <li><input type="checkbox" name="diningTypes" value="@Item.Id" />@Item.Name</li> 
+                                     }
+                                    </ul>*@
+                                </div>
+                            </div>
+
+                            <div class="col-md-5" style="float:right">
+                                <div class="form-group">
+                                    <img id="CRimgUrl" class="modal-Img" alt="أضف صورة">
+                                    <label for="CRpicture" class="btn btn-primary modal-Btn">أضافة صورة</label>
+                                    <input id="CRpicture" class="modal-filein" type="file" name="upload" onchange="loadFile('CRimgUrl',event)" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+            <div class="modal-footer">
+                <div class="form-group">
+                    <div class="col-md-offset-3 col-md-6">
+                        <input value="أضافة" class="btn btn-success modal-BtnCreate" id="btnRestaurantCreate" />
+                        <button id="btnCreateColse" type="button" class="btn modal-BtnClose" data-dismiss="modal" onclick="resetFilds('CreateRestaurantForm','CRimgUrl',event)">أغلاق</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Edit Restaurants -->
+
+<div class="modal fade Restaurants" id="Modal-restaurantEdit">
+    <div class="modal-dialog modalCenter">
+        <div class="modalContent">
+            <div class="modal-header">
+                <h2 class="modal-title" style="text-align:center">تعديل بينات المطعم</h2>
+            </div>
+            <div class="modal-body">
+                @using (Html.BeginForm("Edit", "Restaurants", FormMethod.Post, new { enctype = "multipart/form-data", @id = "EditRestaurantForm" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="row">
+                        <div class="form-horizontal" style="margin-top:50px">
+                            <div class="col-md-7" style="float: right">
+                                <input type="hidden" name="Id" id="hiddenId" />
+                                <input type="hidden" name="ImgUrl" id="hiddenImgUrl" />
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-4 ", @style = "float:right" })
+                                    <div class="col-md-8" style="float:right">
+                                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "input-fild", @id = "ERname" } })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-4", @style = "float:right" })
+                                    <div class="col-md-8" style="float:right">
+                                        @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "input-fild", @id = "ERdescription" } })
+                                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.RegionId, "المنطقة", htmlAttributes: new { @class = "control-label col-md-4", @style = "float:right" })
+                                    <div class="col-md-8" style="float:right">
+                                        @Html.DropDownList("RegionId", null, htmlAttributes: new { @class = "input-fild", @id = "ERregion" })
+                                        @Html.ValidationMessageFor(model => model.RegionId, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-5" style="float:right">
+                                <div class="form-group">
+                                    <img id="ERimgUrl" class="modal-Img" alt="أضف صورة">
+                                    <label for="ERpicture" class="btn btn-primary modal-Btn">تغيير الصورة</label>
+                                    <input id="ERpicture" class="modal-filein" type="file" name="upload" onchange="loadFile('ERimgUrl',event)" />
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                }
+
+            </div>
+
+            <div class="modal-footer">
+                <div class="form-group">
+                    <div class="col-md-offset-3 col-md-6">
+                        <input id="btnRestaurantEdit" type="button" value="تعديل" class="btn btn-primary modal-BtnCreate" />
+                        <button id="btnEditColse" type="button" class="btn modal-BtnClose" data-dismiss="modal">أغلاق</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!--Delete Restaurants -->
+
+<div class="modal fade Restaurants" id="Modal-restaurantDelete">
+    <div class="modal-dialog modalCenter">
+        <div class="modalContent">
+            <div class="modal-header">
+                <h2 class="modal-title" style="text-align:center">هل تريد بالتأكيد حذف هذا المطعم ؟</h2>
+            </div>
+            <div class="modal-body">
+                @using (Html.BeginForm("Create", "Restaurant", FormMethod.Post, new { enctype = "multipart/form-data", @id = "itemForm" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="row">
+                        <div class="form-horizontal" style="margin-top:50px">
+                            <div class="col-md-7" style="float:right">
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-4 ", @style = "float:right" })
+                                    <div class="col-md-8" style="float:right">
+                                        <input type="text" readonly class="input-fild" id="DRname" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-4", @style = "float:right" })
+                                    <div class="col-md-8" style="float:right">
+                                        <input type="text" readonly class="input-fild" id="DRdescription">
+                                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.RegionId, "المنطقة", htmlAttributes: new { @class = "control-label col-md-4", @style = "float:right" })
+                                    <div class="col-md-8" style="float:right">
+                                        <input type="text" readonly class="input-fild" id="DRregion" />
+                                        @Html.ValidationMessageFor(model => model.RegionId, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-5" style="float:right">
+                                <div class="form-group">
+                                    <img id="DRimgUrl" class="modal-Img">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+            <div class="modal-footer">
+                <div class="form-group">
+                    <div class="col-md-offset-3 col-md-6">
+                        <input id="btnRestaurantDelete" type="button" value="حـذف" class="btn btn-danger modal-BtnCreate" />
+                        <button id="btnDeleteColse" type="button" class="btn modal-BtnClose" data-dismiss="modal" onclick="resetFilds(event)">أغلاق</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

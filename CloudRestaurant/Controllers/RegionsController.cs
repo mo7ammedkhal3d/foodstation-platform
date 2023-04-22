@@ -26,7 +26,7 @@ namespace CloudRestaurant.Controllers
         }
 
         // GET: Regions
-        public ActionResult Index()
+        public ActionResult RegionIndex()
         {
             var Regions= regionRepository.List();
             ViewBag.Regions = Regions;
