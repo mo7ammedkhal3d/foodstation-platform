@@ -23,7 +23,7 @@ namespace CloudRestaurant.Controllers
         }
 
         // GET: Countries
-        public ActionResult Index()
+        public ActionResult CountryIndex()
         {
             ViewBag.Countries = countryRepository.List(); 
             return View();

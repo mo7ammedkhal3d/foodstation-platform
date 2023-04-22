@@ -13,7 +13,7 @@ namespace CloudRestaurant.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
         // GET: Roles
-        public ActionResult Index()
+        public ActionResult RoleIndex()
         {
             return View(db.Roles.ToList());
         }

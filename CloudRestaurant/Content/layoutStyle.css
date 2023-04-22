@@ -35,6 +35,12 @@ body {
     text-align: center
 }
 
+    /*for Modal Animation */
+.modalCenter {
+    top: 50% !important;                     
+    transform: translateY(-50%) !important;
+}
+
 /*#endregion Global-properties*/
 
 /*#region Navbar*/

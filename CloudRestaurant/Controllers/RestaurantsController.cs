@@ -30,7 +30,7 @@ namespace CloudRestaurant.Controllers
         }
 
 
-        public ActionResult Index()
+        public ActionResult RestaurantIndex()
         {
             ViewBag.restaurants = restaurantRepository.List();
             ViewBag.RegionId = new SelectList(regionRepository.List(), "Id", "Name");

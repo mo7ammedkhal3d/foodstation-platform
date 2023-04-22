@@ -12,6 +12,23 @@ var gitbillConfirm = function () {
     });
 };
 
+// Upload picture to show   
+
+var loadFile = function (str, event) {
+    var image = document.getElementById(str)
+    image.src = URL.createObjectURL(event.target.files[0]);
+};
+
+// Reset filds whene cancel add    
+
+var resetFilds = function (form,img, event) {
+    const ResetForm = document.getElementById(form);
+    ResetForm.reset();
+    if (img != "") {
+        var ImgUrl = document.getElementById(img);
+        ImgUrl.src = "";
+    }
+};
 
 //#region _BillPartial
 
@@ -80,15 +97,12 @@ function TestSweetAlert(massage) {
 
 //#region Country-Dashboard
 
-var CresetFilds = function (event) {
-    document.getElementById('CreateCountryForm').reset();
-};
-
 var EditCountryConfirm = function (_id) {
     $("#Modal-countryEdit").modal('show');
     $("#ECname").val(document.getElementById('CountryName+' + _id).value)
     $("#CountryId").val(_id)
 };
+
 
 var DeleteCountryConfirm = function (_id) {
     $.ajax({
@@ -141,8 +155,6 @@ var DeleteCountryConfirm = function (_id) {
     });
     return false;
 };
-
-
 
 $(document).ready(function () {
 
@@ -350,33 +362,6 @@ $("#btnRegionEdit").click(function () {
 //#endregion region-Dashboard
 
 //#region Restaurant-Dashboard
-
-//Create Action
-
-
-// Reset filds whene cancel add    
-
-var RresetFilds = function (event) {
-    const ResetForm = document.querySelector(".ResetForm ");
-    ResetForm.reset();
-    var ImgUrl = document.getElementById('CRimgUrl');
-    ImgUrl.src = "";
-};
-
-// Upload picture to show  for create Action 
-
-var CRloadFile = function (event) {
-    var image = document.getElementById('CRimgUrl');
-    image.src = URL.createObjectURL(event.target.files[0]);
-};
-
-
-// Upload picture to show  for edit Action 
-
-var ERloadFile = function (event) {
-    var image = document.getElementById('ERimgUrl');
-    image.src = URL.createObjectURL(event.target.files[0]);
-};
 
 // Edit Action
 
@@ -632,32 +617,247 @@ $(document).ready(function () {
 
 //#endregion Restaurant-Dashboard
 
+//#region Category-Dashboard
+
+ //Edit Action
+
+var EditCategoryConfirm = function (_id) {
+    $("#CategoryId").val(_id)
+    $.ajax({
+        type: "Post",
+        url: "/Categories/GetCategory",
+        data: { id: _id },
+        success: function (category) {
+            $("#Modal-categoryEdit").modal('show');
+            $("#ECatname").val(category.Name)
+            document.getElementById('ECatimgUrl').src = "/Uploads/Categories/" + category.ImgUrl;
+            $("#hiddenId").val(_id)
+            $("#hiddenImgUrl").val(category.ImgUrl)
+        }
+    });
+};
+
+ //Delete Action
+
+var DeleteCategoryConfirm = function (_id) {
+    $("#CategoryId").val(_id)
+    $.ajax({
+        type: "Post",
+        url: "/Categories/GetCategory",
+        data: { id: _id },
+        success: function (Category) {
+            $("#Modal-categoryDelete").modal('show');
+            $("#DCatname").val(Category.Name)
+            document.getElementById('DCatimgUrl').src = "/Uploads/Categories/" + Category.ImgUrl;
+        }
+    });
+};
+
+
+$(document).ready(function () {
+
+    $("#btnCategoryCreate").click(function () {
+        if ($("#CCatname").val() == "") {
+            TestSweetAlert("قم بأدخال الأسم");
+        } else if ($("#CCatpicture").val() == "") {
+            TestSweetAlert("قم بأضافة صورة لمطعم");
+        } else {
+            var fileInput = document.getElementById('CCatpicture');
+            $.ajax({
+                type: "Get",
+                url: "/Categories/IsImageExist",
+                data: { upload: fileInput.files[0].name },
+                success: function (Message) {
+                    if (Message == "") {
+                        var image = $("#CCatpicture").get(0).files;
+                        var formdata = new FormData;
+                        formdata.append("Name", $("#CCatname").val());
+                        formdata.append("upload", image[0]);
+                        $.ajax({
+                            async: true,
+                            type: "POST",
+                            dataType: "JSON",
+                            url: "/Categories/Create",
+                            data: formdata,
+                            processData: false,
+                            contentType: false,
+                            success: function (result) {
+                                if (result) {
+                                    $.ajax({
+                                        url: '/Categories/Refreash',
+                                        contentType: 'application/html; charset=utf-8',
+                                        type: 'GET',
+                                        dataType: 'html',
+                                        success: (function (result) {
+                                            $('#_CategoryPartial').html(result);
+                                            var close = document.getElementById('btnCreateColse');
+                                            close.click();
+                                        })
+                                    });
+                                } else {
+                                    TestSweetAlert("حدث خطأما أثناء عملية الأضافة تاكد من أدخال الحقول بالشكل الصحيح وحاول مرة أخرى");
+                                }
+                            }
+                        });
+                    } else {
+                        TestSweetAlert(Message);
+                    }
+                }
+            });
+        }
+        return false;
+    });
+
+    $("#btnCategoryEdit").click(function () {
+        if ($("#ECatname").val() == "") {
+            TestSweetAlert("قم بأدخال الأسم");
+        } else if ($("#ECatpicture").val() != "") {
+            var fileInput = document.getElementById('ECatpicture');
+            $.ajax({
+                type: "Get",
+                url: "/Categories/IsImageExist",
+                data: { upload: fileInput.files[0].name },
+                success: function (Message) {
+                    if (Message == "") {
+                        var image = $("#ECatpicture").get(0).files;
+                        var formdata = new FormData;
+                        formdata.append("Id", $("#hiddenId").val());
+                        formdata.append("Name", $("#ECatname").val());
+                        formdata.append("ImgUrl", $("#hiddenImgUrl").val()); 
+                        formdata.append("upload", image[0]);
+                        $.ajax({
+                            async: true,
+                            type: "POST",
+                            dataType: "JSON",
+                            url: "/Categories/Edit",
+                            data: formdata,
+                            processData: false,
+                            contentType: false,
+                            success: function (result) {
+                                debugger;
+                                if (result) {
+                                    $.ajax({
+                                        url: '/Categories/Refreash',
+                                        contentType: 'application/html; charset=utf-8',
+                                        type: 'GET',
+                                        dataType: 'html',
+                                        success: (function (result) {
+                                            $('#_CategoryPartial').html(result);
+                                            var close = document.getElementById('btnEditColse');
+                                            close.click();
+                                        })
+                                    });
+                                } else {
+                                    TestSweetAlert("حدث خطأما أثناء عملية التعديل تاكد من تعديل الحقول بالشكل الصحيح وحاول مرة أخرى");
+                                }
+                            }
+                        });
+                    } else {
+                        TestSweetAlert(Message);
+                    }
+                }
+            });
+        } else {
+            var formdata = new FormData;
+            formdata.append("Id", $("#hiddenId").val());
+            formdata.append("Name", $("#ECatname").val());
+            formdata.append("ImgUrl", $("#hiddenImgUrl").val());
+            $.ajax({
+                async: true,
+                type: "POST",
+                dataType: "JSON",
+                url: "/Categories/Edit",
+                data: formdata,
+                processData: false,
+                contentType: false,
+                success: function (result) {
+                    if (result) {
+                        $.ajax({
+                            url: '/Categories/Refreash',
+                            contentType: 'application/html; charset=utf-8',
+                            type: 'GET',
+                            dataType: 'html',
+                            success: (function (result) {
+                                $('#_CategoryPartial').html(result);
+                                var close = document.getElementById('btnEditColse');
+                                close.click();
+                            })
+                        });
+                    } else {
+                        TestSweetAlert("حدث خطأما أثناء عملية الأضافة تاكد من أدخال الحقول بالشكل الصحيح وحاول مرة أخرى");
+                    }
+                }
+            });
+
+        }
+        return false;
+    });
+
+    $("#btnCategoryDelete").click(function () {
+        var CategoryId = $("#CategoryId").val();
+        $.ajax({
+            type: "Post",
+            url: "/Categories/DeleteConfirmed",
+            data: { id: CategoryId },
+            success: function (message) {
+                debugger;
+                if (message == "") {
+                    $("#Modal-categoryDelete").modal('hide');
+                    $("#CategoryId").val(null);
+                    $.ajax({
+                        url: '/Categories/Refreash',
+                        contentType: 'application/html; charset=utf-8',
+                        type: 'GET',
+                        dataType: 'html',
+                        success: (function (result) {
+                            $('#_CategoryPartial').html(result);
+                        })
+                    })
+                } else if (message == "haveItem") {
+                    swal({
+                        // title: "Are you sure?",
+                        text: "هناك عدد من العناصر مندرجة تحت هذا الصنف بحدفك لهذا الصنف سيتم حدف جميع العناصر المندرجة له",
+                        className: 'swal-IW',
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: true,
+                    }).then((result) => {
+                        if (result == true) {
+                            $("#Modal-categoryDelete").modal('hide');
+                            $("#CategoryId").val(null);
+                            $.ajax({
+                                type: 'GET',
+                                url: '/Categories/DeleteCategoryandItems',
+                                data: { id: CategoryId },
+                                contentType: 'application/html; charset=utf-8',
+                                dataType: 'html',
+                                success: (function (result) {
+                                    $.ajax({
+                                        url: '/Categories/Refreash',
+                                        contentType: 'application/html; charset=utf-8',
+                                        type: 'GET',
+                                        dataType: 'html',
+                                        success: (function (result) {
+                                            $('#_CategoryPartial').html(result);
+                                        })
+                                    })
+                                })
+                            })
+                        } else {
+                            $("#Modal-categoryDelete").modal('hide');
+                            $("#CategoryId").val(null);
+                        }
+                    });
+                }
+            },
+        });
+        return false;
+    });
+});
+
+//#endregion Restaurant-Dashboard
+
 //#region Item-Dashboard
-
-//Create Action
-
-// Reset filds whene cancel add    
-
-var IresetFilds = function (event) {
-    document.getElementById('CreateItemForm').reset();
-    var ImgUrl = document.getElementById('CIimgUrl');
-    ImgUrl.src = "";
-};
-
-// Upload picture to show  for create Action 
-
-var CIloadFile = function (event) {
-    var image = document.getElementById('CIimgUrl');
-    image.src = URL.createObjectURL(event.target.files[0]);
-};
-
-
-// Upload picture to show  for edit Action 
-
-var EIloadFile = function (event) {
-    var image = document.getElementById('EIimgUrl');
-    image.src = URL.createObjectURL(event.target.files[0]);
-};
 
 // Edit Action
 
