@@ -1,5 +1,10 @@
 ﻿@model CloudRestaurant.Models.Country
 
+<div class="searshInput" style="direction:rtl">
+    <input type="text" id="myInput" onkeyup="Searsh('countryTable')" placeholder="أدخل أسم للبحث ...">
+    <i class="fa-solid fa-magnifying-glass"></i>
+</div>
+
 <div class="container" id="_CountryPartial" style="direction:rtl">
     @Html.Partial("_CountryPartial")
 </div>

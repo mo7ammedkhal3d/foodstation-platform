@@ -18,16 +18,19 @@ namespace CloudRestaurant.Controllers
         private readonly ICloudRestaurantRepository<Category> categoryRepository;
         private readonly ICloudRestaurantRepository<Request> requestRepository;
         private readonly ICloudRestaurantRepository<Region> regionRepository;
+        private readonly ICloudRestaurantRepository<Country> countryRepository;
 
         public HomeController(ICloudRestaurantRepository<Item> itemRepository,
             ICloudRestaurantRepository<Restaurant> restaurantRepository, ICloudRestaurantRepository<Category> categoryRepository,
-            ICloudRestaurantRepository<Request> requestRepository , ICloudRestaurantRepository<Region> regionRepository)
+            ICloudRestaurantRepository<Request> requestRepository , ICloudRestaurantRepository<Region> regionRepository,
+            ICloudRestaurantRepository<Country> countryRepository)
         {
             this.itemRepository = itemRepository;
             this.restaurantRepository = restaurantRepository;
             this.categoryRepository = categoryRepository;
             this.requestRepository = requestRepository;
             this.regionRepository = regionRepository;
+            this.countryRepository = countryRepository;
         }
 
         public ActionResult Index()
@@ -43,9 +46,9 @@ namespace CloudRestaurant.Controllers
 
         //public JSON GetSelectedRegion(int id)
         //{
-        //    Session["RegionId"] = id;   
+        //    Session["RegionId"] = id;
 
-        //    return Json(Response , JsonRequestBehavior.AllowGet);
+        //    return Json(Response, JsonRequestBehavior.AllowGet);
         //}
 
 
