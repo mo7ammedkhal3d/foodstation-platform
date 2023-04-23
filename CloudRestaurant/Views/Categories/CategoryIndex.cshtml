@@ -1,5 +1,10 @@
 ﻿@model CloudRestaurant.Models.Category
 
+<div class="searshInput" style="direction:rtl">
+    <input type="text" id="myInput" onkeyup="Searsh('categoryTable')" placeholder="أدخل أسم للبحث ...">
+    <i class="fa-solid fa-magnifying-glass"></i>
+</div>
+
 <div class="container" id="_CategoryPartial" style="direction:rtl">
     @Html.Partial("_CategoryPartial")
 </div>

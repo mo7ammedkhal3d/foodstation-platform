@@ -495,8 +495,9 @@
     <Content Include="Views\Regions\_RegionPartial.cshtml" />
     <Content Include="Views\Countries\CountryIndex.cshtml" />
     <Content Include="Views\Countries\_CountryPartial.cshtml" />
-    <Content Include="Views\Shared\_LoginAndRegister.cshtml" />
     <Content Include="Views\Categories\_CategoryPartial.cshtml" />
+    <Content Include="Views\Shared\_LoginAndRegister.cshtml" />
+    <Content Include="Views\Home\ViewRegions.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
