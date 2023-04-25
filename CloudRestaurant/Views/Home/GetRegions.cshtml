@@ -1,27 +1,15 @@
-﻿
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
-
-</table>
+﻿<h1>قم بأختيار المنطقة لتصفح المطاعم</h1>
+<div class="regionsSelect">
+    @foreach (var region in ViewBag.regions)
+    {
+        <a href="@Url.Action("GetRestaurants", "Home", new {id=region.Id})">
+            <div class="col-md-2 thumbnail regionContiner">
+                <h6 class="regionName">@region.Name</h6>
+                <div class="regionDetails">
+                    <p>الدولة :@region.Country.Name</p>
+                    <p>عدد المطاعم :@region.Restaurants.Count</p>
+                </div>
+            </div>
+        </a>
+    }
+</div>

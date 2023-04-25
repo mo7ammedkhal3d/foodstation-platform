@@ -34,19 +34,13 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
-
                     <li>
-                        <a href="#">
-                            اتصل بنا
-                            <i class="glyphicon glyphicon-envelope"></i>
-
-                        </a>
-                    <li>
-                        <a href="/Countries/Index">
-                            حول الموقع
-                            <i class="glyphicon glyphicon-info-sign"></i>
+                        <a href="/Home/Index">
+                            الرئيسية
+                            <i class="glyphicon glyphicon-home"></i>
                         </a>
                     </li>
+
                     <li>
                         <a href="/Categories/CategoryIndex">
                             أصناف العروض
@@ -54,35 +48,42 @@
 
                         </a>
                     </li>
+
                     <li>
-                        <a href="/Home/Index">
-                            الرئيسية
-                            <i class="glyphicon glyphicon-home"></i>
+                        <a href="/Countries/Index">
+                            حول الموقع
+                            <i class="glyphicon glyphicon-info-sign"></i>
                         </a>
                     </li>
+
+                    <li>
+                        <a href="#">
+                            اتصل بنا
+                            <i class="glyphicon glyphicon-envelope"></i>
+
+                        </a>
+                    </li>
+
                 </ul>
                 <!-- partial login-->
                 @Html.Partial("_LoginPartial")
-
-                <a href="@Url.Action("GetBill", "Home")" id="BasketId" class="Basket" style=" display: block; position: absolute; font-size: 23px; color: white; margin-top: 10px; padding: 10px; transform: translateX(8px);">
-                    <i class="glyphicon glyphicon-shopping-cart" id="Bas"></i>
-                </a>
             </div>
+            <a href="@Url.Action("GetBill", "Home")" id="BasketId" class="Basket">
+                <i class="glyphicon glyphicon-shopping-cart" id="Bas"></i>
+            </a>
         </div>
     </nav>
     <!-- End Navbar-->
 
     <!-- Landing-->
-    <div class="landing">
+    <div class="row landing">
         <div class="col-md-6 ladingHalf" data-aos="zoom-in" data-aos-delay="200">
-            <img src="~/images/hero-img.png" class="img-fluid landingImg" />
+            <img src="~/images/hero-img.png" class="img-fluid landingImg img-thumbnail" />
         </div>
         <div class="col-md-6 text">
-            <div style="margin:10px 2px 2px 25px ; text-align:justify;">
-                <h1 style=" font-size: 45px;  font-weight: bold;">Cloud-Restaurants</h1>
-                <p style=" font-size: 20px;text-transform:uppercase;">You can browse all Restaurant and order all ***</p>
-                <p class="lead">أهلا بك في المطاعم السحابية هنا نوفر لك جميع وجبات المطاعم والكافيهات والبوفيهات يمكنك تصفح المطاعم والطلب من أي مطعم بوقت واحد ومن مكان واحد المطاعم السحابية اختيارك الأفضل </p>
-            </div>
+                <h1>FOODSTATION</h1>
+                <h5>اكتشف المطاعم القريبة منك واستمتع بأشهى الأطعمة</h5>
+                <p class="lead">إذا كنت تبحث عن تجربة طعام فريدة وممتعة، فإن تطبيق FOODSTATION هو الخيار الأمثل لك. يساعدك هذا التطبيق على استكشاف المطاعم القريبة من موقعك والدخول إلى قائمة الأطعمة وتصفحها بسهولة. بالإضافة إلى ذلك، يتيح لك التطبيق طلب الوجبات المفضلة لديك من المطاعم المختلفة.</p>
         </div>
 
     </div>
@@ -93,7 +94,7 @@
     <!--End login and register window-->
 
     <!--Main-->
-    <main class="mainDiv">
+    <main class="mainContiner">
         @RenderBody()
         <div class="row" id="_billItems">
             @Html.Partial("_ManageMdalPartial")
