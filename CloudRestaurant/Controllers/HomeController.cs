@@ -40,7 +40,9 @@ namespace CloudRestaurant.Controllers
 
         public ActionResult GetRegions()
         {
-            return View(regionRepository.List());
+            ViewBag.regions = regionRepository.List();
+
+            return View();
         }
 
 
@@ -52,9 +54,10 @@ namespace CloudRestaurant.Controllers
         //}
 
 
-        public ActionResult GetRestaurants()
+        public ActionResult GetRestaurants(int? id)
         {
-            return View(restaurantRepository.List());
+            Session["RegionId"] = id;
+            return View(restaurantRepository.List().Where(x=> x.RegionId==id));
         }
 
 

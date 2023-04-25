@@ -744,3 +744,48 @@ font-size: 17px;
 }
 
 /*#endregion Country-Index*/
+
+/*#region GetRegion*/
+.regionsSelect{
+    margin-top:20px
+}
+
+.regionsSelect a:hover .regionContiner{
+    background:var(--background-color)
+}
+
+.regionsSelect a:hover .regionName,.regionDetails {
+    color:white
+}
+
+.regionsSelect a:hover .regionDetails {
+    color:white
+}
+
+
+.regionContiner {
+    margin-left: 25px;
+    margin-bottom: 30px;
+    border-radius: 20px 20px;
+    box-shadow: 0 0 42px rgb(0 0 0 / 20%);
+}
+
+.regionName {
+    font-size: 20px;
+    color: black;
+    text-align: center;
+    font-family: system-ui;
+}
+
+.regionDetails {
+    font-size: 12px;
+    text-align: center;
+    color: black;
+}
+
+
+
+
+
+
+/*#endregion GetRegion*/
