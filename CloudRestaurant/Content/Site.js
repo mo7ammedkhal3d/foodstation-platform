@@ -30,6 +30,7 @@ var resetFilds = function (form,img, event) {
     }
 };
 
+
 //#region Searsh Function
 
 function Searsh(tableName) {
@@ -499,7 +500,6 @@ $(document).ready(function () {
                 data: { upload: fileInput.files[0].name },
                 success: function (Message) {
                     if (Message == "") {
-                        debugger;
                         var image = $("#ERpicture").get(0).files;
                         var formdata = new FormData;
                         formdata.append("Id", $("#hiddenId").val());
@@ -1140,6 +1140,42 @@ iconClose.addEventListener('click', () => {
 });
 
 //#endregion login and register window
+
+//#region GetRestaurants
+var GetRestaurants = function (event) {
+    $.ajax({
+        type: "Post",
+        url: "/Home/GetRegionRestaurants",
+        success: function (result) {
+            if (result) {
+                window.location.href = "/Home/GetRegionRestaurants"
+            }
+            //else {
+            //    swal({
+            //        // title: "Are you sure?",
+            //        text: "سيتم عرض كل المطاعم لأنه لم يتم تحديد المنطقة أدا كنت ترغب بعرض جميع المطاعم  أدغط على موافق",
+            //        className: 'swal-IW',
+            //        icon: "warning",
+            //        buttons: true,
+            //        dangerMode: true,
+            //    }).then((result) => {
+            //        if (result == true) {
+            //            $.ajax({
+            //                type: 'GET',
+            //                url: '/Home/GetAllRestaurants',
+            //                success: function (result) {
+            //                    window.location.href = "/Home/GetRestaurants"
+            //                }
+            //            })
+            //        }
+            //    })
+            //}
+
+        }
+    });
+};
+
+//#endregion GetRestaurants
 
 //#region GetrestaurantCategories 
 
