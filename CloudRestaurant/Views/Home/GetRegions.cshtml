@@ -2,7 +2,7 @@
 <div class="regionsSelect">
     @foreach (var region in ViewBag.regions)
     {
-        <a href="@Url.Action("GetRestaurants", "Home", new {id=region.Id})">
+        <a href="@Url.Action("GetRegionRestaurants", "Home", new {id=region.Id})">
             <div class="col-md-2 thumbnail regionContiner">
                 <h6 class="regionName">@region.Name</h6>
                 <div class="regionDetails">

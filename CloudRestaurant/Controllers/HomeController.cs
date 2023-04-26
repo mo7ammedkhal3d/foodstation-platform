@@ -53,13 +53,20 @@ namespace CloudRestaurant.Controllers
         //    return Json(Response, JsonRequestBehavior.AllowGet);
         //}
 
-
-        public ActionResult GetRestaurants(int? id)
+        public ActionResult GetRegionRestaurants(int? id)
         {
-            Session["RegionId"] = id;
-            return View(restaurantRepository.List().Where(x=> x.RegionId==id));
-        }
+            if(id != null)
+            {
+                Session["RegionId"] = id;
+                return View("GetRestaurants", restaurantRepository.List().Where(x => x.RegionId == id));
+            }
 
+            else if(Session["RegionId"] != null)
+            {
+                return View("GetRestaurants", restaurantRepository.List().Where(x => x.RegionId == Convert.ToInt32(Session["RegionId"])));
+            }
+            else return View("GetRestaurants", restaurantRepository.List());
+        }
 
         public ActionResult About()
         {

@@ -1,4 +1,8 @@
-﻿
+﻿@font-face {
+    font-family: myfont3;
+    src: url('font/Fekrah-Regular.otf') format('opentype');
+}
+
 /*#region Global-properties*/
 
 body {
@@ -239,10 +243,10 @@ body {
 }
 
 .landing .text h5{
-    font-size: 21px;
-    font-weight: bold;
+    font-size: 23px;
     color: gold;
     margin-bottom: 26px;
+    font-family:myfont3
 }
 
 @media (min-width: 768px) {
