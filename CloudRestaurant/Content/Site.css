@@ -601,7 +601,17 @@ font-size: 17px;
     height: 545px;
     width: 650px;
     background-color: #FFF;
-} 
+}
+
+.RestaurantCheckbox li {
+    direction: rtl;
+    float: right;
+    font-size: 15px;
+}
+
+.RestaurantCheckbox li input{
+    margin-left:10px
+}
 
 /*#endregion Restaurant-Index*/
 

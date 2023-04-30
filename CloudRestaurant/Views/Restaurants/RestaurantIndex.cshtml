@@ -46,15 +46,16 @@
                                         @Html.ValidationMessageFor(model => model.RegionId, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    @*<ul style="list-style:none">
-                                    @foreach(var Item in Model.diningTypes)
+                                <div class="form-group RestaurantCheckbox">
+                                    <label class="control-label col-md-5" style="float: right">نوع الأكل المقدم </label>
+                                    <ul class="col-md-7" style="list-style:none">
+                                    @foreach(var Item in Model.AvailableDiningTypes)
                                      {
-                                        @Html.CheckBoxFor(diningType.Select)
-                                        @Html.CheckBoxFor(Item.IsSelected)
-                                       <li><input type="checkbox" name="diningTypes" value="@Item.Id" />@Item.Name</li> 
+                                        @*@Html.CheckBoxFor(diningType.Select)
+                                        @Html.CheckBoxFor(Item.IsSelected)*@
+                                       <li ><input type="checkbox" name="diningTypeIds" value="@Item.Id" />@Item.Name</li> 
                                      }
-                                    </ul>*@
+                                    </ul>
                                 </div>
                             </div>
 

@@ -35,9 +35,9 @@ namespace CloudRestaurant.Controllers
             ViewBag.restaurants = restaurantRepository.List();
             ViewBag.RegionId = new SelectList(regionRepository.List(), "Id", "Name");
             RestaurantDiningTypesVM vm = new RestaurantDiningTypesVM();
-            vm.diningTypes = diningTypeRepository.List();   
+            vm.AvailableDiningTypes = diningTypeRepository.List();  
 
-            return View();
+            return View(vm);
         }
 
         public PartialViewResult Refreash()
@@ -67,37 +67,9 @@ namespace CloudRestaurant.Controllers
         //// POST: Restaurants/Create
         //// To protect from overposting attacks, enable the specific properties you want to bind to, for 
         //// more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        ////[ValidateAntiForgeryToken] 
-        //public JsonResult Create(Restaurant restaurant, HttpPostedFileBase upload, int[] diningTypes)
-        //{
-        //    var result = false;
-        //    if (ModelState.IsValid)
-        //    {
-        //        string path = Path.Combine(Server.MapPath("~/Uploads/Restaurants/"), upload.FileName);
-        //        upload.SaveAs(path);
-        //        restaurant.ImgUrl = upload.FileName;
-        //        restaurantRepository.Add(restaurant);
-        //        foreach (var diningtype in diningTypes)
-        //        {
-        //            restaurant.DiningTypes.Add(diningTypeRepository.Find(diningtype));
-        //        }
-
-        //        result = true;
-        //        return Json(result, JsonRequestBehavior.AllowGet);
-        //    }
-
-        //    return Json(result, JsonRequestBehavior.AllowGet);
-        //}
-
-
-        // POST: Restaurants/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-
         [HttpPost]
-        //[ValidateAntiForgeryToken] 
-        public JsonResult Create(Restaurant restaurant, HttpPostedFileBase upload)
+        ////[ValidateAntiForgeryToken] 
+        public JsonResult Create(Restaurant restaurant, HttpPostedFileBase upload, int[] diningTypeIds)
         {
             var result = false;
             if (ModelState.IsValid)
@@ -105,7 +77,21 @@ namespace CloudRestaurant.Controllers
                 string path = Path.Combine(Server.MapPath("~/Uploads/Restaurants/"), upload.FileName);
                 upload.SaveAs(path);
                 restaurant.ImgUrl = upload.FileName;
-                restaurantRepository.Add(restaurant);
+                ApplicationDbContext db = new ApplicationDbContext();
+                if (diningTypeIds != null)
+                {
+                    foreach (var id in diningTypeIds)
+                    {
+                        //restaurant.DiningTypes.Add(diningTypeRepository.Find(id));
+                        restaurant.DiningTypes.Add(db.DiningTypes.Find(id));
+                    }
+                }
+                else restaurant.DiningTypes.Add(db.DiningTypes.Where(x => x.Name == "محلي").FirstOrDefault());
+
+                //restaurantRepository.Add(restaurant);
+                db.Restaurants.Add(restaurant);
+                db.SaveChanges();
+
                 result = true;
                 return Json(result, JsonRequestBehavior.AllowGet);
             }
