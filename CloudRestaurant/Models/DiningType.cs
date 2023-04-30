@@ -21,9 +21,6 @@ namespace CloudRestaurant.Models
         [DisplayName("النوع")]
         public string Name { get; set; }
 
-        [NotMapped]
-        public bool IsSelected { get; set; }
-
         public virtual ICollection<Restaurant> Restaurants { get; set; }
     }
 }

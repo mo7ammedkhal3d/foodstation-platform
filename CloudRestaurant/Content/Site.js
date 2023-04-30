@@ -447,17 +447,13 @@ $(document).ready(function () {
                 success: function (Message) {
                     if (Message == "") {
                         var image = $("#CRpicture").get(0).files;
-                        var formdata = new FormData;
-                        formdata.append("Name", $("#CRname").val());
-                        formdata.append("Description", $("#CRdescription").val());
-                        formdata.append("upload", image[0]);
-                        formdata.append("RegionId", $("#CRregion").val())
+                        var formData = new FormData($("#CreateRestaurantForm")[0]);
                         $.ajax({
                             async: true,
                             type: "POST",
                             dataType: "JSON",
                             url: "/Restaurants/Create",
-                            data: formdata,
+                            data: formData,
                             processData: false,
                             contentType: false,
                             success: function (result) {
@@ -585,7 +581,6 @@ $(document).ready(function () {
             url: "/Restaurants/DeleteConfirmed",
             data: { id: RestaurantId },
             success: function (message) {
-                debugger;
                 if (message == "") {
                     $("#Modal-restaurantDelete").modal('hide');
                     $("#RestaurantId").val(null);

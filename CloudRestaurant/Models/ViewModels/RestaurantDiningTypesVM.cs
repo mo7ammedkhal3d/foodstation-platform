@@ -23,6 +23,6 @@ namespace CloudRestaurant.Models.ViewModels
         [DisplayName("المنطقة")]
         public int RegionId { get; set; }
 
-        public IEnumerable<DiningType>  diningTypes  { get; set; }
+        public IList<DiningType> AvailableDiningTypes { get; set; }
     }
 }

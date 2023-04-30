@@ -8,7 +8,7 @@ namespace CloudRestaurant.Models.Repositories
 {
     public class DiningTypeRepository : ICloudRestaurantRepository<DiningType>
     {
-        public ApplicationDbContext db;
+        private readonly ApplicationDbContext db;
         public DiningTypeRepository(ApplicationDbContext _db)
         {
             db= _db;    

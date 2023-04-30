@@ -19,11 +19,12 @@ namespace CloudRestaurant.Controllers
         private readonly ICloudRestaurantRepository<Request> requestRepository;
         private readonly ICloudRestaurantRepository<Region> regionRepository;
         private readonly ICloudRestaurantRepository<Country> countryRepository;
+        private readonly ICloudRestaurantRepository<DiningType> diningTypeRepository;
 
         public HomeController(ICloudRestaurantRepository<Item> itemRepository,
             ICloudRestaurantRepository<Restaurant> restaurantRepository, ICloudRestaurantRepository<Category> categoryRepository,
             ICloudRestaurantRepository<Request> requestRepository , ICloudRestaurantRepository<Region> regionRepository,
-            ICloudRestaurantRepository<Country> countryRepository)
+            ICloudRestaurantRepository<Country> countryRepository, ICloudRestaurantRepository<DiningType> diningTypeRepository)
         {
             this.itemRepository = itemRepository;
             this.restaurantRepository = restaurantRepository;
@@ -31,6 +32,7 @@ namespace CloudRestaurant.Controllers
             this.requestRepository = requestRepository;
             this.regionRepository = regionRepository;
             this.countryRepository = countryRepository;
+            this.diningTypeRepository = diningTypeRepository;
         }
 
         public ActionResult Index()
@@ -55,6 +57,7 @@ namespace CloudRestaurant.Controllers
 
         public ActionResult GetRegionRestaurants(int? id)
         {
+            diningTypeRepository.List(); 
             if(id != null)
             {
                 Session["RegionId"] = id;

@@ -1,10 +1,12 @@
 using CloudRestaurant.Models.Repositories;
 using CloudRestaurant.Models;
 using System.Web.Mvc;
+using System.Data.Entity;
 using Unity;
 using Unity.Mvc5;
 using CloudRestaurant.Controllers;
 using Unity.Injection;
+using Unity.Lifetime;
 
 namespace CloudRestaurant
 {
@@ -23,6 +25,7 @@ namespace CloudRestaurant
             container.RegisterType<ICloudRestaurantRepository<Request>, RequestRepository>();
             container.RegisterType<AccountController>(new InjectionConstructor());
             container.RegisterType<ManageController>(new InjectionConstructor());
+            container.RegisterType<DbContext, ApplicationDbContext>(new HierarchicalLifetimeManager());
 
             // register all your components with the container here
             // it is NOT necessary to register your controllers
