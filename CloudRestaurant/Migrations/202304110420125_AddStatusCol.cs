@@ -1,4 +1,4 @@
-﻿namespace CloudRestaurant.Migrations
+﻿namespace FOODSTATION.Migrations
 {
     using System;
     using System.Data.Entity.Migrations;

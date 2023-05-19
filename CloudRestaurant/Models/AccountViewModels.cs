@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace CloudRestaurant.Models
+namespace FOODSTATION.Models
 {
     public class ExternalLoginConfirmationViewModel
     {

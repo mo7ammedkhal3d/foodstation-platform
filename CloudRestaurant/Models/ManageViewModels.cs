@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 
-namespace CloudRestaurant.Models
+namespace FOODSTATION.Models
 {
     public class IndexViewModel
     {

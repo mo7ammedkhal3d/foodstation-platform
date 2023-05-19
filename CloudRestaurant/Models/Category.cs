@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Web;
 
-namespace CloudRestaurant.Models
+namespace FOODSTATION.Models
 {
     public class Category
     {

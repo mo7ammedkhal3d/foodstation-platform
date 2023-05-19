@@ -1,11 +1,11 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using CloudRestaurant.Models;
-using CloudRestaurant.Models.Repositories;
+using FOODSTATION.Models;
+using FOODSTATION.Models.Repositories;
 using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartupAttribute(typeof(CloudRestaurant.Startup))]
-namespace CloudRestaurant
+[assembly: OwinStartupAttribute(typeof(FOODSTATION.Startup))]
+namespace FOODSTATION
 {
     public partial class Startup
     {

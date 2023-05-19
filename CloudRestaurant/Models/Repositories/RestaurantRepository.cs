@@ -4,9 +4,9 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
-namespace CloudRestaurant.Models.Repositories
+namespace FOODSTATION.Models.Repositories
 {
-    public class RestaurantRepository : ICloudRestaurantRepository<Restaurant>
+    public class RestaurantRepository : IFOODSTATIONRepository<Restaurant>
     {
         private readonly ApplicationDbContext db;
 

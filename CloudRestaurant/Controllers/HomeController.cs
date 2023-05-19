@@ -1,6 +1,6 @@
-﻿using CloudRestaurant.Models;
-using CloudRestaurant.Models.Repositories;
-using CloudRestaurant.Models.ViewModels;
+﻿using FOODSTATION.Models;
+using FOODSTATION.Models.Repositories;
+using FOODSTATION.Models.ViewModels;
 using Microsoft.Ajax.Utilities;
 using System;
 using System.Collections.Generic;
@@ -8,23 +8,23 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace CloudRestaurant.Controllers
+namespace FOODSTATION.Controllers
 {
     public class HomeController : Controller
     {
         static List<VirtualBill> products = new List<VirtualBill>();
-        private readonly ICloudRestaurantRepository<Item> itemRepository;
-        private readonly ICloudRestaurantRepository<Restaurant> restaurantRepository;
-        private readonly ICloudRestaurantRepository<Category> categoryRepository;
-        private readonly ICloudRestaurantRepository<Request> requestRepository;
-        private readonly ICloudRestaurantRepository<Region> regionRepository;
-        private readonly ICloudRestaurantRepository<Country> countryRepository;
-        private readonly ICloudRestaurantRepository<DiningType> diningTypeRepository;
+        private readonly IFOODSTATIONRepository<Item> itemRepository;
+        private readonly IFOODSTATIONRepository<Restaurant> restaurantRepository;
+        private readonly IFOODSTATIONRepository<Category> categoryRepository;
+        private readonly IFOODSTATIONRepository<Request> requestRepository;
+        private readonly IFOODSTATIONRepository<Region> regionRepository;
+        private readonly IFOODSTATIONRepository<Country> countryRepository;
+        private readonly IFOODSTATIONRepository<DiningType> diningTypeRepository;
 
-        public HomeController(ICloudRestaurantRepository<Item> itemRepository,
-            ICloudRestaurantRepository<Restaurant> restaurantRepository, ICloudRestaurantRepository<Category> categoryRepository,
-            ICloudRestaurantRepository<Request> requestRepository , ICloudRestaurantRepository<Region> regionRepository,
-            ICloudRestaurantRepository<Country> countryRepository, ICloudRestaurantRepository<DiningType> diningTypeRepository)
+        public HomeController(IFOODSTATIONRepository<Item> itemRepository,
+            IFOODSTATIONRepository<Restaurant> restaurantRepository, IFOODSTATIONRepository<Category> categoryRepository,
+            IFOODSTATIONRepository<Request> requestRepository , IFOODSTATIONRepository<Region> regionRepository,
+            IFOODSTATIONRepository<Country> countryRepository, IFOODSTATIONRepository<DiningType> diningTypeRepository)
         {
             this.itemRepository = itemRepository;
             this.restaurantRepository = restaurantRepository;

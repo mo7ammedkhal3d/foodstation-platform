@@ -6,17 +6,17 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using CloudRestaurant.Models;
-using CloudRestaurant.Models.Repositories;
+using FOODSTATION.Models;
+using FOODSTATION.Models.Repositories;
 
-namespace CloudRestaurant.Controllers
+namespace FOODSTATION.Controllers
 {
     public class CountriesController : Controller
     {
-        private readonly ICloudRestaurantRepository<Country> countryRepository;
-        private readonly ICloudRestaurantRepository<Region> regionRepository;
+        private readonly IFOODSTATIONRepository<Country> countryRepository;
+        private readonly IFOODSTATIONRepository<Region> regionRepository;
 
-        public CountriesController(ICloudRestaurantRepository<Country> countryRepository, ICloudRestaurantRepository<Region> regionRepository)
+        public CountriesController(IFOODSTATIONRepository<Country> countryRepository, IFOODSTATIONRepository<Region> regionRepository)
         {
             this.countryRepository = countryRepository;
             this.regionRepository = regionRepository;

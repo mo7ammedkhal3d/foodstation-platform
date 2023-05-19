@@ -7,19 +7,19 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using CloudRestaurant.Models;
-using CloudRestaurant.Models.Repositories;
-using CloudRestaurant.Models.ViewModels;
+using FOODSTATION.Models;
+using FOODSTATION.Models.Repositories;
+using FOODSTATION.Models.ViewModels;
 
-namespace CloudRestaurant.Controllers
+namespace FOODSTATION.Controllers
 {
     public class RegionsController : Controller
     {
-        private readonly ICloudRestaurantRepository<Region> regionRepository;
-        private readonly ICloudRestaurantRepository<Country> countryRepository;
+        private readonly IFOODSTATIONRepository<Region> regionRepository;
+        private readonly IFOODSTATIONRepository<Country> countryRepository;
         ApplicationDbContext db = new ApplicationDbContext();
 
-        public RegionsController(ICloudRestaurantRepository<Region> regionRepository, ICloudRestaurantRepository<Country> countryRepository)
+        public RegionsController(IFOODSTATIONRepository<Region> regionRepository, IFOODSTATIONRepository<Country> countryRepository)
         {
             this.regionRepository = regionRepository;
             this.countryRepository = countryRepository;

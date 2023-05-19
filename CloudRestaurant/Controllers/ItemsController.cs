@@ -7,21 +7,21 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using CloudRestaurant.Models;
-using CloudRestaurant.Models.Repositories;
-using CloudRestaurant.Models.ViewModels;
+using FOODSTATION.Models;
+using FOODSTATION.Models.Repositories;
+using FOODSTATION.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CloudRestaurant.Controllers
+namespace FOODSTATION.Controllers
 {
     public class ItemsController : Controller
     {
-        private readonly ICloudRestaurantRepository<Item> itemRepository;
-        private readonly ICloudRestaurantRepository<Restaurant> restaurantRepository;
-        private readonly ICloudRestaurantRepository<Category> categoryRepository;
+        private readonly IFOODSTATIONRepository<Item> itemRepository;
+        private readonly IFOODSTATIONRepository<Restaurant> restaurantRepository;
+        private readonly IFOODSTATIONRepository<Category> categoryRepository;
 
-        public ItemsController(ICloudRestaurantRepository<Item> itemRepository ,
-            ICloudRestaurantRepository<Restaurant> restaurantRepository , ICloudRestaurantRepository<Category> categoryRepository)
+        public ItemsController(IFOODSTATIONRepository<Item> itemRepository ,
+            IFOODSTATIONRepository<Restaurant> restaurantRepository , IFOODSTATIONRepository<Category> categoryRepository)
         {
             this.itemRepository = itemRepository;
             this.restaurantRepository = restaurantRepository;

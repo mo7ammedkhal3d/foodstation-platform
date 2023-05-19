@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace CloudRestaurant.Models.ViewModels
+namespace FOODSTATION.Models.ViewModels
 {
     public class RestaurantDiningTypesVM 
     {
