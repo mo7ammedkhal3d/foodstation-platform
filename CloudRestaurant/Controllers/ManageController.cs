@@ -6,9 +6,9 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using CloudRestaurant.Models;
+using FOODSTATION.Models;
 
-namespace CloudRestaurant.Controllers
+namespace FOODSTATION.Controllers
 {
     [Authorize]
     public class ManageController : Controller

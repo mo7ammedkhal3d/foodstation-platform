@@ -1,14 +1,14 @@
-using CloudRestaurant.Models.Repositories;
-using CloudRestaurant.Models;
+using FOODSTATION.Models.Repositories;
+using FOODSTATION.Models;
 using System.Web.Mvc;
 using System.Data.Entity;
 using Unity;
 using Unity.Mvc5;
-using CloudRestaurant.Controllers;
+using FOODSTATION.Controllers;
 using Unity.Injection;
 using Unity.Lifetime;
 
-namespace CloudRestaurant
+namespace FOODSTATION
 {
     public static class UnityConfig
     {
@@ -16,13 +16,13 @@ namespace CloudRestaurant
         {
 			var container = new UnityContainer();
 
-            container.RegisterType<ICloudRestaurantRepository<Country>, CountryRepository>();
-            container.RegisterType<ICloudRestaurantRepository<Region>, RegionRepository>();
-            container.RegisterType<ICloudRestaurantRepository<DiningType>, DiningTypeRepository>();
-            container.RegisterType<ICloudRestaurantRepository<Restaurant>, RestaurantRepository>();
-            container.RegisterType<ICloudRestaurantRepository<Category>, CategoryRepository>();
-            container.RegisterType<ICloudRestaurantRepository<Item>, ItemRepository>();
-            container.RegisterType<ICloudRestaurantRepository<Request>, RequestRepository>();
+            container.RegisterType<IFOODSTATIONRepository<Country>, CountryRepository>();
+            container.RegisterType<IFOODSTATIONRepository<Region>, RegionRepository>();
+            container.RegisterType<IFOODSTATIONRepository<DiningType>, DiningTypeRepository>();
+            container.RegisterType<IFOODSTATIONRepository<Restaurant>, RestaurantRepository>();
+            container.RegisterType<IFOODSTATIONRepository<Category>, CategoryRepository>();
+            container.RegisterType<IFOODSTATIONRepository<Item>, ItemRepository>();
+            container.RegisterType<IFOODSTATIONRepository<Request>, RequestRepository>();
             container.RegisterType<AccountController>(new InjectionConstructor());
             container.RegisterType<ManageController>(new InjectionConstructor());
             container.RegisterType<DbContext, ApplicationDbContext>(new HierarchicalLifetimeManager());

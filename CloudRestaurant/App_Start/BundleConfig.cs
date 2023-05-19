@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace CloudRestaurant
+namespace FOODSTATION
 {
     public class BundleConfig
     {

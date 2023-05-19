@@ -5,9 +5,9 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
-using CloudRestaurant.Models;
+using FOODSTATION.Models;
 
-namespace CloudRestaurant
+namespace FOODSTATION
 {
     public partial class Startup
     {

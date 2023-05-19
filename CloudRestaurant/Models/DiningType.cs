@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
-namespace CloudRestaurant.Models
+namespace FOODSTATION.Models
 {
     public class DiningType
     {

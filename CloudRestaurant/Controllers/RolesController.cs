@@ -1,4 +1,4 @@
-﻿using CloudRestaurant.Models;
+﻿using FOODSTATION.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace CloudRestaurant.Controllers
+namespace FOODSTATION.Controllers
 {
     public class RolesController : Controller
     {

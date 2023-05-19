@@ -6,9 +6,9 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using CloudRestaurant.Models;
+using FOODSTATION.Models;
 
-namespace CloudRestaurant.Controllers
+namespace FOODSTATION.Controllers
 {
     public class RequestsController : Controller
     {

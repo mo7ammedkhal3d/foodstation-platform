@@ -6,16 +6,16 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using CloudRestaurant.Models;
-using CloudRestaurant.Models.Repositories;
+using FOODSTATION.Models;
+using FOODSTATION.Models.Repositories;
 
-namespace CloudRestaurant.Controllers
+namespace FOODSTATION.Controllers
 {
     public class DiningTypesController : Controller
     {
-        private readonly ICloudRestaurantRepository<DiningType> diningTypeRepository;
+        private readonly IFOODSTATIONRepository<DiningType> diningTypeRepository;
 
-        public DiningTypesController(ICloudRestaurantRepository<DiningType> diningTypeRepository)
+        public DiningTypesController(IFOODSTATIONRepository<DiningType> diningTypeRepository)
         {
             this.diningTypeRepository = diningTypeRepository;
         }

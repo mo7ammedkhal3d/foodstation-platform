@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CloudRestaurant.Models.Repositories
+namespace FOODSTATION.Models.Repositories
 {
-    public interface ICloudRestaurantRepository<TEntity>
+    public interface IFOODSTATIONRepository<TEntity>
     {
         IList<TEntity> List(); 
 
