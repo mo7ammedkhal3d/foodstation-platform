@@ -47,14 +47,6 @@ namespace FOODSTATION.Controllers
             return View();
         }
 
-
-        //public JSON GetSelectedRegion(int id)
-        //{
-        //    Session["RegionId"] = id;
-
-        //    return Json(Response, JsonRequestBehavior.AllowGet);
-        //}
-
         public ActionResult GetRegionRestaurants(int? id)
         {
             diningTypeRepository.List(); 
