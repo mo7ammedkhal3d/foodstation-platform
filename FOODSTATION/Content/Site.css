@@ -42,11 +42,11 @@ body {
 }
 
 .searshInput i {
-    position: absolute;
     right: 10px;
-    top: 14px;
+    top: -45px;
     font-size: 20px;
     color: gray;
+    position: relative;
 }
 
 
@@ -759,9 +759,11 @@ font-size: 17px;
     margin-top:20px
 }
 
-.regionsSelect a:hover .regionContiner{
-    background:var(--background-color)
-}
+    .regionsSelect a:hover .regionContiner {
+        background: var(--background-color);
+        border-radius: 10px 30px;
+        
+    }
 
 .regionsSelect a:hover .regionName,.regionDetails {
     color:white
@@ -771,17 +773,27 @@ font-size: 17px;
     color:white
 }
 
+.mainContiner h1 {
+    direction: rtl;
+    text-align: center;
+    padding: 10px;
+    font-family: myFont;
+    color: var(--background-color);
+}
 
 .regionContiner {
     margin-left: 25px;
     margin-bottom: 30px;
-    border-radius: 20px 20px;
-    box-shadow: 0 0 42px rgb(0 0 0 / 20%);
+    border-radius: 30px 10px;
+    box-shadow: 0 0 30px rgb(0 0 255 / 20%);
 }
+    .regionContiner h6 {
+        font-family: myfont;
+        color: #00093c;
+    }
 
 .regionName {
     font-size: 20px;
-    color: black;
     text-align: center;
     font-family: system-ui;
 }
@@ -792,7 +804,11 @@ font-size: 17px;
     color: black;
 }
 
-
+@media (max-width:990px){
+    .mainContiner{
+       /* margin-right:15px;*/
+    }
+}
 
 
 
