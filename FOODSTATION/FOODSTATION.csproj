@@ -283,6 +283,10 @@
     <Compile Include="Migrations\202304112157480_DeleteStatusCol.designer.cs">
       <DependentUpon>202304112157480_DeleteStatusCol.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202305231631409_AddrelationRestaurantAndUser.cs" />
+    <Compile Include="Migrations\202305231631409_AddrelationRestaurantAndUser.designer.cs">
+      <DependentUpon>202305231631409_AddrelationRestaurantAndUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Country.cs" />
@@ -556,6 +560,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202304112157480_DeleteStatusCol.resx">
       <DependentUpon>202304112157480_DeleteStatusCol.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305231631409_AddrelationRestaurantAndUser.resx">
+      <DependentUpon>202305231631409_AddrelationRestaurantAndUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

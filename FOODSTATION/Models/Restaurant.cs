@@ -31,8 +31,13 @@ namespace FOODSTATION.Models
         [DisplayName("المنطقة")]
         public int RegionId { get; set; }
 
+        [Required]
+        [DisplayName("مالك المطعم")]
+        public string OwnerId { get; set; }
+
         public virtual Region Region { get; set; }
 
+        public virtual ApplicationUser User { get; set; }
         public virtual ICollection<DiningType> DiningTypes { get; set; }
 
         public virtual ICollection<Participation> Participations { get; set; }
