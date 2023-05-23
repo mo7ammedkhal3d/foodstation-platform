@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
@@ -283,9 +283,9 @@
     <Compile Include="Migrations\202304112157480_DeleteStatusCol.designer.cs">
       <DependentUpon>202304112157480_DeleteStatusCol.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202305231631409_AddrelationRestaurantAndUser.cs" />
-    <Compile Include="Migrations\202305231631409_AddrelationRestaurantAndUser.designer.cs">
-      <DependentUpon>202305231631409_AddrelationRestaurantAndUser.cs</DependentUpon>
+    <Compile Include="Migrations\202305231807358_AddrelationRestaurantUser.cs" />
+    <Compile Include="Migrations\202305231807358_AddrelationRestaurantUser.designer.cs">
+      <DependentUpon>202305231807358_AddrelationRestaurantUser.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -561,8 +561,8 @@
     <EmbeddedResource Include="Migrations\202304112157480_DeleteStatusCol.resx">
       <DependentUpon>202304112157480_DeleteStatusCol.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202305231631409_AddrelationRestaurantAndUser.resx">
-      <DependentUpon>202305231631409_AddrelationRestaurantAndUser.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202305231807358_AddrelationRestaurantUser.resx">
+      <DependentUpon>202305231807358_AddrelationRestaurantUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
