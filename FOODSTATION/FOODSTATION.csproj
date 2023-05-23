@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
@@ -235,6 +235,58 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202301051721576_Create-Database.cs" />
+    <Compile Include="Migrations\202301051721576_Create-Database.designer.cs">
+      <DependentUpon>202301051721576_Create-Database.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202301052328118_Modify-ItemT.cs" />
+    <Compile Include="Migrations\202301052328118_Modify-ItemT.designer.cs">
+      <DependentUpon>202301052328118_Modify-ItemT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202301061157183_setColName.cs" />
+    <Compile Include="Migrations\202301061157183_setColName.designer.cs">
+      <DependentUpon>202301061157183_setColName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202301111524588_ModifyInItemModel.cs" />
+    <Compile Include="Migrations\202301111524588_ModifyInItemModel.designer.cs">
+      <DependentUpon>202301111524588_ModifyInItemModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202301190400432_AddImgUrlCol.cs" />
+    <Compile Include="Migrations\202301190400432_AddImgUrlCol.designer.cs">
+      <DependentUpon>202301190400432_AddImgUrlCol.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202302111925496_addRequestTable.cs" />
+    <Compile Include="Migrations\202302111925496_addRequestTable.designer.cs">
+      <DependentUpon>202302111925496_addRequestTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202303272137081_AddDataBaseTables.cs" />
+    <Compile Include="Migrations\202303272137081_AddDataBaseTables.designer.cs">
+      <DependentUpon>202303272137081_AddDataBaseTables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202303311341119_AddRestaurantNoCol.cs" />
+    <Compile Include="Migrations\202303311341119_AddRestaurantNoCol.designer.cs">
+      <DependentUpon>202303311341119_AddRestaurantNoCol.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202303311949431_DeleteRestaurantNo.cs" />
+    <Compile Include="Migrations\202303311949431_DeleteRestaurantNo.designer.cs">
+      <DependentUpon>202303311949431_DeleteRestaurantNo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202304090344459_Reconfig-MtoMRelation.cs" />
+    <Compile Include="Migrations\202304090344459_Reconfig-MtoMRelation.designer.cs">
+      <DependentUpon>202304090344459_Reconfig-MtoMRelation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202304110420125_AddStatusCol.cs" />
+    <Compile Include="Migrations\202304110420125_AddStatusCol.designer.cs">
+      <DependentUpon>202304110420125_AddStatusCol.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202304112157480_DeleteStatusCol.cs" />
+    <Compile Include="Migrations\202304112157480_DeleteStatusCol.designer.cs">
+      <DependentUpon>202304112157480_DeleteStatusCol.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202305231631409_AddrelationRestaurantAndUser.cs" />
+    <Compile Include="Migrations\202305231631409_AddrelationRestaurantAndUser.designer.cs">
+      <DependentUpon>202305231631409_AddrelationRestaurantAndUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Country.cs" />
@@ -469,6 +521,49 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202301051721576_Create-Database.resx">
+      <DependentUpon>202301051721576_Create-Database.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202301052328118_Modify-ItemT.resx">
+      <DependentUpon>202301052328118_Modify-ItemT.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202301061157183_setColName.resx">
+      <DependentUpon>202301061157183_setColName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202301111524588_ModifyInItemModel.resx">
+      <DependentUpon>202301111524588_ModifyInItemModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202301190400432_AddImgUrlCol.resx">
+      <DependentUpon>202301190400432_AddImgUrlCol.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202302111925496_addRequestTable.resx">
+      <DependentUpon>202302111925496_addRequestTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202303272137081_AddDataBaseTables.resx">
+      <DependentUpon>202303272137081_AddDataBaseTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202303311341119_AddRestaurantNoCol.resx">
+      <DependentUpon>202303311341119_AddRestaurantNoCol.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202303311949431_DeleteRestaurantNo.resx">
+      <DependentUpon>202303311949431_DeleteRestaurantNo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202304090344459_Reconfig-MtoMRelation.resx">
+      <DependentUpon>202304090344459_Reconfig-MtoMRelation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202304110420125_AddStatusCol.resx">
+      <DependentUpon>202304110420125_AddStatusCol.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202304112157480_DeleteStatusCol.resx">
+      <DependentUpon>202304112157480_DeleteStatusCol.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305231631409_AddrelationRestaurantAndUser.resx">
+      <DependentUpon>202305231631409_AddrelationRestaurantAndUser.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
