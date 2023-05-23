@@ -33,7 +33,7 @@ namespace FOODSTATION.Models
 
         [Required]
         [DisplayName("مالك المطعم")]
-        public string OwnerId { get; set; }
+        public string UserId { get; set; }
 
         public virtual Region Region { get; set; }
 
