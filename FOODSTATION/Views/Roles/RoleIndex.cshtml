@@ -1,12 +1,14 @@
 ﻿@model IEnumerable<Microsoft.AspNet.Identity.EntityFramework.IdentityRole>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
+<div dir="rtl">
+    <h2> المجموعات</h2>
+    <p>
+        @Html.ActionLink("إنشاء مجموعة", "Create", "Roles", new { @class = "btn btn-primary" })
+    </p>
+</div>
+<table class="table" id="itemTable" dir="rtl">
+    <tr class="btn-primary">
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            اسم المجموعة
         </th>
         <th></th>
     </tr>
@@ -17,8 +19,8 @@
             @Html.DisplayFor(modelItem => item.Name)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            <a href="~/Roles/Edit/@item.Id" style="font-size:20px"><i class="fa-solid fa-pen-to-square Action-Icon" style="color: #005eff;"></i></a> |
+            <a href="~/Roles/Delete/@item.Id" style="font-size:20px"><i class="fa-solid fa-trash-can Action-Icon" style="color: #ff2600;"></i></a>
         </td>
     </tr>
 }
