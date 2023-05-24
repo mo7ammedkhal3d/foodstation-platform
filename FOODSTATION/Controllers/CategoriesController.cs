@@ -13,27 +13,27 @@ using FOODSTATION.Models.ViewModels;
 
 namespace FOODSTATION.Controllers
 {
+    [Authorize(Roles = "Admin")]
+
     public class CategoriesController : Controller
     {
-        private readonly IFOODSTATIONRepository<Category> categoryRepository;
-        private readonly IFOODSTATIONRepository<Item> itemRepository;
+        private readonly ApplicationDbContext db;
 
-        public CategoriesController(IFOODSTATIONRepository<Category> categoryRepository , IFOODSTATIONRepository<Item> itemRepository)
+        public CategoriesController(ApplicationDbContext _db)
         {
-            this.categoryRepository = categoryRepository;
-            this.itemRepository = itemRepository;
+            db = _db;
         }
 
         // GET: Categories
         public ActionResult CategoryIndex()
         {
-            ViewBag.categories = categoryRepository.List();
+            ViewBag.categories = db.Categories.ToList();
             return View();
         }
 
         public PartialViewResult Refreash()
         {
-            var categories = categoryRepository.List();
+            var categories = db.Categories.ToList();
             ViewBag.categories = categories;
             return PartialView("_CategoryPartial", categories);
         }
@@ -65,7 +65,8 @@ namespace FOODSTATION.Controllers
                 string path = Path.Combine(Server.MapPath("~/Uploads/Categories/"), upload.FileName);
                 upload.SaveAs(path);
                 category.ImgUrl = upload.FileName;
-                categoryRepository.Add(category);
+                db.Categories.Add(category);
+                db.SaveChanges();
                 result = true;
                 return Json(result, JsonRequestBehavior.AllowGet);
             }
@@ -76,7 +77,7 @@ namespace FOODSTATION.Controllers
         // GET: Category/Edit/5
         public ActionResult GetCategory(int? id)
         {
-            var category = categoryRepository.Find(id);
+            var category = db.Categories.Find(id);
             CategoryVM categoryVM = new CategoryVM();
             if (category != null)
             {
@@ -104,7 +105,8 @@ namespace FOODSTATION.Controllers
                     upload.SaveAs(path);
                     category.ImgUrl = upload.FileName;
                 }
-                categoryRepository.Update(category);
+                db.Entry(category).State = EntityState.Modified;
+                db.SaveChanges();
                 return Json(true, JsonRequestBehavior.AllowGet);
             }
 
@@ -117,8 +119,8 @@ namespace FOODSTATION.Controllers
         public JsonResult DeleteConfirmed(int id)
         {
             var message = "";
-            var category = categoryRepository.Find(id);
-            var items = itemRepository.List().Where(x => x.CategoryId == category.Id);
+            var category = db.Categories.Find(id);
+            var items = db.Items.ToList().Where(x => x.CategoryId == category.Id);
             if (items.Count() > 0)
             {
                 message = "haveItem";
@@ -133,7 +135,8 @@ namespace FOODSTATION.Controllers
 
             string OldPath = Path.Combine(Server.MapPath("~/Uploads/Categories/"), category.ImgUrl);
             System.IO.File.Delete(OldPath);
-            categoryRepository.Delete(id);
+            db.Categories.Remove(category);
+            db.SaveChanges();
 
             return Json(message, JsonRequestBehavior.AllowGet);
         }
@@ -144,19 +147,20 @@ namespace FOODSTATION.Controllers
         //[ValidateAntiForgeryToken]
         public ActionResult DeleteCategoryandItems(int id)
         {
-            var category = categoryRepository.Find(id);
-            var items = itemRepository.List().Where(x => x.CategoryId == category.Id);
+            var category = db.Categories.Find(id);
+            var items = db.Items.ToList().Where(x => x.CategoryId == category.Id);
 
             foreach (var item in items)
             {
                 string itemOldPath = Path.Combine(Server.MapPath("~/Uploads/Items/"), item.ImgUrl);
                 System.IO.File.Delete(itemOldPath);
-                itemRepository.Delete(item.Id);
+                db.Items.Remove(item);
             }
 
             string OldPath = Path.Combine(Server.MapPath("~/Uploads/Categories/"), category.ImgUrl);
             System.IO.File.Delete(OldPath);
-            categoryRepository.Delete(id);
+            db.Categories.Remove(category);
+            db.SaveChanges();
 
             return Json(true, JsonRequestBehavior.AllowGet);
         }
@@ -166,7 +170,7 @@ namespace FOODSTATION.Controllers
         {
             if (disposing)
             {
-                categoryRepository.Dispose();
+                db.Dispose();
             }
             base.Dispose(disposing);
         }

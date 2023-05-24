@@ -13,26 +13,11 @@ namespace FOODSTATION.Controllers
     public class HomeController : Controller
     {
         static List<VirtualBill> products = new List<VirtualBill>();
-        private readonly IFOODSTATIONRepository<Item> itemRepository;
-        private readonly IFOODSTATIONRepository<Restaurant> restaurantRepository;
-        private readonly IFOODSTATIONRepository<Category> categoryRepository;
-        private readonly IFOODSTATIONRepository<Request> requestRepository;
-        private readonly IFOODSTATIONRepository<Region> regionRepository;
-        private readonly IFOODSTATIONRepository<Country> countryRepository;
-        private readonly IFOODSTATIONRepository<DiningType> diningTypeRepository;
+        private readonly ApplicationDbContext db;
 
-        public HomeController(IFOODSTATIONRepository<Item> itemRepository,
-            IFOODSTATIONRepository<Restaurant> restaurantRepository, IFOODSTATIONRepository<Category> categoryRepository,
-            IFOODSTATIONRepository<Request> requestRepository , IFOODSTATIONRepository<Region> regionRepository,
-            IFOODSTATIONRepository<Country> countryRepository, IFOODSTATIONRepository<DiningType> diningTypeRepository)
+        public HomeController(ApplicationDbContext _db)
         {
-            this.itemRepository = itemRepository;
-            this.restaurantRepository = restaurantRepository;
-            this.categoryRepository = categoryRepository;
-            this.requestRepository = requestRepository;
-            this.regionRepository = regionRepository;
-            this.countryRepository = countryRepository;
-            this.diningTypeRepository = diningTypeRepository;
+            db = _db;
         }
 
         public ActionResult Index()
@@ -42,25 +27,24 @@ namespace FOODSTATION.Controllers
 
         public ActionResult GetRegions()
         {
-            ViewBag.regions = regionRepository.List();
+            ViewBag.regions = db.Regions.ToList();
 
             return View();
         }
 
         public ActionResult GetRegionRestaurants(int? id)
         {
-            diningTypeRepository.List(); 
             if(id != null)
             {
                 Session["RegionId"] = id;
-                return View("GetRestaurants", restaurantRepository.List().Where(x => x.RegionId == id));
+                return View("GetRestaurants", db.Restaurants.ToList().Where(x => x.RegionId == id));
             }
 
             else if(Session["RegionId"] != null)
             {
-                return View("GetRestaurants", restaurantRepository.List().Where(x => x.RegionId == Convert.ToInt32(Session["RegionId"])));
+                return View("GetRestaurants", db.Restaurants.ToList().Where(x => x.RegionId == Convert.ToInt32(Session["RegionId"])));
             }
-            else return View("GetRestaurants", restaurantRepository.List());
+            else return View("GetRestaurants", db.Restaurants.ToList());
         }
 
         public ActionResult About()
@@ -87,13 +71,13 @@ namespace FOODSTATION.Controllers
         public ActionResult GetRestaurantCategories(int? id)
         {
             Session["RestaurantId"] = id;
-            var Categories = from item in itemRepository.List()
-                       join category in categoryRepository.List() on item.CategoryId equals category.Id
+            var Categories = from item in db.Items.ToList()
+                       join category in db.Categories.ToList() on item.CategoryId equals category.Id
                        where item.RestaurantId == id
                        select category;
 
-            ViewBag.items = itemRepository.List().Where(x => x.RestaurantId == id).ToList();
-            var Restaurant = restaurantRepository.List().Where(x => x.Id == id).Single();
+            ViewBag.items = db.Items.ToList().Where(x => x.RestaurantId == id).ToList();
+            var Restaurant = db.Restaurants.ToList().Where(x => x.Id == id).Single();
             ViewBag.Name = Restaurant.Name;
             ViewBag.restaurantId = Restaurant.Id;
             return View(Categories.Distinct().ToList());
@@ -102,14 +86,14 @@ namespace FOODSTATION.Controllers
        
        public  PartialViewResult GetCategoryItems(int restaurantId, int categoryId)
         {
-            var items = itemRepository.List().Where(x => x.CategoryId == categoryId && x.RestaurantId == restaurantId).ToList();
+            var items = db.Items.ToList().Where(x => x.CategoryId == categoryId && x.RestaurantId == restaurantId).ToList();
             ViewBag.items = items;  
             return PartialView("_SelectedCategoryItems", items);
         }
 
         public PartialViewResult GetAllRestaurantItems(int restaurantId)
         {
-            var items = itemRepository.List().Where(x =>x.RestaurantId == restaurantId).ToList();
+            var items = db.Items.ToList().Where(x =>x.RestaurantId == restaurantId).ToList();
             ViewBag.items = items;
             return PartialView("_SelectedCategoryItems", items);
         }
@@ -120,7 +104,7 @@ namespace FOODSTATION.Controllers
             var item = products.Find(x=> x.ItemId ==id);
             if(item == null)
             {
-                var product = itemRepository.Find(id);
+                var product = db.Items.Find(id);
                 VirtualBill Item = new VirtualBill { ItemId = product.Id,ItemName=product.Name,
                     ItemQuantity = 1,ItemPrice =product.Price};
                 products.Add(Item);
@@ -167,11 +151,7 @@ namespace FOODSTATION.Controllers
         {
             if (disposing)
             {
-                restaurantRepository.Dispose();
-                itemRepository.Dispose();
-                categoryRepository.Dispose();
-                regionRepository.Dispose();
-                requestRepository.Dispose();
+                db.Dispose();
             }
             base.Dispose(disposing);
         }

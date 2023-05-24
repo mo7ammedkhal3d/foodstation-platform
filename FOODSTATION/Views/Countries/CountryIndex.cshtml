@@ -1,5 +1,7 @@
 ﻿@model FOODSTATION.Models.Country
-
+@{
+    ViewBag.Title = "Country dashboard";
+}
 <div class="searshInput" style="direction:rtl">
     <input type="text" id="myInput" onkeyup="Searsh('countryTable')" placeholder="أدخل أسم للبحث ...">
     <i class="fa-solid fa-magnifying-glass"></i>
@@ -49,9 +51,10 @@
                 <h2 class="modal-title" style="text-align:center">تعديل بيانات الدولة</h2>
             </div>
             <div class="modal-body">
-                @using (Html.BeginForm("Edit", "Items", FormMethod.Post, new { enctype = "multipart/form-data", @id = "EditItemForm" }))
+                @using (Html.BeginForm("Edit", "Items", FormMethod.Post, new { enctype = "multipart/form-data", @id = "EditCountryForm" }))
                 {
                     @Html.AntiForgeryToken()
+                    <input type="hidden" name="Id" id="hiddenId" />
                     <div class="form-horizontal" style="margin-top:20px">
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                         <div class="form-group">

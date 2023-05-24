@@ -1,5 +1,7 @@
-﻿@model FOODSTATION.Models.ViewModels.RestaurantDiningTypesVM
-
+﻿@model FOODSTATION.Models.Restaurant
+@{
+    ViewBag.Title = "Restaurant dashboard";
+}
 <div class="searshInput" style="direction:rtl">
     <input type="text" id="myInput" onkeyup="Searsh('restaurantTable')" placeholder="أدخل أسم للبحث ...">
     <i class="fa-solid fa-magnifying-glass"></i>
@@ -46,15 +48,23 @@
                                         @Html.ValidationMessageFor(model => model.RegionId, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.RegionId, "مالك المطعم", htmlAttributes: new { @class = "control-label col-md-4", @style = "float:right" })
+                                    <div class="col-md-8" style="float:right">
+                                        @Html.DropDownList("UserId", null, htmlAttributes: new { @class = "input-fild", @id = "CRowner" })
+                                        @Html.ValidationMessageFor(model => model.RegionId, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
                                 <div class="form-group RestaurantCheckbox">
                                     <label class="control-label col-md-5" style="float: right">نوع الأكل المقدم </label>
                                     <ul class="col-md-7" style="list-style:none">
-                                    @foreach(var Item in Model.AvailableDiningTypes)
-                                     {
-                                        @*@Html.CheckBoxFor(diningType.Select)
-                                        @Html.CheckBoxFor(Item.IsSelected)*@
-                                       <li ><input type="checkbox" name="diningTypeIds" value="@Item.Id" />@Item.Name</li> 
-                                     }
+                                        @foreach (var Item in ViewBag.AvailableDiningTypes)
+                                        {
+                                            @*@Html.CheckBoxFor(diningType.Select)
+                                                @Html.CheckBoxFor(Item.IsSelected)*@
+                                            <li><input type="checkbox" name="diningTypeIds" value="@Item.Id" />@Item.Name</li>
+
+                                        }
                                     </ul>
                                 </div>
                             </div>

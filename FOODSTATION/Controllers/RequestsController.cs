@@ -10,6 +10,8 @@ using FOODSTATION.Models;
 
 namespace FOODSTATION.Controllers
 {
+    [Authorize(Roles = "Admin")]
+
     public class RequestsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

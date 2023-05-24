@@ -128,6 +128,7 @@ var EditCountryConfirm = function (_id) {
     $("#Modal-countryEdit").modal('show');
     $("#ECname").val(document.getElementById('CountryName+' + _id).value)
     $("#CountryId").val(_id)
+    $("#hiddenId").val(_id)
 };
 
 
@@ -150,7 +151,7 @@ var DeleteCountryConfirm = function (_id) {
             } else if (message == "haveItem") {
                 swal({
                     // title: "Are you sure?",
-                    text: "هذا الدولة مرتبطة بعدد من المناطق هل تريد بالفعل حذفها",
+                    text: "هده الدولة تضم عدد من المناطق بحدفك لها ستفقد بينات المناطق والطاعم المرتبطة بها والعناصر المرتبطة بالطاعم هل تريد بالتأكيد حذف هذه الدولة",
                     className: 'swal-IW',
                     icon: "warning",
                     buttons: true,
@@ -189,14 +190,13 @@ $(document).ready(function () {
     if ($("#CCname").val() == "") {
         TestSweetAlert("قم بأدخال الأسم");
     } else {
-        var formdata = new FormData;
-        formdata.append("Name", $("#CCname").val());
+        var formData = new FormData($("#CreateCountryForm")[0]);
         $.ajax({
             async: true,
             type: "POST",
             dataType: "JSON",
             url: "/Countries/Create",
-            data: formdata,
+            data: formData,
             processData: false,
             contentType: false,
             success: function (result) {
@@ -226,15 +226,13 @@ $(document).ready(function () {
         if ($("#ECname").val() == "") {
             TestSweetAlert("قم بأدخال الأسم");
         } else {
-            var formdata = new FormData;
-            formdata.append("Id", $("#CountryId").val());
-            formdata.append("Name", $("#ECname").val());
+            var formData = new FormData($("#EditCountryForm")[0]);
             $.ajax({
                 async: true,
                 type: "POST",
                 dataType: "JSON",
                 url: "/Countries/Edit",
-                data: formdata,
+                data: formData,
                 processData: false,
                 contentType: false,
                 success: function (result) {
@@ -266,76 +264,6 @@ $(document).ready(function () {
 
 //#region  Region-Dashboard
 
-$("#btnRegionCreate").click(function () {
-    if ($("#CRname").val() == "") {
-        TestSweetAlert("قم بأدخال اسم المنطقة");
-    } else {
-        var formdata = new FormData;
-        formdata.append("Name", $("#CRname").val());
-        formdata.append("CountryId", $("#RCountryId").val());
-        $.ajax({
-            async: true,
-            type: "POST",
-            dataType: "JSON",
-            url: "/Regions/Create",
-            data: formdata,
-            processData: false,
-            contentType: false,
-            success: function (result) {
-                if (result) {
-                    $.ajax({
-                        url: '/Regions/Refreash',
-                        contentType: 'application/html; charset=utf-8',
-                        type: 'GET',
-                        dataType: 'html',
-                        success: (function (result) {
-                            $('#_RegionPartial').html(result);
-                            var close = document.getElementById('btnCreateColse');
-                            close.click();
-                        })
-                    });
-                } else {
-                    TestSweetAlert("حدث خطأما أثناء عملية الأضافة تاكد من أدخال الحقول بالشكل الصحيح وحاول مرة أخرى");
-                }
-            }
-        });
-    }
-    return false;
-});
-
-//#Delete Region 
-
-var DeleteRegionConfirm = function (_id) {
-    $("#RegionId").val(_id)
-    $("#Modal-RegionDelete").modal('show');
-
-};
-
-$("#btnRegionDelete").click(function () {
-    var RegionId = $("#RegionId").val();
-    $.ajax({
-        type: "Post",
-        url: "/Regions/DeleteConfirmed",
-        data: { id: RegionId },
-        success: function (result) {
-            if (result) {
-                $("#Modal-RegionDelete").modal('hide');
-                $("#RegionId").val(null);
-                $.ajax({
-                    url: '/Regions/Refreash',
-                    contentType: 'application/html; charset=utf-8',
-                    type: 'GET',
-                    dataType: 'html',
-                    success: (function (result) {
-                        $('#_RegionPartial').html(result);
-                    })
-                })
-            } else {
-                TestSweetAlert("حذث خطا ما أثناء عملية الحدف ");
-            }
-        }
-    });
-})
 
 var EditRegionConfirm = function (_id) {
     $("#RegionId").val(_id)
@@ -352,37 +280,140 @@ var EditRegionConfirm = function (_id) {
     });
 };
 
-$("#btnRegionEdit").click(function () {
-    var formdata = new FormData;
-    formdata.append("Id", $("#hiddenId").val());
-    formdata.append("Name", $("#ERname").val());
-    formdata.append("CountryId", $("#ERCountryId").val());
-    $.ajax({
-        async: true,
-        type: "POST",
-        dataType: "JSON",
-        url: "/Regions/Edit",
-        data: formdata,
-        processData: false,
-        contentType: false,
-        success: function (result) {
-            if (result) {
-                $.ajax({
-                    url: '/Regions/Refreash',
-                    contentType: 'application/html; charset=utf-8',
-                    type: 'GET',
-                    dataType: 'html',
-                    success: (function (result) {
-                        $('#_RegionPartial').html(result);
-                        var close = document.getElementById('btnEditColse');
-                        close.click();
-                    })
-                });
-            } else {
-                TestSweetAlert("حدث خطأما أثناء عملية الأضافة تاكد من أدخال الحقول بالشكل الصحيح وحاول مرة أخرى");
-            }
+//#Delete Region 
+
+var DeleteRegionConfirm = function (_id) {
+    $("#RegionId").val(_id)
+    $("#Modal-RegionDelete").modal('show');
+};
+
+$(document).ready(function () {
+
+  $("#btnRegionCreate").click(function () {
+        if ($("#CRname").val() == "") {
+            TestSweetAlert("قم بأدخال اسم المنطقة");
+        } else {
+            var formData = new FormData($("#CreateRegionForm")[0]);
+            $.ajax({
+                async: true,
+                type: "POST",
+                dataType: "JSON",
+                url: "/Regions/Create",
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (result) {
+                    if (result) {
+                        $.ajax({
+                            url: '/Regions/Refreash',
+                            contentType: 'application/html; charset=utf-8',
+                            type: 'GET',
+                            dataType: 'html',
+                            success: (function (result) {
+                                $('#_RegionPartial').html(result);
+                                var close = document.getElementById('btnCreateColse');
+                                close.click();
+                            })
+                        });
+                    } else {
+                        TestSweetAlert("حدث خطأما أثناء عملية الأضافة تاكد من أدخال الحقول بالشكل الصحيح وحاول مرة أخرى");
+                    }
+                }
+            });
         }
+        return false;
     });
+
+  $("#btnRegionEdit").click(function () {
+        var formData = new FormData($("#EditRegionForm")[0]);
+        $.ajax({
+            async: true,
+            type: "POST",
+            dataType: "JSON",
+            url: "/Regions/Edit",
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (result) {
+                if (result) {
+                    $.ajax({
+                        url: '/Regions/Refreash',
+                        contentType: 'application/html; charset=utf-8',
+                        type: 'GET',
+                        dataType: 'html',
+                        success: (function (result) {
+                            $('#_RegionPartial').html(result);
+                            var close = document.getElementById('btnEditColse');
+                            close.click();
+                        })
+                    });
+                } else {
+                    TestSweetAlert("حدث خطأما أثناء عملية التعديل تاكد من أدخال الحقول بالشكل الصحيح وحاول مرة أخرى");
+                }
+            }
+        });
+
+ });
+
+  $("#btnRegionDelete").click(function () { 
+        var RegionId = $("#RegionId").val();
+        $.ajax({
+            type: "Post",
+            url: "/Regions/DeleteConfirmed",
+            data: { id: RegionId },
+            success: function (message) {
+                if (message == "") {
+                    $("#Modal-RegionDelete").modal('hide');
+                    $("#RegionId").val(null);
+                    $.ajax({
+                        url: '/Regions/Refreash',
+                        contentType: 'application/html; charset=utf-8',
+                        type: 'GET',
+                        dataType: 'html',
+                        success: (function (result) {
+                            $('#_RegionPartial').html(result);
+                        })
+                    })
+                } else if (message == "haveRestaurant") {
+                    swal({
+                        // title: "Are you sure?",
+                        text: "هده المنطقة تضم عدد من المطاعم بحدفك لها ستفقد كل بينات المطاعم التابعة لهده المنطقة  والعناصر لهده المطاعم هل تريد بالتأكيد حدفها",
+                        className: 'swal-IW',
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: true,
+                    }).then((result) => {
+                        if (result == true) {
+                            $("#Modal-RegionDelete").modal('hide');
+                            $("#RegionId").val(null);
+                            $.ajax({
+                                type: 'GET',
+                                url: '/Regions/DeleteRegionAndRestaurants',
+                                data: { id: RegionId },
+                                contentType: 'application/html; charset=utf-8',
+                                dataType: 'html',
+                                success: (function (result) {
+                                    $.ajax({
+                                        url: '/Regions/Refreash',
+                                        contentType: 'application/html; charset=utf-8',
+                                        type: 'GET',
+                                        dataType: 'html',
+                                        success: (function (result) {
+                                            $('#_RegionPartial').html(result);
+                                        })
+                                    })
+                                })
+                            })
+                        } else {
+                            $("#Modal-RegionDelete").modal('hide');
+                            $("#RegionId").val(null);
+                        }
+                    });
+                }
+            },
+        });
+     return false;
+ });
 
 });
 
@@ -496,20 +527,13 @@ $(document).ready(function () {
                 data: { upload: fileInput.files[0].name },
                 success: function (Message) {
                     if (Message == "") {
-                        var image = $("#ERpicture").get(0).files;
-                        var formdata = new FormData;
-                        formdata.append("Id", $("#hiddenId").val());
-                        formdata.append("Name", $("#ERname").val());
-                        formdata.append("Description", $("#ERdescription").val());
-                        formdata.append("ImgUrl", $("#hiddenImgUrl").val());  ///
-                        formdata.append("RegionId", $("#ERregion").val())
-                        formdata.append("upload", image[0]);
+                        var formData = new FormData($("#EditRestaurantForm")[0]);
                         $.ajax({
                             async: true,
                             type: "POST",
                             dataType: "JSON",
                             url: "/Restaurants/Edit",
-                            data: formdata,
+                            data: formData,
                             processData: false,
                             contentType: false,
                             success: function (result) {
@@ -537,18 +561,13 @@ $(document).ready(function () {
                 }
             });
         } else {
-            var formdata = new FormData;
-            formdata.append("Id", $("#hiddenId").val());
-            formdata.append("Name", $("#ERname").val());
-            formdata.append("Description", $("#ERdescription").val());
-            formdata.append("ImgUrl", $("#hiddenImgUrl").val());
-            formdata.append("RegionId", $("#ERregion").val())
+            var formData = new FormData($("#EditRestaurantForm")[0]);
             $.ajax({
                 async: true,
                 type: "POST",
                 dataType: "JSON",
                 url: "/Restaurants/Edit",
-                data: formdata,
+                data: formData,
                 processData: false,
                 contentType: false,
                 success: function (result) {
@@ -690,16 +709,13 @@ $(document).ready(function () {
                 data: { upload: fileInput.files[0].name },
                 success: function (Message) {
                     if (Message == "") {
-                        var image = $("#CCatpicture").get(0).files;
-                        var formdata = new FormData;
-                        formdata.append("Name", $("#CCatname").val());
-                        formdata.append("upload", image[0]);
+                        var formData = new FormData($("#createCategoryForm")[0]);
                         $.ajax({
                             async: true,
                             type: "POST",
                             dataType: "JSON",
                             url: "/Categories/Create",
-                            data: formdata,
+                            data: formData,
                             processData: false,
                             contentType: false,
                             success: function (result) {
@@ -740,18 +756,13 @@ $(document).ready(function () {
                 data: { upload: fileInput.files[0].name },
                 success: function (Message) {
                     if (Message == "") {
-                        var image = $("#ECatpicture").get(0).files;
-                        var formdata = new FormData;
-                        formdata.append("Id", $("#hiddenId").val());
-                        formdata.append("Name", $("#ECatname").val());
-                        formdata.append("ImgUrl", $("#hiddenImgUrl").val()); 
-                        formdata.append("upload", image[0]);
+                        var formData = new FormData($("#EditCategoryForm")[0]);
                         $.ajax({
                             async: true,
                             type: "POST",
                             dataType: "JSON",
                             url: "/Categories/Edit",
-                            data: formdata,
+                            data: formData,
                             processData: false,
                             contentType: false,
                             success: function (result) {
@@ -779,16 +790,13 @@ $(document).ready(function () {
                 }
             });
         } else {
-            var formdata = new FormData;
-            formdata.append("Id", $("#hiddenId").val());
-            formdata.append("Name", $("#ECatname").val());
-            formdata.append("ImgUrl", $("#hiddenImgUrl").val());
+            var formData = new FormData($("#EditCategoryForm")[0]);
             $.ajax({
                 async: true,
                 type: "POST",
                 dataType: "JSON",
                 url: "/Categories/Edit",
-                data: formdata,
+                data: formData,
                 processData: false,
                 contentType: false,
                 success: function (result) {
@@ -926,9 +934,10 @@ var DeleteItemConfirm = function (_id) {
 $(document).ready(function () {
 
     $("#btnItemCreate").click(function () {
-
         if ($("#CIname").val() == "") {
+            $("#CIname").focus('LastName', 'Last Name "Smith" is not allowed.');
             TestSweetAlert("قم بأدخال الأسم");
+            this.result.focus('LastName', 'Last Name "Smith" is not allowed.');
         } else if ($("#CIprice").val() == "") {
             TestSweetAlert("قم بأدخال السعر");
         } else if ($("#CItimeOfDone").val() == "") {
@@ -943,20 +952,13 @@ $(document).ready(function () {
                 data: { upload: fileInput.files[0].name },
                 success: function (Message) {
                     if (Message == "") {
-                        var image = $("#CIpicture").get(0).files;
-                        var formdata = new FormData;
-                        formdata.append("Name", $("#CIname").val());
-                        formdata.append("Price", $("#CIprice").val());
-                        formdata.append("TimeOfDone", $("#CItimeOfDone").val());
-                        formdata.append("CategoryId", $("#CIcategory").val());
-                        formdata.append("RestaurantId", $("#CIrestaurant").val());
-                        formdata.append("upload", image[0]);
+                        var formData = new FormData($("#CreateItemForm")[0]);
                         $.ajax({
                             async: true,
                             type: "POST",
                             dataType: "JSON",
                             url: "/Items/Create",
-                            data: formdata,
+                            data: formData,
                             processData: false,
                             contentType: false,
                             success: function (result) {
@@ -1002,22 +1004,13 @@ $(document).ready(function () {
                 data: { upload: fileInput.files[0].name },
                 success: function (Message) {
                     if (Message == "") {
-                        var image = $("#EIpicture").get(0).files;
-                        var formdata = new FormData;
-                        formdata.append("Id", $("#hiddenId").val());
-                        formdata.append("Name", $("#EIname").val());
-                        formdata.append("Price", $("#EIprice").val());
-                        formdata.append("TimeOfDone", $("#EItimeOfDone").val());
-                        formdata.append("ImgUrl", $("#hiddenImgUrl").val());
-                        formdata.append("CategoryId", $("#EIcategory").val());
-                        formdata.append("RestaurantId", $("#EIrestaurant").val());
-                        formdata.append("upload", image[0]);
+                        var formData = new FormData($("#EditItemForm")[0]);
                         $.ajax({
                             async: true,
                             type: "POST",
                             dataType: "JSON",
                             url: "/Items/Edit",
-                            data: formdata,
+                            data: formData,
                             processData: false,
                             contentType: false,
                             success: function (result) {
@@ -1044,20 +1037,13 @@ $(document).ready(function () {
                 }
             });
         } else {
-            var formdata = new FormData;
-            formdata.append("Id", $("#hiddenId").val());
-            formdata.append("Name", $("#EIname").val());
-            formdata.append("Price", $("#EIprice").val());
-            formdata.append("TimeOfDone", $("#EItimeOfDone").val());
-            formdata.append("ImgUrl", $("#hiddenImgUrl").val());
-            formdata.append("CategoryId", $("#EIcategory").val());
-            formdata.append("RestaurantId", $("#EIrestaurant").val());
+            var formData = new FormData($("#EditItemForm")[0]);
             $.ajax({
                 async: true,
                 type: "POST",
                 dataType: "JSON",
                 url: "/Items/Edit",
-                data: formdata,
+                data: formData,
                 processData: false,
                 contentType: false,
                 success: function (result) {
@@ -1109,7 +1095,6 @@ $(document).ready(function () {
         });
     })
 });
-
 
 //#endregion Item-Dashboard
 

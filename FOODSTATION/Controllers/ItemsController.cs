@@ -15,44 +15,35 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FOODSTATION.Controllers
 {
+    [Authorize(Roles = "Admin , RestaurantOwner")]
+
     public class ItemsController : Controller
     {
-        private readonly IFOODSTATIONRepository<Item> itemRepository;
-        private readonly IFOODSTATIONRepository<Restaurant> restaurantRepository;
-        private readonly IFOODSTATIONRepository<Category> categoryRepository;
+        private readonly ApplicationDbContext db;
 
-        public ItemsController(IFOODSTATIONRepository<Item> itemRepository ,
-            IFOODSTATIONRepository<Restaurant> restaurantRepository , IFOODSTATIONRepository<Category> categoryRepository)
+        public ItemsController(ApplicationDbContext _db)
         {
-            this.itemRepository = itemRepository;
-            this.restaurantRepository = restaurantRepository;
-            this.categoryRepository = categoryRepository;
-        }
-
-        public ItemsController()
-        {
-            
+            db = _db;
         }
 
         // GET: Items
-        [Authorize(Roles ="Admin , RestaurantOwner")]
         public ActionResult ItemIndex()
         {
             var userId=User.Identity.GetUserId();
             if (User.IsInRole("RestaurantOwner"))
             {
-                var items = itemRepository.List().Where(x=>x.Restaurant.UserId== userId);   
+                var items = db.Items.ToList().Where(x=>x.Restaurant.UserId== userId);   
                 ViewBag.items = items;
-                ViewBag.CategoryId = new SelectList(categoryRepository.List(), "Id", "Name");
-                ViewBag.RestaurantId = new SelectList(restaurantRepository.List().Where(x => x.UserId == userId), "Id", "Name");
+                ViewBag.CategoryId = new SelectList(db.Categories.ToList(), "Id", "Name");
+                ViewBag.RestaurantId = new SelectList(db.Restaurants.ToList().Where(x => x.UserId == userId), "Id", "Name");
                 return View();
             }
             else
             {
-                var items = itemRepository.List();
+                var items = db.Items.ToList();
                 ViewBag.items = items;
-                ViewBag.CategoryId = new SelectList(categoryRepository.List(), "Id", "Name");
-                ViewBag.RestaurantId = new SelectList(restaurantRepository.List(), "Id", "Name");
+                ViewBag.CategoryId = new SelectList(db.Categories.ToList(), "Id", "Name");
+                ViewBag.RestaurantId = new SelectList(db.Restaurants.ToList(), "Id", "Name");
                 return View();
             }
             
@@ -60,11 +51,22 @@ namespace FOODSTATION.Controllers
 
         public PartialViewResult Refreash()
         {
-            var items = itemRepository.List();
-            ViewBag.items = items;
-            ViewBag.CategoryId = new SelectList(categoryRepository.List(), "Id", "Name");
-            ViewBag.RestaurantId = new SelectList(restaurantRepository.List(), "Id", "Name");
-            return PartialView("_ItemPartial", items);
+            if (User.IsInRole("RestaurantOwner"))
+            {
+                var items = db.Items.ToList().Where(x => x.Restaurant.UserId == User.Identity.GetUserId());
+                ViewBag.items = items;
+                ViewBag.CategoryId = new SelectList(db.Categories.ToList(), "Id", "Name");
+                ViewBag.RestaurantId = new SelectList(db.Restaurants.ToList().Where(x => x.UserId == User.Identity.GetUserId()), "Id", "Name");
+                return PartialView("_ItemPartial", items);
+            }
+            else
+            {
+                var items = db.Items.ToList();
+                ViewBag.items = items;
+                ViewBag.CategoryId = new SelectList(db.Categories.ToList(), "Id", "Name");
+                ViewBag.RestaurantId = new SelectList(db.Restaurants.ToList(), "Id", "Name");
+                return PartialView("_ItemPartial", items);
+            }
         }
 
         public JsonResult IsImageExist(string upload)
@@ -96,7 +98,8 @@ namespace FOODSTATION.Controllers
                 string path = Path.Combine(Server.MapPath("~/Uploads/Items/"), upload.FileName);
                 upload.SaveAs(path);
                 item.ImgUrl = upload.FileName;
-                itemRepository.Add(item);
+                db.Items.Add(item);
+                db.SaveChanges();
                 result = true;    
                 return Json(result, JsonRequestBehavior.AllowGet);
             }
@@ -122,19 +125,20 @@ namespace FOODSTATION.Controllers
                     upload.SaveAs(path);
                     item.ImgUrl = upload.FileName;
                 }
-                itemRepository.Update(item);
+                db.Entry(item).State = EntityState.Modified;
+                db.SaveChanges();
                 return Json(true, JsonRequestBehavior.AllowGet);
             }
 
-            ViewBag.CategoryId = new SelectList(categoryRepository.List(), "Id", "Name", item.CategoryId);
-            ViewBag.RestaurantId = new SelectList(restaurantRepository.List(), "Id", "Name", item.RestaurantId);
+            ViewBag.CategoryId = new SelectList(db.Categories.ToList(), "Id", "Name", item.CategoryId);
+            ViewBag.RestaurantId = new SelectList(db.Restaurants.ToList(), "Id", "Name", item.RestaurantId);
             return Json(false, JsonRequestBehavior.AllowGet);
         }
 
         // GET: Items/Edit/5
         public ActionResult GetItem(int? id)
         {   
-           var item = itemRepository.Find(id);
+           var item = db.Items.Find(id);
             ItemVM itemVM = new ItemVM();
             if (item != null)
             {                  
@@ -156,13 +160,14 @@ namespace FOODSTATION.Controllers
         public JsonResult DeleteConfirmed(int id)
         {
             bool result = false;
-            var item = itemRepository.Find(id);
+            var item = db.Items.Find(id);
             if(item != null)
             {
                 result = true;  
                 string OldPath = Path.Combine(Server.MapPath("~/Uploads/Items/"), item.ImgUrl);
                 System.IO.File.Delete(OldPath);
-                itemRepository.Delete(id);
+                db.Items.Remove(item);
+                db.SaveChanges();
             }
             return Json(result, JsonRequestBehavior.AllowGet);
         }
@@ -171,9 +176,7 @@ namespace FOODSTATION.Controllers
         {
             if (disposing)
             {
-                restaurantRepository.Dispose();
-                itemRepository.Dispose();
-                categoryRepository.Dispose();   
+                db.Dispose();
             }
             base.Dispose(disposing);
         }

@@ -1,4 +1,7 @@
 ﻿@model FOODSTATION.Models.Item
+@{
+    ViewBag.Title = "Item dashboard";
+}
 <div class="searshInput" style="direction:rtl">
     <input type="text" id="myInput" onkeyup="Searsh('itemTable')" placeholder="أدخل أسم للبحث ...">
     <i class="fa-solid fa-magnifying-glass"></i>
@@ -57,7 +60,7 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.RestaurantId, "مقدمة من", htmlAttributes: new { @class = "control-label col-md-4", @style = "float:right" })
                                     <div class="col-md-8" style="float:right">
-                                        @Html.DropDownList("RestaurantId", null, htmlAttributes: new { @class = "input-fild" , @id= "CIrestaurant" })
+                                        @Html.DropDownList("RestaurantId", null, htmlAttributes: new { @class = "input-fild", @id = "CIrestaurant" })
                                         @Html.ValidationMessageFor(model => model.RestaurantId, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
@@ -243,7 +246,7 @@
                 <div class="form-group">
                     <div class="col-md-offset-3 col-md-6">
                         <input id="btnItemDelete" type="button" value="حـذف" class="btn btn-danger modal-BtnCreate" />
-                        <button id="btnDeleteColse" type="button" class="btn modal-BtnClose" data-dismiss="modal" onclick="resetFilds(event)">أغلاق</button>
+                        <button id="btnDeleteColse" type="button" class="btn modal-BtnClose" data-dismiss="modal">أغلاق</button>
                     </div>
                 </div>
             </div>
