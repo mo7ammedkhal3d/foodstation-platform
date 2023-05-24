@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using Microsoft.AspNet.Identity;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -34,13 +35,27 @@ namespace FOODSTATION.Controllers
         }
 
         // GET: Items
+        [Authorize(Roles ="Admin , RestaurantOwner")]
         public ActionResult ItemIndex()
         {
-            var items = itemRepository.List();   
-            ViewBag.items = items;
-            ViewBag.CategoryId = new SelectList(categoryRepository.List(), "Id", "Name");
-            ViewBag.RestaurantId = new SelectList(restaurantRepository.List(), "Id", "Name");
-            return View();
+            var userId=User.Identity.GetUserId();
+            if (User.IsInRole("RestaurantOwner"))
+            {
+                var items = itemRepository.List().Where(x=>x.Restaurant.UserId== userId);   
+                ViewBag.items = items;
+                ViewBag.CategoryId = new SelectList(categoryRepository.List(), "Id", "Name");
+                ViewBag.RestaurantId = new SelectList(restaurantRepository.List().Where(x => x.UserId == userId), "Id", "Name");
+                return View();
+            }
+            else
+            {
+                var items = itemRepository.List();
+                ViewBag.items = items;
+                ViewBag.CategoryId = new SelectList(categoryRepository.List(), "Id", "Name");
+                ViewBag.RestaurantId = new SelectList(restaurantRepository.List(), "Id", "Name");
+                return View();
+            }
+            
         }
 
         public PartialViewResult Refreash()
