@@ -13,36 +13,31 @@ using FOODSTATION.Models.ViewModels;
 
 namespace FOODSTATION.Controllers
 {
+    [Authorize(Roles = "Admin")]
+
     public class RestaurantsController : Controller
     {
-        private readonly IFOODSTATIONRepository<Restaurant> restaurantRepository;
-        private readonly IFOODSTATIONRepository<Item> itemRepository;
-        private readonly IFOODSTATIONRepository<Region> regionRepository;
-        private readonly IFOODSTATIONRepository<DiningType> diningTypeRepository;
+        private readonly ApplicationDbContext db;
 
-        public RestaurantsController(IFOODSTATIONRepository<Restaurant> restaurantRepository , IFOODSTATIONRepository<Item> itemRepository
-            ,IFOODSTATIONRepository<Region> regionRepository , IFOODSTATIONRepository<DiningType> diningTypeRepository)
+        public RestaurantsController(ApplicationDbContext _db)
         {
-            this.restaurantRepository = restaurantRepository;
-            this.itemRepository = itemRepository;
-            this.regionRepository = regionRepository;
-            this.diningTypeRepository = diningTypeRepository;
+            db = _db;
         }
 
 
         public ActionResult RestaurantIndex()
         {
-            ViewBag.restaurants = restaurantRepository.List();
-            ViewBag.RegionId = new SelectList(regionRepository.List(), "Id", "Name");
-            RestaurantDiningTypesVM vm = new RestaurantDiningTypesVM();
-            vm.AvailableDiningTypes = diningTypeRepository.List();  
+            ViewBag.restaurants = db.Restaurants.ToList();
+            ViewBag.RegionId = new SelectList(db.Regions.ToList(), "Id", "Name");
+            ViewBag.UserId = new SelectList(db.Users.ToList(), "Id", "UserName");
+            ViewBag.AvailableDiningTypes = db.DiningTypes.ToList();
 
-            return View(vm);
+            return View();
         }
 
         public PartialViewResult Refreash()
         {
-            var restaurants = restaurantRepository.List();
+            var restaurants = db.Restaurants.ToList();
             ViewBag.restaurants = restaurants;
             return PartialView("_RestaurantPartial", restaurants);
         }
@@ -77,18 +72,15 @@ namespace FOODSTATION.Controllers
                 string path = Path.Combine(Server.MapPath("~/Uploads/Restaurants/"), upload.FileName);
                 upload.SaveAs(path);
                 restaurant.ImgUrl = upload.FileName;
-                ApplicationDbContext db = new ApplicationDbContext();
                 if (diningTypeIds != null)
                 {
                     foreach (var id in diningTypeIds)
                     {
-                        //restaurant.DiningTypes.Add(diningTypeRepository.Find(id));
                         restaurant.DiningTypes.Add(db.DiningTypes.Find(id));
                     }
                 }
                 else restaurant.DiningTypes.Add(db.DiningTypes.Where(x => x.Name == "محلي").FirstOrDefault());
 
-                //restaurantRepository.Add(restaurant);
                 db.Restaurants.Add(restaurant);
                 db.SaveChanges();
 
@@ -103,7 +95,7 @@ namespace FOODSTATION.Controllers
         // GET: Restaurant/Edit/5
         public ActionResult GetRestaurant(int? id)
         {
-            var restaurant = restaurantRepository.Find(id);
+            var restaurant = db.Restaurants.Find(id);
             RestaurantVM restaurantVM = new RestaurantVM();
             if (restaurant != null)
             {
@@ -135,7 +127,8 @@ namespace FOODSTATION.Controllers
                     upload.SaveAs(path);
                     restaurant.ImgUrl = upload.FileName;
                 }
-                restaurantRepository.Update(restaurant);
+                db.Entry(restaurant).State = EntityState.Modified;
+                db.SaveChanges();
                 return Json(true, JsonRequestBehavior.AllowGet);
             }
 
@@ -148,23 +141,24 @@ namespace FOODSTATION.Controllers
         public JsonResult DeleteConfirmed(int id)
         {
             var message = "";
-            var restaurant = restaurantRepository.Find(id);
-            var items = itemRepository.List().Where(x => x.RestaurantId == restaurant.Id);
+            var restaurant = db.Restaurants.Find(id);
+            if (restaurant == null)
+            {
+                message = "لايوجد مطعم بالمعرف المرسل الى السرفر";
+                return Json(message, JsonRequestBehavior.AllowGet);
+            }
+
+            var items = db.Items.ToList().Where(x => x.RestaurantId == restaurant.Id);
             if (items.Count() > 0)
             {
                 message = "haveItem";
                 return Json(message, JsonRequestBehavior.AllowGet);
             }
 
-            if(restaurant == null)
-            {
-                message = "لايوجد مطعم بالمعرف المرسل الى السرفر";
-                return Json(message, JsonRequestBehavior.AllowGet);
-            }
-
             string OldPath = Path.Combine(Server.MapPath("~/Uploads/Restaurants/"), restaurant.ImgUrl);
             System.IO.File.Delete(OldPath);
-            restaurantRepository.Delete(id);
+            db.Restaurants.Remove(restaurant);
+            db.SaveChanges();
 
             return Json(message, JsonRequestBehavior.AllowGet);
         }
@@ -175,19 +169,20 @@ namespace FOODSTATION.Controllers
         //[ValidateAntiForgeryToken]
         public ActionResult DeleteRestaurantandItems(int id)
         {
-            var restaurant = restaurantRepository.Find(id);
-            var items = itemRepository.List().Where(x => x.RestaurantId == restaurant.Id);
+            var restaurant = db.Restaurants.Find(id);
+            var items = db.Items.ToList().Where(x => x.RestaurantId == restaurant.Id);
 
             foreach (var item in items)
             {
                 string itemOldPath = Path.Combine(Server.MapPath("~/Uploads/Items/"), item.ImgUrl);
                 System.IO.File.Delete(itemOldPath);
-                itemRepository.Delete(item.Id);
+                db.Items.Remove(item);
             }
 
             string OldPath = Path.Combine(Server.MapPath("~/Uploads/Restaurants/"), restaurant.ImgUrl);
             System.IO.File.Delete(OldPath);
-            restaurantRepository.Delete(id);
+            db.Restaurants.Remove(restaurant);
+            db.SaveChanges();
 
             return Json(true, JsonRequestBehavior.AllowGet);
         }
@@ -196,8 +191,7 @@ namespace FOODSTATION.Controllers
         {
             if (disposing)
             {
-                restaurantRepository.Dispose();
-                itemRepository.Dispose();
+                db.Dispose();
             }
             base.Dispose(disposing);
         }

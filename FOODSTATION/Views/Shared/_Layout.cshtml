@@ -1,9 +1,8 @@
 ﻿<!DOCTYPE html>
-
 <html>
 <head>
     <meta name="viewport" content="width=device-width,initial scale=1" />
-    <title>FOODSTATION</title>
+    <title>@ViewBag.Title</title>
     <link rel="icon" type="image/x-icon" href="~/images/favicon.ico" />
     <meta name="viewport" content="width=device-width" />
 
@@ -42,7 +41,7 @@
                     </li>
 
                     <li>
-                        <a href="/Categories/CategoryIndex">
+                        <a href="/Items/ItemIndex">
                             أصناف العروض
                             <i class="glyphicon glyphicon-folder-open"></i>
 
@@ -74,25 +73,22 @@
         </div>
     </nav>
     <!-- End Navbar-->
-
     <!-- Landing-->
     <div class="row landing">
         <div class="col-md-6 ladingHalf" data-aos="zoom-in" data-aos-delay="200">
             <img src="~/images/hero-img.png" class="img-fluid landingImg img-thumbnail" />
         </div>
         <div class="col-md-6 text">
-                <h1>FOODSTATION</h1>
-                <h5>اكتشف المطاعم القريبة منك واستمتع بأشهى الأطعمة</h5>
-                <p class="lead">إذا كنت تبحث عن تجربة طعام فريدة وممتعة، فإن تطبيق FOODSTATION هو الخيار الأمثل لك. يساعدك هذا التطبيق على استكشاف المطاعم القريبة من موقعك والدخول إلى قائمة الأطعمة وتصفحها بسهولة. بالإضافة إلى ذلك، يتيح لك التطبيق طلب الوجبات المفضلة لديك من المطاعم المختلفة.</p>
+            <h1>FOODSTATION</h1>
+            <h5>اكتشف المطاعم القريبة منك واستمتع بأشهى الأطعمة</h5>
+            <p class="lead">إذا كنت تبحث عن تجربة طعام فريدة وممتعة، فإن تطبيق FOODSTATION هو الخيار الأمثل لك. يساعدك هذا التطبيق على استكشاف المطاعم القريبة من موقعك والدخول إلى قائمة الأطعمة وتصفحها بسهولة. بالإضافة إلى ذلك، يتيح لك التطبيق طلب الوجبات المفضلة لديك من المطاعم المختلفة.</p>
         </div>
 
     </div>
     <!-- End landing-->
-
     <!--start login and register window-->
     @Html.Partial("_LoginAndRegister")
     <!--End login and register window-->
-
     <!--Main-->
     <main class="mainContiner">
         @RenderBody()
@@ -101,7 +97,6 @@
         </div>
     </main>
     <!--End main-->
-
     <!-- Footer-->
     <footer>
         <div class="row">

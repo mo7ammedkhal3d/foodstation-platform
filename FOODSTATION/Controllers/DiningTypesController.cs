@@ -11,18 +11,23 @@ using FOODSTATION.Models.Repositories;
 
 namespace FOODSTATION.Controllers
 {
+    [Authorize(Roles = "Admin")]
+
     public class DiningTypesController : Controller
     {
-        private readonly IFOODSTATIONRepository<DiningType> diningTypeRepository;
+        private readonly ApplicationDbContext db;
 
-        public DiningTypesController(IFOODSTATIONRepository<DiningType> diningTypeRepository)
+        public DiningTypesController(ApplicationDbContext _db)
         {
-            this.diningTypeRepository = diningTypeRepository;
+            db = _db;
         }
 
         // GET: DiningTypes
         public ActionResult Index()
         {
+            var diningTypes = db.DiningTypes.ToList();
+            ViewBag.DiningTypes = diningTypes;  
+
             return View();
         }
 
@@ -30,7 +35,7 @@ namespace FOODSTATION.Controllers
         {
             if (disposing)
             {
-                diningTypeRepository.Dispose(); 
+                db.Dispose();
             }
             base.Dispose(disposing);
         }

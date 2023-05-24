@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -11,27 +12,26 @@ using FOODSTATION.Models.Repositories;
 
 namespace FOODSTATION.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class CountriesController : Controller
     {
-        private readonly IFOODSTATIONRepository<Country> countryRepository;
-        private readonly IFOODSTATIONRepository<Region> regionRepository;
+        private readonly ApplicationDbContext db;
 
-        public CountriesController(IFOODSTATIONRepository<Country> countryRepository, IFOODSTATIONRepository<Region> regionRepository)
+        public CountriesController(ApplicationDbContext _db)
         {
-            this.countryRepository = countryRepository;
-            this.regionRepository = regionRepository;
+            db = _db;
         }
 
         // GET: Countries
         public ActionResult CountryIndex()
         {
-            ViewBag.Countries = countryRepository.List(); 
+            ViewBag.Countries = db.Countries.ToList(); 
             return View();
         }
 
         public PartialViewResult Refreash()
         {
-            var Countries = countryRepository.List();
+            var Countries = db.Countries.ToList();
             ViewBag.Countries = Countries;
             return PartialView("_CountryPartial", Countries);
         }
@@ -46,7 +46,8 @@ namespace FOODSTATION.Controllers
             var result = false;
             if (ModelState.IsValid)
             {
-                countryRepository.Add(country);
+                db.Countries.Add(country);
+                db.SaveChanges();
                 result = true;
                 return Json(result, JsonRequestBehavior.AllowGet);
             }
@@ -63,7 +64,8 @@ namespace FOODSTATION.Controllers
         {
             if (ModelState.IsValid)
             {
-                countryRepository.Update(country);
+                db.Entry(country).State = EntityState.Modified;
+                db.SaveChanges();
                 return Json(true, JsonRequestBehavior.AllowGet);
             }
 
@@ -76,8 +78,8 @@ namespace FOODSTATION.Controllers
         public JsonResult DeleteConfirmed(int id)
         {
             var message = "";
-            var country = countryRepository.Find(id);
-            var regions = regionRepository.List().Where(x => x.CountryId == country.Id);
+            var country = db.Countries.Find(id);
+            var regions = db.Regions.ToList().Where(x => x.CountryId == country.Id);
             if (regions.Count() > 0)
             {
                 message = "haveItem";
@@ -90,7 +92,8 @@ namespace FOODSTATION.Controllers
                 return Json(message, JsonRequestBehavior.AllowGet);
             }
 
-            countryRepository.Delete(id);
+            db.Countries.Remove(country);
+            db.SaveChanges();
 
             return Json(message, JsonRequestBehavior.AllowGet);
         }
@@ -101,14 +104,37 @@ namespace FOODSTATION.Controllers
         //[ValidateAntiForgeryToken]
         public ActionResult DeleteCountryAndRegions(int id)
         {
-            var country = countryRepository.Find(id);
-            var regions = regionRepository.List().Where(x => x.CountryId == country.Id);
+            var country = db.Countries.Find(id);
+            var regions = db.Regions.ToList().Where(x => x.CountryId == country.Id);
 
-            foreach (var item in regions)
+            foreach (var region in regions)
             {
-                regionRepository.Delete(item.Id);
+                var restaurants = db.Restaurants.ToList().Where(x => x.RegionId == region.Id);
+
+                if (restaurants.Count() > 0)
+                {
+                    foreach (var restaurant in restaurants)
+                    {
+                        var items = db.Items.ToList().Where(x => x.RestaurantId == restaurant.Id);
+
+                        if (items.Count() > 0)
+                        {
+                            foreach (var item in items)
+                            {
+                                string itemOldPath = Path.Combine(Server.MapPath("~/Uploads/Items/"), item.ImgUrl);
+                                System.IO.File.Delete(itemOldPath);
+                                db.Items.Remove(item);
+                            }
+                        }
+                        string restaurantOldPath = Path.Combine(Server.MapPath("~/Uploads/Restaurants/"), restaurant.ImgUrl);
+                        System.IO.File.Delete(restaurantOldPath);
+                        db.Restaurants.Remove(restaurant);
+                    }
+                }
+                db.Regions.Remove(region);
             }
-            countryRepository.Delete(id);
+            db.Countries.Remove(country);
+            db.SaveChanges();
 
             return Json(true, JsonRequestBehavior.AllowGet);
         }
@@ -117,8 +143,7 @@ namespace FOODSTATION.Controllers
         {
             if (disposing)
             {
-                countryRepository.Dispose();
-                regionRepository.Dispose(); 
+                db.Dispose();
             }
             base.Dispose(disposing);
         }
