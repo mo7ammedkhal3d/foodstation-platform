@@ -814,7 +814,32 @@ font-size: 17px;
     }
 }
 
-
-
-
+.form-horizontal .EditProfile {
+    margin-left: 0;
+    margin-right: 15px;
+}
+.EditProfileForm {
+    position: relative;
+    left: -50%;
+    transform: translateX(19%);
+    width: auto;
+}
+.EditProfileButton{
+    position:relative;
+    right:23%;
+}
+@media (max-width:990px) {
+    .EditProfile .control-label {
+        margin-right:55px;
+    }
+    .EditProfileForm {
+        position: relative;
+        left: -50%;
+        transform: translateX(25%);
+    }
+    .EditProfileButton {
+        position: relative;
+        right: 10%;
+    }
+}
 /*#endregion GetRegion*/
