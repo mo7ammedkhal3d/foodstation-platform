@@ -173,6 +173,40 @@ namespace FOODSTATION.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        public ActionResult EditProfile()
+        {
+            var UserId = User.Identity.GetUserId();
+            var user = db.Users.Where(u => u.Id == UserId).FirstOrDefault();
+            var profile = new EditProfileViewModel();
+            profile.UserName = user.UserName;
+            profile.Email = user.Email;
+
+            return View(profile);
+        }
+
+        [HttpPost]
+        public ActionResult EditProfile(EditProfileViewModel profile)
+        {
+            var UserId = User.Identity.GetUserId();
+            var CurrentUser = db.Users.Where(u => u.Id == UserId).FirstOrDefault();
+
+            if (!UserManager.CheckPassword(CurrentUser, profile.CurrentPassword))
+            {
+                ViewBag.Message = "كلمة السر الحالية غير صحيحة";
+            }
+            else
+            {
+                var newPasswordHash = UserManager.PasswordHasher.HashPassword(profile.NewPassword);
+                CurrentUser.Email = profile.Email;
+                CurrentUser.UserName = profile.UserName;
+                CurrentUser.PasswordHash = newPasswordHash;
+                db.Entry(CurrentUser).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+                ViewBag.Message = "تمت عمليةالتحديث بنجاح";
+            }
+            return View(profile);
+        }
+
         //
         // GET: /Account/ConfirmEmail
         [AllowAnonymous]

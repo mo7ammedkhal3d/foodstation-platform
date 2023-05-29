@@ -61,6 +61,10 @@ body {
     text-align: center
 }
 
+.img-size {
+    font-size: 90px;
+}
+
 /*#endregion Global-properties*/
 
 /*#region Home */

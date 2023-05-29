@@ -502,6 +502,7 @@
     <Content Include="Views\Categories\_CategoryPartial.cshtml" />
     <Content Include="Views\Shared\_LoginAndRegister.cshtml" />
     <Content Include="Views\Home\ViewRegions.cshtml" />
+    <Content Include="Views\Account\EditProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
