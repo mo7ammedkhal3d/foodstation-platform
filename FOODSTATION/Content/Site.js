@@ -932,12 +932,9 @@ var DeleteItemConfirm = function (_id) {
 
 
 $(document).ready(function () {
-
     $("#btnItemCreate").click(function () {
         if ($("#CIname").val() == "") {
-            $("#CIname").focus('LastName', 'Last Name "Smith" is not allowed.');
             TestSweetAlert("قم بأدخال الأسم");
-            this.result.focus('LastName', 'Last Name "Smith" is not allowed.');
         } else if ($("#CIprice").val() == "") {
             TestSweetAlert("قم بأدخال السعر");
         } else if ($("#CItimeOfDone").val() == "") {

@@ -73,6 +73,12 @@ body {
     text-align:right
 }
 
+.navbar-user {
+    padding: 10px;
+    padding-bottom: 0px;
+    width: 350px;
+}
+
 @media (min-width: 768px) {
     .navbar-right {
         float: right !important;
@@ -161,10 +167,18 @@ body {
     font-family: myfont;
 }
 
+.navbar-default .navbar-nav > li > a:focus {
+  color: white;
+  background-color: transparent;
+}
+
 .navbar-default .navbar-nav > li > a:hover {
     color:red;
+    background-color: transparent;
     font-family: myfont;
 }
+
+
 
 /*#endregion Navbar*/
 
