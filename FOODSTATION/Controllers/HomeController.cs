@@ -1,10 +1,10 @@
 ﻿using FOODSTATION.Models;
-using FOODSTATION.Models.Repositories;
 using FOODSTATION.Models.ViewModels;
 using Microsoft.Ajax.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNet.Identity;
 using System.Web;
 using System.Web.Mvc;
 
@@ -12,7 +12,7 @@ namespace FOODSTATION.Controllers
 {
     public class HomeController : Controller
     {
-        static List<VirtualBill> products = new List<VirtualBill>();
+       static List<VirtualBill> products = new List<VirtualBill>();
         private readonly ApplicationDbContext db;
 
         public HomeController(ApplicationDbContext _db)
@@ -34,6 +34,7 @@ namespace FOODSTATION.Controllers
 
         public ActionResult GetRegionRestaurants(int? id)
         {
+            products.Clear();
             if(id != null)
             {
                 Session["RegionId"] = id;
@@ -54,11 +55,18 @@ namespace FOODSTATION.Controllers
             return View();
         }
 
-        public ActionResult Contact()
+        public ActionResult AddBillAndItems()
         {
-            ViewBag.Message = "Your contact page.";
+            var NewBill = new Bill { Date = DateTime.Now, UserId = User.Identity.GetUserId() };
+            foreach(var item in products)
+            {              
+                NewBill.Items.Add(db.Items.Find(item.ItemId));
+            }
+   
+            db.Bills.Add(NewBill);
+            db.SaveChanges();
+            return RedirectToAction("Index");
 
-            return View();
            
         }
 

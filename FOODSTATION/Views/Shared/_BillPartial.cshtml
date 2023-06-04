@@ -3,7 +3,7 @@
     decimal Total = 0;
 }
 <div class="container" style="background-color:#f7f2f2">
-    <a href="@Url.Action("GetRestaurantCategories", "Home" ,new { id = ViewBag.Restaurant })" class="btn btn-primary" style="margin-top:10px;font-size:22px"><i class="fa fa-home"></i></a>
+    <a href="@Url.Action("GetRestaurantCategories", "Home" ,new { id = ViewBag.Restaurant })" class="btn btn-primary" style="margin-top:10px;font-size:22px"><i class="fa-solid fa-home"></i></a>
     <h2 style="text-align: center; font-weight: bold; padding: 10px;">الفاتورة</h2>
     <div class="col-md-12">
         <table class="table table-striped">
@@ -56,4 +56,5 @@
         <span>إجمالي الفاتورة: </span>
         <label style="color:black">@Total</label>
     </div>
+    <a href="~/Home/AddBillAndItems" class="btn btn-primary">Ok</a>
 </div>

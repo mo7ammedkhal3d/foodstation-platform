@@ -8,10 +8,17 @@
         @foreach (var item in Model)
         {
             <a href="@Url.Action("GetRestaurantCategories", "Home", new {id=item.Id})">
-                <div class="col-md-2 thumbnail Restaurant" style=" margin-left:25px; margin-bottom:30px; height:350px">
-                    <img src="~/Uploads/Restaurants/@item.ImgUrl" style="height: 200px; width: 100%; border-radius: 20px;" />
-                    <h3> @Html.DisplayFor(modelItem => item.Name)</h3>
-                    <h5> @Html.DisplayFor(modelItem => item.Description)</h5>
+                <div class="col-md-2 thumbnail Restaurant" style=" margin-left:20px; margin-bottom:25px; height:300px">
+                    <img src="~/Uploads/Restaurants/@item.ImgUrl" style="height: 200px; width: 100%; border-radius: 4px;" />
+                    <h4> @Html.DisplayFor(modelItem => item.Name)</h4>
+                    <span>50 reviews</span>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star-half"></i>
+                    <h6> $-$ @Html.DisplayFor(modelItem => item.Description)</h6>
+                        <span class="Find-next">Find next available</span>
                 </div>
             </a>
         }

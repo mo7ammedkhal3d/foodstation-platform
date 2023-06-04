@@ -9,6 +9,10 @@ namespace FOODSTATION.Models
 {
     public class Item
     {
+        public Item()
+        {
+            this.Bills = new HashSet<Bill>();
+        }
         public int Id { get; set; }
 
         [Required]
@@ -38,7 +42,7 @@ namespace FOODSTATION.Models
         public virtual Restaurant Restaurant { get; set; }
 
         public virtual Category Category { get; set; }
-        public virtual ICollection<Request> Requests { get; set; }
+        public virtual ICollection<Bill> Bills { get; set; }
 
     }
 }

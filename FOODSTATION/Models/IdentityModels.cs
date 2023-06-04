@@ -11,6 +11,7 @@ namespace FOODSTATION.Models
     public class ApplicationUser : IdentityUser
     {
         public virtual ICollection<Restaurant> Restaurants { get; set; }
+        public virtual ICollection<Bill> Bills { get; set; }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
@@ -40,9 +41,9 @@ namespace FOODSTATION.Models
         public DbSet<Restaurant> Restaurants { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Item> Items { get; set; }
-        public DbSet<Request> Requests { get; set; }
         public DbSet<Region> Regions { get; set; }
         public DbSet<Country> Countries { get; set; }
+        public DbSet<Bill> Bills { get; set; }
         public DbSet<DiningType> DiningTypes { get; set; }
 
     }
