@@ -224,10 +224,12 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\CountriesController.cs" />
+    <Compile Include="Controllers\UserAuthController.cs" />
     <Compile Include="Controllers\DiningTypesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ItemsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ParticipationsController.cs" />
     <Compile Include="Controllers\RegionsController.cs" />
     <Compile Include="Controllers\RequestsController.cs" />
     <Compile Include="Controllers\RestaurantsController.cs" />
@@ -312,7 +314,6 @@
     <Compile Include="Models\ViewModels\ItemVM.cs" />
     <Compile Include="Models\ViewModels\RegionVm.cs" />
     <Compile Include="Models\ViewModels\RestaurantVM.cs" />
-    <Compile Include="Models\ViewModels\SelectDiningTypeVM.cs" />
     <Compile Include="Models\ViewModels\VirtualBill.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -415,6 +416,7 @@
     <Content Include="Content\bootstrap.min.css.map" />
     <Content Include="Content\font\Fekrah-Regular.otf" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\BootstrapAlerts.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
@@ -430,6 +432,8 @@
     <Content Include="Scripts\jquery\jquery.slim.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\sweetalert\sweetalert.min.js" />
+    <Content Include="Scripts\UserLogin.js" />
+    <Content Include="Scripts\UserRegistration.js" />
     <Content Include="Uploads\Categories\174280.jpg" />
     <Content Include="Uploads\Categories\278143.png" />
     <Content Include="Uploads\Categories\656442.jpg" />
@@ -503,11 +507,17 @@
     <Content Include="Views\Shared\_LoginAndRegister.cshtml" />
     <Content Include="Views\Home\ViewRegions.cshtml" />
     <Content Include="Views\Account\EditProfile.cshtml" />
+    <Content Include="Views\Shared\_UserLoginPartial.cshtml" />
+    <Content Include="Views\Shared\_AuthScriptsPartial.cshtml" />
+    <Content Include="Views\Shared\_ValidationScriptsPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Uploads\Items\" />
+    <Folder Include="Views\Default\" />
     <Folder Include="Views\DiningTypes\" />
+    <Folder Include="Views\Participations\" />
+    <Folder Include="Views\UserAuth\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\font-awesome\webfonts\fa-brands-400.ttf" />
@@ -545,6 +555,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202303272137081_AddDataBaseTables.resx">
       <DependentUpon>202303272137081_AddDataBaseTables.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202303311341119_AddRestaurantNoCol.resx">
       <DependentUpon>202303311341119_AddRestaurantNoCol.cs</DependentUpon>

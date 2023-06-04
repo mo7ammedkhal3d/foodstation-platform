@@ -15,6 +15,14 @@ namespace FOODSTATION.Models.ViewModels
 
         public int RegionId { get; set; }
 
+        public string UserId { get; set; }
+
+        public string UserName { get; set; }
+
+        public int Participation { get; set; }
+
+        public List<int> diningTypeIds { get; set; }
+
         public string Region { get; set; }
     }
 }

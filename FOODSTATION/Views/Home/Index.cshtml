@@ -11,6 +11,11 @@
     </div>
 </div>
 <!-- End about  -->
+
+<div class="modal fade" id="UserLoginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    @Html.Partial("_UserLoginPartial")
+</div>
+
 <!-- start stats  -->
 <div class="stats">
     <div class="container">
@@ -169,3 +174,12 @@
     </div>
 </div>
 <!-- End pricing  -->
+
+@section Scripts
+{
+    @{
+        Html.RenderPartial("_AuthScriptsPartial");
+        Html.RenderPartial("_ValidationScriptsPartial");
+
+    }
+}

@@ -47,10 +47,30 @@ namespace FOODSTATION.Models
         public string Email { get; set; }
     }
 
+    #region Orgin 
+
+    //public class LoginViewModel
+    //{
+    //    [Required]
+    //    [Display(Name = "اسم المستخدم")]
+    //    public string UserName { get; set; }
+
+    //    [Required]
+    //    [DataType(DataType.Password)]
+    //    [Display(Name = "كلمة المرور")]
+    //    public string Password { get; set; }
+
+    //    [Display(Name = "Remember me?")]
+    //    public bool RememberMe { get; set; }
+    //}
+
+    #endregion
+
     public class LoginViewModel
     {
         [Required]
         [Display(Name = "اسم المستخدم")]
+        [StringLength(100,MinimumLength = 3)]
         public string UserName { get; set; }
 
         [Required]
@@ -60,6 +80,8 @@ namespace FOODSTATION.Models
 
         [Display(Name = "Remember me?")]
         public bool RememberMe { get; set; }
+
+        public string LoginInValid { get; set; }
     }
 
     public class RegisterViewModel

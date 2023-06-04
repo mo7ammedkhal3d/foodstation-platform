@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNet.Identity
+<!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport" content="width=device-width,initial scale=1" />
@@ -8,8 +9,8 @@
 
 
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-    <link href="~/Content/font-awesome/css/fontawesome.min.css" rel="stylesheet" />
     <link href="~/Content/font-awesome/css/all.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome/css/fontawesome.min.css" rel="stylesheet" />
     <link href="~/Content/layoutStyle.css" rel="stylesheet" />
     <link href="~/Content/sidebar.css" rel="stylesheet" />
     <link href="~/Content/styleLogin.css" rel="stylesheet" />
@@ -28,7 +29,14 @@
                     <span class="icon-bar"></span>
                 </button>
                 <div href="#" class="navbar-brand">
-                    <span class="btnLogin-popup btn btn-default logoSize" data-toggle="modal" data-target="#Modal-Login">Login</span>
+                    @if (Request.IsAuthenticated)
+                    {
+                        <a class="btn btn-default btnLogOut" href="javascript:document.getElementById('logoff').submit()"><i class="fa-solid fa-right-from-bracket"></i></a>
+                    }
+                    else
+                    {
+                        <span class="btnLogin-popup btn btn-default btnLoginshow" data-toggle="modal" data-target="#UserLoginModal">Login</span>
+                    }
                 </div>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
@@ -87,7 +95,9 @@
     </div>
     <!-- End landing-->
     <!--start login and register window-->
-    @Html.Partial("_LoginAndRegister")
+    <div class="modal fade Log">
+        @Html.Partial("_LoginAndRegister")
+    </div>
     <!--End login and register window-->
     <!--Main-->
     <main class="mainContiner">
@@ -155,12 +165,13 @@
 
     <script src="~/Scripts/jquery/jquery.min.js"></script>
     <script src="~/Scripts/jquery/jquery.js"></script>
-
     <script src="~/Scripts/bootstrap.min.js"></script>
     <script src="~/Scripts/sweetalert/sweetalert.min.js"></script>
     <script src="~/Content/font-awesome/js/fontawesome.min.js"></script>
     <script src="~/Content/Site.js"></script>
 
+    @*@Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")*@
     @RenderSection("scripts", required: false)
 </body>
 </html>

@@ -20,6 +20,7 @@
 body {
     font-family: myfont2;
     background-color: #fff;
+    padding-right: 0px !important
 }
 
 .Action-Icon {
@@ -63,6 +64,10 @@ body {
 
 .img-size {
     font-size: 90px;
+}
+
+.modal-open {
+    overflow-y: auto;
 }
 
 /*#endregion Global-properties*/
@@ -598,24 +603,80 @@ font-size: 17px;
 .Restaurants .modal-body {
     position: relative;
     padding: 15px;
-    height: 365px;
+    height: auto;
 }
 
 .Restaurants .modalContent {
-    height: 545px;
-    width: 650px;
+    height: auto;
+    width: auto;
+    border-radius: 10px 10px;
     background-color: #FFF;
 }
 
-.RestaurantCheckbox li {
+.RestaurantCheckbox ul {
+    list-style: none;
     direction: rtl;
     float: right;
-    font-size: 15px;
+    margin-top: 8px;
 }
 
-.RestaurantCheckbox li input{
-    margin-left:10px
+.RestaurantCheckbox li input {
+    margin-left: 10px;
+    cursor: pointer;
 }
+
+@media (min-width: 990px) {
+
+    .Restaurants .modal-dialog {
+        width: 650px;
+        margin: 18px auto;
+    }
+}
+
+@media (max-width: 990px) {
+
+    .Restaurants .modal-dialog {
+        width: 500px;
+        margin: 18px auto;
+    }
+    .Restaurants label{
+        width:140px;
+        text-align:right;
+    }
+    .Restaurants .form-group .modal-Img {
+        margin-left: 110px;
+    }
+    .Restaurants .form-group .modal-Btn {
+        margin-left: 190px;
+    }
+
+    .form-horizontal .form-group {
+         margin-right: 0px; 
+         margin-left: 0px; 
+    }
+
+}
+
+@media (max-width: 590px) {
+
+    .Restaurants .modal-dialog {
+        width: 420px;
+        margin: 18px auto;
+    }
+    .Restaurants .form-group .modal-Img {
+        margin-left: 31px;
+        width: 225px;
+        height: 225px;
+    }
+    .Restaurants .form-group .modal-Btn {
+        position: absolute;
+        bottom: 135px;
+        right: 25px;
+    }
+}
+
+
+
 
 /*#endregion Restaurant-Index*/
 
@@ -763,11 +824,30 @@ font-size: 17px;
     margin-top:20px
 }
 
-    .regionsSelect a:hover .regionContiner {
-        background: var(--background-color);
-        border-radius: 10px 30px;
-        
-    }
+.regionsSelect a .regionContiner {
+    transition:background-color 0.5s ease-in-out;
+    animation-duration:1s;
+    animation-name:rotate;
+}
+
+@keyframes rotate{
+    from{transform:rotate(0deg);}
+    to{transform:rotate(360deg);}
+}
+
+
+.regionsSelect a:hover .regionContiner {
+    background-color:#2d0b00;
+    border-radius: 10px 30px;
+    transform-origin:center center;
+    animation-name:scale-up
+}
+
+@keyframes scale-up {
+    from {transform: scale(1);}
+
+    to {transform: scale(1.1);}
+}
 
 .regionsSelect a:hover .regionName,.regionDetails {
     color:white
