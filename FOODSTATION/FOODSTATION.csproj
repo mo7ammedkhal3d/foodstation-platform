@@ -229,7 +229,6 @@
     <Compile Include="Controllers\ItemsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RegionsController.cs" />
-    <Compile Include="Controllers\RequestsController.cs" />
     <Compile Include="Controllers\RestaurantsController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -287,8 +286,17 @@
     <Compile Include="Migrations\202305231807358_AddrelationRestaurantUser.designer.cs">
       <DependentUpon>202305231807358_AddrelationRestaurantUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202306041850005_AddBillTableAndItems.cs" />
+    <Compile Include="Migrations\202306041850005_AddBillTableAndItems.designer.cs">
+      <DependentUpon>202306041850005_AddBillTableAndItems.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202306041854333_AlterTableBill.cs" />
+    <Compile Include="Migrations\202306041854333_AlterTableBill.designer.cs">
+      <DependentUpon>202306041854333_AlterTableBill.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Bill.cs" />
     <Compile Include="Models\Country.cs" />
     <Compile Include="Models\DiningType.cs" />
     <Compile Include="Models\Feature.cs" />
@@ -298,15 +306,6 @@
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Participation.cs" />
     <Compile Include="Models\Region.cs" />
-    <Compile Include="Models\Repositories\CategoryRepository.cs" />
-    <Compile Include="Models\Repositories\CountryRepository.cs" />
-    <Compile Include="Models\Repositories\DiningTypeRepository.cs" />
-    <Compile Include="Models\Repositories\ICloudRestaurantRepository.cs" />
-    <Compile Include="Models\Repositories\ItemRepository.cs" />
-    <Compile Include="Models\Repositories\RegionRepository.cs" />
-    <Compile Include="Models\Repositories\RequestRepository.cs" />
-    <Compile Include="Models\Repositories\RestaurantRepository.cs" />
-    <Compile Include="Models\Request.cs" />
     <Compile Include="Models\Restaurant.cs" />
     <Compile Include="Models\ViewModels\CategoryVM.cs" />
     <Compile Include="Models\ViewModels\ItemVM.cs" />
@@ -440,12 +439,14 @@
     <Content Include="Uploads\Categories\Night date-pana.png" />
     <Content Include="Uploads\Categories\Pizza maker-amico.png" />
     <Content Include="Uploads\Categories\Shawarma-pana.png" />
-    <Content Include="Uploads\Restaurants\Res6.jpg" />
-    <Content Include="Uploads\Restaurants\Res5.png" />
-    <Content Include="Uploads\Restaurants\Res1.jpg" />
-    <Content Include="Uploads\Restaurants\Res2.jpg" />
-    <Content Include="Uploads\Restaurants\Res3.jpg" />
-    <Content Include="Uploads\Restaurants\Res4.jpg" />
+    <Content Include="Uploads\Restaurants\r1.jpg" />
+    <Content Include="Uploads\Restaurants\r2.jpg" />
+    <Content Include="Uploads\Restaurants\r3.jpg" />
+    <Content Include="Uploads\Restaurants\r4.jpg" />
+    <Content Include="Uploads\Restaurants\r5.jpg" />
+    <Content Include="Uploads\Restaurants\r6.jpg" />
+    <Content Include="Uploads\Restaurants\ramen.jpg" />
+    <Content Include="Uploads\Restaurants\steak.jpg" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -563,6 +564,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202305231807358_AddrelationRestaurantUser.resx">
       <DependentUpon>202305231807358_AddrelationRestaurantUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306041850005_AddBillTableAndItems.resx">
+      <DependentUpon>202306041850005_AddBillTableAndItems.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306041854333_AlterTableBill.resx">
+      <DependentUpon>202306041854333_AlterTableBill.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

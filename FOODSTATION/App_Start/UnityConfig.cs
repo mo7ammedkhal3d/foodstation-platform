@@ -1,4 +1,3 @@
-using FOODSTATION.Models.Repositories;
 using FOODSTATION.Models;
 using System.Web.Mvc;
 using System.Data.Entity;
@@ -16,13 +15,7 @@ namespace FOODSTATION
         {
 			var container = new UnityContainer();
 
-            container.RegisterType<IFOODSTATIONRepository<Country>, CountryRepository>();
-            container.RegisterType<IFOODSTATIONRepository<Region>, RegionRepository>();
-            container.RegisterType<IFOODSTATIONRepository<DiningType>, DiningTypeRepository>();
-            container.RegisterType<IFOODSTATIONRepository<Restaurant>, RestaurantRepository>();
-            container.RegisterType<IFOODSTATIONRepository<Category>, CategoryRepository>();
-            container.RegisterType<IFOODSTATIONRepository<Item>, ItemRepository>();
-            container.RegisterType<IFOODSTATIONRepository<Request>, RequestRepository>();
+
             container.RegisterType<AccountController>(new InjectionConstructor());
             container.RegisterType<ManageController>(new InjectionConstructor());
             container.RegisterType<DbContext, ApplicationDbContext>(new HierarchicalLifetimeManager());

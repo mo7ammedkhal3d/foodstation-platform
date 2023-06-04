@@ -355,29 +355,49 @@ body {
     max-width: 305px;
     min-height: 346px;
     min-width: 260px;
-    border-radius: 20px;
-    border-color: teal;
-    background-color: darkslategray;
-    color: burlywood;
-    text-align: center;
+    box-sizing:border-box;
+    border:1px solid #d8d9db;
+    border-radius: 4px;
+    transition:all .3s;
     font-family: myfont2;
-    padding: 0px;
+    text-align:end;
 }
-
+.Restaurant h4,h6{
+    color:black;
+}
 .Restaurant:hover {
-    background-color: teal;
-    transform: translateX(10px);
+    background-color:  rgb(25 10 27 /70%);
     transform: translateY(10px);
-    border-radius: 10px;
+    transform: translateX(-15px);
+    border-radius: 6px;
+    border:1px solid white;
+    color:white;
 }
-
-
+.fa-star{
+    color:orangered;
+}
+.fa-star-half {
+    color: orangered;
+}
+.Find-next {
+    border: 1px solid orangered;
+    color: orangered;
+    position: relative;
+    top: 10px;
+    border-radius: 8px;
+    padding-right: 3px;
+    padding-left: 3px;
+}
+.Find-next:hover{
+    background:white;
+    color:black;
+    text-decoration:none;
+}
 /*#endregion*/
-
 /*#region GetRestaurantCategories*/
 .DivRest {
-border-radius: 10px;
-margin-top: 50px;
+    border-radius: 10px;
+    margin-top: 50px;
 }
 
 .ItemsDisplay {
@@ -818,28 +838,31 @@ font-size: 17px;
     margin-left: 0;
     margin-right: 15px;
 }
-.EditProfileForm {
-    position: relative;
-    left: -50%;
-    transform: translateX(19%);
-    width: auto;
+.EditProfile {
+    display: grid;
+    justify-content: center;
 }
-.EditProfileButton{
-    position:relative;
-    right:23%;
+.EditProfile  .input-fild {
+    display:inline;
 }
-@media (max-width:990px) {
-    .EditProfile .control-label {
-        margin-right:55px;
-    }
-    .EditProfileForm {
-        position: relative;
-        left: -50%;
-        transform: translateX(25%);
-    }
-    .EditProfileButton {
-        position: relative;
-        right: 10%;
-    }
+.EditProfile .control-label {
+    width:150px;
 }
+.DrowsRegain {
+    background-color: var(--transparent-color);
+    padding: 7px;
+    color: white;
+    border: 1px solid;
+    border-radius: 38px;
+    margin: 2px;
+    width:126px;
+    transition:all .3s;
+}
+    .DrowsRegain:hover {
+        transform: translateY(5px);
+        text-decoration: none;
+        color: antiquewhite;
+        background-color: rgb(15 116 143 /50%)
+    }
+
 /*#endregion GetRegion*/

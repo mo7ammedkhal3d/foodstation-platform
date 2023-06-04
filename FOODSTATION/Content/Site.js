@@ -97,7 +97,15 @@ var decreasQuantity = function (_id) {
         url: "/Home/decreasQuantity",
         data: { id: _id },
         success: function (result) {
-            document.getElementById("BasketId").click();
+            $.ajax({
+                url: "/Home/Refreash",
+                contentType: 'application/html; charset=utf-8',
+                type: 'GET',
+                dataType: 'html',
+                success: (function (result) {
+                    $('#_BillPartial').html(result);
+                })
+            });
             return false;
         }
     });
