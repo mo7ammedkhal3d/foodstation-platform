@@ -1,5 +1,4 @@
-﻿
-// Home-Page
+﻿ //https://www.youtube.com/watch?v=pWotdyUYQxw
 
 var gitbillConfirm = function () {
     $.ajax({
@@ -56,6 +55,70 @@ function Searsh(tableName) {
 }
 
 //#endregion Searsh Function
+
+//#region Login
+
+$(function () {
+
+    var userLoginButton = $("#UserLoginModal button[name='login']").click(onUserLoginClick);
+
+    function onUserLoginClick() {
+
+        var url = "/Account/Login";
+
+        var antiForgeryToken = $("#UserLoginModal input[name='__RequestVerificationToken']").val();
+
+        var userName = $("#UserLoginModal input[name = 'UserName']").val();
+        var password = $("#UserLoginModal input[name = 'Password']").val();
+        var rememberMe = $("#UserLoginModal input[name = 'RememberMe']").prop('checked');
+
+        var userInput = {
+            __RequestVerificationToken: antiForgeryToken,
+            UserName: userName,
+            Password: password,
+            RememberMe: rememberMe
+        };
+
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: userInput,
+            success: function (data) {
+
+                var parsed = $.parseHTML(data);
+
+                var hasErrors = $(parsed).find("input[name='LoginInValid']").val() == "true";
+
+                if (hasErrors == true) {
+                    $("#UserLoginModal").html(data);
+
+                    userLoginButton = $("#UserLoginModal button[name='login']").click(onUserLoginClick);
+
+                    var form = $("#UserLoginForm");
+
+                    $(form).removeData("validator");
+                    $(form).removeData("unobtrusiveValidation");
+                    $.validator.unobtrusive.parse(form);
+
+                }
+                else {
+                    location.href = '/Home/Index';
+
+                }
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                var errorText = "Status: " + xhr.status + " - " + xhr.statusText;
+
+                PresentClosableBootstrapAlert("#alert_placeholder_login", "danger", "Error!", errorText);
+
+                console.error(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+            }
+        });
+    }
+});
+
+//#endregion Login
+
 
 //#region _BillPartial
 
@@ -431,8 +494,11 @@ $(document).ready(function () {
 
 // Edit Action
 
+
 var EditRestaurantConfirm = function (_id) {
     $("#RestaurantId").val(_id)
+    const form = document.getElementById('EditRestaurantForm');
+    form.reset();
     $.ajax({
         type: "Post",
         url: "/Restaurants/GetRestaurant",
@@ -442,12 +508,22 @@ var EditRestaurantConfirm = function (_id) {
             $("#ERname").val(restaurant.Name)
             $("#ERdescription").val(restaurant.Description)
             $("#ERregion").val(restaurant.RegionId)
+            $("#ERowner").val(restaurant.UserId)
+            $("#ERparticipation").val(restaurant.Participation)
+            for (var i = 0; i < restaurant.diningTypeIds.length; i++) {
+                // find the corresponding checkbox with the matching value
+                var checkbox = $('input.diningTypescheckbox[value="' + restaurant.diningTypeIds[i] + '"]');
+                // set the 'checked' property of the checkbox to 'true'
+                checkbox.prop('checked', true);
+            }4
             document.getElementById('ERimgUrl').src = "/Uploads/Restaurants/" + restaurant.ImgUrl;
             $("#hiddenId").val(_id)
             $("#hiddenImgUrl").val(restaurant.ImgUrl)
+
         }
     });
 };
+
 
 // Delete Action
 

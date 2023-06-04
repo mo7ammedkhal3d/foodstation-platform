@@ -29,6 +29,7 @@ namespace FOODSTATION.Controllers
             ViewBag.restaurants = db.Restaurants.ToList();
             ViewBag.RegionId = new SelectList(db.Regions.ToList(), "Id", "Name");
             ViewBag.UserId = new SelectList(db.Users.ToList(), "Id", "UserName");
+            ViewBag.ParticipationTypes = new SelectList(db.Participations.ToList(), "Id", "Name");
             ViewBag.AvailableDiningTypes = db.DiningTypes.ToList();
 
             return View();
@@ -63,7 +64,7 @@ namespace FOODSTATION.Controllers
         //// more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         ////[ValidateAntiForgeryToken] 
-        public JsonResult Create(Restaurant restaurant, HttpPostedFileBase upload, int[] diningTypeIds)
+        public JsonResult Create(Restaurant restaurant, HttpPostedFileBase upload, int[] diningTypeIds,int ParticipationTypes)
         {
             var result = false;
             if (ModelState.IsValid)
@@ -71,6 +72,7 @@ namespace FOODSTATION.Controllers
                 string path = Path.Combine(Server.MapPath("~/Uploads/Restaurants/"), upload.FileName);
                 upload.SaveAs(path);
                 restaurant.ImgUrl = upload.FileName;
+                restaurant.Participations.Add(db.Participations.Find(ParticipationTypes));
                 if (diningTypeIds != null)
                 {
                     foreach (var id in diningTypeIds)
@@ -98,10 +100,22 @@ namespace FOODSTATION.Controllers
             RestaurantVM restaurantVM = new RestaurantVM();
             if (restaurant != null)
             {
+                restaurantVM.diningTypeIds = new List<int>(); 
                 restaurantVM.Name = restaurant.Name;
                 restaurantVM.Description = restaurant.Description;
                 restaurantVM.Region = restaurant.Region.Name;
-                restaurantVM.RegionId = restaurant.RegionId;    
+                restaurantVM.RegionId = restaurant.RegionId;
+                restaurantVM.UserId = restaurant.UserId;
+                restaurantVM.UserName = restaurant.User.UserName; 
+                if(restaurant.Participations.Count() > 0)
+                {
+                    restaurantVM.Participation = restaurant.Participations.Last().Id;
+                }
+                foreach (var item in restaurant.DiningTypes)
+                {
+                    restaurantVM.diningTypeIds.Add(item.Id);
+                }
+                ViewBag.ids = restaurantVM.diningTypeIds;
                 restaurantVM.ImgUrl = restaurant.ImgUrl;
             }
             return Json(restaurantVM, JsonRequestBehavior.AllowGet);

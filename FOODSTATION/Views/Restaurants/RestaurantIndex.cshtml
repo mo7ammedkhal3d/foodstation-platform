@@ -30,48 +30,52 @@
                                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-4", @style = "float:right" })
-                                    <div class="col-md-8" style="float:right">
-                                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "input-fild", @id = "CRname" } })
+                                    <div style="float:right">
+                                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "col-md-8 input-fild", @id = "CRname" } })
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-4", @style = "float:right" })
-                                    <div class="col-md-8" style="float:right">
-                                        @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "input-fild", @id = "CRdescription" } })
+                                    <div style="float:right">
+                                        @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "col-md-8 input-fild", @id = "CRdescription" } })
                                         @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.RegionId, "المنطقة", htmlAttributes: new { @class = "control-label col-md-4", @style = "float:right" })
-                                    <div class="col-md-8" style="float:right">
-                                        @Html.DropDownList("RegionId", null, htmlAttributes: new { @class = "input-fild", @id = "CRregion" })
+                                    <div style="float:right">
+                                        @Html.DropDownList("RegionId", null, htmlAttributes: new { @class = "col-md-8 input-fild", @id = "CRregion" })
                                         @Html.ValidationMessageFor(model => model.RegionId, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    @Html.LabelFor(model => model.RegionId, "مالك المطعم", htmlAttributes: new { @class = "control-label col-md-4", @style = "float:right" })
-                                    <div class="col-md-8" style="float:right">
-                                        @Html.DropDownList("UserId", null, htmlAttributes: new { @class = "input-fild", @id = "CRowner" })
+                                    @Html.LabelFor(model => model.UserId, "مالك المطعم", htmlAttributes: new { @class = "control-label col-md-4", @style = "float:right" })
+                                    <div style="float:right">
+                                        @Html.DropDownList("UserId", null, htmlAttributes: new { @class = "col-md-8 input-fild", @id = "CRowner" })
+                                        @Html.ValidationMessageFor(model => model.UserId, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Participations, "نوع الأشتراك", htmlAttributes: new { @class = "control-label col-md-4", @style = "float:right" })
+                                    <div  style="float:right">
+                                        @Html.DropDownList("ParticipationTypes", null, htmlAttributes: new { @class = "col-md-8 input-fild", @id = "CRowner" })
                                         @Html.ValidationMessageFor(model => model.RegionId, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
                                 <div class="form-group RestaurantCheckbox">
-                                    <label class="control-label col-md-5" style="float: right">نوع الأكل المقدم </label>
-                                    <ul class="col-md-7" style="list-style:none">
+                                    @Html.LabelFor(model => model.DiningTypes, "نوع الأكل المقدم", htmlAttributes: new { @class = "control-label col-md-5", @style = "float:right" })                
+                                    <ul class="col-md-7">
                                         @foreach (var Item in ViewBag.AvailableDiningTypes)
-                                        {
-                                            @*@Html.CheckBoxFor(diningType.Select)
-                                                @Html.CheckBoxFor(Item.IsSelected)*@
+                                         {    
                                             <li><input type="checkbox" name="diningTypeIds" value="@Item.Id" />@Item.Name</li>
-
-                                        }
+                                         }
                                     </ul>
                                 </div>
                             </div>
 
-                            <div class="col-md-5" style="float:right">
+                            <div class="col-md-5">
                                 <div class="form-group">
-                                    <img id="CRimgUrl" class="modal-Img" alt="أضف صورة">
+                                    <img id="CRimgUrl" class="img-thumbnail modal-Img" alt="أضف صورة">
                                     <label for="CRpicture" class="btn btn-primary modal-Btn">أضافة صورة</label>
                                     <input id="CRpicture" class="modal-filein" type="file" name="upload" onchange="loadFile('CRimgUrl',event)" />
                                 </div>
@@ -132,9 +136,32 @@
                                         @Html.ValidationMessageFor(model => model.RegionId, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.UserId, "مالك المطعم", htmlAttributes: new { @class = "control-label col-md-4", @style = "float:right" })
+                                    <div class="col-md-8" style="float:right">
+                                        @Html.DropDownList("UserId", null, htmlAttributes: new { @class = "input-fild", @id = "ERowner" })
+                                        @Html.ValidationMessageFor(model => model.UserId, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Participations, "نوع الأشتراك", htmlAttributes: new { @class = "control-label col-md-4", @style = "float:right" })
+                                    <div class="col-md-8" style="float:right">
+                                        @Html.DropDownList("ParticipationTypes", null, htmlAttributes: new { @class = "input-fild", @id = "ERparticipation" })
+                                        @Html.ValidationMessageFor(model => model.RegionId, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group RestaurantCheckbox">
+                                    @Html.LabelFor(model => model.DiningTypes, "نوع الأكل المقدم", htmlAttributes: new { @class = "control-label col-md-4", @style = "float:right" })
+                                    <ul class="col-md-8">
+                                        @foreach (var Item in ViewBag.AvailableDiningTypes)
+                                        {
+                                           <li><input type="checkbox" name="diningTypeIds" class="diningTypescheckbox" value="@Item.Id" />@Item.Name</li>
+                                        }
+                                    </ul>   
+                                </div>
                             </div>
 
-                            <div class="col-md-5" style="float:right">
+                            <div class="col-md-5">
                                 <div class="form-group">
                                     <img id="ERimgUrl" class="modal-Img" alt="أضف صورة">
                                     <label for="ERpicture" class="btn btn-primary modal-Btn">تغيير الصورة</label>
@@ -199,7 +226,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-5" style="float:right">
+                            <div class="col-md-5">
                                 <div class="form-group">
                                     <img id="DRimgUrl" class="modal-Img">
                                 </div>
