@@ -18,6 +18,7 @@ namespace FOODSTATION.Controllers
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
         private ApplicationDbContext db;
+
         public AccountController()
         {
             db = new ApplicationDbContext();
@@ -104,7 +105,6 @@ namespace FOODSTATION.Controllers
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
             model.LoginInValid = "true";
-
             if (ModelState.IsValid)
             {
                 //return View("Index", "Home");
@@ -130,7 +130,8 @@ namespace FOODSTATION.Controllers
                         ModelState.AddModelError("", "عملية تسجيل دخول غير صالحة");
                         return PartialView("_UserLoginPartial", model);
                 }
-            }
+            } 
+             
             return PartialView("_UserLoginPartial", model);
         }
 

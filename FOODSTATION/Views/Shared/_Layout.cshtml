@@ -19,6 +19,16 @@
 </head>
 <body>
 
+    <!-- Preloader -->
+    <div class="spinner-wrapper">
+        <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+    </div>
+    <!-- end of preloader -->
+
     <!-- Navbar-->
     <nav class="navbar navbar-default navbar-fixed-top">
         <div>
@@ -171,7 +181,7 @@
     <script src="~/Content/Site.js"></script>
 
     @*@Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")*@
+        @Scripts.Render("~/bundles/bootstrap")*@
     @RenderSection("scripts", required: false)
 </body>
 </html>

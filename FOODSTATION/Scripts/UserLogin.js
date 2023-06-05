@@ -1,10 +1,16 @@
 ﻿$(function () {
 
-    var userLoginButton = $("#UserLoginModal button[name='login']").click(onUserLoginClick);
+    //var userLoginButton = $("#UserLoginModal button[name='login']").click(onUserLoginClick);
 
-    function onUserLoginClick() {
+    var form = document.getElementById("UserLoginForm");
+
+    form.addEventListener('submit', onUserLoginClick);
+
+    function onUserLoginClick(event) {
+        event.preventDefault();
 
         var url = "Account/Login";
+
 
         var antiForgeryToken = $("#UserLoginModal input[name='__RequestVerificationToken']").val();
 
@@ -36,9 +42,9 @@
 
                     var form = $("#UserLoginForm");
 
-                    //$(form).removeData("validator");
-                    //$(form).removeData("unobtrusiveValidation");
-                    //$.validator.unobtrusive.parse(form);
+                    $(form).removeData("validator");
+                    $(form).removeData("unobtrusiveValidation");
+                    $.validator.unobtrusive.parse(form);
                     
                 }
                 else {
@@ -55,4 +61,4 @@
             }
         });
     }
-});
+})
