@@ -1229,8 +1229,6 @@ $(document).ready(function () {
 
 //#endregion Item-Dashboard
 
-
-
 //#region GetRestaurants
 var GetRestaurants = function (event) {
     $.ajax({

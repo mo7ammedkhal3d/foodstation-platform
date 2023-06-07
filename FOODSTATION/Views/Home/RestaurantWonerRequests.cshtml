@@ -1,0 +1,65 @@
+﻿@model IEnumerable<FOODSTATION.Models.Bill>
+@using Microsoft.AspNet.Identity
+
+<div>
+    <h2 style="text-align: center; color: #a94442; font-family: 'myfont3'; font-size: xx-large; ">قائمة الطلبات</h2>
+</div>
+<table class="table" id="itemTable" dir="rtl">
+    <tr class="TableRow">
+
+        <th>
+            أسم الطلب
+        </th>
+        <th>
+            السعر
+        </th>
+        <th>
+            تاريخ الطلب
+        </th>
+        <th>
+            أسم المطعم
+        </th>
+
+        <th>
+            الأجراء
+        </th>
+    </tr>
+
+    @foreach (var bill in Model)
+    {
+        foreach(var item in bill.Items)
+        {
+            if(item.Restaurant.UserId == User.Identity.GetUserId())
+            {
+                <tr>
+                    <td>
+                        @item.Name
+                    </td>
+                    <td>
+                        @item.Price
+                    </td>
+                    <td>
+                        @item.Bills.First().Date
+                    </td>
+                    <td>
+                        @item.Restaurant.Name
+                    </td>
+
+                    <td>
+                        <button class="ExceptableRequest">قبول الطلب ؟</button>
+                    </td>
+                </tr>
+            }
+
+        }
+        
+    }
+
+</table>
+<i class="fa-regular fa-trash-undo"></i>
+<script>
+    const Exceptable = document.querySelector(".ExceptableRequest");
+    Exceptable.addEventListener('click', () => {
+        Exceptable.classList.add('active');
+    });
+</script>
