@@ -15,6 +15,11 @@
     --section-padding: 100px;
 }
 
+/*Table */
+.TableRow {
+    background-color: #01093a;
+    color: white;
+}
 /*#region Global-properties*/
 
 body {
@@ -938,11 +943,24 @@ font-size: 17px;
     width:126px;
     transition:all .3s;
 }
-    .DrowsRegain:hover {
-        transform: translateY(5px);
-        text-decoration: none;
-        color: antiquewhite;
-        background-color: rgb(15 116 143 /50%)
-    }
+.DrowsRegain:hover {
+    transform: translateY(5px);
+    text-decoration: none;
+    color: antiquewhite;
+    background-color: rgb(15 116 143 /50%)
+}
+
+.ExceptableRequest {
+    padding: 5px 8px;
+    background-color: #333;
+    color: white;
+    border: 2px solid #333;
+    border-radius: 4px;
+}
+.ExceptableRequest.active {
+    background-color: #a94442;
+    border: 2px solid #a94442;
+}
+
 
 /*#endregion GetRegion*/
