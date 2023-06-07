@@ -1,0 +1,49 @@
+﻿@model FOODSTATION.Models.RegisterViewModel
+<h2>Registeration </h2>
+    <div id="alert_placeholder_register">
+    </div>
+    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form", @id = "registerForm" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary("", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.RegistrationInValid)
+        <div class="input-box">
+            <span class="icon"><i class="glyphicon glyphicon-user"></i></span>
+            <input name="UserName" type="text" required>
+            <label>UserName</label>
+            @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+        </div>
+        <div class="input-box">
+            <span class="icon"><i class="glyphicon glyphicon-envelope"></i></span>
+            <input name="Email" type="email" required>
+            <label>Email</label>
+            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+        </div>
+        <div class="input-box">
+            <span class="icon"><i class="glyphicon glyphicon-lock"></i></span>
+            <input name="Password" type="password" required>
+            <label>password</label>
+            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+        </div>
+        <div class="input-box">
+            <span class="icon"><i class="glyphicon glyphicon-lock"></i></span>
+            <input name="ConfirmPassword" type="password" required>
+            <label>ConfirmPassword</label>
+            @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+        </div>
+        <div class="remember-forgot">
+            <label>
+                <input type="checkbox">agree to the terns & conditions
+            </label>
+            <a href="#">forgot password</a>
+        </div>
+        <button type="button" id="register" name="register" class="btnLogin">Register</button>
+        <div class="login-register">
+            <p>
+                Already have an account?
+                <button type="button" id="btnLoginGo" name="btnLoginGo" href="#" class="login-like">Login</button>
+            </p>
+        </div>
+    }
+
+

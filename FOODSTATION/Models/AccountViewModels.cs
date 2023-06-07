@@ -105,6 +105,8 @@ namespace FOODSTATION.Models
         [Display(Name = "تاكيد كلمة السر")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        public string RegistrationInValid { get; set; }
     }
 
     public class EditProfileViewModel
