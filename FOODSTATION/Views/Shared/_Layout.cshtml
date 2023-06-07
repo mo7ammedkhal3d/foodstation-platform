@@ -1,4 +1,5 @@
 ﻿@using Microsoft.AspNet.Identity
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,7 +46,7 @@
                     }
                     else
                     {
-                        <span class="btnLogin-popup btn btn-default btnLoginshow" data-toggle="modal" data-target="#UserLoginModal">Login</span>
+                        <span class="btnLogin-popup btn btn-default btnLoginshow" data-toggle="modal" data-target="#Modal-Authentication">Login</span>
                     }
                 </div>
             </div>
@@ -91,6 +92,7 @@
         </div>
     </nav>
     <!-- End Navbar-->
+
     <!-- Landing-->
     <div class="row landing">
         <div class="col-md-6 ladingHalf" data-aos="zoom-in" data-aos-delay="200">
@@ -104,11 +106,7 @@
 
     </div>
     <!-- End landing-->
-    <!--start login and register window-->
-    <div class="modal fade Log">
-        @Html.Partial("_LoginAndRegister")
-    </div>
-    <!--End login and register window-->
+
     <!--Main-->
     <main class="mainContiner">
         @RenderBody()
@@ -117,6 +115,7 @@
         </div>
     </main>
     <!--End main-->
+
     <!-- Footer-->
     <footer>
         <div class="row">

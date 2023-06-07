@@ -142,6 +142,34 @@ function Searsh(tableName) {
 
 //#endregion Login
 
+//#region login and register window
+
+const wrapper = document.querySelector(".wrapper ");
+const loginLinke = document.querySelector(".login-like");
+const registerLinke = document.querySelector(".register-like");
+//const ptnpopup = document.querySelector(".btnLogin-popup");
+//const iconClose = document.querySelector(".icon-close");
+
+registerLinke.addEventListener('click', () => {
+    var form = document.getElementById('loginForm');
+    form.reset();
+    wrapper.classList.add('active');
+});
+
+
+loginLinke.addEventListener('click', () => {
+    var form = document.getElementById('loginForm');
+    wrapper.classList.remove('active');
+});
+        //ptnpopup.addEventListener('click', () => {
+        //    wrapper.classList.add('active-popup');
+        //});
+        //iconClose.addEventListener('click', () => {
+        //    wrapper.classList.remove('active-popup');
+        //});
+
+    //#endregion login and register window
+
 //#region _BillPartial
 
 var DeleteItem = function (_id) {
@@ -1200,30 +1228,6 @@ $(document).ready(function () {
 });
 
 //#endregion Item-Dashboard
-
-//#region login and register window
-
-const wrapper = document.querySelector(".wrapper ");
-const loginLinke = document.querySelector(".login-like");
-const registerLinke = document.querySelector(".register-like");
-const ptnpopup = document.querySelector(".btnLogin-popup");
-const iconClose = document.querySelector(".icon-close");
-
-registerLinke.addEventListener('click', () => {
-    wrapper.classList.add('active');
-});
-loginLinke.addEventListener('click', () => {
-    wrapper.classList.remove('active');
-});
-ptnpopup.addEventListener('click', () => {
-    wrapper.classList.add('active-popup');
-});
-iconClose.addEventListener('click', () => {
-    wrapper.classList.remove('active-popup');
-});
-
-
-//#endregion login and register window
 
 //#region GetRestaurants
 var GetRestaurants = function (event) {

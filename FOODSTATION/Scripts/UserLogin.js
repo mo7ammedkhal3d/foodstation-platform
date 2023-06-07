@@ -1,22 +1,24 @@
 ﻿$(function () {
 
-    //var userLoginButton = $("#UserLoginModal button[name='login']").click(onUserLoginClick);
+    var userLoginButton = $("#Modal-Login button[name='login']").click(onUserLoginClick);
 
-    var form = document.getElementById("UserLoginForm");
+    function onRegisterGoClick() {
+        var form = document.getElementById('loginForm');
+        form.reset();
+        wrapper.classList.add('active');
+    }
 
-    form.addEventListener('submit', onUserLoginClick);
+    function onUserLoginClick() {
+       // event.preventDefault();
 
-    function onUserLoginClick(event) {
-        event.preventDefault();
 
         var url = "Account/Login";
 
+        var antiForgeryToken = $("#Modal-Login input[name='__RequestVerificationToken']").val();
 
-        var antiForgeryToken = $("#UserLoginModal input[name='__RequestVerificationToken']").val();
-
-        var userName = $("#UserLoginModal input[name = 'UserName']").val();
-        var password = $("#UserLoginModal input[name = 'Password']").val();
-        var rememberMe = $("#UserLoginModal input[name = 'RememberMe']").prop('checked');
+        var userName = $("#Modal-Login input[name = 'UserName']").val();
+        var password = $("#Modal-Login input[name = 'Password']").val();
+        var rememberMe = $("#Modal-Login input[name = 'RememberMe']").prop('checked');
 
         var userInput = {
             __RequestVerificationToken: antiForgeryToken,
@@ -36,11 +38,22 @@
                 var hasErrors = $(parsed).find("input[name='LoginInValid']").val() == "true";
 
                 if (hasErrors == true) {
-                    $("#UserLoginModal").html(data);
 
-                    userLoginButton = $("#UserLoginModal button[name='login']").click(onUserLoginClick);
+                    $("#Modal-Login").html(data);
 
-                    var form = $("#UserLoginForm");
+                    registerLinke.addEventListener('click', () => {
+                        wrapper.classList.add('active');
+                    });
+
+                    loginLinke.addEventListener('click', () => {
+                        wrapper.classList.remove('active');
+                    });
+
+                    userLoginButton = $("#Modal-Login button[name='login']").click(onUserLoginClick);
+                    $("#Modal-Login button[name = 'btnRegisterGo']").click(onRegisterGoClick);
+
+
+                    var form = $("#loginf");
 
                     $(form).removeData("validator");
                     $(form).removeData("unobtrusiveValidation");
@@ -59,6 +72,7 @@
 
                 console.error(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
             }
+            
         });
     }
 })

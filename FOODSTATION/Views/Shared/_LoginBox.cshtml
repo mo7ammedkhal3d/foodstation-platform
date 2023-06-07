@@ -1,0 +1,35 @@
+﻿@model FOODSTATION.Models.LoginViewModel
+
+<h2>Login</h2>
+<div id="alert_placeholder_login">
+</div>
+@using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form", @id = "loginForm" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.LoginInValid)
+    <div class="input-box">
+        <span class="icon"><i class="glyphicon glyphicon-user"></i></span>
+        <input type="text" required name="UserName">
+        <label>UserName</label>
+        @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+    </div>
+    <div class="input-box">
+        <span class="icon"><i class="glyphicon glyphicon-lock"></i></span>
+        <input type="password" required name="Password">
+        <label>password</label>
+        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+    </div>
+    <div class="remember-forgot">
+        <label><input name="RememberMe" value="True" type="checkbox">Remember me</label>
+        <a href="#">forgot password</a>
+    </div>
+    <button type="button" id="login" name="login" class="btnLogin">Login</button>
+    <div class="login-register">
+        <p>
+            Don't have an account
+            <button type="button" id="btnRegisterGo" name="btnRegisterGo" href="#" class="register-like">Register</button>
+        </p>
+    </div>
+}
+

@@ -63,7 +63,7 @@ namespace FOODSTATION.Controllers
             return View();
         }
 
-        #region Orgin Code
+        #region Old Login Action
 
         ////
         //// POST: /Account/Login
@@ -95,7 +95,7 @@ namespace FOODSTATION.Controllers
         //    }
         //}
 
-        #endregion Orgin
+        #endregion Old Login Action
 
         //
         // POST: /Account/Login
@@ -128,11 +128,11 @@ namespace FOODSTATION.Controllers
                     case SignInStatus.Failure:
                     default:
                         ModelState.AddModelError("", "عملية تسجيل دخول غير صالحة");
-                        return PartialView("_UserLoginPartial", model);
+                        return PartialView("_LoginBox", model);
                 }
             } 
              
-            return PartialView("_UserLoginPartial", model);
+            return PartialView("_LoginBox", model);
         }
 
 
@@ -187,6 +187,40 @@ namespace FOODSTATION.Controllers
             return View();
         }
 
+        #region Old Register Action
+
+        ////
+        //// POST: /Account/Register
+        //[HttpPost]
+        //[AllowAnonymous]
+        //[ValidateAntiForgeryToken]
+        //public async Task<ActionResult> Register(RegisterViewModel model)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        var user = new ApplicationUser { UserName = model.UserName, Email = model.Email };
+        //        var result = await UserManager.CreateAsync(user, model.Password);
+        //        if (result.Succeeded)
+        //        {
+        //            await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
+
+        //            // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
+        //            // Send an email with this link
+        //            // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+        //            // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+        //            // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+        //            await UserManager.AddToRoleAsync(user.Id,"عميل");
+        //            return RedirectToAction("Index", "Home");
+        //        }
+        //        AddErrors(result);
+        //    }
+
+        //    // If we got this far, something failed, redisplay form
+        //    return RedirectToAction("Index", "Home");
+        //}
+
+        #endregion Old Register Action
+
         //
         // POST: /Account/Register
         [HttpPost]
@@ -194,28 +228,33 @@ namespace FOODSTATION.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
+            model.RegistrationInValid = "true";
+
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = model.UserName, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
+                    model.RegistrationInValid = "";
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-                    await UserManager.AddToRoleAsync(user.Id,"عميل");
-                    return RedirectToAction("Index", "Home");
+                    await UserManager.AddToRoleAsync(user.Id, "Customer");
+                    return PartialView("_RegisterBox", model);
                 }
                 AddErrors(result);
             }
 
             // If we got this far, something failed, redisplay form
-            return RedirectToAction("Index", "Home");
+            return PartialView("_RegisterBox", model);
         }
+
+
 
         public ActionResult EditProfile()
         {
