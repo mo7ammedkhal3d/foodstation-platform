@@ -1222,6 +1222,7 @@ iconClose.addEventListener('click', () => {
     wrapper.classList.remove('active-popup');
 });
 
+
 //#endregion login and register window
 
 //#region GetRestaurants

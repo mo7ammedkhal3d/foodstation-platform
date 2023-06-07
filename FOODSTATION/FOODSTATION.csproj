@@ -511,6 +511,7 @@
     <Content Include="Views\Shared\_UserLoginPartial.cshtml" />
     <Content Include="Views\Shared\_AuthScriptsPartial.cshtml" />
     <Content Include="Views\Shared\_ValidationScriptsPartial.cshtml" />
+    <Content Include="Views\Home\RestaurantWonerRequests.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

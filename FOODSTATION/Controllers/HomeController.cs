@@ -70,6 +70,16 @@ namespace FOODSTATION.Controllers
            
         }
 
+        [Authorize(Roles = "RestaurantOwner")]
+        public ActionResult RestaurantWonerRequests()
+        {
+            var user =  User.Identity.GetUserId();
+            var bills = db.Bills.ToList();
+           
+            
+            return View(bills);
+        }
+
         public PartialViewResult Refreash()
         {
             ViewBag.products = products;
