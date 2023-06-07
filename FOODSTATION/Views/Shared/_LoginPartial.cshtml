@@ -51,10 +51,17 @@
                 </ul>
             </li>
         </ul>
-
-        <ul class="nav navbar-nav navbar-left">
-            <li style="direction:rtl"><a href="#" data-toggle="modal" data-target="#Modal-Manage"><i class="fa-solid fa-list-check" style="margin-left:10px"></i>إذارة</a> </li>
-        </ul>
+        if (User.IsInRole("Admin")|| User.IsInRole("RestaurantOwner"))
+        {
+            <ul class="nav navbar-nav navbar-left">
+                <li style="direction:rtl">
+                    <a href="#" data-toggle="modal" data-target="#Modal-Manage" class="MangmentButton">
+                        <i class="fa-solid fa-list-check" style="margin-left:10px"></i>إذارة
+                    </a>
+                </li>
+            </ul>
+        }
+        
     }
 }
 

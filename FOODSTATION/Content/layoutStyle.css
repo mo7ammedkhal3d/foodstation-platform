@@ -638,6 +638,13 @@ footer .row .col .underline span {
         flex-basis: 100%;
     }
 }
+.navbar-default .navbar-nav .MangmentButton {
+    border: 1px solid;
+    padding: 8px 10px 8px 10px;
+    position: relative;
+    left: 18px;
+    top: 4px;
+}
 
 /*#endregion*/
 
