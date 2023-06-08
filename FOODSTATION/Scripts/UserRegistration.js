@@ -1,5 +1,5 @@
 ﻿$(function () {
-
+    
     //#region Code For Future Devlobe
 
     //$("#UserRegistrationModal").on('hidden.bs.modal', function (e) {
@@ -71,10 +71,11 @@
 
     var registerUserButton = $("#Modal-Register button[name = 'register']").click(onUserRegisterClick);
 
-
-
     function onUserRegisterClick()
     {
+        var registerLoading = document.querySelector(".loading ");
+        registerLoading.classList.add('registerloader');
+
         var url = "Account/Register";
 
         var antiForgeryToken = $("#Modal-Register input[name='__RequestVerificationToken']").val();
@@ -96,7 +97,7 @@
             url: url,
             data: user,
             success: function (data) {
-
+                registerLoading.classList.remove('registerloader');
                 var parsed = $.parseHTML(data);
 
                 var hasErrors = $(parsed).find("input[name='RegistrationInValid']").val() == 'true';
