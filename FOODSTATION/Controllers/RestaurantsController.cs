@@ -127,11 +127,15 @@ namespace FOODSTATION.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         //[ValidateAntiForgeryToken]
-        public JsonResult Edit(Restaurant restaurant, HttpPostedFileBase upload, int[] diningTypeIds, int ParticipationTypes)
+        public JsonResult Edit(Restaurant modifiedInfo, HttpPostedFileBase upload, int[] diningTypeIds, int ParticipationTypes)
         {
             if (ModelState.IsValid)
             {
-                restaurant.DiningTypes = db.Restaurants.Find(restaurant.Id).DiningTypes; 
+                var restaurant = db.Restaurants.Find(modifiedInfo.Id);
+                restaurant.Name = modifiedInfo.Name;
+                restaurant.Description = modifiedInfo.Description;
+                restaurant.RegionId = modifiedInfo.RegionId;
+                restaurant.UserId = modifiedInfo.UserId;
                 string oldPath = Path.Combine(Server.MapPath("~/Uploads/Restaurants"), restaurant.ImgUrl);
 
                 if (upload != null)
@@ -139,20 +143,20 @@ namespace FOODSTATION.Controllers
                     System.IO.File.Delete(oldPath);
                     string path = Path.Combine(Server.MapPath("~/Uploads/Restaurants"), upload.FileName);
                     upload.SaveAs(path);
+                    restaurant.ImgUrl = upload.FileName;
                 }
 
-                restaurant.DiningTypes.Clear(); 
-
                 if (diningTypeIds != null)
-                {                  
+                {
+                    restaurant.DiningTypes.Clear();
                     foreach (var id in diningTypeIds)
                     {
                         restaurant.DiningTypes.Add(db.DiningTypes.Find(id));
                     }
                 }
-                else restaurant.DiningTypes.Add(db.DiningTypes.Where(x => x.Name == "محلي").FirstOrDefault());
 
                 restaurant.Participations.Add(db.Participations.Find(ParticipationTypes));
+
 
                 db.Entry(restaurant).State = EntityState.Modified;
                 db.SaveChanges();
