@@ -514,6 +514,7 @@
     <Content Include="Views\Shared\_LoginBox.cshtml" />
     <Content Include="Views\Shared\_RegisterBox.cshtml" />
     <Content Include="Views\Home\RestaurantWonerRequests.cshtml" />
+    <Content Include="Views\Home\MyRequsts.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
