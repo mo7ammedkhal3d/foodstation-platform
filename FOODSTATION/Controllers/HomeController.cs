@@ -79,6 +79,15 @@ namespace FOODSTATION.Controllers
             
             return View(bills);
         }
+        [Authorize]
+        public ActionResult MyRequsts()
+        {
+            var id = User.Identity.GetUserId();
+            var bills = db.Bills.Where(x=>x.UserId==id).ToList();
+
+
+            return View(bills);
+        }
 
         public PartialViewResult Refreash()
         {

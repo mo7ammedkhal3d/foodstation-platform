@@ -1,0 +1,49 @@
+﻿@model IEnumerable<FOODSTATION.Models.Bill>
+@using Microsoft.AspNet.Identity
+
+<div>
+    <h2 style="text-align: center; color: #a94442; font-family: 'myfont3'; font-size: xx-large; ">طلباتي</h2>
+    <h2 style="text-align: center; color: #a94442; font-family: 'myfont3'; font-size: xx-large; ">@Model.First().User.UserName</h2>
+</div>
+<table class="table" id="itemTable" dir="rtl">
+    <tr class="TableRow">
+        <th>
+            أسم الطلب
+        </th>
+        <th>
+            السعر
+        </th>
+        <th>
+            تاريخ الطلب
+        </th>
+        <th>
+            أسم المطعم
+        </th>
+
+    </tr>
+
+    @foreach (var bill in Model)
+    {
+        foreach (var item in bill.Items)
+        {
+            <tr>
+                <td>
+                    @item.Name
+                </td>
+                <td>
+                    @item.Price
+                </td>
+                <td>
+                    @item.Bills.First().Date
+                </td>
+                <td>
+                    @item.Restaurant.Name
+                </td>
+            </tr>
+        }
+
+    }
+
+
+</table>
+<i class="fa-regular fa-trash-undo"></i>

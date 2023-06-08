@@ -640,11 +640,22 @@ footer .row .col .underline span {
 }
 .navbar-default .navbar-nav .MangmentButton {
     border: 1px solid;
+    border-radius: 6px;
     padding: 8px 10px 8px 10px;
     position: relative;
     left: 18px;
     top: 4px;
+    background-color: #555;
 }
+@media (max-width:700px) {
+    .navbar-default .navbar-nav .MangmentButton {
+        width: 135px;
+        right: 13px;
+        text-align: center;
+        top: -3px;
+        background-color: #555;
+    }
 
-/*#endregion*/
+}
+    /*#endregion*/
 
