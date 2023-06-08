@@ -191,3 +191,38 @@ transform: translateX(400px);
 .login-register p a:hover{
     text-decoration: underline;
 }
+
+.loginloader {
+    border: 5px solid #e7e7e7;
+    position: absolute;
+    border-radius: 50%;
+    top: 12%;
+    border-top: 5px solid #162938;
+    width: 40px;
+    height: 40px;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+}
+
+.registerloader{
+    border: 5px solid #e7e7e7;
+    position: absolute;
+    border-radius: 50%;
+    top: 12%;
+    border-top: 5px solid #162938;
+    width: 40px;
+    height: 40px;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

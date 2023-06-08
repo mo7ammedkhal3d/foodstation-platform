@@ -2,6 +2,7 @@
 <h2>Registeration </h2>
     <div id="alert_placeholder_register">
     </div>
+    <div class="loading"></div>
     @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form", @id = "registerForm" }))
     {
         @Html.AntiForgeryToken()

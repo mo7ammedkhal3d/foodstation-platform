@@ -1,5 +1,27 @@
 ﻿$(function () {
 
+    //#region login and register window
+
+    const wrapper = document.querySelector(".wrapper ");
+    const loginLinke = document.querySelector(".login-like");
+    const registerLinke = document.querySelector(".register-like");
+
+    registerLinke.addEventListener('click', () => {
+        var form = document.getElementById('loginForm');
+        form.reset();
+        wrapper.classList.add('active');
+    });
+
+
+    loginLinke.addEventListener('click', () => {
+        var form = document.getElementById('loginForm');
+        wrapper.classList.remove('active');
+    });
+
+
+ //#endregion login and register window
+
+
     var userLoginButton = $("#Modal-Login button[name='login']").click(onUserLoginClick);
 
     function onRegisterGoClick() {
@@ -7,11 +29,11 @@
         form.reset();
         wrapper.classList.add('active');
     }
-
+    
     function onUserLoginClick() {
        // event.preventDefault();
-
-
+        var loginLoading = document.querySelector(".loading ");
+        loginLoading.classList.add('loginloader');
         var url = "Account/Login";
 
         var antiForgeryToken = $("#Modal-Login input[name='__RequestVerificationToken']").val();
@@ -32,7 +54,7 @@
             url: url,
             data: userInput,
             success: function (data) {
-
+                loginLoading.classList.remove('loginloader');
                 var parsed = $.parseHTML(data);
 
                 var hasErrors = $(parsed).find("input[name='LoginInValid']").val() == "true";

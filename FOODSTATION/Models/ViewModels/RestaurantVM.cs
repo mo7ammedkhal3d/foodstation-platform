@@ -24,5 +24,7 @@ namespace FOODSTATION.Models.ViewModels
         public List<int> diningTypeIds { get; set; }
 
         public string Region { get; set; }
+
+        public  ICollection<DiningType> DiningTypes { get; set; }
     }
 }

@@ -106,7 +106,7 @@ namespace FOODSTATION.Controllers
                 restaurantVM.Region = restaurant.Region.Name;
                 restaurantVM.RegionId = restaurant.RegionId;
                 restaurantVM.UserId = restaurant.UserId;
-                restaurantVM.UserName = restaurant.User.UserName; 
+                restaurantVM.UserName = restaurant.User.UserName;
                 if(restaurant.Participations.Count() > 0)
                 {
                     restaurantVM.Participation = restaurant.Participations.Last().Id;
@@ -127,10 +127,11 @@ namespace FOODSTATION.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         //[ValidateAntiForgeryToken]
-        public JsonResult Edit(Restaurant restaurant, HttpPostedFileBase upload)
+        public JsonResult Edit(Restaurant restaurant, HttpPostedFileBase upload, int[] diningTypeIds, int ParticipationTypes)
         {
             if (ModelState.IsValid)
             {
+                restaurant.DiningTypes = db.Restaurants.Find(restaurant.Id).DiningTypes; 
                 string oldPath = Path.Combine(Server.MapPath("~/Uploads/Restaurants"), restaurant.ImgUrl);
 
                 if (upload != null)
@@ -138,8 +139,21 @@ namespace FOODSTATION.Controllers
                     System.IO.File.Delete(oldPath);
                     string path = Path.Combine(Server.MapPath("~/Uploads/Restaurants"), upload.FileName);
                     upload.SaveAs(path);
-                    restaurant.ImgUrl = upload.FileName;
                 }
+
+                restaurant.DiningTypes.Clear(); 
+
+                if (diningTypeIds != null)
+                {                  
+                    foreach (var id in diningTypeIds)
+                    {
+                        restaurant.DiningTypes.Add(db.DiningTypes.Find(id));
+                    }
+                }
+                else restaurant.DiningTypes.Add(db.DiningTypes.Where(x => x.Name == "محلي").FirstOrDefault());
+
+                restaurant.Participations.Add(db.Participations.Find(ParticipationTypes));
+
                 db.Entry(restaurant).State = EntityState.Modified;
                 db.SaveChanges();
                 return Json(true, JsonRequestBehavior.AllowGet);

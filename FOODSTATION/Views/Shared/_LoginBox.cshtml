@@ -3,6 +3,7 @@
 <h2>Login</h2>
 <div id="alert_placeholder_login">
 </div>
+<div class="loading"></div>
 @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form", @id = "loginForm" }))
 {
     @Html.AntiForgeryToken()
