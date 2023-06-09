@@ -1,10 +1,10 @@
-﻿<div class="row ItemsDisplay">
-    <div class="container" style="min-height:500px;">
+﻿<div class="ItemsDisplay">
+    <div class="container itemDisplayDiv" style="min-height:500px;">
 
         @foreach (var item in ViewBag.items)
         {
             <div class="col-md-2 thumbnail ItemDivs">
-                <img src="~/Uploads/Categories/@item.ImgUrl"/>
+                <img src="~/Uploads/Items/@item.ImgUrl"/>
                 <h6>@item.Name</h6>
                 <h6>@item.Price</h6>
                 <button class="btn btn-primary requstBotton" id="btnadd+@item.Id" onclick="AddToBillConfirm(@item.Id)">
