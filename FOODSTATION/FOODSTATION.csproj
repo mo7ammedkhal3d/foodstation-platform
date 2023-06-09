@@ -443,6 +443,33 @@
     <Content Include="Uploads\Categories\Night date-pana.png" />
     <Content Include="Uploads\Categories\Pizza maker-amico.png" />
     <Content Include="Uploads\Categories\Shawarma-pana.png" />
+    <Content Include="Uploads\Items\apply juoce3.jpg" />
+    <Content Include="Uploads\Items\banana juice2.jpg" />
+    <Content Include="Uploads\Items\falafel2.jpg" />
+    <Content Include="Uploads\Items\falafel3.jpg" />
+    <Content Include="Uploads\Items\falafel4.jpg" />
+    <Content Include="Uploads\Items\falafel5.jpg" />
+    <Content Include="Uploads\Items\juoce2.jpg" />
+    <Content Include="Uploads\Items\juoce3.jpg" />
+    <Content Include="Uploads\Items\juoce7.jpg" />
+    <Content Include="Uploads\Items\pasta.jpg" />
+    <Content Include="Uploads\Items\pasta2.jpg" />
+    <Content Include="Uploads\Items\pasta3.jpg" />
+    <Content Include="Uploads\Items\pasta4.jpg" />
+    <Content Include="Uploads\Items\pasta5.jpg" />
+    <Content Include="Uploads\Items\rice1.jpg" />
+    <Content Include="Uploads\Items\rice2.jpg" />
+    <Content Include="Uploads\Items\rice3.jpg" />
+    <Content Include="Uploads\Items\rice4.jpg" />
+    <Content Include="Uploads\Items\rice6.jpg" />
+    <Content Include="Uploads\Items\rice7.jpg" />
+    <Content Include="Uploads\Items\sea food2.jpg" />
+    <Content Include="Uploads\Items\sea food3.jpg" />
+    <Content Include="Uploads\Items\sea food4.jpg" />
+    <Content Include="Uploads\Items\sea food5.jpg" />
+    <Content Include="Uploads\Items\shawearma10.jpg" />
+    <Content Include="Uploads\Items\shawearma8.jpg" />
+    <Content Include="Uploads\Items\shawerma3.jpg" />
     <Content Include="Uploads\Restaurants\r1.jpg" />
     <Content Include="Uploads\Restaurants\r2.jpg" />
     <Content Include="Uploads\Restaurants\r3.jpg" />
@@ -518,7 +545,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Uploads\Items\" />
     <Folder Include="Views\Default\" />
     <Folder Include="Views\DiningTypes\" />
     <Folder Include="Views\Participations\" />
