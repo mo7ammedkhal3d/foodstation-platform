@@ -46,7 +46,7 @@ namespace FOODSTATION.Models
         public DbSet<Bill> Bills { get; set; }
         public DbSet<DiningType> DiningTypes { get; set; }
         public DbSet<FOODSTATION.Models.Participation> Participations { get; set; }
-
+        public System.Data.Entity.DbSet<FOODSTATION.Models.ApplicationUser> ApplicationUsers { get; set; }
         public System.Data.Entity.DbSet<FOODSTATION.Models.Advertisement> Advertisements { get; set; }
     }
 

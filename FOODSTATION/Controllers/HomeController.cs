@@ -22,6 +22,7 @@ namespace FOODSTATION.Controllers
 
         public ActionResult Index()
         {
+            products.Clear();
             return View();
         }
 
