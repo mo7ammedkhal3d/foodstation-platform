@@ -1,0 +1,140 @@
+﻿@model FOODSTATION.Models.Category
+@{
+    ViewBag.Title = "Category dashboard";
+}
+<div class="searshInput" style="direction:rtl">
+    <input type="text" id="myInput" onkeyup="Searsh('categoryTable')" placeholder="أدخل أسم للبحث ...">
+    <i class="fa-solid fa-magnifying-glass"></i>
+</div>
+
+<div class="container" id="_CategoryPartial" style="direction:rtl">
+    @Html.Partial("_CategoryPartial")
+</div>
+
+<!-- Create Category -->
+
+<div class="modal fade Category" id="Modal-categoryCreate">
+    <div class="modal-dialog">
+        <div class="modalContent">
+            <div class="modal-header">
+                <h2 class="modal-title" style="text-align:center">بيانات الصنف</h2>
+            </div>
+            <div class="modal-body">
+                @using (Html.BeginForm("Create", "Categories", FormMethod.Post, new { enctype = "multipart/form-data", @id = "createCategoryForm" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="row">
+                        <div class="form-horizontal">
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-3 col-sm-offset-4", @style = "margin-bottom:12px;margin-left=169px" })
+                                <div class="col-md-7 col-sm-offset-3" style="margin-bottom:10px;margin-left:114px">
+                                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "input-fild", @id = "CCatname" } })
+                                </div>
+                            </div>
+
+                            <div class="form-group ">
+                                <img id="CCatimgUrl" class="modal-Img ImgUrl" alt="أضف صورة">
+                                <label for="CCatpicture" class="btn btn-primary modal-Btn">أضافة صورة</label>
+                                <input id="CCatpicture" class="modal-filein" type="file" name="upload" onchange="loadFile('CCatimgUrl', event)" />
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+            <div class="modal-footer">
+                <input value="أضافة" class="btn btn-success modal-BtnCreate" id="btnCategoryCreate" />
+                <button id="btnCreateColse" type="button" class="btn modal-BtnClose" data-dismiss="modal" onclick="resetFilds('createCategory','CCatimgUrl',event)">أغلاق</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Edit Category -->
+
+<div class="modal fade Category" id="Modal-categoryEdit">
+    <div class="modal-dialog modalCenter">
+        <div class="modalContent">
+            <div class="modal-header">
+                <h2 class="modal-title" style="text-align:center">تعديل بينات المطعم</h2>
+            </div>
+            <div class="modal-body">
+                @using (Html.BeginForm("Edit", "Categories", FormMethod.Post, new { enctype = "multipart/form-data", @id = "EditCategoryForm" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="row">
+                        <div class="form-horizontal">
+                            <input type="hidden" name="Id" id="hiddenId" />
+                            <input type="hidden" name="ImgUrl" id="hiddenImgUrl" />
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-3 col-sm-offset-4", @style = "margin-bottom:12px;margin-left=169px" })
+                                <div class="col-md-7 col-sm-offset-3" style="margin-bottom:10px;margin-left:114px">
+                                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "input-fild", @id = "ECatname" } })
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <img id="ECatimgUrl" class="modal-Img ImgUrl" alt="أضف صورة">
+                                <label for="ECatpicture" class="btn btn-primary modal-Btn">تغيير الصورة</label>
+                                <input id="ECatpicture" class="modal-filein" type="file" name="upload" onchange="loadFile('ECatimgUrl', event)" />
+                            </div>
+
+                        </div>
+                    </div>
+                }
+
+            </div>
+
+            <div class="modal-footer">
+                <input id="btnCategoryEdit" type="button" value="تعديل" class="btn btn-primary modal-BtnCreate" />
+                <button id="btnEditColse" type="button" class="btn modal-BtnClose" data-dismiss="modal">أغلاق</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!--Delete Category -->
+
+<div class="modal fade Category" id="Modal-categoryDelete">
+    <div class="modal-dialog modalCenter">
+        <div class="modalContent">
+            <div class="modal-header">
+                <h2 class="modal-title" style="text-align:center">هل تريد بالتأكيد حذف هذا المطعم ؟</h2>
+            </div>
+            <div class="modal-body">
+                @using (Html.BeginForm("DeleteConfirmed", "Categories", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="row">
+                        <div class="form-horizontal" style="margin-top:50px">
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-3 col-sm-offset-4", @style = "margin-bottom:12px;margin-left=169px" })
+                                <div class="col-md-7 col-sm-offset-3" style="margin-bottom:10px ; margin-left:114px">
+                                    <input type="text" readonly class="input-fild" id="DCatname" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <img id="DCatimgUrl" class="modal-Img">
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+            <div class="modal-footer">
+                <input id="btnCategoryDelete" type="button" value="حـذف" class="btn btn-danger modal-BtnCreate" />
+                <button id="btnDeleteColse" type="button" class="btn modal-BtnClose" data-dismiss="modal">أغلاق</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

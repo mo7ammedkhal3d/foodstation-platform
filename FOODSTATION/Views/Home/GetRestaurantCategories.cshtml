@@ -3,14 +3,59 @@
     ViewBag.Title = "Category";
 }
 <input id="restaurantId" type="hidden" value="@(ViewBag.restaurantId)">
-<div class="jumbotron" style="margin: 20px; background-color: #224c4c; color: burlywood; height: 150px; border-radius: 100px; text-align: center; overflow: hidden;">
-    <h2 style="font-weight:bold ; margin-top:5px">Cloud-Restaurants</h2>
-    <h4 style="background-color: teal;padding:8px; border-radius: 50px 10px;">@ViewBag.Name</h4>
+
+<!--#region Slider-->
+
+<div class="slideshow-container">
+
+    <div class="mySlides slideFade">
+        <div class="numbertext">1 / 4</div>
+        <img src="~/images/SliderShow/landing1.png" style="width:100%">
+        <div class="text">Caption Text</div>
+    </div>
+
+    <div class="mySlides slideFade">
+        <div class="numbertext">2 / 4</div>
+        <img src="~/images/SliderShow/landing2.png" style="width:100%">
+        <div class="text">Caption Two</div>
+    </div>
+
+    <div class="mySlides slideFade">
+        <div class="numbertext">3 / 4</div>
+        <img src="~/images/SliderShow/landing4.png" style="width:100%">
+        <div class="text">Caption Three</div>
+    </div>
+
+    <div class="mySlides slideFade">
+        <div class="numbertext">4 / 4</div>
+        <img src="~/images/SliderShow/landing5.png" style="width:100%">
+        <div class="text">Caption Three</div>
+    </div>
+
+    <div class="mySlides slideFade">
+        <div class="numbertext">4 / 4</div>
+        <img src="~/images/SliderShow/landing6.png" style="width:100%">
+        <div class="text">Caption Three</div>
+    </div>
+
+    <a class="prev" onclick="plusSlides(-1)">❮</a>
+    <a class="next" onclick="plusSlides(1)">❯</a>
+
 </div>
+<br>
+
+<div style="text-align:center">
+    <span class="dot" onclick="currentSlide(1)"></span>
+    <span class="dot" onclick="currentSlide(2)"></span>
+    <span class="dot" onclick="currentSlide(3)"></span>
+    <span class="dot" onclick="currentSlide(4)"></span>
+    <span class="dot" onclick="currentSlide(5)"></span>
+</div>
+
+<!--#endregion Slider-->
 
 <div class="AllCategories">
     <div class="container ">
-
         <a onclick="getallItems()">
             <div class="col-md-2 thumbnail CategoryDivs" style=" margin-left:25px; margin-bottom:30px;">
                 <img src="~/Uploads/Categories/Chef-bro.png" style="height: 90px; width:90px; border-radius: 130px;" />
@@ -33,6 +78,11 @@
 <div id="_SelectedCategoryItems">
     @Html.Partial("_SelectedCategoryItems")
 </div>
+
+@section Scripts
+{
+    <script src="~/Scripts/Slideshow.js"></script>
+}
 
 
 

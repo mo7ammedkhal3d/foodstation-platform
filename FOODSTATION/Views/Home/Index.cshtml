@@ -11,10 +11,11 @@
     </div>
 </div>
 <!-- End about  -->
-
 @*<div class="modal fade Log" id="Modal-Login" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         @Html.Partial("_UserLoginPartial")
     </div>*@
+
+@*<div id="map" style="width:100% ; height:400px">  </div>*@
 
 <!--start login and register window-->
 
@@ -24,7 +25,7 @@
             <i class="glyphicon glyphicon-remove"></i>
         </span>
 
-        <div class="form-box login"  id="Modal-Login">
+        <div class="form-box login" id="Modal-Login">
             @Html.Partial("_LoginBox")
         </div>
 
@@ -35,172 +36,188 @@
     </div>
 </div>
 
-    <!--End login and register window-->
+<!--End login and register window-->
 
-    <!-- start stats  -->
-    <div class="stats">
-        <div class="container">
-            <div class="box">
-                <i class="fas fa-mug-hot"></i>
-                <div class="number">1,236</div>
-                <p>الكافيهات</p>
-            </div>
+<!-- start stats  -->
+<div class="stats">
+    <div class="container">
+        <div class="box">
+            <i class="fas fa-mug-hot"></i>
+            <div class="number">1,236</div>
+            <p>الكافيهات</p>
+        </div>
 
-            <div class="box">
-                <i class="far fa-folder"></i>
-                <div class="number">256</div>
-                <p>المطاعم</p>
-            </div>
+        <div class="box">
+            <i class="far fa-folder"></i>
+            <div class="number">256</div>
+            <p>المطاعم</p>
+        </div>
 
-            <div class="box">
-                <i class="fas fa-envelope"></i>
-                <div class="number">1,743</div>
-                <p>الأصناف</p>
-            </div>
+        <div class="box">
+            <i class="fas fa-envelope"></i>
+            <div class="number">1,743</div>
+            <p>الأصناف</p>
+        </div>
 
-            <div class="box">
-                <i class="fas fa-trophy"></i>
-                <div class="number">17</div>
-                <p>الطلبات في اليوم</p>
+        <div class="box">
+            <i class="fas fa-trophy"></i>
+            <div class="number">17</div>
+            <p>الطلبات في اليوم</p>
+        </div>
+        <a class="DrowsRegain" onclick="GetRestaurants(event)" style="cursor:pointer"> تصفح المطاعم</a>
+        <a class="DrowsRegain" href="/Home/GetRegions">  قم بتحديد مدينتك</a>
+    </div>
+</div>
+<!-- start stats  -->
+
+<!-- start services  -->
+<div class="services">
+    <div class="container">
+        <div class="main-heading">
+            <h2>الخدمات</h2>
+            <p>هذه قائمة بالخدامات المقدمة من قبل المنصة  تخدم كل من العملاء ومالكي المطاعم في المنطقة نهدف من خلالها لجعل تجربتك معنا تليق بك </p>
+        </div>
+        <div class="services-container">
+            <div class="srv-box">
+                <i class="fas fa-desktop fa-3x"></i>
+                <div class="text">
+                    <h3>زيادة الوصول</h3>
+                    <p>
+                        .من اهم الخدمات المقدمة لمالكي المطاعم حيث ومن خلال الأشتراك بالمنصة تستيطيع زيادة عدد العملاء الى مايقارب %50 عن الاعتياد
+                    </p>
+                </div>
             </div>
-            <a class="DrowsRegain" onclick="GetRestaurants(event)" style="cursor:pointer"> تصفح المطاعم</a>
-            <a class="DrowsRegain" href="/Home/GetRegions">  قم بتحديد مدينتك</a>
+            <div class="srv-box">
+                <i class="fas fa-cog fa-3x"></i>
+                <div class="text">
+                    <h3>واجهة تحكم</h3>
+                    <p>
+                        حيث بالأمكان لمالك المطعم التحكم في عرض الأصناف والأسعار بالأضافة الى العروض الشهرية لكل ذلك يتم من خلال الأشتراكات الذهبي والماسي
+                    </p>
+                </div>
+            </div>
+            <div class="srv-box">
+                <i class="fas fa-pencil-ruler fa-3x"></i>
+                <div class="text">
+                    <h3>الطلب الإلكتروني</h3>
+                    <p>
+                        .يمكن لمالكي المطاعم تلقي الطلبات ألكترونيا حيث نوفر للعميل خدمة الطلب من مطعمه المفضل من خلال التطبيق
+                    </p>
+                </div>
+            </div>
+            <div class="srv-box">
+                <i class="fas fa-camera fa-3x"></i>
+                <div class="text">
+                    <h3>تسويق أفضل</h3>
+                    <p>
+                        حيث انه من خلال المنصة نوفر لك تسويق لكل الأصناف وأسعارها ونسهل على عملائك عملية تصفح الأكلات المفضله لديهم والطلب منها بسهولة
+                    </p>
+                </div>
+            </div>
         </div>
     </div>
-    <!-- start stats  -->
-    <!-- start services  -->
-    <div class="services">
-        <div class="container">
-            <div class="main-heading">
-                <h2>الخدمات</h2>
-                <p>هذه قائمة بالخدامات المقدمة من قبل المنصة  تخدم كل من العملاء ومالكي المطاعم في المنطقة نهدف من خلالها لجعل تجربتك معنا تليق بك </p>
+</div>
+<!-- End services  -->
+
+<!-- start pricing  -->
+<div class="pricing">
+    <div class="container">
+        <div class="main-heading">
+            <h2>الأشتراكات</h2>
+            <p>
+                هذه قائمة بالأشتراكات المقدمة وميزاتها مع توفر خصومات خلال الاعياد الوطنية يصل الى 50% أيضا عند الأشتراك في الرقم الذهبي تحصل على  الشهر الأول مجانا
+            </p>
+        </div>
+        <div class="plans">
+            <div class="plan">
+                <div class="head">
+                    <h3>Basic</h3>
+                    <span>19</span>
+                </div>
+                <ul>
+                    <li>Feature No 1</li>
+                    <li>Extra Feature </li>
+                    <li>Extra Feature No 1</li>
+                    <li>Feature</li>
+                </ul>
+                <div class="foot">
+                    <a href="#">Bay Now</a>
+                </div>
             </div>
-            <div class="services-container">
-                <div class="srv-box">
-                    <i class="fas fa-desktop fa-3x"></i>
-                    <div class="text">
-                        <h3>زيادة الوصول</h3>
-                        <p>
-                            .من اهم الخدمات المقدمة لمالكي المطاعم حيث ومن خلال الأشتراك بالمنصة تستيطيع زيادة عدد العملاء الى مايقارب %50 عن الاعتياد
-                        </p>
-                    </div>
+
+            <div class="plan">
+                <div class="head">
+                    <h3>Premium</h3>
+                    <span>29</span>
                 </div>
-                <div class="srv-box">
-                    <i class="fas fa-cog fa-3x"></i>
-                    <div class="text">
-                        <h3>واجهة تحكم</h3>
-                        <p>
-                            حيث بالأمكان لمالك المطعم التحكم في عرض الأصناف والأسعار بالأضافة الى العروض الشهرية لكل ذلك يتم من خلال الأشتراكات الذهبي والماسي
-                        </p>
-                    </div>
+                <ul>
+                    <li>Feature No 1</li>
+                    <li>Extra Feature </li>
+                    <li>Extra Feature No 1</li>
+                    <li>Feature</li>
+                </ul>
+                <div class="foot">
+                    <a href="#">Bay Now</a>
                 </div>
-                <div class="srv-box">
-                    <i class="fas fa-pencil-ruler fa-3x"></i>
-                    <div class="text">
-                        <h3>الطلب الإلكتروني</h3>
-                        <p>
-                            .يمكن لمالكي المطاعم تلقي الطلبات ألكترونيا حيث نوفر للعميل خدمة الطلب من مطعمه المفضل من خلال التطبيق
-                        </p>
-                    </div>
+            </div>
+
+            <div class="plan">
+                <div class="head">
+                    <h3>Pro</h3>
+                    <span>39</span>
                 </div>
-                <div class="srv-box">
-                    <i class="fas fa-camera fa-3x"></i>
-                    <div class="text">
-                        <h3>تسويق أفضل</h3>
-                        <p>
-                            حيث انه من خلال المنصة نوفر لك تسويق لكل الأصناف وأسعارها ونسهل على عملائك عملية تصفح الأكلات المفضله لديهم والطلب منها بسهولة
-                        </p>
-                    </div>
+                <ul>
+                    <li>Feature No 1</li>
+                    <li>Extra Feature </li>
+                    <li>Extra Feature No 1</li>
+                    <li>Feature</li>
+                </ul>
+                <div class="foot">
+                    <a href="#">Bay Now</a>
+                </div>
+            </div>
+
+            <div class="plan">
+                <div class="head">
+                    <h3>Platnum</h3>
+                    <span>49</span>
+                </div>
+                <ul>
+                    <li>Feature No 1</li>
+                    <li>Extra Feature </li>
+                    <li>Extra Feature No 1</li>
+                    <li>Feature</li>
+                </ul>
+                <div class="foot">
+                    <a href="#">Bay Now</a>
                 </div>
             </div>
         </div>
+        <p class="contact-text">... تواصل معنا إذا لديك طلب خاص </p>
+        <a href="#" class="contact-link">تواصل معنا</a>
     </div>
-    <!-- End services  -->
-    <!-- start pricing  -->
-    <div class="pricing">
-        <div class="container">
-            <div class="main-heading">
-                <h2>الأشتراكات</h2>
-                <p>
-                    هذه قائمة بالأشتراكات المقدمة وميزاتها مع توفر خصومات خلال الاعياد الوطنية يصل الى 50% أيضا عند الأشتراك في الرقم الذهبي تحصل على  الشهر الأول مجانا
-                </p>
-            </div>
-            <div class="plans">
-                <div class="plan">
-                    <div class="head">
-                        <h3>Basic</h3>
-                        <span>19</span>
-                    </div>
-                    <ul>
-                        <li>Feature No 1</li>
-                        <li>Extra Feature </li>
-                        <li>Extra Feature No 1</li>
-                        <li>Feature</li>
-                    </ul>
-                    <div class="foot">
-                        <a href="#">Bay Now</a>
-                    </div>
-                </div>
+</div>
+<!-- End pricing  -->
 
-                <div class="plan">
-                    <div class="head">
-                        <h3>Premium</h3>
-                        <span>29</span>
-                    </div>
-                    <ul>
-                        <li>Feature No 1</li>
-                        <li>Extra Feature </li>
-                        <li>Extra Feature No 1</li>
-                        <li>Feature</li>
-                    </ul>
-                    <div class="foot">
-                        <a href="#">Bay Now</a>
-                    </div>
-                </div>
-
-                <div class="plan">
-                    <div class="head">
-                        <h3>Pro</h3>
-                        <span>39</span>
-                    </div>
-                    <ul>
-                        <li>Feature No 1</li>
-                        <li>Extra Feature </li>
-                        <li>Extra Feature No 1</li>
-                        <li>Feature</li>
-                    </ul>
-                    <div class="foot">
-                        <a href="#">Bay Now</a>
-                    </div>
-                </div>
-
-                <div class="plan">
-                    <div class="head">
-                        <h3>Platnum</h3>
-                        <span>49</span>
-                    </div>
-                    <ul>
-                        <li>Feature No 1</li>
-                        <li>Extra Feature </li>
-                        <li>Extra Feature No 1</li>
-                        <li>Feature</li>
-                    </ul>
-                    <div class="foot">
-                        <a href="#">Bay Now</a>
-                    </div>
-                </div>
-            </div>
-            <p class="contact-text">... تواصل معنا إذا لديك طلب خاص </p>
-            <a href="#" class="contact-link">تواصل معنا</a>
-        </div>
-    </div>
-    <!-- End pricing  -->
-
-    @section Scripts
+@section Scripts
 {
-        @{
-            Html.RenderPartial("_AuthScriptsPartial");
-            Html.RenderPartial("_ValidationScriptsPartial");
+    <script>
+            const sydney = new google.maps.LatLng(-33.867, 151.195);
+            var map;
+            function initMap(){
+                map = new google.maps.Map(document.getElementById("map"), {
+                    center: sydney,
+                    zoom: 15,
+                });
+           }
+    </script>
 
-        }
+    <script async
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAgEb47rpWP5qmVynKDhvJjdYmbSNj2M28&libraries=places&callback=initMap">
+    </script>
+
+    @{
+        Html.RenderPartial("_AuthScriptsPartial");
+        Html.RenderPartial("_ValidationScriptsPartial");
     }
+}

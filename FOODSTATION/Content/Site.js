@@ -20,6 +20,20 @@
 
 //#endregion Preloader
 
+//#region Hide Landing
+
+$(document).ready(function () {
+    if (window.location.pathname.includes('/GetRestaurantCategories/')) {
+        document.getElementById('landing').style.display = "none";
+    }
+    else if (window.location.pathname.includes('Dashboard')) {
+        document.getElementById('landing').style.display = "none";
+    }
+});
+
+
+//#endregion Hide Landing
+
 //#region Addtion 
 
 var gitbillConfirm = function () {
@@ -1199,6 +1213,230 @@ $(document).ready(function () {
 });
 
 //#endregion Item-Dashboard
+
+//region Adv-Dashboars
+
+var EditAdvConfirm = function (_id) {
+    $("#AdvId").val(_id)
+    $.ajax({
+        type: "Post",
+        url: "/Advertisements/GetAdvertisement",
+        data: { id: _id },
+        success: function (Adv) {
+            $("#Modal-AdvEdit").modal('show');
+            $("#EAdvDescription").val(Adv.Description)
+            $("#EAdvRestaurant").val(Adv.RestaurantId)
+            document.getElementById('EAdvimgUrl').src = "/Uploads/Advertisements/" + Adv.ImgUrl;
+            $("#hiddenId").val(_id)
+            $("#hiddenImgUrl").val(Adv.ImgUrl)
+        }
+    });
+};
+
+var DeleteAdvConfirm = function (_id) {
+
+    swal({
+        // title: "Are you sure?",
+        text: "هل تريد بالتأكيد حذف هذا الاعلان",
+        className: 'swal-IW',
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+    }).then((result) => {
+        if (result == true) {
+            $.ajax({
+                type: 'GET',
+                url: '/Advertisements/DeleteConfirmed',
+                data: { id: _id },
+                contentType: 'application/html; charset=utf-8',
+                dataType: 'html',
+                success: (function (result) {
+                    swal({
+                        //  title: title,
+                        text: result.Message,
+                        content: true,
+                        icon: "success",
+                        className: 'swal-IW',
+                        timer: 1700,
+                        buttons: false,
+                    });
+                    $.ajax({
+                        url: '/Advertisements/Refreash',
+                        contentType: 'application/html; charset=utf-8',
+                        type: 'GET',
+                        dataType: 'html',
+                        success: (function (result) {
+                            $('#_AdvertisementPartial').html(result);
+                        })
+                    });
+                })
+            })
+        }
+    });
+            
+
+    return false;
+};
+
+
+$(document).ready(function () {
+
+    $("#btnAdvCreate").click(function () {
+        if ($("#CAdvpicture").val() == "") {
+            TestSweetAlert("قم بأضافة صورة الأعلان");
+        } else if ($("#CAdvDescription").val() == "") {
+           TestSweetAlert("قم بادخال الوصف");
+        } else {
+            var img = document.getElementById('CAdvimgUrl');
+            var fileInput = document.getElementById('CAdvpicture');
+            if (img.naturalWidth != 1000 && img.naturalHeight != 350) {
+                TestSweetAlert(" (1000px*350px) الصورة التي أدخلتها لاتتوافق مع أبعاد صورة الأعلان قم بتعديل أبعادها لتكون");
+            }
+            else {
+                $.ajax({
+                    type: "Get",
+                    url: "/Advertisements/IsImageExist",
+                    data: { upload: fileInput.files[0].name },
+                    success: function (Message) {
+                        if (Message == "") {
+                            var formData = new FormData($("#CreateAdvForm")[0]);
+                            $.ajax({
+                                async: true,
+                                type: "POST",
+                                dataType: "JSON",
+                                url: "/Advertisements/Create",
+                                data: formData,
+                                processData: false,
+                                contentType: false,
+                                success: function (result) {
+                                    if (result.Seccess) {
+                                        swal({
+                                            //  title: title,
+                                            text: result.Message,
+                                            content: true,
+                                            icon: "success",
+                                            className: 'swal-IW',
+                                            timer: 1700,
+                                            buttons: false,
+                                        });
+                                        $.ajax({
+                                            url: '/Advertisements/Refreash',
+                                            contentType: 'application/html; charset=utf-8',
+                                            type: 'GET',
+                                            dataType: 'html',
+                                            success: (function (result) {
+                                                $('#_AdvertisementPartial').html(result);
+                                                var close = document.getElementById('btnCreateColse');
+                                                close.click();
+                                            })
+                                        });
+                                    } else {
+                                        TestSweetAlert(result.Message);
+                                    }
+                                }
+                            });
+                        } else {
+                            TestSweetAlert(Message);
+                        }
+                    }
+            });
+            }   
+        }
+        return false;
+    });
+
+    $("#btnAdvEdit").click(function () {
+
+        if ($("#EAdvDescription").val() == "") {
+            TestSweetAlert("قم بادخال الوصف");
+        } else if ($("#EAdvpicture").val() != ""){          
+                    var img = document.getElementById('EAdvimgUrl');
+                    var fileInput = document.getElementById('EAdvpicture');
+                    if (img.naturalWidth != 1000 && img.naturalHeight != 350) {
+                        TestSweetAlert(" (1000px*350px) الصورة التي أدخلتها لاتتوافق مع أبعاد صورة الأعلان قم بتعديل أبعادها لتكون");
+                    }
+                    else {
+                        $.ajax({
+                            type: "Get",
+                            url: "/Advertisements/IsImageExist",
+                            data: { upload: fileInput.files[0].name },
+                            success: function (Message) {
+                                if (Message == "") {
+                                    var formData = new FormData($("#EditAdvForm")[0]);
+                                    $.ajax({
+                                        async: true,
+                                        type: "POST",
+                                        dataType: "JSON",
+                                        url: "/Advertisements/Edit",
+                                        data: formData,
+                                        processData: false,
+                                        contentType: false,
+                                        success: function (result) {
+                                            if (result) {
+                                                $.ajax({
+                                                    url: '/Advertisements/Refreash',
+                                                    contentType: 'application/html; charset=utf-8',
+                                                    type: 'GET',
+                                                    dataType: 'html',
+                                                    success: (function (result) {
+                                                        $('#_AdvertisementPartial').html(result);
+                                                        var close = document.getElementById('btnEditColse');
+                                                        close.click();
+                                                    })
+                                                });
+                                            } else {
+                                                TestSweetAlert("حدث خطأما أثناء عملية الأضافة تاكد من أدخال الحقول بالشكل الصحيح وحاول مرة أخرى");
+                                            }
+                                        }
+                                    });
+                                } else {
+                                    TestSweetAlert(Message);
+                                }
+                            }
+                        });
+                    }
+
+               }else {
+            var formData = new FormData($("#EditAdvForm")[0]);
+            $.ajax({
+                async: true,
+                type: "POST",
+                dataType: "JSON",
+                url: "/Advertisements/Edit",
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (result) {
+                    if (result) {
+                        $.ajax({
+                            url: '/Advertisements/Refreash',
+                            contentType: 'application/html; charset=utf-8',
+                            type: 'GET',
+                            dataType: 'html',
+                            success: (function (result) {
+                                $('#_AdvertisementPartial').html(result);
+                                var close = document.getElementById('btnEditColse');
+                                close.click();
+                            })
+                        });
+                    } else {
+                        TestSweetAlert("حدث خطأما أثناء عملية التعديل تاكد من أدخال الحقول بالشكل الصحيح وحاول مرة أخرى");
+                    }
+                }
+            });
+
+        }
+
+        return false;
+    });
+
+});
+
+
+
+
+
+//endregion Adv-Dashboars
 
 //#region GetRestaurants
 var GetRestaurants = function (event) {

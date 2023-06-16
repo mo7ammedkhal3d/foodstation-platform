@@ -24,7 +24,7 @@ namespace FOODSTATION.Controllers
         }
 
         // GET: Categories
-        public ActionResult CategoryIndex()
+        public ActionResult CategoryDashboard()
         {
             ViewBag.categories = db.Categories.ToList();
             return View();

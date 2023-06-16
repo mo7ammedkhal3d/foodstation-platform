@@ -43,6 +43,8 @@ namespace FOODSTATION.Models
         public virtual ICollection<Participation> Participations { get; set; }
 
         public virtual ICollection<Item> Items { get; set; }
-        
+
+        public virtual ICollection<Advertisement> Advertisements { get; set; }
+
     }
 }
