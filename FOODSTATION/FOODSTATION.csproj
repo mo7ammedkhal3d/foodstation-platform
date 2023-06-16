@@ -222,9 +222,9 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdvertisementsController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\CountriesController.cs" />
-    <Compile Include="Controllers\UserAuthController.cs" />
     <Compile Include="Controllers\DiningTypesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ItemsController.cs" />
@@ -296,8 +296,17 @@
     <Compile Include="Migrations\202306041854333_AlterTableBill.designer.cs">
       <DependentUpon>202306041854333_AlterTableBill.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202306150326071_AddAdvTable.cs" />
+    <Compile Include="Migrations\202306150326071_AddAdvTable.designer.cs">
+      <DependentUpon>202306150326071_AddAdvTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202306151254276_alterTableFeatures.cs" />
+    <Compile Include="Migrations\202306151254276_alterTableFeatures.designer.cs">
+      <DependentUpon>202306151254276_alterTableFeatures.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Advertisement.cs" />
     <Compile Include="Models\Bill.cs" />
     <Compile Include="Models\Country.cs" />
     <Compile Include="Models\DiningType.cs" />
@@ -309,6 +318,7 @@
     <Compile Include="Models\Participation.cs" />
     <Compile Include="Models\Region.cs" />
     <Compile Include="Models\Restaurant.cs" />
+    <Compile Include="Models\ViewModels\AdvVm.cs" />
     <Compile Include="Models\ViewModels\CategoryVM.cs" />
     <Compile Include="Models\ViewModels\ItemVM.cs" />
     <Compile Include="Models\ViewModels\RegionVm.cs" />
@@ -367,6 +377,7 @@
     <Content Include="Content\normalize.css" />
     <Content Include="Content\sidebar.css" />
     <Content Include="Content\Site.js" />
+    <Content Include="Content\Slideshow.css" />
     <Content Include="Content\styleLogin.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -406,6 +417,11 @@
     <Content Include="Content\font\TanseekModernProArabic2.woff" />
     <Content Include="Content\font\TanseekModernProArabic3.ttf" />
     <Content Include="Content\font\trado.ttf" />
+    <Content Include="images\SliderShow\landing1.png" />
+    <Content Include="images\SliderShow\landing2.png" />
+    <Content Include="images\SliderShow\landing4.png" />
+    <Content Include="images\SliderShow\landing5.png" />
+    <Content Include="images\SliderShow\landing6.png" />
     <Content Include="libman.json" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -430,6 +446,7 @@
     <Content Include="Scripts\jquery\jquery.slim.js" />
     <Content Include="Scripts\jquery\jquery.slim.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\Slideshow.js" />
     <Content Include="Scripts\sweetalert\sweetalert.min.js" />
     <Content Include="Scripts\UserLogin.js" />
     <Content Include="Scripts\UserRegistration.js" />
@@ -504,9 +521,9 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Restaurants\RestaurantIndex.cshtml" />
-    <Content Include="Views\Categories\CategoryIndex.cshtml" />
-    <Content Include="Views\Items\ItemIndex.cshtml" />
+    <Content Include="Views\Restaurants\RestaurantDashboard.cshtml" />
+    <Content Include="Views\Categories\CategoryDashboard.cshtml" />
+    <Content Include="Views\Items\ItemDashboard.cshtml" />
     <Content Include="Views\Items\_ItemPartial.cshtml" />
     <Content Include="Views\Home\GetRestaurantCategories.cshtml" />
     <Content Include="Views\Requests\Create.cshtml" />
@@ -517,7 +534,7 @@
     <Content Include="Views\Home\GetBill.cshtml" />
     <Content Include="Views\Shared\_ManageMdalPartial.cshtml" />
     <Content Include="Views\Home\_SelectedCategoryItems.cshtml" />
-    <Content Include="Views\Roles\RoleIndex.cshtml" />
+    <Content Include="Views\Roles\RoleDashboard.cshtml" />
     <Content Include="Views\Roles\Create.cshtml" />
     <Content Include="Views\Roles\Edit.cshtml" />
     <Content Include="Views\Roles\Delete.cshtml" />
@@ -526,10 +543,10 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery\jquery.min.map" />
     <Content Include="Scripts\jquery\jquery.slim.min.map" />
-    <Content Include="Views\Regions\RegionIndex.cshtml" />
+    <Content Include="Views\Regions\RegionDashboard.cshtml" />
     <Content Include="Views\Home\GetRegions.cshtml" />
     <Content Include="Views\Regions\_RegionPartial.cshtml" />
-    <Content Include="Views\Countries\CountryIndex.cshtml" />
+    <Content Include="Views\Countries\CountryDashboard.cshtml" />
     <Content Include="Views\Countries\_CountryPartial.cshtml" />
     <Content Include="Views\Categories\_CategoryPartial.cshtml" />
     <Content Include="Views\Shared\_LoginAndRegister.cshtml" />
@@ -542,9 +559,12 @@
     <Content Include="Views\Shared\_RegisterBox.cshtml" />
     <Content Include="Views\Home\RestaurantWonerRequests.cshtml" />
     <Content Include="Views\Home\MyRequsts.cshtml" />
+    <Content Include="Views\Advertisements\AdvertisementDashboard.cshtml" />
+    <Content Include="Views\Advertisements\_AdvertisementPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Uploads\Advertisements\" />
     <Folder Include="Views\Default\" />
     <Folder Include="Views\DiningTypes\" />
     <Folder Include="Views\Participations\" />
@@ -610,6 +630,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202306041854333_AlterTableBill.resx">
       <DependentUpon>202306041854333_AlterTableBill.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306150326071_AddAdvTable.resx">
+      <DependentUpon>202306150326071_AddAdvTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306151254276_alterTableFeatures.resx">
+      <DependentUpon>202306151254276_alterTableFeatures.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -404,6 +404,7 @@ body {
     text-decoration:none;
 }
 /*#endregion*/
+
 /*#region GetRestaurantCategories*/
 .DivRest {
     border-radius: 10px;
@@ -424,6 +425,7 @@ padding: 25px 0px 0px 0px;
     background-color: #f5f5f5;
     width: 118px;
     height: 200px;
+    text-align: right;
 }
 
 .ItemDivs img {
@@ -446,10 +448,12 @@ padding: 25px 0px 0px 0px;
 }
 
 .AllCategories {
-    background-image: radial-gradient(#ffe5c4, #ffb4b400);
-    height: 120px;
-    border-radius: 20px;
+    background-color:#eee;
+    box-shadow: 0 0 30px rgba(0, 0, 0);
+    border-radius: 20px 20px 20px 20px;
+    margin:10px 10px 10px 10px;
     padding: 20px 10px 0px 0px;
+    cursor: pointer;
 }
 
 .AllCategories a {
@@ -457,10 +461,14 @@ padding: 25px 0px 0px 0px;
 }
 
 .CategoryName {
-    background-color: #123636;
-    color: burlywood;
+    color:black;
+    width:fit-content;
     text-align: center;
-    border-radius: 50px 20px;
+    border-radius: 20px 20px;
+}
+
+.CategoryName h4{
+    width:max-content;
 }
 
 .counter {
@@ -850,6 +858,70 @@ font-size: 17px;
 
 /*#endregion Country-Index*/
 
+/*#region Adv-Index*/
+.Adv .modalCenter {
+    top: 50% !important;
+    transform: translateY(-79%) !important;
+}
+
+.Adv .modalContent {
+    height: 540px;
+    width: 570px;
+    background-color: #FFF;
+    margin: 126px 0px 0px 0px;
+}
+
+.Adv .modal-header {
+    height: 60px;
+}
+
+.Adv .modal-body {
+    height: 415px;
+}
+
+.Adv .modal-footer {
+    height: 66px;
+    padding: 10px 112px 10px 138px;
+}
+
+.Adv .modal-title {
+    font-size: 20px;
+    font-family: sans-serif;
+    text-align: center
+}
+
+.Adv .input-fild {
+}
+
+.Adv .form-group{
+    margin:0px;
+    padding:10px 10px 10px 0px;
+}
+
+.Adv .modal-BtnCreate {
+    width: 100px;
+    margin: 0px 20px 0px 20px;
+    float: right;
+}
+
+.Adv .form-group .modal-Img {
+    width: 400px;
+    height: 178px;
+    display: block;
+    font-size: 30px;
+    margin: 0px 11px 19px 129px;
+    border-radius: 25px 6px;
+    border: 1px solid teal;
+    text-align: center;
+}
+
+.Adv .modal-BtnClose {
+    width: 100px;
+    margin: 0px 20px 0px 20px;
+}
+
+/*#endregion Adv-Index*/
+
 /*#region GetRegion*/
 .regionsSelect{
     margin-top:20px
@@ -858,7 +930,7 @@ font-size: 17px;
 .regionsSelect a .regionContiner {
     transition:background-color 0.5s ease-in-out;
     animation-duration:1s;
-    animation-name:rotate;
+    /*animation-name:rotate;*/
 }
 
 @keyframes rotate{

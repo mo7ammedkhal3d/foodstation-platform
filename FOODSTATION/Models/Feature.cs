@@ -17,8 +17,12 @@ namespace FOODSTATION.Models
         public int Id { get; set; }
 
         [Required]
-        [DisplayName(" وصف الميزة")]
-        public string  Description{ get; set; }
+        [DisplayName("الميزة")]
+        public string  Name{ get; set; }
+
+        [Required]
+        [DisplayName("العدد")]
+        public int Numb { get; set; }
 
         public virtual ICollection<Participation> Participations{ get; set;}
     }

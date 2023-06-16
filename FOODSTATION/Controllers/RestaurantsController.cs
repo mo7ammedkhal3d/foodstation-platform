@@ -24,7 +24,7 @@ namespace FOODSTATION.Controllers
         }
 
 
-        public ActionResult RestaurantIndex()
+        public ActionResult RestaurantDashboard()
         {
             ViewBag.restaurants = db.Restaurants.ToList();
             ViewBag.RegionId = new SelectList(db.Regions.ToList(), "Id", "Name");

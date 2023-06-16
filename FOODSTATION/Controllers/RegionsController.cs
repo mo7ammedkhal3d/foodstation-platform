@@ -25,7 +25,7 @@ namespace FOODSTATION.Controllers
         }
 
         // GET: Regions
-        public ActionResult RegionIndex()
+        public ActionResult RegionDashboard()
         {
             var Regions= db.Regions.ToList();
             ViewBag.Regions = Regions;

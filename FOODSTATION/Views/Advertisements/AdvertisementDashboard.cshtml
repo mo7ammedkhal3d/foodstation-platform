@@ -1,0 +1,125 @@
+﻿@model FOODSTATION.Models.Advertisement
+@{
+    ViewBag.Title = "AdvertisementDashboard";
+}
+
+<div class="container" id="_AdvertisementPartial" style="direction:rtl">
+    @Html.Partial("_AdvertisementPartial")
+</div>
+
+<!--Create Adv -->
+
+<div class="modal fade Adv" id="Modal-AdvCreate">
+    <div class="modal-dialog">
+        <div class="modalContent">
+            <div class="modal-header">
+                <h2 class="modal-title" style="text-align:center">بيانات الأعلان</h2>
+            </div>
+            <div class="modal-body">
+                @using (Html.BeginForm("Create", "Advertisements", FormMethod.Post, new { enctype = "multipart/form-data", @id = "CreateAdvForm" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="row">
+                        <div class="form-horizontal">
+
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                                <div class="form-group">
+                                    <img id="CAdvimgUrl" class="modal-Img" alt="أضف صورة">
+                                    <label for="CAdvpicture" class="btn btn-primary modal-Btn">أضافة صورة</label>
+                                    <input id="CAdvpicture" class="modal-filein" type="file" name="upload" onchange="loadFile('CAdvimgUrl',event)" />
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Description,"الوصف", htmlAttributes: new { @class = "control-label col-md-4", @style = "float:right" })
+                                    <div class="col-md-8" style="float:right">
+                                        @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "input-fild", @id = "CAdvDescription" } })
+                                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.RestaurantId, "أسم المطعم", htmlAttributes: new { @class = "control-label col-md-4", @style = "float:right" })
+                                    <div class="col-md-8" style="float:right">
+                                        @Html.DropDownList("RestaurantId", null, htmlAttributes: new { @class = "input-fild", @id = "CAdvRestaurant" })
+                                        @Html.ValidationMessageFor(model => model.RestaurantId, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                        </div>
+                    </div>
+                }
+
+            </div>
+            <div class="modal-footer">
+                <div class="form-group">
+                        <input value="أضافة" class="btn btn-success modal-BtnCreate" id="btnAdvCreate" />
+                        <button id="btnCreateColse" type="button" class="btn modal-BtnClose" data-dismiss="modal" onclick="resetFilds('CreateAdvForm','CAdvimgUrl',event)">أغلاق</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Edit Adv -->
+
+<div class="modal fade Adv" id="Modal-AdvEdit">
+    <div class="modal-dialog modalCenter">
+        <div class="modalContent">
+            <div class="modal-header">
+                <h2 class="modal-title" style="text-align:center">بيانات الأعلان</h2>
+            </div>
+            <div class="modal-body">
+                @using (Html.BeginForm("Edit", "Advertisements", FormMethod.Post, new { enctype = "multipart/form-data", @id = "EditAdvForm" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="row">
+                        <div class="form-horizontal">
+
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                            <input type="hidden" name="Id" id="hiddenId" />
+                            <input type="hidden" name="ImgUrl" id="hiddenImgUrl" />
+
+                            <div class="form-group">
+                                <img id="EAdvimgUrl" class="modal-Img" alt="أضف صورة">
+                                <label for="EAdvpicture" class="btn btn-primary modal-Btn">أضافة صورة</label>
+                                <input id="EAdvpicture" class="modal-filein" type="file" name="upload" onchange="loadFile('EAdvimgUrl',event)" />
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Description, "الوصف", htmlAttributes: new { @class = "control-label col-md-4", @style = "float:right" })
+                                <div class="col-md-8" style="float:right">
+                                    @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "input-fild", @id = "EAdvDescription" } })
+                                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.RestaurantId, "أسم المطعم", htmlAttributes: new { @class = "control-label col-md-4", @style = "float:right" })
+                                <div class="col-md-8" style="float:right">
+                                    @Html.DropDownList("RestaurantId", null, htmlAttributes: new { @class = "input-fild", @id = "EAdvRestaurant" })
+                                    @Html.ValidationMessageFor(model => model.RestaurantId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                }
+
+            </div>
+            <div class="modal-footer">
+                <div class="form-group">
+                    <input value="تعديل" class="btn btn-success modal-BtnCreate" id="btnAdvEdit" />
+                    <button id="btnEditColse" type="button" class="btn modal-BtnClose" data-dismiss="modal">أغلاق</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

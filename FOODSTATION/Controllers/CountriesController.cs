@@ -22,7 +22,7 @@ namespace FOODSTATION.Controllers
         }
 
         // GET: Countries
-        public ActionResult CountryIndex()
+        public ActionResult CountryDashboard()
         {
             ViewBag.Countries = db.Countries.ToList(); 
             return View();

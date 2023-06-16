@@ -6,7 +6,7 @@
             <div class="col-md-2 thumbnail ItemDivs">
                 <img src="~/Uploads/Items/@item.ImgUrl"/>
                 <h6>@item.Name</h6>
-                <h6>@item.Price</h6>
+                <h6>@Convert.ToInt32(item.Price)</h6>
                 <button class="btn btn-primary requstBotton" id="btnadd+@item.Id" onclick="AddToBillConfirm(@item.Id)">
                     <i class="glyphicon glyphicon-shopping-cart" style="font-size:10px"></i>
                     إضافة للسلة
