@@ -1,6 +1,29 @@
 ﻿ //https://www.youtube.com/watch?v=pWotdyUYQxw
+// Account 
 
-//#region Preloader 
+var DeleteUserConfirm = function (str) {
+    $("#Modal-DeleteUser").modal('show');
+    $("#UserId").val(str);
+    
+};
+
+var UserDeleteConfirm = function () {
+    var userId = $("#UserId").val();
+    $.ajax({
+        type: "Post",
+        url: "/Account/DeleteConfirmed",
+        data: { id: userId },
+        success: function (result) {
+            if (result) {
+                $("#Modal-DeleteUser").modal('hide');
+
+            } else {
+                TestSweetAlert("حذث خطا ما أثناء عملية الحدف ");
+            }
+        }
+    });
+
+};
 
 (function ($) {
     "use strict";

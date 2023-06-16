@@ -1,0 +1,67 @@
+﻿@model FOODSTATION.Models.ViewModels.UsersRolesViewModel
+
+<div>
+    <hr />
+</div>
+@using (Html.BeginForm("Delete", "Account", FormMethod.Post, new { enctype = "multipart/form-data", @id = "CreateItemForm" }))
+{
+<table class="table table-condensed" id="itemTable" dir="rtl">
+    <tr class="btn-primary">
+
+        <th>
+            أسم العميل
+        </th>
+        <th>
+            الإميل
+        </th>
+        <th>
+            الوظيفة
+        </th>
+        <th>
+
+        </th>
+    </tr>
+    @foreach (var user in Model.Users)
+    {
+        var roles = Model.Roles;
+        <tr>
+            <td>
+                @user.UserName
+            </td>
+            <td>
+                @user.Email
+            </td>
+            <td>
+                @string.Join(",", roles.Where(r => r.Users.Any(u => u.UserId == user.Id)).Select(r => r.Name))
+            </td>
+            <td>
+
+                <a style="font-size:20px" href="~/Account/Edit/@user.Id"><i class="fa-solid fa-pen-to-square Action-Icon" style="color: #005eff;"></i></a> |
+                <a style="font-size:20px" onclick="DeleteUserConfirm('@user.Id')"><i class="fa-solid fa-trash-can Action-Icon" style="color: #ff2600;"></i></a>
+                
+            </td>
+        </tr>
+        
+    }
+</table>
+}<input type="hidden" id="UserId" />
+<div class="modal fade Region" id="Modal-DeleteUser">
+    <div class="modal-dialog modalCenter">
+        <div class="modalContent-Region" style="background:#fff ; position:relative">
+            <div class="Region-modal-body">
+                <div class="form-horizontal">
+                    <h3>هل انت متاكد من الحذف ؟</h3>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="form-group">
+                    <div class="col-md-offset-3 col-md-6">
+                        <input onclick="UserDeleteConfirm()" type="button" value="حـذف" class="btn btn-danger" />
+                        <a id="btnMakeSureColse" class="btn modal-BtnClose btn btn-primary" data-dismiss="modal">إلغا</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<i class="fa-regular fa-trash-undo"></i>

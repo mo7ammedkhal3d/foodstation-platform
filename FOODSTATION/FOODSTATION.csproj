@@ -313,6 +313,7 @@
     <Compile Include="Models\ViewModels\ItemVM.cs" />
     <Compile Include="Models\ViewModels\RegionVm.cs" />
     <Compile Include="Models\ViewModels\RestaurantVM.cs" />
+    <Compile Include="Models\ViewModels\UsersRolesViewModel.cs" />
     <Compile Include="Models\ViewModels\VirtualBill.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -542,6 +543,8 @@
     <Content Include="Views\Shared\_RegisterBox.cshtml" />
     <Content Include="Views\Home\RestaurantWonerRequests.cshtml" />
     <Content Include="Views\Home\MyRequsts.cshtml" />
+    <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\Account\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

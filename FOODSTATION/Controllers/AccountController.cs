@@ -9,6 +9,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using FOODSTATION.Models;
+using System.Data.Entity;
+using FOODSTATION.Models.ViewModels;
 
 namespace FOODSTATION.Controllers
 {
@@ -29,6 +31,40 @@ namespace FOODSTATION.Controllers
             UserManager = userManager;
             SignInManager = signInManager;
         }
+        public ActionResult Index()
+        {
+            var users = db.Users.Include(u => u.Roles);
+            var roles = db.Roles.Include(r => r.Users);
+            UsersRolesViewModel UsersRloe = new UsersRolesViewModel { Users = users.ToList(), Roles= roles.ToList()};
+            return View(UsersRloe);
+        }
+
+        public JsonResult DeleteConfirmed(string id)
+        {
+            
+            bool result = false;
+            var user = db.Users.Find(id);
+            if (user != null)
+            {
+                db.Users.Remove(user);
+                db.SaveChanges();
+                result = true;
+            }
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult Edit(string id)
+        {
+            if (ModelState.IsValid)
+            {
+                ViewBag.RoleId = new SelectList(db.Roles.ToList(), "Id", "Name");
+                var user = db.Users.Find(id);
+                return View(user);
+
+            }
+            return HttpNotFound();
+        }
+
 
         public ApplicationSignInManager SignInManager
         {
@@ -53,6 +89,7 @@ namespace FOODSTATION.Controllers
                 _userManager = value;
             }
         }
+        
 
         //
         // GET: /Account/Login
@@ -416,7 +453,7 @@ namespace FOODSTATION.Controllers
             var factorOptions = userFactors.Select(purpose => new SelectListItem { Text = purpose, Value = purpose }).ToList();
             return View(new SendCodeViewModel { Providers = factorOptions, ReturnUrl = returnUrl, RememberMe = rememberMe });
         }
-
+        
         //
         // POST: /Account/SendCode
         [HttpPost]
