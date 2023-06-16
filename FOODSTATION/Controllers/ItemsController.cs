@@ -26,7 +26,7 @@ namespace FOODSTATION.Controllers
         }
 
         // GET: Items
-        public ActionResult ItemIndex()
+        public ActionResult ItemDashboard()
         {
             var userId=User.Identity.GetUserId();
             if (User.IsInRole("RestaurantOwner"))

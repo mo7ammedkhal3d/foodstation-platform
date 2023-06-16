@@ -15,7 +15,7 @@ namespace FOODSTATION.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
         // GET: Roles
-        public ActionResult RoleIndex()
+        public ActionResult RoleDashboard()
         {
             return View(db.Roles.ToList());
         }
