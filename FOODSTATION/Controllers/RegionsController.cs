@@ -63,7 +63,9 @@ namespace FOODSTATION.Controllers
             if (region != null)
             {
                 regionVm.Name = region.Name;
-                regionVm.CountryId = region.CountryId;  
+                regionVm.CountryId = region.CountryId;
+                regionVm.Longitude = region.Longitude;
+                regionVm.Latitude = region.Latitude;
                 return Json(regionVm, JsonRequestBehavior.AllowGet);
             }
             return Json(false, JsonRequestBehavior.AllowGet);

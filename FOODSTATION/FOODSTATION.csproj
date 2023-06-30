@@ -304,6 +304,14 @@
     <Compile Include="Migrations\202306151254276_alterTableFeatures.designer.cs">
       <DependentUpon>202306151254276_alterTableFeatures.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202306211207320_AddColsInRestaurant.cs" />
+    <Compile Include="Migrations\202306211207320_AddColsInRestaurant.designer.cs">
+      <DependentUpon>202306211207320_AddColsInRestaurant.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202306211213411_AddColsInRegion.cs" />
+    <Compile Include="Migrations\202306211213411_AddColsInRegion.designer.cs">
+      <DependentUpon>202306211213411_AddColsInRegion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Advertisement.cs" />
@@ -387,6 +395,7 @@
     <Content Include="images\favicon.ico" />
     <Content Include="images\hero-img.png" />
     <Content Include="images\logo.png" />
+    <Content Include="images\marker.ico" />
     <Content Include="images\Regi.jpg" />
     <Content Include="Content\font\DroidKufi-Regular.ttf" />
     <Content Include="Content\font\DroidNaskh-Bold.ttf" />
@@ -447,7 +456,6 @@
     <Content Include="Scripts\jquery\jquery.slim.js" />
     <Content Include="Scripts\jquery\jquery.slim.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Scripts\Slideshow.js" />
     <Content Include="Scripts\sweetalert\sweetalert.min.js" />
     <Content Include="Scripts\UserLogin.js" />
     <Content Include="Scripts\UserRegistration.js" />
@@ -639,6 +647,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202306151254276_alterTableFeatures.resx">
       <DependentUpon>202306151254276_alterTableFeatures.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306211207320_AddColsInRestaurant.resx">
+      <DependentUpon>202306211207320_AddColsInRestaurant.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306211213411_AddColsInRegion.resx">
+      <DependentUpon>202306211213411_AddColsInRegion.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

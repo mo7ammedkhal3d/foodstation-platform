@@ -39,11 +39,15 @@ namespace FOODSTATION.Controllers
             if(id != null)
             {
                 Session["RegionId"] = id;
+                ViewBag.regionLng = db.Regions.Where(x=> x.Id == id).FirstOrDefault().Longitude;
+                ViewBag.regionlat = db.Regions.Where(x => x.Id == id).FirstOrDefault().Latitude; 
                 return View("GetRestaurants", db.Restaurants.ToList().Where(x => x.RegionId == id));
             }
 
             else if(Session["RegionId"] != null)
             {
+                ViewBag.regionLng = db.Regions.Where(x => x.Id == Convert.ToInt32(Session["RegionId"])).FirstOrDefault().Longitude;
+                ViewBag.regionlat = db.Regions.Where(x => x.Id == Convert.ToInt32(Session["RegionId"])).FirstOrDefault().Latitude;
                 return View("GetRestaurants", db.Restaurants.ToList().Where(x => x.RegionId == Convert.ToInt32(Session["RegionId"])));
             }
             else return View("GetRestaurants", db.Restaurants.ToList());
@@ -108,7 +112,8 @@ namespace FOODSTATION.Controllers
             var Restaurant = db.Restaurants.ToList().Where(x => x.Id == id).Single();
             ViewBag.Name = Restaurant.Name;
             ViewBag.restaurantId = Restaurant.Id;
-            return View(Categories.Distinct().ToList());
+            ViewBag.adv = db.Advertisements.Where(x => x.RestaurantId == id).ToList();
+            return View(Categories.Distinct().ToList());          
         }
 
        

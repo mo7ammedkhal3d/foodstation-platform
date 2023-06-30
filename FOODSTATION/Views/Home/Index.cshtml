@@ -11,11 +11,6 @@
     </div>
 </div>
 <!-- End about  -->
-@*<div class="modal fade Log" id="Modal-Login" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        @Html.Partial("_UserLoginPartial")
-    </div>*@
-
-@*<div id="map" style="width:100% ; height:400px">  </div>*@
 
 <!--start login and register window-->
 
@@ -201,21 +196,6 @@
 
 @section Scripts
 {
-    <script>
-            const sydney = new google.maps.LatLng(-33.867, 151.195);
-            var map;
-            function initMap(){
-                map = new google.maps.Map(document.getElementById("map"), {
-                    center: sydney,
-                    zoom: 15,
-                });
-           }
-    </script>
-
-    <script async
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAgEb47rpWP5qmVynKDhvJjdYmbSNj2M28&libraries=places&callback=initMap">
-    </script>
-
     @{
         Html.RenderPartial("_AuthScriptsPartial");
         Html.RenderPartial("_ValidationScriptsPartial");

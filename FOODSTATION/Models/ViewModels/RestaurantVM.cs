@@ -25,6 +25,10 @@ namespace FOODSTATION.Models.ViewModels
 
         public string Region { get; set; }
 
+        public decimal Longitude { get; set; }
+
+        public decimal Latitude { get; set; }
+
         public  ICollection<DiningType> DiningTypes { get; set; }
     }
 }

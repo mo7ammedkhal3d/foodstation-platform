@@ -116,7 +116,7 @@ namespace FOODSTATION.Controllers
                 db.SaveChanges();
 
                 responce.Remaing = ReminingAdeverCounter(adv.RestaurantId);
-                responce.Message = responce.Remaing+"تمت الأضافة المتبقي من الأعلانات";
+                responce.Message = "من الأعلانات ( "+responce.Remaing+" ) تمت الأضافة المتبقي ";
                 responce.Seccess = true;
 
                 return Json(responce , JsonRequestBehavior.AllowGet);
@@ -184,7 +184,8 @@ namespace FOODSTATION.Controllers
             return Json(false, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult DeleteConfirmed(int id)
+
+        public JsonResult DeleteConfirmed(int? id)
         {
             var Advertisement = db.Advertisements.Find(id);
             var responce = new AdvertisementResponceViewModel();
@@ -197,9 +198,8 @@ namespace FOODSTATION.Controllers
                 db.SaveChanges();   
                 responce.Remaing = ReminingAdeverCounter(Advertisement.RestaurantId);
                 responce.Seccess = true;
-                responce.Message = responce.Remaing + "تمت عملية الحذف المتبقي من الأعلانات";
+                responce.Message = "من الإعلانات ( " + responce.Remaing + " ) تمت عملية الحذف المتبقي";
             }
-
             return Json(responce, JsonRequestBehavior.AllowGet);
         }
 

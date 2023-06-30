@@ -17,6 +17,14 @@ namespace FOODSTATION.Models
 
         public int CountryId { get; set; }
 
+        [Required]
+        [DisplayName("خط الطول")]
+        public decimal Longitude { get; set; }
+
+        [Required]
+        [DisplayName("خط العرض")]
+        public decimal Latitude { get; set; }
+
         public virtual Country Country { get; set; }
 
         public virtual ICollection<Restaurant> Restaurants { get; set; }

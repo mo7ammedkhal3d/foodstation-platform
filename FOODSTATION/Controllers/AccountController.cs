@@ -152,7 +152,7 @@ namespace FOODSTATION.Controllers
                 var result = await SignInManager.PasswordSignInAsync(model.UserName,
                                                                      model.Password,
                                                                      model.RememberMe,
-                                                                     shouldLockout: false);
+                                                                    shouldLockout: false);
                 switch (result)
                 {
                     case SignInStatus.Success:

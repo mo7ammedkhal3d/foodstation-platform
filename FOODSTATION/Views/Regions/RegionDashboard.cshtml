@@ -32,6 +32,14 @@
                                         @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label" })
                                         @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "input-fild", @id = "CRname" } })
                                     </div>
+                                    <div>
+                                        @Html.LabelFor(model => model.Longitude, htmlAttributes: new { @class = "control-label" })
+                                        @Html.EditorFor(model => model.Longitude, new { htmlAttributes = new { @class = "input-fild", @id = "CRlongitude" } })
+                                    </div>
+                                    <div>
+                                        @Html.LabelFor(model => model.Latitude, htmlAttributes: new { @class = "control-label" })
+                                        @Html.EditorFor(model => model.Latitude, new { htmlAttributes = new { @class = "input-fild", @id = "CRlatitude" } })
+                                    </div>
                                     @Html.LabelFor(model => model.CountryId, "الدولة", htmlAttributes: new { @class = "control-label" })
                                     <div>
                                         @Html.DropDownList("CountryId", null, htmlAttributes: new { @class = "input-fild", @id = "RCountryId" })
@@ -73,17 +81,25 @@
                             <div>
                                 <input type="hidden" name="Id" id="hiddenId" />
                                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div>
                                 <div>
-                                    <div>
-                                        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label" })
-                                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "input-fild", @id = "ERname" } })
-                                    </div>
-                                    @Html.LabelFor(model => model.CountryId, "الدولة", htmlAttributes: new { @class = "control-label" })
-                                    <div>
-                                        @Html.DropDownList("CountryId", null, htmlAttributes: new { @class = "input-fild", @id = "ERCountryId" })
-                                        @Html.ValidationMessageFor(model => model.CountryId, "", new { @class = "text-danger" })
-                                    </div>
+                                    @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "input-fild", @id = "ERname" } })
                                 </div>
+                                <div>
+                                    @Html.LabelFor(model => model.Longitude, htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.Longitude, new { htmlAttributes = new { @class = "input-fild", @id = "ERlongitude" } })
+                                </div>
+                                <div>
+                                    @Html.LabelFor(model => model.Latitude, htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.Latitude, new { htmlAttributes = new { @class = "input-fild", @id = "ERlatitude" } })
+                                </div>
+                                @Html.LabelFor(model => model.CountryId, "الدولة", htmlAttributes: new { @class = "control-label" })
+                                <div>
+                                    @Html.DropDownList("CountryId", null, htmlAttributes: new { @class = "input-fild", @id = "ERCountryId" })
+                                    @Html.ValidationMessageFor(model => model.CountryId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
                             </div>
                         </div>
                     </div>
