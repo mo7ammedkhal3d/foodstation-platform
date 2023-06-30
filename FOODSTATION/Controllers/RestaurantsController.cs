@@ -107,6 +107,8 @@ namespace FOODSTATION.Controllers
                 restaurantVM.RegionId = restaurant.RegionId;
                 restaurantVM.UserId = restaurant.UserId;
                 restaurantVM.UserName = restaurant.User.UserName;
+                restaurantVM.Longitude = restaurant.Longitude;  
+                restaurantVM.Latitude = restaurant.Latitude;
                 if(restaurant.Participations.Count() > 0)
                 {
                     restaurantVM.Participation = restaurant.Participations.Last().Id;
@@ -136,6 +138,8 @@ namespace FOODSTATION.Controllers
                 restaurant.Description = modifiedInfo.Description;
                 restaurant.RegionId = modifiedInfo.RegionId;
                 restaurant.UserId = modifiedInfo.UserId;
+                restaurant.Longitude = modifiedInfo.Longitude;
+                restaurant.Latitude = modifiedInfo.Latitude;
                 string oldPath = Path.Combine(Server.MapPath("~/Uploads/Restaurants"), restaurant.ImgUrl);
 
                 if (upload != null)

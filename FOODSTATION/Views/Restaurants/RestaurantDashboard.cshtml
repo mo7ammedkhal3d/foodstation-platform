@@ -49,6 +49,20 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
+                                    @Html.LabelFor(model => model.Longitude, htmlAttributes: new { @class = "control-label col-md-4", @style = "float:right" })
+                                    <div style="float:right">
+                                        @Html.EditorFor(model => model.Longitude, new { htmlAttributes = new { @class = "input-fild", @id = "CRlongitude" } })
+                                        @Html.ValidationMessageFor(model => model.Longitude, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Latitude, htmlAttributes: new { @class = "control-label col-md-4", @style = "float:right" })
+                                    <div style="float:right">
+                                        @Html.EditorFor(model => model.Latitude, new { htmlAttributes = new { @class = "input-fild", @id = "CRlatitude" } })
+                                        @Html.ValidationMessageFor(model => model.Latitude, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
                                     @Html.LabelFor(model => model.UserId, "مالك المطعم", htmlAttributes: new { @class = "control-label col-md-4", @style = "float:right" })
                                     <div style="float:right">
                                         @Html.DropDownList("UserId", null, htmlAttributes: new { @class = "col-md-8 input-fild", @id = "CRowner" })
@@ -57,18 +71,18 @@
                                 </div>
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.Participations, "نوع الأشتراك", htmlAttributes: new { @class = "control-label col-md-4", @style = "float:right" })
-                                    <div  style="float:right">
+                                    <div style="float:right">
                                         @Html.DropDownList("ParticipationTypes", null, htmlAttributes: new { @class = "col-md-8 input-fild", @id = "CRowner" })
                                         @Html.ValidationMessageFor(model => model.RegionId, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
                                 <div class="form-group RestaurantCheckbox">
-                                    @Html.LabelFor(model => model.DiningTypes, "نوع الأكل المقدم", htmlAttributes: new { @class = "control-label col-md-5", @style = "float:right" })                
+                                    @Html.LabelFor(model => model.DiningTypes, "نوع الأكل المقدم", htmlAttributes: new { @class = "control-label col-md-5", @style = "float:right" })
                                     <ul class="col-md-7">
                                         @foreach (var Item in ViewBag.AvailableDiningTypes)
-                                         {    
+                                        {
                                             <li><input type="checkbox" name="diningTypeIds" value="@Item.Id" />@Item.Name</li>
-                                         }
+                                        }
                                     </ul>
                                 </div>
                             </div>
@@ -134,6 +148,20 @@
                                     <div class="col-md-8" style="float:right">
                                         @Html.DropDownList("RegionId", null, htmlAttributes: new { @class = "input-fild", @id = "ERregion" })
                                         @Html.ValidationMessageFor(model => model.RegionId, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Longitude, htmlAttributes: new { @class = "control-label col-md-4", @style = "float:right" })
+                                    <div class="col-md-8" style="float:right">
+                                        @Html.EditorFor(model => model.Longitude, new { htmlAttributes = new { @class = "input-fild", @id = "ERlongitude" } })
+                                        @Html.ValidationMessageFor(model => model.Longitude, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Latitude, htmlAttributes: new { @class = "control-label col-md-4", @style = "float:right" })
+                                    <div class="col-md-8" style="float:right">
+                                        @Html.EditorFor(model => model.Latitude, new { htmlAttributes = new { @class = "input-fild", @id = "ERlatitude" } })
+                                        @Html.ValidationMessageFor(model => model.Latitude, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
                                 <div class="form-group">

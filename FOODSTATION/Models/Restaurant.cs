@@ -32,6 +32,14 @@ namespace FOODSTATION.Models
         public int RegionId { get; set; }
 
         [Required]
+        [DisplayName("خط الطول")]
+        public decimal Longitude { get; set; }
+
+        [Required]
+        [DisplayName("خط العرض")]
+        public decimal Latitude { get; set; }
+
+        [Required]
         [DisplayName("مالك المطعم")]
         public string UserId { get; set; }
 

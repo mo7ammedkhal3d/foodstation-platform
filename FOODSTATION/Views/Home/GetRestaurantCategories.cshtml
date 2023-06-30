@@ -4,53 +4,61 @@
 }
 <input id="restaurantId" type="hidden" value="@(ViewBag.restaurantId)">
 
+<div class="hello-section">
+    <h2>Hello!</h2>
+    <p>Welcome to our restaurant. We are excited to have you here and can't wait to serve you delicious food.</p>
+</div>
+
 <!--#region Slider-->
+<!-- image slider start-->
+<div class="slider">
+    <div class="slides">
+        <!--radio buttons start-->
+        @{var radioCounter = 1;}
+        @foreach (var item in ViewBag.adv)
+        {
+            string id = "radio"+radioCounter;
+            <input type="radio" name="radio-btn" id="@id">
+            radioCounter++;
+        }
+        <!--radio buttons end-->
 
-<div class="slideshow-container">
+        <!--slide image start-->
+        @{string slideClassName = "slide first";}
+        @foreach (var item in ViewBag.adv)
+        {
+            <div class="@slideClassName">
+                <img src="~/Uploads/Advertisements/@item.ImgUrl" alt="">
+            </div>
+            slideClassName = "slide";
+        }
+        <!--slide image end-->
 
-    <div class="mySlides slideFade">
-        <div class="numbertext">1 / 4</div>
-        <img src="~/images/SliderShow/landing1.png" style="width:100%">
-        <div class="text">Caption Text</div>
+        <!--automatic navigation start-->
+        @{var autoCounter = 1;}
+        <div class="navigation-auto">
+        @foreach (var item in ViewBag.adv)
+        {
+            string autoClassName = "auto-btn"+ autoCounter;
+            <div class="@autoClassName"></div>
+            autoCounter++;
+        }
+        </div>
+        <!--automatic navigation end-->
     </div>
-
-    <div class="mySlides slideFade">
-        <div class="numbertext">2 / 4</div>
-        <img src="~/images/SliderShow/landing2.png" style="width:100%">
-        <div class="text">Caption Two</div>
+    <!--manual navigation start-->
+    @{var manualCounter = 1;}
+    <div class="navigation-manual">
+    @foreach (var item in ViewBag.adv)
+    {
+        string manualForthis = "radio" + manualCounter;
+        <label for="@manualForthis" class="manual-btn"></label>
+        manualCounter++;
+    }
     </div>
-
-    <div class="mySlides slideFade">
-        <div class="numbertext">3 / 4</div>
-        <img src="~/images/SliderShow/landing4.png" style="width:100%">
-        <div class="text">Caption Three</div>
-    </div>
-
-    <div class="mySlides slideFade">
-        <div class="numbertext">4 / 4</div>
-        <img src="~/images/SliderShow/landing5.png" style="width:100%">
-        <div class="text">Caption Three</div>
-    </div>
-
-    <div class="mySlides slideFade">
-        <div class="numbertext">4 / 4</div>
-        <img src="~/images/SliderShow/landing6.png" style="width:100%">
-        <div class="text">Caption Three</div>
-    </div>
-
-    <a class="prev" onclick="plusSlides(-1)">❮</a>
-    <a class="next" onclick="plusSlides(1)">❯</a>
-
+    <!--manual navigation end-->
 </div>
-<br>
-
-<div style="text-align:center">
-    <span class="dot" onclick="currentSlide(1)"></span>
-    <span class="dot" onclick="currentSlide(2)"></span>
-    <span class="dot" onclick="currentSlide(3)"></span>
-    <span class="dot" onclick="currentSlide(4)"></span>
-    <span class="dot" onclick="currentSlide(5)"></span>
-</div>
+<!-- image slider end-->
 
 <!--#endregion Slider-->
 
@@ -81,7 +89,17 @@
 
 @section Scripts
 {
-    <script src="~/Scripts/Slideshow.js"></script>
+    <script type="text/javascript">
+        var counter = 1;
+        var maxNoAdv = @ViewBag.Adv.Count;
+        setInterval(function () {
+            document.getElementById('radio' + counter).checked = true;
+            counter++;
+            if (counter > maxNoAdv) {
+                counter = 1;
+            }
+        }, 5000);
+    </script>
 }
 
 

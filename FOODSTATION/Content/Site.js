@@ -1,6 +1,8 @@
 ﻿ //https://www.youtube.com/watch?v=pWotdyUYQxw
 // Account 
 
+//#region User-Dashboard
+
 var DeleteUserConfirm = function (str) {
     $("#Modal-DeleteUser").modal('show');
     $("#UserId").val(str);
@@ -24,6 +26,10 @@ var UserDeleteConfirm = function () {
     });
 
 };
+
+//#endregion User-Dashboard
+
+//#region Preloader
 
 (function ($) {
     "use strict";
@@ -404,6 +410,8 @@ var EditRegionConfirm = function (_id) {
         success: function (region) {
             $("#Modal-regionEdit").modal('show');
             $("#ERname").val(region.Name)
+            $("#ERlongitude").val(region.Longitude)
+            $("#ERlatitude").val(region.Latitude)
             $("#ERCountryId").val(region.CountryId)
             $("#hiddenId").val(_id)
         }
@@ -422,6 +430,10 @@ $(document).ready(function () {
   $("#btnRegionCreate").click(function () {
         if ($("#CRname").val() == "") {
             TestSweetAlert("قم بأدخال اسم المنطقة");
+        } if ($("#CRlongitude").val() == "") {
+          TestSweetAlert("قم بأدخال خط العرض للمنطقة");
+        } if ($("#CRlatitude").val() == "") {
+          TestSweetAlert("قم بأدخال خط الطول للمنطقة");
         } else {
             var formData = new FormData($("#CreateRegionForm")[0]);
             $.ajax({
@@ -455,34 +467,42 @@ $(document).ready(function () {
     });
 
   $("#btnRegionEdit").click(function () {
-        var formData = new FormData($("#EditRegionForm")[0]);
-        $.ajax({
-            async: true,
-            type: "POST",
-            dataType: "JSON",
-            url: "/Regions/Edit",
-            data: formData,
-            processData: false,
-            contentType: false,
-            success: function (result) {
-                if (result) {
-                    $.ajax({
-                        url: '/Regions/Refreash',
-                        contentType: 'application/html; charset=utf-8',
-                        type: 'GET',
-                        dataType: 'html',
-                        success: (function (result) {
-                            $('#_RegionPartial').html(result);
-                            var close = document.getElementById('btnEditColse');
-                            close.click();
-                        })
-                    });
-                } else {
-                    TestSweetAlert("حدث خطأما أثناء عملية التعديل تاكد من أدخال الحقول بالشكل الصحيح وحاول مرة أخرى");
-                }
-            }
-        });
+        if ($("#ERname").val() == "") {
+            TestSweetAlert("قم بأدخال اسم المنطقة");
+        } else if ($("#ERlongitude").val() == "") {
+            TestSweetAlert("قم بأدخال خط العرض للمنطقة");
+        } else if ($("#ERlatitude").val() == "") {
+            TestSweetAlert("قم بأدخال خط الطول للمنطقة");
+        } else {
+                var formData = new FormData($("#EditRegionForm")[0]);
+                $.ajax({
+                    async: true,
+                    type: "POST",
+                    dataType: "JSON",
+                    url: "/Regions/Edit",
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (result) {
+                        if (result) {
+                            $.ajax({
+                                url: '/Regions/Refreash',
+                                contentType: 'application/html; charset=utf-8',
+                                type: 'GET',
+                                dataType: 'html',
+                                success: (function (result) {
+                                    $('#_RegionPartial').html(result);
+                                    var close = document.getElementById('btnEditColse');
+                                    close.click();
+                                })
+                            });
+                        } else {
+                            TestSweetAlert("حدث خطأما أثناء عملية التعديل تاكد من أدخال الحقول بالشكل الصحيح وحاول مرة أخرى");
+                        }
+                    }
+                });
 
+          }
  });
 
   $("#btnRegionDelete").click(function () { 
@@ -568,6 +588,8 @@ var EditRestaurantConfirm = function (_id) {
             $("#ERname").val(restaurant.Name)
             $("#ERdescription").val(restaurant.Description)
             $("#ERregion").val(restaurant.RegionId)
+            $("#ERlongitude").val(restaurant.Longitude)
+            $("#ERlatitude").val(restaurant.Latitude)
             $("#ERowner").val(restaurant.UserId)
             $("#ERparticipation").val(restaurant.Participation)
             for (var i = 0; i < restaurant.diningTypeIds.length; i++) {
@@ -612,6 +634,10 @@ $(document).ready(function () {
             TestSweetAlert("قم بأدخال الوصف");
         } else if ($("#CRpicture").val() == "") {
             TestSweetAlert("قم بأضافة صورة لمطعم");
+        } else if ($("#CRlongitude").val() == "") {
+            TestSweetAlert("قم بأدخال خط الطول للمطعم");
+        } else if ($("#CRlatitude").val() == "") {
+            TestSweetAlert("قم بأدخال خط العرض للمطعم");
         } else {
             var fileInput = document.getElementById('CRpicture');
             $.ajax({
@@ -662,6 +688,10 @@ $(document).ready(function () {
             TestSweetAlert("قم بأدخال الأسم");
         } else if ($("#ERdescription").val() == "") {
             TestSweetAlert("قم بأدخال الوصف");
+        } else if ($("#ERlongitude").val() == "") {
+            TestSweetAlert("قم بأدخال خط الطول للمطعم");
+        } else if ($("#ERlatitude").val() == "") {
+            TestSweetAlert("قم بأدخال خط العرض للمطعم");
         } else if ($("#ERpicture").val() != "") {
             var fileInput = document.getElementById('ERpicture');
             $.ajax({
@@ -1237,7 +1267,7 @@ $(document).ready(function () {
 
 //#endregion Item-Dashboard
 
-//region Adv-Dashboars
+//#region Adv-Dashboars
 
 var EditAdvConfirm = function (_id) {
     $("#AdvId").val(_id)
@@ -1456,10 +1486,7 @@ $(document).ready(function () {
 });
 
 
-
-
-
-//endregion Adv-Dashboars
+//#endregion Adv-Dashboars
 
 //#region GetRestaurants
 var GetRestaurants = function (event) {
