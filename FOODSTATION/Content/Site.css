@@ -483,15 +483,20 @@ padding: 25px 0px 0px 0px;
 }
 
 .CategoryDivs {
-    background-color: teal;
+    background-color: lightsteelblue;
     border-radius: 50px 50px;
     padding: 10px;
-    width: 100px;
     height: 100px;
+    width: 118px;
     text-align: center;
     font-weight: bold;
     color: black;
-    width: max-content;
+    margin-left: 15px;
+    bottom: 12px;
+    box-shadow: 0 0 15px #888e8f;
+}
+.CategoryDivs h4{
+    margin-top:20px;
 }
 
 .AllCategories {
@@ -609,7 +614,7 @@ padding: 25px 0px 0px 0px;
 }
 .itemDisplayDiv {
     position: relative;
-    left: -43%;
+    left: -50%;
     transform: translateX(50%);
 }
 
