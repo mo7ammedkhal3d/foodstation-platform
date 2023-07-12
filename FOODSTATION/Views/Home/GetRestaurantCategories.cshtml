@@ -65,17 +65,17 @@
 <div class="AllCategories">
     <div class="container ">
         <a onclick="getallItems()">
-            <div class="col-md-2 thumbnail CategoryDivs" style=" margin-left:25px; margin-bottom:30px;">
-                <img src="~/Uploads/Categories/Chef-bro.png" style="height: 90px; width:90px; border-radius: 130px;" />
-                <div class="CategoryName"><h4>الكل</h4></div>
+            <div class="col-md-2 thumbnail CategoryDivs">
+                <img src="~/Uploads/Categories/Chef-bro.png" style="width:100% ; height:100%"/>
+               <h4>الكل</h4>
             </div>
         </a>
         @foreach (var item in Model)
         {
             <a onclick="getItems(@item.Id)">
-                <div class="col-md-2 thumbnail CategoryDivs" style=" margin-left:25px; margin-bottom:30px;">
-                    <img src="~/Uploads/Categories/@item.ImgUrl" style="height: 90px; width:90px" />
-                    <div class="CategoryName"><h4> @Html.DisplayFor(modelItem => item.Name)</h4></div>
+                <div class="col-md-2 thumbnail CategoryDivs">
+                    <img src="~/Uploads/Categories/@item.ImgUrl" style="width:100% ; height:100%" />
+                    <h4> @Html.DisplayFor(modelItem => item.Name)</h4>
                 </div>
             </a>
         }
