@@ -45,8 +45,8 @@ namespace FOODSTATION.Models
         public DbSet<Country> Countries { get; set; }
         public DbSet<Bill> Bills { get; set; }
         public DbSet<DiningType> DiningTypes { get; set; }
-        public DbSet<FOODSTATION.Models.Participation> Participations { get; set; }
-        public DbSet<FOODSTATION.Models.Advertisement> Advertisements { get; set; }
+        public DbSet<Participation> Participations { get; set; }
+        public DbSet<Advertisement> Advertisements { get; set; }
     }
 
 

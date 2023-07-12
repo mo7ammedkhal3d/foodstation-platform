@@ -53,6 +53,21 @@ namespace FOODSTATION.Controllers
             else return View("GetRestaurants", db.Restaurants.ToList());
         }
 
+        [HttpPost]
+        public PartialViewResult ShowBillItems(int id)
+        {
+            var bill = db.Bills.Find(id);
+
+            if(bill != null)
+            {
+                var Items = bill.Items;
+                ViewBag.Items = Items;  
+
+                return PartialView("_PartialBillItem", Items);
+            }
+            return PartialView("PartialBillItem");
+        }
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
@@ -71,25 +86,24 @@ namespace FOODSTATION.Controllers
             db.Bills.Add(NewBill);
             db.SaveChanges();
             return RedirectToAction("Index");
-
-           
+          
         }
 
         [Authorize(Roles = "RestaurantOwner")]
         public ActionResult RestaurantWonerRequests()
         {
-            var user =  User.Identity.GetUserId();
-            var bills = db.Bills.ToList();
-           
-            
-            return View(bills);
+            var userId =  User.Identity.GetUserId();
+
+            var items = db.Bills.Where(b => b.Items.Any(i => i.Restaurant.UserId == userId)).ToList();
+
+
+            return View(items);
         }
         [Authorize]
         public ActionResult MyRequsts()
         {
             var id = User.Identity.GetUserId();
-            var bills = db.Bills.Where(x=>x.UserId==id).ToList();
-
+            var bills = db.Bills.Where(x=>x.UserId==id).OrderByDescending(x => x.Date).ToList(); 
 
             return View(bills);
         }

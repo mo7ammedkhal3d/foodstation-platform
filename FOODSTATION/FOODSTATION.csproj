@@ -572,6 +572,7 @@
     <Content Include="Views\Account\Edit.cshtml" />
     <Content Include="Views\Advertisements\AdvertisementDashboard.cshtml" />
     <Content Include="Views\Advertisements\_AdvertisementPartial.cshtml" />
+    <Content Include="Views\Home\_PartialBillItem.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
