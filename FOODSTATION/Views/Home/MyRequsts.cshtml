@@ -1,9 +1,11 @@
 ﻿@model IEnumerable<FOODSTATION.Models.Bill>
 @using Microsoft.AspNet.Identity
-
+@{
+    ViewBag.Title = "My Requst";
+}
 <div>
     <h2 style="text-align: center; color: #a94442; font-family: 'myfont3'; font-size: xx-large; ">طلباتي</h2>
-    <h2 style="text-align: center; color: #a94442; font-family: 'myfont3'; font-size: xx-large; ">@Model.First().User.UserName</h2>
+    @*<h2 style="text-align: center; color: #a94442; font-family: 'myfont3'; font-size: xx-large; ">@Model.First().User.UserName</h2>*@
 </div>
 <table class="table" id="itemTable" dir="rtl">
     <tr class="TableRow">
@@ -15,6 +17,9 @@
         </th>
         <th>
             تاريخ الطلب
+        </th>
+        <th>
+            الزمن
         </th>
         <th>
             أسم المطعم
@@ -34,7 +39,10 @@
                     @item.Price
                 </td>
                 <td>
-                    @item.Bills.First().Date
+                    @item.Bills.First().Date.ToString("d")
+                </td>
+                <td>
+                    @item.Bills.First().Date.ToString("t")
                 </td>
                 <td>
                     @item.Restaurant.Name

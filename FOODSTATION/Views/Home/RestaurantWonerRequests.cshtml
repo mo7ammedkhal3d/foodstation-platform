@@ -1,6 +1,12 @@
 ﻿@model IEnumerable<FOODSTATION.Models.Bill>
+@using FOODSTATION.Models
 @using Microsoft.AspNet.Identity
-
+@{
+    ViewBag.Title = "Requstes";
+    var db = new ApplicationDbContext();
+    var userId = User.Identity.GetUserId();
+    var CurrentUser = db.Users.Where(a => a.Id == userId).SingleOrDefault().UserName;
+}
 <div>
     <h2 style="text-align: center; color: #a94442; font-family: 'myfont3'; font-size: xx-large; ">قائمة الطلبات</h2>
 </div>
@@ -8,18 +14,14 @@
     <tr class="TableRow">
 
         <th>
-            أسم الطلب
-        </th>
-        <th>
-            السعر
+            صاحب الطلب
         </th>
         <th>
             تاريخ الطلب
         </th>
         <th>
-            أسم المطعم
+            الزمن
         </th>
-
         <th>
             الأجراء
         </th>
@@ -27,39 +29,42 @@
 
     @foreach (var bill in Model)
     {
-        foreach(var item in bill.Items)
-        {
-            if(item.Restaurant.UserId == User.Identity.GetUserId())
-            {
-                <tr>
-                    <td>
-                        @item.Name
-                    </td>
-                    <td>
-                        @item.Price
-                    </td>
-                    <td>
-                        @item.Bills.First().Date
-                    </td>
-                    <td>
-                        @item.Restaurant.Name
-                    </td>
+        <tr>
+            <td>
+                @bill.User.UserName
+            </td>
+            <td>
+                @bill.Date.ToString("d")
+            </td>
+            <td>
+                @bill.Date.ToString("t")
+            </td>
+            <td>
+                <a style="font-size:20px" onclick="GitBillItemConfirm(@bill.Id)"><i class="fa-solid fa-pen-to-square Action-Icon" style="color: #005eff;"></i></a>
+            </td>
+        </tr>
 
-                    <td>
-                        <button class="ExceptableRequest">قبول الطلب ؟</button>
-                    </td>
-                </tr>
-            }
-
-        }
-        
     }
-
 </table>
-<i class="fa-regular fa-trash-undo"></i>
+<div id="_PartialBillItem">
+    @Html.Partial("_PartialBillItem")
+</div>
+
 <script>
-    const Exceptable = document.querySelector(".ExceptableRequest");
-    Exceptable.addEventListener('click', () => {
-        Exceptable.classList.add('active');
-    });
+    //const Exceptable = document.querySelector(".ExceptableRequest");
+    //Exceptable.addEventListener('click', () => {
+    //    Exceptable.classList.add('active');
+    //});
+
+    var GitBillItemConfirm = function (_id) {
+        $.ajax({
+            type: "Post",
+            url: "/Home/ShowBillItems",
+            data: { id: _id },
+            success: function (result) {
+                $('#_PartialBillItem').html(result);
+                $("#Modal-billItem").modal('show');
+            }
+        });
+    };
 </script>

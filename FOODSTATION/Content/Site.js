@@ -3,6 +3,9 @@
 
 //#region User-Dashboard
 
+var MakeSureConfirm = function () {
+    $("#Modal-MakeSure").modal('show');
+};
 var DeleteUserConfirm = function (str) {
     $("#Modal-DeleteUser").modal('show');
     $("#UserId").val(str);
