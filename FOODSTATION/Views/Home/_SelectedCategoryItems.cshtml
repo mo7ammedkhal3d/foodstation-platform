@@ -49,9 +49,15 @@
             url: "/Home/AddToBill",
             data: { id: _id },
             success: function (result) {
-                var btnAddtoBill = document.getElementById("btnadd+"+_id)
-                btnAddtoBill.textContent ="إضافة مرة اخرى"
-                btnAddtoBill.className = "btn btn-primary addBotton"
+                if (result == true) {
+                    var btnAddtoBill = document.getElementById("btnadd+" + _id)
+                    btnAddtoBill.textContent = "إضافة مرة اخرى"
+                    btnAddtoBill.className = "btn btn-primary addBotton"
+                } else
+                {
+                    TestSweetAlert("قم بتسجيل الدخول أولاً");
+                }
+                
                 return false;
             }
         });
