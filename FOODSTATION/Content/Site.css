@@ -992,6 +992,29 @@ font-size: 17px;
 
 /*#endregion Adv-Index*/
 
+/*#region Bill-Index*/
+.Bill .modalContent {
+    height: 615px;
+    width: 650px;
+    background-color: #FFF;
+}
+
+.Bill .modal-header {
+    height: 160px;
+}
+
+.Bill .modal-body {
+    position: relative;
+    padding: 15px;
+    height: 365px;
+    overflow-y:auto;
+}
+
+.Bill .modal-footer {
+    height: 66px;
+}
+/*#endregion Bill-Index*/
+
 /*#region GetRegion*/
 .regionsSelect{
     margin-top:20px

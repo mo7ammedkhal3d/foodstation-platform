@@ -312,10 +312,19 @@
     <Compile Include="Migrations\202306211213411_AddColsInRegion.designer.cs">
       <DependentUpon>202306211213411_AddColsInRegion.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202307131301057_AlterM-MRelation.cs" />
+    <Compile Include="Migrations\202307131301057_AlterM-MRelation.designer.cs">
+      <DependentUpon>202307131301057_AlterM-MRelation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307171115034_AddColsAndRelation.cs" />
+    <Compile Include="Migrations\202307171115034_AddColsAndRelation.designer.cs">
+      <DependentUpon>202307171115034_AddColsAndRelation.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Advertisement.cs" />
     <Compile Include="Models\Bill.cs" />
+    <Compile Include="Models\BillItems.cs" />
     <Compile Include="Models\Country.cs" />
     <Compile Include="Models\DiningType.cs" />
     <Compile Include="Models\Feature.cs" />
@@ -327,7 +336,9 @@
     <Compile Include="Models\Region.cs" />
     <Compile Include="Models\Restaurant.cs" />
     <Compile Include="Models\ViewModels\AdvVm.cs" />
+    <Compile Include="Models\ViewModels\BillDetailesVM.cs" />
     <Compile Include="Models\ViewModels\CategoryVM.cs" />
+    <Compile Include="Models\ViewModels\ItemDetailesVM.cs" />
     <Compile Include="Models\ViewModels\ItemVM.cs" />
     <Compile Include="Models\ViewModels\RegionVm.cs" />
     <Compile Include="Models\ViewModels\RestaurantVM.cs" />
@@ -654,6 +665,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202306211213411_AddColsInRegion.resx">
       <DependentUpon>202306211213411_AddColsInRegion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307131301057_AlterM-MRelation.resx">
+      <DependentUpon>202307131301057_AlterM-MRelation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307171115034_AddColsAndRelation.resx">
+      <DependentUpon>202307171115034_AddColsAndRelation.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -21,6 +21,8 @@ namespace FOODSTATION.Models
         [DisplayName("النوع")]
         public string Name { get; set; }
 
+        public virtual ICollection<Bill> Bills { get; set; }
+
         public virtual ICollection<Restaurant> Restaurants { get; set; }
     }
 }

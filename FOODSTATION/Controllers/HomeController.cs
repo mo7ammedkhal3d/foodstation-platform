@@ -56,14 +56,30 @@ namespace FOODSTATION.Controllers
         [HttpPost]
         public PartialViewResult ShowBillItems(int id)
         {
+            var billDetailes = new BillDetailesVM();
             var bill = db.Bills.Find(id);
-
-            if(bill != null)
+            billDetailes.UserName = db.Users.Where(x=>x.Id==bill.UserId).FirstOrDefault().UserName;
+            billDetailes.UserPhoneNumber = db.Users.Where(x => x.Id == bill.UserId).FirstOrDefault().PhoneNumber;
+            billDetailes.Date = bill.Date;
+           // billDetailes.DiningType = bill.DiningType;
+            if (bill != null)
             {
-                var Items = bill.Items;
-                ViewBag.Items = Items;  
+                var query = from bi in db.BillItems
+                            join i in db.Items on bi.ItemId equals i.Id
+                            join r in db.Restaurants on i.RestaurantId equals r.Id
+                            where bi.BillId == bill.Id
+                            select new ItemDetailesVM
+                            {
+                                ItemName = i.Name,
+                                Quantity = bi.Quantity,
+                                RestaurantName = r.Name,
+                                Price = bi.Quantity*i.Price,                             
+                            };
+                billDetailes.ItemDetails = query.ToList();
 
-                return PartialView("_PartialBillItem", Items);
+                ViewBag.billDetailes = billDetailes;  
+
+                return PartialView("_PartialBillItem", billDetailes);
             }
             return PartialView("PartialBillItem");
         }
@@ -79,10 +95,13 @@ namespace FOODSTATION.Controllers
         {
             var NewBill = new Bill { Date = DateTime.Now, UserId = User.Identity.GetUserId() };
             foreach(var item in products)
-            {              
-                NewBill.Items.Add(db.Items.Find(item.ItemId));
-            }
-   
+            {
+                var BillItem = new BillItems();
+                BillItem.BillId = NewBill.Id;
+                BillItem.ItemId = item.ItemId;
+                BillItem.Quantity = item.ItemQuantity;
+                db.BillItems.Add(BillItem);
+            } 
             db.Bills.Add(NewBill);
             db.SaveChanges();
             return RedirectToAction("Index");
@@ -92,12 +111,12 @@ namespace FOODSTATION.Controllers
         [Authorize(Roles = "RestaurantOwner")]
         public ActionResult RestaurantWonerRequests()
         {
-            var userId =  User.Identity.GetUserId();
+            var userId = User.Identity.GetUserId();
 
-            var items = db.Bills.Where(b => b.Items.Any(i => i.Restaurant.UserId == userId)).ToList();
+            var bills = db.Bills.Where(b => b.Items.Any(i => i.Item.Restaurant.UserId == userId)).ToList();
 
 
-            return View(items);
+            return View(bills);
         }
         [Authorize]
         public ActionResult MyRequsts()

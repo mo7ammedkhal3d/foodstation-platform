@@ -1,52 +1,83 @@
-﻿<div class="modal fade Item" id="Modal-billItem">
+﻿@using Microsoft.AspNet.Identity
+@using FOODSTATION.Models
+@{
+    var db = new ApplicationDbContext();
+}
+<div class="modal fade Bill" id="Modal-billItem">
     <div class="modal-dialog">
         <div class="modalContent">
+            @if (ViewBag.billDetailes != null)
+            {
             <div class="modal-header">
                 <h2 class="modal-title" style="text-align:center">بيانات الفاتورة</h2>
+                <hr />
+                @{
+                    DateTime date = ViewBag.billDetailes.Date;
+
+                }
+                <div class="row" style="margin-top:10px">
+                    <div class="col-md-6">
+                        <p><strong>أسم العميل:</strong> @ViewBag.billDetailes.UserName</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p><strong>رقم العميل:</strong> @ViewBag.billDetailes.UserPhoneNumber</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <p><strong>التاريخ:</strong> @date.ToString("d")</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p><strong>الوقت:</strong> @date.ToString("t")</p>
+                    </div>
+                </div>
             </div>
-            <div class="modal-body">
-                <table class="table" id="itemTable" dir="rtl">
-                    <tr class="TableRow">
-                        <th>
-                            أسم الطلب
-                        </th>
-                        <th>
-                            أسم المطعم
-                        </th>
-                        <th>
-                            الكمية
-                        </th>
-                        <th>
-                            السعر
-                        </th>
-                    </tr>
-                    @if (ViewBag.Items != null)
-                    {
-                        foreach (var item in ViewBag.Items)
+                <div class="modal-body">
+                    <table class="table" id="itemTable" dir="rtl">
+                        <tr class="TableRow">
+                            <th>
+                                أسم الطلب
+                            </th>
+                            <th>
+                                أسم المطعم
+                            </th>
+                            <th>
+                                الكمية
+                            </th>
+                            <th>
+                                السعر
+                            </th>
+                        </tr>
+
+                        @foreach (var item in ViewBag.billDetailes.ItemDetails)
                         {
                             <tr>
                                 <td>
-                                    @item.Name
+                                    @item.ItemName
                                 </td>
                                 <td>
-                                    @item.Restaurant.Name
+                                    @item.RestaurantName
+                                </td>
+                                <td>
+                                    @item.Quantity
                                 </td>
                                 <td>
                                     @item.Price
                                 </td>
                             </tr>
-                        }              
                         }
-                </table>
-            </div>
-            <div class="modal-footer">
-                <div class="form-group">
-                    <div class="col-md-offset-3 col-md-6">
-                        <input value="ترحيل" class="btn btn-primary modal-BtnCreate" id="btnItemCreate" />
-                        <button id="btnCreateColse" type="button" class="btn modal-BtnClose" data-dismiss="modal" onclick="resetFilds('CreateItemForm','CIimgUrl',event)">أغلاق</button>
+
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <div class="form-group">
+                        <div class="col-md-offset-3 col-md-6">
+                            <input value="ترحيل" class="btn btn-primary modal-BtnCreate" id="btnItemCreate" />
+                            <button id="btnCreateColse" type="button" class="btn modal-BtnClose" data-dismiss="modal" onclick="resetFilds('CreateItemForm','CIimgUrl',event)">أغلاق</button>
+                        </div>
                     </div>
                 </div>
-            </div>
+            }
         </div>
     </div>
 </div>
