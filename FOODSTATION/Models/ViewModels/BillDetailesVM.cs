@@ -13,6 +13,8 @@ namespace FOODSTATION.Models.ViewModels
 
         public DateTime Date { get; set; }
 
+        public string Location { get; set; }
+
         public string DiningType { get; set; }
 
         public ICollection<ItemDetailesVM> ItemDetails { get; set; }

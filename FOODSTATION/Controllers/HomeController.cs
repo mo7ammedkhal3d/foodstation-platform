@@ -61,7 +61,8 @@ namespace FOODSTATION.Controllers
             billDetailes.UserName = db.Users.Where(x=>x.Id==bill.UserId).FirstOrDefault().UserName;
             billDetailes.UserPhoneNumber = db.Users.Where(x => x.Id == bill.UserId).FirstOrDefault().PhoneNumber;
             billDetailes.Date = bill.Date;
-           // billDetailes.DiningType = bill.DiningType;
+            billDetailes.DiningType = bill.DiningType.Name;
+            billDetailes.Location = bill.Location;  
             if (bill != null)
             {
                 var query = from bi in db.BillItems
