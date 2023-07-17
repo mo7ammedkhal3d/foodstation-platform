@@ -2,6 +2,7 @@
 @using Microsoft.AspNet.Identity
 @{
     ViewBag.Title = "My Requst";
+    var RestaurantName = Model.First().Items.First().Item.Restaurant.Name;
 }
 <div>
     <h2 style="text-align: center; color: #a94442; font-family: 'myfont3'; font-size: xx-large; ">طلباتي</h2>
@@ -10,10 +11,10 @@
 <table class="table" id="itemTable" dir="rtl">
     <tr class="TableRow">
         <th>
-            أسم الطلب
+            أسم المطعم
         </th>
         <th>
-            السعر
+            نوع الخدمة
         </th>
         <th>
             تاريخ الطلب
@@ -22,33 +23,35 @@
             الزمن
         </th>
         <th>
-            أسم المطعم
+            الموقع
+        </th> 
+        <th>
+            عرض
         </th>
-
     </tr>
 
-    @foreach (var bill in Model)
+    @foreach (var bill in Model.ToList())
     {
-        foreach (var item in bill.Items)
-        {
             <tr>
                 <td>
-                    @item.Name
+                    @(bill.Items.Any() ? bill.Items.First().Item.Restaurant.Name : "N/A")
                 </td>
                 <td>
-                    @item.Price
+                    @bill.DiningType.Name
                 </td>
                 <td>
-                    @item.Bills.First().Date.ToString("d")
+                    @bill.Date.ToString("d")
                 </td>
                 <td>
-                    @item.Bills.First().Date.ToString("t")
+                    @bill.Date.ToString("t")
                 </td>
                 <td>
-                    @item.Restaurant.Name
+                    @bill.Location
                 </td>
+                 <td>
+                <a style="font-size:20px" onclick="GitBillItemConfirm(@bill.Id)"><i class="fa-solid fa-pen-to-square Action-Icon" style="color: #005eff;"></i></a>
+            </td>
             </tr>
-        }
 
     }
 
