@@ -1106,21 +1106,29 @@ font-size: 17px;
 }
 .DrowsRegain {
     background-color: var(--transparent-color);
-    padding: 7px;
+    padding: 6px;
     color: white;
     border: 1px solid;
     border-radius: 38px;
     margin: 2px;
-    width:126px;
-    transition:all .3s;
+    width:148px;
+    transition: all .3s;
 }
 .DrowsRegain:hover {
     transform: translateY(5px);
     text-decoration: none;
     color: antiquewhite;
-    background-color: rgb(15 116 143 /50%)
-}
+    background-color: rgb(15 116 143 /50%);
+    transition: all .3s;
 
+}
+.DrowsRegainDiv {
+    position: absolute;
+    bottom: -35px;
+    right: 10px;
+    display: flex;
+    flex-wrap: wrap;
+}
 .ExceptableRequest {
     padding: 5px 8px;
     background-color: #333;
