@@ -44,6 +44,7 @@ namespace FOODSTATION.Models
         public DbSet<Region> Regions { get; set; }
         public DbSet<Country> Countries { get; set; }
         public DbSet<Bill> Bills { get; set; }
+        public DbSet<BillItems> BillItems { get; set; }
         public DbSet<DiningType> DiningTypes { get; set; }
         public DbSet<Participation> Participations { get; set; }
         public DbSet<Advertisement> Advertisements { get; set; }
