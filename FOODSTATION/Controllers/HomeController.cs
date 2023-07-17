@@ -91,9 +91,9 @@ namespace FOODSTATION.Controllers
             return View();
         }
 
-        public ActionResult AddBillAndItems()
+        public ActionResult AddBillAndItems(int diningTypeId , string location)
         {
-            var NewBill = new Bill { Date = DateTime.Now, UserId = User.Identity.GetUserId() };
+            var NewBill = new Bill { Date = DateTime.Now, UserId = User.Identity.GetUserId() , DiningTypeId=diningTypeId, Location=location};
             foreach(var item in products)
             {
                 var BillItem = new BillItems();
@@ -166,29 +166,39 @@ namespace FOODSTATION.Controllers
 
 
         public ActionResult AddToBill(int? id)
-        {      
-            var item = products.Find(x=> x.ItemId ==id);
-            if(item == null)
+        {
+            if (User.Identity.IsAuthenticated)
             {
-                var product = db.Items.Find(id);
-                VirtualBill Item = new VirtualBill { ItemId = product.Id,ItemName=product.Name,
-                    ItemQuantity = 1,ItemPrice =product.Price};
-                products.Add(Item);
-            }
-            else
-            {
-                item.ItemQuantity = item.ItemQuantity + 1;
-            }
-            
+                var item = products.Find(x => x.ItemId == id);
+                if (item == null)
+                {
+                    var product = db.Items.Find(id);
+                    VirtualBill Item = new VirtualBill
+                    {
+                        ItemId = product.Id,
+                        ItemName = product.Name,
+                        ItemQuantity = 1,
+                        ItemPrice = product.Price
+                    };
+                    products.Add(Item);
+                }
+                else
+                {
+                    item.ItemQuantity = item.ItemQuantity + 1;
+                }
 
-            return Json(true, JsonRequestBehavior.AllowGet);
 
+                return Json(true, JsonRequestBehavior.AllowGet);
+            }
+
+            return Json(false, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult GetBill()
         {
             ViewBag.Restaurant = Session["RestaurantId"];
             ViewBag.products = products;
+            ViewBag.DinnintTypes = db.DiningTypes.ToList();
             return View(products.ToList());
         }
 

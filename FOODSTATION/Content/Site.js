@@ -2,6 +2,10 @@
 // Account 
 
 //#region User-Dashboard
+var RequestTypeConfirm = function () {
+    $("#Modal-RequestType").modal('show');
+    $("#Modal-MakeSure").modal('hide');
+};
 
 var MakeSureConfirm = function () {
     $("#Modal-MakeSure").modal('show');
