@@ -1440,3 +1440,33 @@ font-size: 17px;
     text-decoration: underline;
 }
 /*#endregion GetRegion*/
+/*Modile downlaode*/
+.DownloadDiv {
+    background-color: var(--transparent-color);
+    border-radius: 20px;
+    text-align: center;
+    font-family: myfont2;
+    background-color: whitesmoke;
+}
+
+.DownloadDiv .ms-3 p {
+    color: black;
+    font-family: myfont;
+    font-size: 16px;
+}
+
+.DownloadDiv:hover{
+
+}
+
+.MobileDiv {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    grid-gap: 6px;
+    margin-top:40px;
+}
+.Mobile-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 55px 80px;
+}
