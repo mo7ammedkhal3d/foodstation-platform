@@ -1,18 +1,20 @@
 ﻿@{
     ViewBag.Title = "Regions";
 }
-<h1>حدد مدينتك</h1>
-<div class="regionsSelect">
-    @foreach (var region in ViewBag.regions)
-    {
-        <a href="@Url.Action("GetRegionRestaurants", "Home", new {id=region.Id})">
-            <div class="col-md-2 thumbnail regionContiner">
-                <h6 class="regionName">@region.Name</h6>
-                <div class="regionDetails">
-                    <p>الدولة :@region.Country.Name</p>
-                    <p>عدد المطاعم :@region.Restaurants.Count</p>
+<div class="mainContiner">
+    <h1>حدد مدينتك</h1>
+    <div class="regionsSelect">
+        @foreach (var region in ViewBag.regions)
+        {
+            <a href="@Url.Action("GetRegionRestaurants", "Home", new {id=region.Id})">
+                <div class="col-md-2 thumbnail regionContiner">
+                    <h6 class="regionName">@region.Name</h6>
+                    <div class="regionDetails">
+                        <p><i class="fas fa-globe"></i> @region.Country.Name</p>
+                        <p><i class="fas fa-utensils"></i> @region.Restaurants.Count</p>
+                    </div>
                 </div>
-            </div>
-        </a>
-    }
+            </a>
+        }
+    </div>
 </div>

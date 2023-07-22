@@ -11,28 +11,6 @@
     </div>
 </div>
 <!-- End about  -->
-
-<!--start login and register window-->
-
-<div class="modal fade Log" id="Modal-Authentication">
-    <div class="wrapper active-popup">
-        <span class="icon-close" data-dismiss="modal">
-            <i class="glyphicon glyphicon-remove"></i>
-        </span>
-
-        <div class="form-box login" id="Modal-Login">
-            @Html.Partial("_LoginBox")
-        </div>
-
-        <div class="form-box register" id="Modal-Register">
-            @Html.Partial("_RegisterBox")
-        </div>
-        @*@Html.Partial("_LoginAndRegister")*@
-    </div>
-</div>
-
-<!--End login and register window-->
-
 <!-- start stats  -->
 <div class="stats">
     <div class="container">
@@ -61,7 +39,7 @@
         </div>
         <div class="DrowsRegainDiv">
             <a class="DrowsRegain" onclick="GetRestaurants(event)" style="cursor:pointer"> تصفح المطاعم</a>
-            <a class="DrowsRegain" href="/Home/GetRegions">تصفح المطاعم القريبة</a>
+            <a class="DrowsRegain" onclick="GetNearbyRestaurants()" style="cursor:pointer">تصفح المطاعم القريبة</a>
             <a class="DrowsRegain" href="/Home/GetRegions">  قم بتحديد مدينتك</a>
         </div>
 
@@ -69,6 +47,34 @@
 </div>
 <!-- start stats  -->
 
+<!--Nearby Map-->
+<div id="_PartialGetNearbyresaurants" style="display:none">
+    @Html.Partial("_PartialGetNearbyresaurants");
+</div>
+
+<!--Nearby Map-->
+<a class="btnDismisNearbyMap" id="btnDismisNearbyMap" style="display:none;cursor:pointer" onclick="DismisNearbyMap()">  أخفاء الخارطة </a>
+
+<!--start login and register window-->
+
+<div class="modal fade Log" id="Modal-Authentication">
+    <div class="wrapper active-popup">
+        <span class="icon-close" data-dismiss="modal">
+            <i class="glyphicon glyphicon-remove"></i>
+        </span>
+
+        <div class="form-box login" id="Modal-Login">
+            @Html.Partial("_LoginBox")
+        </div>
+
+        <div class="form-box register" id="Modal-Register">
+            @Html.Partial("_RegisterBox")
+        </div>
+        @*@Html.Partial("_LoginAndRegister")*@
+    </div>
+</div>
+
+<!--End login and register window-->
 <!-- start services  -->
 <div class="services">
     <div class="container">
@@ -117,7 +123,6 @@
     </div>
 </div>
 <!-- End services  -->
-
 <!-- start pricing  -->
 <div class="pricing">
     <div class="container">
@@ -200,6 +205,8 @@
 
 @section Scripts
 {
+    <script src="~/Content/main.js"></script>
+
     @{
         Html.RenderPartial("_AuthScriptsPartial");
         Html.RenderPartial("_ValidationScriptsPartial");

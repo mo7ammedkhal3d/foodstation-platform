@@ -1,32 +1,25 @@
 ﻿<div class="ItemsDisplay">
-    <div class="container itemDisplayDiv" style="min-height:500px;">
+    <div class="container">
 
         @foreach (var item in ViewBag.items)
         {
             <div class="col-md-2 thumbnail ItemDivs">
-                <img src="~/Uploads/Items/@item.ImgUrl"/>
-                <h6>@item.Name</h6>
-                <h6>@Convert.ToInt32(item.Price)</h6>
-                <button class="btn btn-primary requstBotton" id="btnadd+@item.Id" onclick="AddToBillConfirm(@item.Id)">
-                    <i class="glyphicon glyphicon-shopping-cart" style="font-size:10px"></i>
-                    إضافة للسلة
-                </button>
-
-                <!--<div class="row counter" id="counter+item.Id" hidden>
-                <div class="col-md-7" style="padding:0px">
-                    <input id="txtDisplayNumber+item.Id" type="text" readonly  style="text-align:center;color:black"/>
+                <div class="item-image">
+                    <img src="~/Uploads/Items/@item.ImgUrl" />
                 </div>
-                <div class="col-md-2" style="padding:0px">
-                    <i class="fa-solid fa-angle-up btn ArrowSign" onclick="increase(item.Id)"></i>
-                    <i class="fa-solid fa-angle-down btn ArrowSign" onclick="decrease(item.Id)"></i>
+                <div class="item-info">
+                    <h6>@item.Name</h6>
+                    <h6>@Convert.ToInt32(item.Price)</h6>
                 </div>
-                <div class="col-md-3 " style="padding:0px">
-                    <i class="fa-sharp fa-solid fa-plus btn plusSign" onclick="AddToBillConfirm(item.Id)"></i>
+                <div class="item-action">
+                    <button class="btn btn-primary requstBotton" id="btnadd+@item.Id" onclick="AddToBillConfirm(@item.Id)">
+                        <i class="glyphicon glyphicon-shopping-cart"></i>
+                        <span>إضافة للسلة</span>
+                    </button>
                 </div>
-            </div>-->
             </div>
-
         }
+
     </div>
 </div>
 
