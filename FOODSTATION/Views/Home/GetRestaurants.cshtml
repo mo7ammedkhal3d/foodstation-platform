@@ -1,5 +1,4 @@
-﻿@model IEnumerable<FOODSTATION.Models.Restaurant>
-@using FOODSTATION.Models
+﻿@using FOODSTATION.Models
 @{
     ViewBag.Title = "Restaurants";
 }
@@ -8,27 +7,27 @@
 @if (ViewBag.regionLng != null)
 {
     <div class="col-lg-offset-5 " style="padding:30px">
-      <a id="btnShowMap" class="btnShowMap" style="cursor:pointer" onclick="showMap()">تصفح المطاعم القريبة</a>
-      <a id="btnDismisMap" class="btnDismisMap" style="cursor:pointer" onclick="dismisMap()">أخفاء الخارطة </a>
-    </div>  
+        <a id="btnShowMap" class="btnShowMap" style="cursor:pointer" onclick="showMap()">تصفح المطاعم القريبة</a>
+        <a id="btnDismisMap" class="btnDismisMap" style="cursor:pointer" onclick="dismisMap()">أخفاء الخارطة </a>
+    </div>
 }
 
 <div>
     <div class="DivRest container">
-        @foreach (var item in Model)
+        @foreach (var item in ViewBag.regionRestaurants)
         {
             <a href="@Url.Action("GetRestaurantCategories", "Home", new {id=item.Id})">
                 <div class="col-md-2 thumbnail Restaurant" style=" margin-left:20px; margin-bottom:25px; height:300px">
                     <img src="~/Uploads/Restaurants/@item.ImgUrl" style="height: 200px; width: 100%; border-radius: 4px;" />
-                    <h4> @Html.DisplayFor(modelItem => item.Name)</h4>
+                    <h4> @item.Name</h4>
                     <span>50 reviews</span>
                     <i class="fa-solid fa-star"></i>
                     <i class="fa-solid fa-star"></i>
                     <i class="fa-solid fa-star"></i>
                     <i class="fa-solid fa-star"></i>
                     <i class="fa-solid fa-star-half"></i>
-                    <h6> $-$ @Html.DisplayFor(modelItem => item.Description)</h6>
-                    <span class="Find-next">Find next available</span>                   
+                    <h6> $-$ @item.Description</h6>
+                    <span class="Find-next">Find next available</span>
                 </div>
             </a>
         }
@@ -37,74 +36,78 @@
 
 @section Scripts
 {
+
+
     <script>
-        function showMap() {
-            document.getElementById('map').style.display = 'block';
-            document.getElementById('btnShowMap').style.display = 'none';
-            document.getElementById('btnDismisMap').style.display = 'block';
-            initMap();
+    function showMap() {
+        document.getElementById('map').style.display = 'block';
+        document.getElementById('btnShowMap').style.display = 'none';
+        document.getElementById('btnDismisMap').style.display = 'block';
+        initMap();
+    }
+
+    function dismisMap() {
+        document.getElementById('map').style.display = 'none';
+        document.getElementById('btnShowMap').style.display = 'block';
+        document.getElementById('btnDismisMap').style.display = 'none';
+    }
+
+    function initMap() {
+        var myLatLng = { lat:@Html.Raw(ViewBag.regionLat) , lng: @Html.Raw(ViewBag.regionLng)  };
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 13,
+            center: myLatLng
+        });
+
+        @foreach (var item in ViewBag.regionRestaurants)
+        {
+            // Create the marker object
+            @:var marker_@item.Id = new google.maps.Marker({
+            @:    position: { lat: @item.Latitude, lng: @item.Longitude },
+            @:    map: map,
+            @:    title: '@item.Name',
+            @:    icon: {
+            @:        url: '/images/restaurant.png',
+            @:        size: new google.maps.Size(50, 50),
+            @:        scaledSize: new google.maps.Size(50, 50),
+            @:        origin: new google.maps.Point(0, 0),
+            @:        anchor: new google.maps.Point(25, 50),
+            @:    },
+            @:});
+
+            // Create the content for the infowindow
+            @:var contentString_@item.Id = '<div class="infowindow">' +
+            @:    '<img src="@Url.Content("~/Uploads/Restaurants/" + item.ImgUrl)" />' +
+            @:    '<h3>' + '@item.Name' + '</h3>' +
+            @:    '<p>' + '@item.Description' + '</p>' +
+
+            @:    '</div>';
+
+            // Create the infowindow object
+            @:var infowindow_@item.Id = new google.maps.InfoWindow({
+            @:    content: contentString_@item.Id,
+            @:    disableAutoPan: true
+            @:});
+
+            // Add mouseover event listener to show the infowindow
+            @:google.maps.event.addListener(marker_@item.Id, 'mouseover', function () {
+            @: var o=infowindow_@item.Id;
+            @:        o.open(map, marker_@item.Id);
+            @:});
+
+            // Add mouseout event listener to hide the infowindow
+            @:google.maps.event.addListener(marker_@item.Id, 'mouseout', function () {
+            @: var f=infowindow_@item.Id;
+            @:        f.close();
+            @:});
+
+            // Add click event listener to navigate to linked page with ID parameter
+            @:google.maps.event.addListener(marker_@item.Id, 'click', function () {
+            @:    window.location.href = '@Url.Action("GetRestaurantCategories", "Home", new { id = item.Id })';
+            @:});
         }
-
-        function dismisMap() {
-            document.getElementById('map').style.display = 'none';
-            document.getElementById('btnShowMap').style.display = 'block';
-            document.getElementById('btnDismisMap').style.display = 'none';
-        }
-
-        function initMap() {
-            var myLatLng = { lat:@Html.Raw(ViewBag.regionLat) , lng: @Html.Raw(ViewBag.regionLng)  };
-
-            var map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 13,
-                center: myLatLng
-            });
-
-            @foreach (var item in Model){
-                @:var marker_@item.Id= new google.maps.Marker({
-                @: position: { lat: @item.Latitude, lng: @item.Longitude },
-                @: map: map,
-                @: title: '@item.Name'
-                @: });
-
-                // Create the content for the infowindow
-                @:var contentString_@item.Id = '<div>' +
-                @:        '<h3>' + '@item.Name' + '</h3>' +
-                @:        '<p>' + '@item.Description' + '</p>' +
-                @:        '<img src="@Url.Content("~/Uploads/Restaurants/" + item.ImgUrl)" width="100%" height="100" />' +
-                @:        '</div>';
-
-                // Create the infowindow object
-                @:var infowindow_@item.Id = new google.maps.InfoWindow({
-                @:        content: contentString_@item.Id
-                @:    });
-
-
-                // Add mouseover event listener to show the infowindow
-                @:google.maps.event.addListener(marker_@item.Id, 'mouseover', function () {
-                @: var o=infowindow_@item.Id;
-                @:        o.open(map, marker_@item.Id);
-                @:    });
-
-                // Add mouseout event listener to hide the infowindow
-                @:google.maps.event.addListener(marker_@item.Id, 'mouseout', function () {
-                @: var f=infowindow_@item.Id;
-                @:        f.close();
-                @:    });
-
-                // Add click event listener to navigate to linked page with ID parameter
-                @:google.maps.event.addListener(marker_@item.Id, 'click', function () {
-                @:        window.location.href = '@Url.Action("GetRestaurantCategories", "Home", new { id = item.Id })';
-                @:    });
-                }
-        }
-
-
-    //var marker = new google.maps.Marker({
-    //    position: myLatLng,
-    //    map: map,
-    //    title: 'Mukalla'
-    // :icon:'~/images/marker.ico',
-    //});
+    }
     </script>
 }
 

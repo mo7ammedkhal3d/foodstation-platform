@@ -7,6 +7,7 @@ using System.Linq;
 using Microsoft.AspNet.Identity;
 using System.Web;
 using System.Web.Mvc;
+using FOODSTATION.algorithms;
 
 namespace FOODSTATION.Controllers
 {
@@ -33,24 +34,57 @@ namespace FOODSTATION.Controllers
             return View();
         }
 
+        [HttpPost]
+        public PartialViewResult GetNearbyRestaurants(double lon, double lat)
+        {
+            var regions = db.Regions.ToList();
+            double[,] pairs = new double[regions.Count, 2];
+
+            for (int i = 0; i < regions.Count; i++)
+            {
+                pairs[i, 0] = (double)regions[i].Latitude;
+                pairs[i, 1] = (double)regions[i].Longitude;
+            }
+
+            double[] nearestPair = LocationUtils.Nearest(lat, lon, pairs);
+            var region = regions.Where(x => x.Latitude == (decimal)nearestPair[0] && x.Longitude == (decimal)nearestPair[1]).FirstOrDefault();
+
+            var regionRestaurants = db.Restaurants.Where(x => x.RegionId == region.Id);
+            ViewBag.regionRestaurants = regionRestaurants;
+            ViewBag.regionLng = lon;
+            ViewBag.regionLat = lat;
+
+            return PartialView("_PartialGetNearbyresaurants", regionRestaurants);
+        }
+
         public ActionResult GetRegionRestaurants(int? id)
         {
             products.Clear();
-            if(id != null)
+            if (id != null)
             {
                 Session["RegionId"] = id;
-                ViewBag.regionLng = db.Regions.Where(x=> x.Id == id).FirstOrDefault().Longitude;
-                ViewBag.regionlat = db.Regions.Where(x => x.Id == id).FirstOrDefault().Latitude; 
-                return View("GetRestaurants", db.Restaurants.ToList().Where(x => x.RegionId == id));
+                var region = db.Regions.FirstOrDefault(x => x.Id == id);
+                ViewBag.regionLng = region.Longitude;
+                ViewBag.regionlat = region.Latitude;
+                ViewBag.regionRestaurants = db.Restaurants.Where(x => x.RegionId == id).ToList();
+                return View("GetRestaurants");
             }
 
-            else if(Session["RegionId"] != null)
+            else if (Session["RegionId"] != null)
             {
-                ViewBag.regionLng = db.Regions.Where(x => x.Id == Convert.ToInt32(Session["RegionId"])).FirstOrDefault().Longitude;
-                ViewBag.regionlat = db.Regions.Where(x => x.Id == Convert.ToInt32(Session["RegionId"])).FirstOrDefault().Latitude;
-                return View("GetRestaurants", db.Restaurants.ToList().Where(x => x.RegionId == Convert.ToInt32(Session["RegionId"])));
+                var regionId = (int)Session["RegionId"];
+                var region = db.Regions.FirstOrDefault(x => x.Id == regionId);
+                ViewBag.regionLng = region.Longitude;
+                ViewBag.regionLat = region.Latitude;
+                ViewBag.regionRestaurants = db.Restaurants.Where(x => x.RegionId == regionId).ToList();
+                return View("GetRestaurants");
             }
-            else return View("GetRestaurants", db.Restaurants.ToList());
+
+            else
+            {
+                ViewBag.regionRestaurants = db.Restaurants.ToList();
+                return View("GetRestaurants");
+            }
         }
 
         [HttpPost]

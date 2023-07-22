@@ -34,7 +34,11 @@
        // event.preventDefault();
         var loginLoading = document.querySelector(".loading ");
         loginLoading.classList.add('loginloader');
-        var url = "Account/Login";
+
+        var baseUrl = window.location.protocol + "//" + window.location.host;
+        var loginUrl = "/Account/Login";
+        var url = baseUrl + loginUrl;
+
 
         var antiForgeryToken = $("#Modal-Login input[name='__RequestVerificationToken']").val();
 
@@ -83,8 +87,8 @@
                     
                 }
                 else {
-                    location.href = 'Home/Index';
-
+                    var currentPath = window.location.pathname;
+                    location.href = currentPath;
                 }
             },
             error: function (xhr, ajaxOptions, thrownError) {

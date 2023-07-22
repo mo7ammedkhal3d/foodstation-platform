@@ -215,6 +215,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="algorithms\LocationUtils.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -394,6 +395,7 @@
     <Content Include="Content\font\glyphicons-halflings-regular.svg" />
     <Content Include="Content\font\index.html" />
     <Content Include="Content\layoutStyle.css" />
+    <Content Include="Content\main.js" />
     <Content Include="Content\normalize.css" />
     <Content Include="Content\sidebar.css" />
     <Content Include="Content\Site.js" />
@@ -405,9 +407,6 @@
     <Content Include="images\christopher-burns-Kj2SaNHG-hg-unsplash.jpg" />
     <Content Include="images\favicon.ico" />
     <Content Include="images\hero-img.png" />
-    <Content Include="images\logo.png" />
-    <Content Include="images\marker.ico" />
-    <Content Include="images\Regi.jpg" />
     <Content Include="Content\font\DroidKufi-Regular.ttf" />
     <Content Include="Content\font\DroidNaskh-Bold.ttf" />
     <Content Include="Content\font\DroidNaskh-Regular.ttf" />
@@ -438,6 +437,7 @@
     <Content Include="Content\font\TanseekModernProArabic2.woff" />
     <Content Include="Content\font\TanseekModernProArabic3.ttf" />
     <Content Include="Content\font\trado.ttf" />
+    <Content Include="images\restaurant.png" />
     <Content Include="images\SliderShow\landing1.png" />
     <Content Include="images\SliderShow\landing2.png" />
     <Content Include="images\SliderShow\landing4.png" />
@@ -569,10 +569,8 @@
     <Content Include="Views\Countries\CountryDashboard.cshtml" />
     <Content Include="Views\Countries\_CountryPartial.cshtml" />
     <Content Include="Views\Categories\_CategoryPartial.cshtml" />
-    <Content Include="Views\Shared\_LoginAndRegister.cshtml" />
     <Content Include="Views\Home\ViewRegions.cshtml" />
     <Content Include="Views\Account\EditProfile.cshtml" />
-    <Content Include="Views\Shared\_UserLoginPartial.cshtml" />
     <Content Include="Views\Shared\_AuthScriptsPartial.cshtml" />
     <Content Include="Views\Shared\_ValidationScriptsPartial.cshtml" />
     <Content Include="Views\Shared\_LoginBox.cshtml" />
@@ -584,12 +582,11 @@
     <Content Include="Views\Advertisements\AdvertisementDashboard.cshtml" />
     <Content Include="Views\Advertisements\_AdvertisementPartial.cshtml" />
     <Content Include="Views\Home\_PartialBillItem.cshtml" />
+    <Content Include="Views\Home\_PartialGetNearbyresaurants.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Uploads\Advertisements\" />
-    <Folder Include="Views\Default\" />
-    <Folder Include="Views\DiningTypes\" />
     <Folder Include="Views\Participations\" />
   </ItemGroup>
   <ItemGroup>

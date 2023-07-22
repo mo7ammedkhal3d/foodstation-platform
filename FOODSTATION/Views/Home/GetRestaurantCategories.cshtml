@@ -4,12 +4,16 @@
 }
 <input id="restaurantId" type="hidden" value="@(ViewBag.restaurantId)">
 
-<div class="hello-section">
-    <h2>Hello!</h2>
-    <p>Welcome to our restaurant. We are excited to have you here and can't wait to serve you delicious food.</p>
+<div class="hello-Continer">
+    <img src="~/Uploads/Restaurants/r6.jpg" alt="Your Image">
+    <div class="description">
+        <h2>Your Title Goes Here</h2>
+        <p>Your description goes here. It can be several lines long.</p>
+    </div>
 </div>
 
 <!--#region Slider-->
+
 <!-- image slider start-->
 <div class="slider">
     <div class="slides">
@@ -63,25 +67,25 @@
 <!--#endregion Slider-->
 
 <div class="AllCategories">
-    <div class="container ">
+    <div class="container">
         <a onclick="getallItems()">
             <div class="col-md-2 thumbnail CategoryDivs">
-                <img src="~/Uploads/Categories/Chef-bro.png" style="width:100% ; height:100%"/>
-               <h4>الكل</h4>
+                <img src="~/Uploads/Categories/Chef-bro.png" alt="All Categories" />
+                <h4>الكل</h4>
             </div>
         </a>
         @foreach (var item in Model)
         {
             <a onclick="getItems(@item.Id)">
                 <div class="col-md-2 thumbnail CategoryDivs">
-                    <img src="~/Uploads/Categories/@item.ImgUrl" style="width:100% ; height:100%" />
+                    <img src="~/Uploads/Categories/@item.ImgUrl" alt="@Html.DisplayFor(modelItem => item.Name)" />
                     <h4> @Html.DisplayFor(modelItem => item.Name)</h4>
                 </div>
             </a>
         }
-
     </div>
 </div>
+
 
 <div id="_SelectedCategoryItems">
     @Html.Partial("_SelectedCategoryItems")
@@ -99,6 +103,7 @@
                 counter = 1;
             }
         }, 5000);
+
     </script>
 }
 
