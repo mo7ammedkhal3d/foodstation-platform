@@ -1179,7 +1179,9 @@ font-size: 17px;
 }
 
 .DownloadDiv:hover{
-
+    background-color: var(--transparent-color);
+    color :white;
+    transform:translateY(5px);
 }
 
 .MobileDiv {
