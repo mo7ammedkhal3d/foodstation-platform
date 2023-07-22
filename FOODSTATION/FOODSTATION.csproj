@@ -401,8 +401,6 @@
     <Content Include="Content\styleLogin.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="images\bro.png" />
-    <Content Include="images\christopher-burns-Kj2SaNHG-hg-unsplash.jpg" />
     <Content Include="images\favicon.ico" />
     <Content Include="images\hero-img.png" />
     <Content Include="images\logo.png" />
