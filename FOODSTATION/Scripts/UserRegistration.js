@@ -76,7 +76,9 @@
         var registerLoading = document.querySelector(".loading ");
         registerLoading.classList.add('registerloader');
 
-        var url = "Account/Register";
+        var baseUrl = window.location.protocol + "//" + window.location.host;
+        var loginUrl = "/Account/Register";
+        var url = baseUrl + loginUrl;
 
         var antiForgeryToken = $("#Modal-Register input[name='__RequestVerificationToken']").val();
         var userName = $("#Modal-Register input[name = 'UserName']").val();
@@ -115,7 +117,8 @@
                     $.validator.unobtrusive.parse("#registerForm");
                 }
                 else {
-                    location.href = '/Home/Index';
+                    var currentPath = window.location.pathname;
+                    location.href = currentPath;
                 }
 
             },

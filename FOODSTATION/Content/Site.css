@@ -13,6 +13,51 @@
     --main-color: #19c8fa;
     --transparent-color: rgb(15 116 143 /70%);
     --section-padding: 100px;
+    --primary-color: #00093c;
+    --secondary-color: #2d0b00;
+    --back-color: #f7f7f7;
+    --text-color: #555;
+    --accent-color: #ff6b6b;
+    --accent-text-color: #ffffff;
+}
+
+/* Customize the infowindow */
+.infowindow {
+    height: 218px;
+    max-width: 250px;
+    font-size: 14px
+}
+.infowindow h3 {
+margin: 10px 0 5px 0;
+    font-size: 18px;
+    text-align:center
+}
+.infowindow p {
+    margin: 0 0 10px 0;
+    text-align:center
+}
+.infowindow img {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: 150px;
+
+}
+
+button.gm-ui-hover-effect {
+    visibility: hidden;
+}
+
+/* Customize the marker */
+
+.marker {
+    background-image: url('../images/restaurant.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
 }
 
 /*Table */
@@ -169,6 +214,20 @@ body {
 .stats .container .box p {
     font-size: 14px;
     text-transform: capitalize;
+}
+
+.btnDismisNearbyMap {
+    background-color: var(--transparent-color);
+    padding: 6px;
+    left: 50%;
+    text-align: center;
+    position: absolute;
+    color: white;
+    border: 1px solid;
+    border-radius: 38px;
+    margin: 2px;
+    width: 148px;
+    transition: all .3s;
 }
 
 /*#endregion stats*/
@@ -450,37 +509,147 @@ body {
 /*#endregion*/
 
 /*#region GetRestaurantCategories*/
+
+.hello-Continer {
+    background: linear-gradient(to right, #00C9FF, #92FE9D);
+    display: flex;
+    flex-direction: row;
+    height: 400px;
+    width: 100%;
+}
+
+.hello-Continer img {
+    height: 100%;
+    max-width: 50%;
+    object-fit: cover;
+}
+
+.hello-Continer .description {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1rem;
+    width: 50%;
+}
+
+.hello-Continer h2 {
+    font-family: Arial, sans-serif;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.hello-Continer p {
+    font-family: Arial, sans-serif;
+    font-size: 1.2rem;
+    line-height: 1.5;
+    margin: 0;
+}
+
 .DivRest {
     border-radius: 10px;
     margin-top: 50px;
 }
 
 .ItemsDisplay {
-background-color: #efefef59;
-border-radius: 20px 20px;
-margin: 60px 0px 30px 0px;
-padding: 25px 0px 0px 0px;
+  background-color: #efefef59;
+  border-radius: 20px;
+  margin: 60px 0px 30px 0px;
+  padding: 25px 0px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end; /* set the justify-content property to flex-end */
 }
 
 .ItemDivs {
-    float: right;
-    border-radius: 25px 25px 26px 27px;
-    margin: 0px 0px 12px 30px;
-    background-color: #f5f5f5;
-    width: 118px;
-    height: 200px;
-    text-align: right;
+  border-radius: 25px;
+  margin: 0px 15px 30px 15px;
+  background-color: #ffffff;
+  width: 22%;
+  height: 350px;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  float:right
 }
 
-.ItemDivs img {
-    height: 110px;
-    width: 115px;
-    border-radius: 10px;
+.ItemDivs:hover {
+  transform: translateY(-5px);
+}
+
+.ItemDivs .item-image {
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+  overflow: hidden;
+}
+
+.ItemDivs .item-image img {
+  height: 100%;
+  width: auto;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+
+.ItemDivs:hover .item-image img {
+  transform: scale(1.1);
+}
+
+.ItemDivs .item-info {
+  padding: 15px;
+}
+
+.ItemDivs .item-action {
+  margin-top: auto;
+  text-align: center;
 }
 
 .ItemDivs h6 {
-    color: black;
-    font-weight: bold
+  color: black;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.requstBotton {
+  font-size: 14px;
+  font-weight: bold;
+  padding: 10px 15px;
+  border-radius: 25px;
+  background-color: #ff6b6b;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.requstBotton:hover {
+  background-color: #ee5253;
+}
+
+.requstBotton i {
+  margin-right: 5px;
+}
+
+.requstBotton span {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+@media (max-width: 992px) {
+  .ItemDivs {
+    width: 44%;
+  }
+}
+
+@media (max-width: 576px) {
+  .ItemDivs {
+    width: 100%;
+  }
 }
 
 .CategoryDivs {
@@ -495,19 +664,63 @@ padding: 25px 0px 0px 0px;
     margin-left: 15px;
     bottom: 12px;
     box-shadow: 0 0 15px #888e8f;
+    cursor: pointer;
 }
 .CategoryDivs h4{
     margin-top:20px;
 }
 
 .AllCategories {
-    background-color: #eee;
-    box-shadow: 0 0 30px #929699;
-    border-radius: 20px 20px 20px 20px;
-    margin: 10px 10px 10px 10px;
-    padding: 20px 10px 0px 0px;
-    cursor: pointer;
+    background-color: #f6f6f6;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin: 50px auto;
+    overflow: hidden;
+    padding: 10px;
+    direction: rtl;
+}
 
+.AllCategories .container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+.AllCategories .thumbnail {
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  margin: 10px;
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.AllCategories .thumbnail:hover {
+  transform: translateY(-5px);
+}
+
+.AllCategories .thumbnail img {
+  display: block;
+  height: auto;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.AllCategories .thumbnail h4 {
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #000000;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin: 0;
+  padding: 10px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
 }
 
 .AllCategories a {
@@ -1016,78 +1229,142 @@ font-size: 17px;
 /*#endregion Bill-Index*/
 
 /*#region GetRegion*/
-.regionsSelect{
-    margin-top:20px
-}
-
-.regionsSelect a .regionContiner {
-    transition:background-color 0.5s ease-in-out;
-    animation-duration:1s;
-    /*animation-name:rotate;*/
-}
-
-@keyframes rotate{
-    from{transform:rotate(0deg);}
-    to{transform:rotate(360deg);}
-}
-
-
-.regionsSelect a:hover .regionContiner {
-    background-color:#2d0b00;
-    border-radius: 10px 30px;
-    transform-origin:center center;
-    animation-name:scale-up
-}
-
-@keyframes scale-up {
-    from {transform: scale(1);}
-
-    to {transform: scale(1.1);}
-}
-
-.regionsSelect a:hover .regionName,.regionDetails {
-    color:white
-}
-
-.regionsSelect a:hover .regionDetails {
-    color:white
-}
-
 .mainContiner h1 {
-    direction: rtl;
-    text-align: center;
-    padding: 10px;
-    font-family: myFont;
-    color: var(--background-color);
+  direction: rtl;
+  text-align: center;
+  padding: 20px;
+  font-family: myFont;
+  color: #00093c;
+  font-size: 40px;
+}
+
+.regionsSelect {
+  margin-top: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .regionContiner {
-    margin-left: 25px;
-    margin-bottom: 30px;
-    border-radius: 30px 10px;
-    box-shadow: 0 0 30px rgb(0 0 255 / 20%);
+  margin: 15px;
+  padding: 15px;
+  border-radius: 30px;
+  box-shadow: 0 0 30px rgb(0 0 255 / 20%);
+  background-color: #f7f7f7;
+  width: fit-content;
+  position: relative;
 }
-    .regionContiner h6 {
-        font-family: myfont;
-        color: #00093c;
-    }
 
-.regionName {
-    font-size: 20px;
-    text-align: center;
-    font-family: system-ui;
+.regionContiner:before {
+  content: '';
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 15px 15px 15px;
+  border-color: transparent transparent #f7f7f7 transparent;
+}
+
+.regionContiner h6 {
+  font-family: myfont;
+  color: #00093c;
+  font-size: 24px;
+  margin: 0;
 }
 
 .regionDetails {
-    font-size: 12px;
-    text-align: center;
-    color: black;
+  font-size: 14px;
+  text-align: center;
+  color: #555;
+  margin-top: 10px;
 }
 
-@media (max-width:990px){
-    .mainContiner{
-       /* margin-right:15px;*/
-    }
+.regionDetails p {
+  margin: 5px 0;
+  line-height: 1.2em;
+}
+
+.regionDetails p i {
+  margin-right: 5px;
+  color: #ff6b6b;
+}
+
+.regionsSelect a:hover .regionContiner {
+  background-color: #ff6b6b;
+  border-radius: 30px;
+  transform: scale(1.05);
+  box-shadow: 0 5px 30px rgba(0, 0, 0, 0.1);
+}
+
+.regionsSelect a:hover .regionName,
+.regionsSelect a:hover .regionDetails {
+  color: white;
+}
+
+@media (max-width: 1200px) {
+  .regionContiner {
+    width: 200px;
+    height: 200px;
+  }
+  
+  .regionContiner:before {
+    border-width: 0 10px 10px 10px;
+  }
+  
+  .regionContiner h6 {
+    font-size: 20px;
+  }
+  
+  .regionDetails {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  .regionContiner {
+    width: 150px;
+    height: 150px;
+  }
+  
+  .regionContiner:before {
+    border-width: 0 7.5px 7.5px 7.5px;
+  }
+  
+  .regionContiner h6 {
+    font-size: 16px;
+  }
+  
+  .regionDetails {
+    font-size: 10px;
+  }
+}
+
+.regionsSelect a:hover .regionContiner {
+  background-color: var(--accent-color);
+}
+
+.regionsSelect a:hover .regionName,
+.regionsSelect a:hover .regionDetails {
+  color: var(--accent-text-color);
+}
+
+.mainContiner h1 {
+  color: var(--primary-color);
+}
+
+.regionContiner {
+  background-color: var(--back-color);
+}
+
+.regionDetails {
+  color: var(--text-color);
+}
+
+.regionDetails p i {
+  color: var(--accent-color);
 }
 
 .form-horizontal .EditProfile {
