@@ -437,6 +437,7 @@
     <Content Include="Content\font\TanseekModernProArabic2.woff" />
     <Content Include="Content\font\TanseekModernProArabic3.ttf" />
     <Content Include="Content\font\trado.ttf" />
+    <Content Include="images\marker.png" />
     <Content Include="images\restaurant.png" />
     <Content Include="images\SliderShow\landing1.png" />
     <Content Include="images\SliderShow\landing2.png" />

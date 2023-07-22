@@ -28,7 +28,7 @@
     font-size: 14px
 }
 .infowindow h3 {
-margin: 10px 0 5px 0;
+    margin: 10px 0 5px 0;
     font-size: 18px;
     text-align:center
 }
@@ -51,7 +51,7 @@ button.gm-ui-hover-effect {
 /* Customize the marker */
 
 .marker {
-    background-image: url('../images/restaurant.png');
+    background-image: url('../images/marker.png');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;

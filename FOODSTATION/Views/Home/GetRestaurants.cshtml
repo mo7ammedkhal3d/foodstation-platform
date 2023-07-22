@@ -68,7 +68,7 @@
             @:    map: map,
             @:    title: '@item.Name',
             @:    icon: {
-            @:        url: '/images/restaurant.png',
+            @:        url: '/images/marker.png',
             @:        size: new google.maps.Size(50, 50),
             @:        scaledSize: new google.maps.Size(50, 50),
             @:        origin: new google.maps.Point(0, 0),
@@ -96,11 +96,11 @@
             @:        o.open(map, marker_@item.Id);
             @:});
 
-            // Add mouseout event listener to hide the infowindow
+            @*// Add mouseout event listener to hide the infowindow
             @:google.maps.event.addListener(marker_@item.Id, 'mouseout', function () {
             @: var f=infowindow_@item.Id;
             @:        f.close();
-            @:});
+            @:});*@
 
             // Add click event listener to navigate to linked page with ID parameter
             @:google.maps.event.addListener(marker_@item.Id, 'click', function () {
