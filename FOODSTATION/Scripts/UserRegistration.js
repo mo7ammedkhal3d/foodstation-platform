@@ -82,6 +82,7 @@
 
         var antiForgeryToken = $("#Modal-Register input[name='__RequestVerificationToken']").val();
         var userName = $("#Modal-Register input[name = 'UserName']").val();
+        var phoneNumber = $("#Modal-Register input[name = 'PhoneNumber']").val();
         var email = $("#Modal-Register input[name='Email']").val();
         var password = $("#Modal-Register input[name='Password']").val();
         var confirmPassword = $("#Modal-Register input[name='ConfirmPassword']").val();
@@ -89,6 +90,7 @@
         var user = {
             __RequestVerificationToken: antiForgeryToken,
             UserName: userName,
+            PhoneNumber: phoneNumber,
             Email: email,
             Password: password,
             ConfirmPassword: confirmPassword,

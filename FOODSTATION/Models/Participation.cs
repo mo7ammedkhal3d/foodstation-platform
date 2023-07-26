@@ -20,9 +20,11 @@ namespace FOODSTATION.Models
         [Required]
         [DisplayName("نوع الإشتراك")]
         public string Name { get; set; }
+        [Required]
+        [DisplayName("سعر الإشتراك")]
+        public int Price { get; set; }
 
         public virtual ICollection<Restaurant> Restaurants { get; set; }
-
         public virtual ICollection<Feature> Features { get; set; }
     }
 }
