@@ -25,6 +25,8 @@ namespace FOODSTATION.Controllers
         {
             ViewBag.adv = db.Advertisements.ToList();
             products.Clear();
+              ViewBag.participations = db.Participations.ToList();
+
             return View();
         }
 

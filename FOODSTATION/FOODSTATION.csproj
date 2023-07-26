@@ -321,6 +321,10 @@
     <Compile Include="Migrations\202307171115034_AddColsAndRelation.designer.cs">
       <DependentUpon>202307171115034_AddColsAndRelation.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202307230748381_alterParticiTable.cs" />
+    <Compile Include="Migrations\202307230748381_alterParticiTable.designer.cs">
+      <DependentUpon>202307230748381_alterParticiTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Advertisement.cs" />
@@ -667,6 +671,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202307171115034_AddColsAndRelation.resx">
       <DependentUpon>202307171115034_AddColsAndRelation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307230748381_alterParticiTable.resx">
+      <DependentUpon>202307230748381_alterParticiTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

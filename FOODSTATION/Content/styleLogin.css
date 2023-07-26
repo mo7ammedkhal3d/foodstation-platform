@@ -60,7 +60,7 @@
     transition: transform .3s ease-out,-webkit-transform .3s ease-out,-o-transform .3s ease-out;
 }
 .wrapper.active{
-    height: 520px;
+    height: 600px;
 }
 .wrapper .form-box{
     width: 100%;

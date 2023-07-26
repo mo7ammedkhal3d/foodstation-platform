@@ -1448,6 +1448,7 @@ font-size: 17px;
     text-align: center;
     font-family: myfont2;
     background-color: whitesmoke;
+    transition: background-color 0.8s ease;
 }
 
 .DownloadDiv .ms-3 p {
@@ -1455,18 +1456,23 @@ font-size: 17px;
     font-family: myfont;
     font-size: 16px;
 }
-
+.DownloadDiv:active:hover{
+    background-color: var(--transparent-color);
+    color :white;
+}
 .DownloadDiv:hover{
     background-color: var(--transparent-color);
     color :white;
     transform:translateY(5px);
+    text-decoration:none;
 }
+
 
 .MobileDiv {
     display: grid;
     grid-template-columns: repeat(2,1fr);
     grid-gap: 6px;
-    margin-top:40px;
+    margin-top: 40px;
 }
 .Mobile-container {
     display: grid;

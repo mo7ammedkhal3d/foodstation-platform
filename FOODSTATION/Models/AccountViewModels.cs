@@ -89,6 +89,9 @@ namespace FOODSTATION.Models
         [Required]
         [Display(Name = "اسم المستخدم")]
         public string UserName { get; set; }
+        [Phone]
+        [Display(Name = "رقم الهاتف")]
+        public string PhoneNumber { get; set; }
 
         [Required]
         [EmailAddress]

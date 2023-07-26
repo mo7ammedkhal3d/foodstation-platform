@@ -1,4 +1,5 @@
-﻿@{
+﻿
+@{
     ViewBag.Title = "Home Page";
 }
 <!-- start about  -->
@@ -197,7 +198,7 @@
                     </p>
                     <div class="MobileDiv">
                         <div class="DownloadDiv" data-wow-delay="0.5s">
-                            <a href="" class="d-flex bg-primary-gradient rounded py-3 px-4">
+                            <a href="" class="d-flex bg-primary-gradient rounded py-3 px-4" style="text-decoration:none">
                                 <i class="fab fa-apple fa-3x text-white flex-shrink-0" style="color: brown; position: relative; right: 23px;"></i>
                                 <div class="ms-3">
                                     <p class="Available">Available On</p>
@@ -206,7 +207,7 @@
                             </a>
                         </div>
                         <div class="DownloadDiv" data-wow-delay="0.7s">
-                            <a href="" class="d-flex bg-secondary-gradient rounded py-3 px-4">
+                            <a href="" class="d-flex bg-secondary-gradient rounded py-3 px-4" style="text-decoration:none">
                                 <i class="fab fa-android fa-3x text-white flex-shrink-0" style="color: brown; position: relative; right: 23px;"></i>
                                 <div class="ms-3">
                                     <p class="Available">Available On</p>
@@ -231,69 +232,25 @@
             </p>
         </div>
         <div class="plans">
-            <div class="plan">
-                <div class="head">
-                    <h3>Basic</h3>
-                    <span>19</span>
-                </div>
-                <ul>
-                    <li>Feature No 1</li>
-                    <li>Extra Feature </li>
-                    <li>Extra Feature No 1</li>
-                    <li>Feature</li>
-                </ul>
-                <div class="foot">
-                    <a href="#">Bay Now</a>
-                </div>
-            </div>
+            @foreach (var part in ViewBag.participations)
+            {
+                <div class="plan">
+                    <div class="head">
+                        <h3>@part.Name</h3>
+                        <span>@part.Price</span>
+                    </div>
+                    <ul>
+                        @foreach (var item in part.Features)
+                        {
+                            <li>@item.Name - @item.Numb</li>
+                        }
 
-            <div class="plan">
-                <div class="head">
-                    <h3>Premium</h3>
-                    <span>29</span>
+                    </ul>
+                    <div class="foot">
+                        <a href="#">Bay Now</a>
+                    </div>
                 </div>
-                <ul>
-                    <li>Feature No 1</li>
-                    <li>Extra Feature </li>
-                    <li>Extra Feature No 1</li>
-                    <li>Feature</li>
-                </ul>
-                <div class="foot">
-                    <a href="#">Bay Now</a>
-                </div>
-            </div>
-
-            <div class="plan">
-                <div class="head">
-                    <h3>Pro</h3>
-                    <span>39</span>
-                </div>
-                <ul>
-                    <li>Feature No 1</li>
-                    <li>Extra Feature </li>
-                    <li>Extra Feature No 1</li>
-                    <li>Feature</li>
-                </ul>
-                <div class="foot">
-                    <a href="#">Bay Now</a>
-                </div>
-            </div>
-
-            <div class="plan">
-                <div class="head">
-                    <h3>Platnum</h3>
-                    <span>49</span>
-                </div>
-                <ul>
-                    <li>Feature No 1</li>
-                    <li>Extra Feature </li>
-                    <li>Extra Feature No 1</li>
-                    <li>Feature</li>
-                </ul>
-                <div class="foot">
-                    <a href="#">Bay Now</a>
-                </div>
-            </div>
+            }
         </div>
         <p class="contact-text">... تواصل معنا إذا لديك طلب خاص </p>
         <a href="#" class="contact-link">تواصل معنا</a>

@@ -53,6 +53,10 @@
                                     <span class="EnterYourPlace">أدخل موقعك الحالي</span>
                                     <textarea class="MyTextArea" rows="5" cols="30" placeholder="المنطة/الحي/أقرب معلم معروف" name="Location"></textarea>
                                 </div>
+                                <div id="TextAreaDivNo" style="text-align:right;display:none">
+                                    <span class="EnterYourPlace">أدخل عدد الأشخاص</span>
+                                    <textarea class="MyTextArea" rows="5" cols="30" placeholder="قم بإدخال عدد الأشحاص لحجز الطاولة"></textarea>
+                                </div>
                             </div>
                         </div>
 
@@ -86,12 +90,15 @@
             }
             function Confirm2() {
                 document.getElementById("TextAreaDiv").style.display = "block";
+                document.getElementById("TextAreaDivNo").style.display = "none";
             }
             function Confirm1() {
                 document.getElementById("TextAreaDiv").style.display = "none";
+                document.getElementById("TextAreaDivNo").style.display = "none";
             }
             function Confirm3() {
                 document.getElementById("TextAreaDiv").style.display = "none";
+                document.getElementById("TextAreaDivNo").style.display = "block";
             }
 
         </script>
