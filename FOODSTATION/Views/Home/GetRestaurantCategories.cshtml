@@ -4,67 +4,68 @@
 }
 <input id="restaurantId" type="hidden" value="@(ViewBag.restaurantId)">
 
-<div class="hello-Continer">
+@*<div class="hello-Continer">
     <img src="~/Uploads/Restaurants/r6.jpg" alt="Your Image">
     <div class="description">
         <h2>Your Title Goes Here</h2>
         <p>Your description goes here. It can be several lines long.</p>
     </div>
-</div>
+</div>*@
 
 <!--#region Slider-->
 
-<!-- image slider start-->
-<div class="slider">
-    <div class="slides">
-        <!--radio buttons start-->
-        @{var radioCounter = 1;}
-        @foreach (var item in ViewBag.adv)
-        {
-            string id = "radio"+radioCounter;
-            <input type="radio" name="radio-btn" id="@id">
-            radioCounter++;
-        }
-        <!--radio buttons end-->
-
-        <!--slide image start-->
-        @{string slideClassName = "slide first";}
-        @foreach (var item in ViewBag.adv)
-        {
-            <div class="@slideClassName">
-                <img src="~/Uploads/Advertisements/@item.ImgUrl" alt="">
+@if (ViewBag.Adv.Count > 0)
+{
+    <!-- image slider start-->
+    <div class="slider">
+        <div class="slides">
+            <!--radio buttons start-->
+            @{var radioCounter = 1;}
+            @foreach (var item in ViewBag.adv)
+            {
+                string id = "radio" + radioCounter;
+                <input type="radio" name="radio-btn" id="@id">
+                radioCounter++;
+            }
+            <!--radio buttons end-->
+            <!--slide image start-->
+            @{string slideClassName = "slide first";}
+            @foreach (var item in ViewBag.adv)
+            {
+                <div class="@slideClassName">
+                    <img src="~/Uploads/Advertisements/@item.ImgUrl" alt="">
+                </div>
+                slideClassName = "slide";
+            }
+            <!--slide image end-->
+            <!--automatic navigation start-->
+            @{var autoCounter = 1;}
+            <div class="navigation-auto">
+                @foreach (var item in ViewBag.adv)
+                {
+                    string autoClassName = "auto-btn" + autoCounter;
+                    <div class="@autoClassName"></div>
+                    autoCounter++;
+                }
             </div>
-            slideClassName = "slide";
-        }
-        <!--slide image end-->
-
-        <!--automatic navigation start-->
-        @{var autoCounter = 1;}
-        <div class="navigation-auto">
-        @foreach (var item in ViewBag.adv)
-        {
-            string autoClassName = "auto-btn"+ autoCounter;
-            <div class="@autoClassName"></div>
-            autoCounter++;
-        }
+            <!--automatic navigation end-->
         </div>
-        <!--automatic navigation end-->
+        <!--manual navigation start-->
+        @{var manualCounter = 1;}
+        <div class="navigation-manual">
+            @foreach (var item in ViewBag.adv)
+            {
+                string manualForthis = "radio" + manualCounter;
+                <label for="@manualForthis" class="manual-btn"></label>
+                manualCounter++;
+            }
+        </div>
+        <!--manual navigation end-->
     </div>
-    <!--manual navigation start-->
-    @{var manualCounter = 1;}
-    <div class="navigation-manual">
-    @foreach (var item in ViewBag.adv)
-    {
-        string manualForthis = "radio" + manualCounter;
-        <label for="@manualForthis" class="manual-btn"></label>
-        manualCounter++;
-    }
-    </div>
-    <!--manual navigation end-->
-</div>
-<!-- image slider end-->
+    <!-- image slider end-->
+    <!--#endregion Slider-->
+}
 
-<!--#endregion Slider-->
 
 <div class="AllCategories">
     <div class="container">
