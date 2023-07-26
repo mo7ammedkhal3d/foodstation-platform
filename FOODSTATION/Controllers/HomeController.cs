@@ -24,6 +24,8 @@ namespace FOODSTATION.Controllers
         public ActionResult Index()
         {
             products.Clear();
+              ViewBag.participations = db.Participations.ToList();
+
             return View();
         }
 
