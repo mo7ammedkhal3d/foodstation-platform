@@ -12,6 +12,57 @@
 </div>
 <!-- End about  -->
 
+@if (ViewBag.Adv.Count > 0)
+{
+    <!-- image slider start-->
+    <div class="slider">
+        <div class="slides">
+            <!--radio buttons start-->
+            @{var radioCounter = 1;}
+            @foreach (var item in ViewBag.adv)
+            {
+                string id = "radio" + radioCounter;
+                <input type="radio" name="radio-btn" id="@id">
+                radioCounter++;
+            }
+            <!--radio buttons end-->
+            <!--slide image start-->
+            @{string slideClassName = "slide first";}
+            @foreach (var item in ViewBag.adv)
+            {
+                <div class="@slideClassName">
+                    <img src="~/Uploads/Advertisements/@item.ImgUrl" alt="">
+                </div>
+                slideClassName = "slide";
+            }
+            <!--slide image end-->
+            <!--automatic navigation start-->
+            @{var autoCounter = 1;}
+            <div class="navigation-auto">
+                @foreach (var item in ViewBag.adv)
+                {
+                    string autoClassName = "auto-btn" + autoCounter;
+                    <div class="@autoClassName"></div>
+                    autoCounter++;
+                }
+            </div>
+            <!--automatic navigation end-->
+        </div>
+        <!--manual navigation start-->
+        @{var manualCounter = 1;}
+        <div class="navigation-manual">
+            @foreach (var item in ViewBag.adv)
+            {
+                string manualForthis = "radio" + manualCounter;
+                <label for="@manualForthis" class="manual-btn"></label>
+                manualCounter++;
+            }
+        </div>
+        <!--manual navigation end-->
+    </div>
+    <!-- image slider end-->
+}
+
 <!-- start stats  -->
 <div class="stats">
     <div class="container">
@@ -47,15 +98,14 @@
     </div>
 </div>
 <!-- start stats  -->
-
 <!--Nearby Map-->
 <div id="_PartialGetNearbyresaurants" style="display:none">
     @Html.Partial("_PartialGetNearbyresaurants");
 </div>
 
-<!--Nearby Map-->
 <a class="btnDismisNearbyMap" id="btnDismisNearbyMap" style="display:none;cursor:pointer" onclick="DismisNearbyMap()">  أخفاء الخارطة </a>
 
+<!--Nearby Map-->
 <!--start login and register window-->
 
 <div class="modal fade Log" id="Modal-Authentication">
@@ -76,7 +126,6 @@
 </div>
 
 <!--End login and register window-->
-
 <!-- start services  -->
 <div class="services">
     <div class="container">
@@ -125,7 +174,6 @@
     </div>
 </div>
 <!-- End services  -->
-
 <!-- start Mobile  -->
 <div class="services">
     <div class="container">
@@ -135,7 +183,7 @@
         </div>
         <div class="Mobile-container">
             <div class="srv-box">
-                    <img src="~/images/mob.jpg" style="height:500px;width:500px"/>
+                <img src="~/images/mob.jpg" style="height:500px;width:500px" />
             </div>
             <div class="srv-box">
                 <i class="fas fa-mobile fa-3x"></i>
@@ -173,7 +221,6 @@
     </div>
 </div>
 <!-- End Mobile  -->
-
 <!-- start pricing  -->
 <div class="pricing">
     <div class="container">
@@ -257,6 +304,19 @@
 @section Scripts
 {
     <script src="~/Content/main.js"></script>
+
+    <script type="text/javascript">
+        var counter = 1;
+        var maxNoAdv = @ViewBag.Adv.Count;
+        setInterval(function () {
+            document.getElementById('radio' + counter).checked = true;
+            counter++;
+            if (counter > maxNoAdv) {
+                counter = 1;
+            }
+        }, 5000);
+
+    </script>
 
     @{
         Html.RenderPartial("_AuthScriptsPartial");

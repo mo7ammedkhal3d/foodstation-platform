@@ -184,7 +184,7 @@ namespace FOODSTATION.Controllers
             return Json(false, JsonRequestBehavior.AllowGet);
         }
 
-
+        [HttpPost]
         public JsonResult DeleteConfirmed(int? id)
         {
             var Advertisement = db.Advertisements.Find(id);

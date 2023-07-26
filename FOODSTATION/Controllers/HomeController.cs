@@ -23,6 +23,7 @@ namespace FOODSTATION.Controllers
 
         public ActionResult Index()
         {
+            ViewBag.adv = db.Advertisements.ToList();
             products.Clear();
             return View();
         }

@@ -96,11 +96,11 @@
             @:        o.open(map, marker_@item.Id);
             @:});
 
-            @*// Add mouseout event listener to hide the infowindow
+            // Add mouseout event listener to hide the infowindow
             @:google.maps.event.addListener(marker_@item.Id, 'mouseout', function () {
             @: var f=infowindow_@item.Id;
             @:        f.close();
-            @:});*@
+            @:});
 
             // Add click event listener to navigate to linked page with ID parameter
             @:google.maps.event.addListener(marker_@item.Id, 'click', function () {

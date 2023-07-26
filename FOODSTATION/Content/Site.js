@@ -129,69 +129,6 @@ function Searsh(tableName) {
 
 //#endregion Searsh Function
 
-//#region Login
-
-//$(function () {
-
-//    var userLoginButton = $("#UserLoginModal button[name='login']").click(onUserLoginClick);
-
-//    function onUserLoginClick() {
-
-//        var url = "/Account/Login";
-
-//        var antiForgeryToken = $("#UserLoginModal input[name='__RequestVerificationToken']").val();
-
-//        var userName = $("#UserLoginModal input[name = 'UserName']").val();
-//        var password = $("#UserLoginModal input[name = 'Password']").val();
-//        var rememberMe = $("#UserLoginModal input[name = 'RememberMe']").prop('checked');
-
-//        var userInput = {
-//            __RequestVerificationToken: antiForgeryToken,
-//            UserName: userName,
-//            Password: password,
-//            RememberMe: rememberMe
-//        };
-
-//        $.ajax({
-//            type: "POST",
-//            url: url,
-//            data: userInput,
-//            success: function (data) {
-
-//                var parsed = $.parseHTML(data);
-
-//                var hasErrors = $(parsed).find("input[name='LoginInValid']").val() == "true";
-
-//                if (hasErrors == true) {
-//                    $("#UserLoginModal").html(data);
-
-//                    userLoginButton = $("#UserLoginModal button[name='login']").click(onUserLoginClick);
-
-//                    var form = $("#UserLoginForm");
-
-//                    $(form).removeData("validator");
-//                    $(form).removeData("unobtrusiveValidation");
-//                    $.validator.unobtrusive.parse(form);
-
-//                }
-//                else {
-//                    location.href = '/Home/Index';
-
-//                }
-//            },
-//            error: function (xhr, ajaxOptions, thrownError) {
-//                var errorText = "Status: " + xhr.status + " - " + xhr.statusText;
-
-//                PresentClosableBootstrapAlert("#alert_placeholder_login", "danger", "Error!", errorText);
-
-//                console.error(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
-//            }
-//        });
-//    }
-//});
-
-//#endregion Login
-
 //#region _BillPartial
 
 var DeleteItem = function (_id) {
@@ -1305,31 +1242,38 @@ var DeleteAdvConfirm = function (_id) {
     }).then((result) => {
         if (result == true) {
             $.ajax({
-                type: 'GET',
+                async: true,
+                dataType: "JSON",
+                processData: false,
+                type: 'POST',
                 url: '/Advertisements/DeleteConfirmed',
                 data: { id: _id },
                 contentType: 'application/html; charset=utf-8',
                 dataType: 'html',
-                success: (function (result) {
-                    swal({
-                        //  title: title,
-                        text: result.Message,
-                        content: true,
-                        icon: "success",
-                        className: 'swal-IW',
-                        timer: 1700,
-                        buttons: false,
-                    });
-                    $.ajax({
-                        url: '/Advertisements/Refreash',
-                        contentType: 'application/html; charset=utf-8',
-                        type: 'GET',
-                        dataType: 'html',
-                        success: (function (result) {
-                            $('#_AdvertisementPartial').html(result);
-                        })
-                    });
-                })
+                success: function (result) {
+                    if (result.Seccess) {
+                        swal({
+                            //  title: title,
+                            text: result.Message,
+                            content: true,
+                            icon: "success",
+                            className: 'swal-IW',
+                            timer: 1700,
+                            buttons: false,
+                        });
+                        $.ajax({
+                            url: '/Advertisements/Refreash',
+                            contentType: 'application/html; charset=utf-8',
+                            type: 'GET',
+                            dataType: 'html',
+                            success: (function (result) {
+                                $('#_AdvertisementPartial').html(result);
+                            })
+                        });
+                    } else {
+                        TestSweetAlert(result.Message);
+                    }
+                }
             })
         }
     });
