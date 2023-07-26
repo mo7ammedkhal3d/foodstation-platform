@@ -2,7 +2,6 @@
 @using Microsoft.AspNet.Identity
 @{
     ViewBag.Title = "My Requst";
-    var RestaurantName = Model.First().Items.First().Item.Restaurant.Name;
 }
 <div>
     <h2 style="text-align: center; color: #a94442; font-family: 'myfont3'; font-size: xx-large; ">طلباتي</h2>
@@ -57,4 +56,25 @@
 
 
 </table>
+<div id="_PartialBillItem">
+    @Html.Partial("_PartialBillItem")
+</div>
 <i class="fa-regular fa-trash-undo"></i>
+<script>
+    //const Exceptable = document.querySelector(".ExceptableRequest");
+    //Exceptable.addEventListener('click', () => {
+    //    Exceptable.classList.add('active');
+    //});
+
+    var GitBillItemConfirm = function (_id) {
+        $.ajax({
+            type: "Post",
+            url: "/Home/ShowBillItems",
+            data: { id: _id },
+            success: function (result) {
+                $('#_PartialBillItem').html(result);
+                $("#Modal-billItem").modal('show');
+            }
+        });
+    };
+</script>
