@@ -18,6 +18,7 @@ namespace FOODSTATION
 
             container.RegisterType<AccountController>(new InjectionConstructor());
             container.RegisterType<ManageController>(new InjectionConstructor());
+            container.RegisterType<ManageAccountController>(new InjectionConstructor());
             container.RegisterType<DbContext, ApplicationDbContext>(new HierarchicalLifetimeManager());
 
             // register all your components with the container here

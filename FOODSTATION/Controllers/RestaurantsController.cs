@@ -9,6 +9,8 @@ using System.Web;
 using System.Web.Mvc;
 using FOODSTATION.Models;
 using FOODSTATION.Models.ViewModels;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace FOODSTATION.Controllers
 {
@@ -23,12 +25,13 @@ namespace FOODSTATION.Controllers
             db = _db;
         }
 
-
         public ActionResult RestaurantDashboard()
         {
             ViewBag.restaurants = db.Restaurants.ToList();
             ViewBag.RegionId = new SelectList(db.Regions.ToList(), "Id", "Name");
-            ViewBag.UserId = new SelectList(db.Users.ToList(), "Id", "UserName");
+            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(db));
+            var roleId = roleManager.Roles.FirstOrDefault(r => r.Name == "RestaurantOwner")?.Id;
+            ViewBag.UserId = new SelectList(db.Users.Where(u => u.Roles.Any(r => r.RoleId == roleId)).ToList(), "Id", "UserName");
             ViewBag.ParticipationTypes = new SelectList(db.Participations.ToList(), "Id", "Name");
             ViewBag.AvailableDiningTypes = db.DiningTypes.ToList();
 

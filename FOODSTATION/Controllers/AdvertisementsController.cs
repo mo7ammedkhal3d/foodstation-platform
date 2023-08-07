@@ -185,7 +185,7 @@ namespace FOODSTATION.Controllers
         }
 
         [HttpPost]
-        public JsonResult DeleteConfirmed(int? id)
+        public JsonResult DeleteConfirmed(int id)
         {
             var Advertisement = db.Advertisements.Find(id);
             var responce = new AdvertisementResponceViewModel();

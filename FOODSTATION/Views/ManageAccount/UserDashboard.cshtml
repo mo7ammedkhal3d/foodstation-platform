@@ -1,0 +1,34 @@
+﻿@model FOODSTATION.Models.ViewModels.UserVM
+
+@{
+    ViewBag.Title = "User dashboard";
+}
+<div class="searshInput" style="direction:rtl">
+    <input type="text" id="myInput" onkeyup="Searsh('userTable')" placeholder="أدخل أسم للبحث ...">
+    <i class="fa-solid fa-magnifying-glass"></i>
+</div>
+
+<div class="container" id="_UserPartial" style="direction:rtl">
+    @Html.Partial("_UserPartial")
+</div>
+
+<!--Add User -->
+
+<div class="modal fade User" id="Modal-AddUser">
+    @Html.Partial("_AddUser")
+</div>
+
+<!--Edit User -->
+
+<div class="modal fade User" id="Modal-EditUser">
+    @Html.Partial("_EditUser")
+</div>
+
+@section Scripts
+{
+    @{
+        Html.RenderPartial("_AuthScriptsPartial");
+        Html.RenderPartial("_ValidationScriptsPartial");
+    }
+}
+
