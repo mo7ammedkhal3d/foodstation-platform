@@ -1,0 +1,32 @@
+﻿<div>
+    <h2>قائمة الحسابات </h2>
+</div>
+<div>
+    <p>
+        <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#Modal-AddUser">أضافة حساب</a>
+    </p>
+</div>
+<table class="table" id="userTable">
+    <tr class="btn-primary">
+        <th>أسم المستخدم</th>
+        <th>الإيميل</th>
+        <th>رقم الهاتف</th>
+        <th>الصلاحية</th>
+        <th></th>
+    </tr>
+    @foreach (var user in ViewBag.Users)
+    {
+        <tr>
+            <td>@user.UserName</td>
+            <td>@user.Email</td>
+            <td>@user.PhoneNumber</td>
+            <td>@user.Role</td>
+            <td>
+                <a style="font-size:20px" onclick="EditUserConfirm('@user.Id')"><i class="fa-solid fa-pen-to-square Action-Icon" style="color: #005eff;"></i></a> |
+                <a style="font-size:20px" onclick="DeleteUserConfirm('@user.Id')"><i class="fa-solid fa-trash-can Action-Icon" style="color: #ff2600;"></i></a>
+                <input type="hidden" id="userId" />
+            </td>
+        </tr>
+    }
+</table>
+

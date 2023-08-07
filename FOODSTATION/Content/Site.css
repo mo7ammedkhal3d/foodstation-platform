@@ -121,14 +121,16 @@ body {
     overflow-y: auto;
 }
 
+.text-danger ul{
+    list-style:none;
+    text-align:center;
+}
+
 /*#endregion Global-properties*/
 
 /*#region Home */
-
 /*#region Index */
-
 /*#region About*/
-
 .about {
     padding-top: var(--section-padding);
     overflow: hidden;
@@ -283,6 +285,49 @@ body {
 
 
 /* End services */
+
+/*#region mobileApp*/
+.DownloadDiv {
+    background-color: var(--transparent-color);
+    border-radius: 20px;
+    text-align: center;
+    font-family: myfont2;
+    background-color: whitesmoke;
+    transition: background-color 0.8s ease;
+}
+
+.DownloadDiv .ms-3 p {
+    color: black;
+    font-family: myfont;
+    font-size: 16px;
+}
+.DownloadDiv:active:hover{
+    background-color: var(--transparent-color);
+    color :white;
+}
+.DownloadDiv:hover{
+    background-color: var(--transparent-color);
+    color :white;
+    transform:translateY(5px);
+    text-decoration:none;
+}
+
+
+.MobileDiv {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    grid-gap: 6px;
+    margin-top: 40px;
+}
+.Mobile-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 55px 80px;
+}
+
+
+
+/*#endregion mobileApp*/
 
 /*#region Pricing  */
 
@@ -839,6 +884,27 @@ body {
 }
 
 /*#endregion Item*/
+
+/*#region User-Index*/
+
+.User .modalContent {
+    width: 650px;
+    background-color: #FFF;
+}
+
+.itemDisplayDiv {
+    position: relative;
+    left: -50%;
+    transform: translateX(50%);
+}
+
+.User .modal-body {
+    position: relative;
+    padding: 15px;
+    max-height: 80vh;
+}
+
+/*#endregion User*/
 
 /*#region modal Form */
 
@@ -1441,41 +1507,3 @@ font-size: 17px;
 }
 /*#endregion GetRegion*/
 
-/*Modile downlaode*/
-.DownloadDiv {
-    background-color: var(--transparent-color);
-    border-radius: 20px;
-    text-align: center;
-    font-family: myfont2;
-    background-color: whitesmoke;
-    transition: background-color 0.8s ease;
-}
-
-.DownloadDiv .ms-3 p {
-    color: black;
-    font-family: myfont;
-    font-size: 16px;
-}
-.DownloadDiv:active:hover{
-    background-color: var(--transparent-color);
-    color :white;
-}
-.DownloadDiv:hover{
-    background-color: var(--transparent-color);
-    color :white;
-    transform:translateY(5px);
-    text-decoration:none;
-}
-
-
-.MobileDiv {
-    display: grid;
-    grid-template-columns: repeat(2,1fr);
-    grid-gap: 6px;
-    margin-top: 40px;
-}
-.Mobile-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-    gap: 55px 80px;
-}

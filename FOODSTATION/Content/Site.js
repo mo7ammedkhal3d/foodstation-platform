@@ -1242,14 +1242,9 @@ var DeleteAdvConfirm = function (_id) {
     }).then((result) => {
         if (result == true) {
             $.ajax({
-                async: true,
-                dataType: "JSON",
-                processData: false,
-                type: 'POST',
+                type: "Post",
                 url: '/Advertisements/DeleteConfirmed',
                 data: { id: _id },
-                contentType: 'application/html; charset=utf-8',
-                dataType: 'html',
                 success: function (result) {
                     if (result.Seccess) {
                         swal({

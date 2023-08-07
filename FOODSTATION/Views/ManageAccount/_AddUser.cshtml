@@ -1,0 +1,77 @@
+﻿@model FOODSTATION.Models.ViewModels.UserVM
+
+<div class="modal-dialog">
+        <div class="modalContent">
+            <div class="modal-header">
+                <h2 class="modal-title" style="text-align:center">بيانات الحساب</h2>
+                <div class="loading"></div>
+            </div>
+            <div id="alert_placeholder_addUser">
+            </div>
+            <div class="modal-body">
+                @using (Html.BeginForm("AddNewUser", "ManageAccount", FormMethod.Post, new { enctype = "multipart/form-data", @id = "AddUserForm" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary("", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.RegistrationInValid)
+                    <div class="row">
+                        <div class="form-horizontal" style="margin-top:50px">
+                            <div class="col-md-8 col-md-offset-2">
+
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-4", @style = "float:right" })
+                                    <div class="col-md-8" style="float:right">
+                                        @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "input-fild", @id = "CUuserName", @name = "UserName" } })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-4", @style = "float:right" })
+                                    <div class="col-md-8" style="float:right">
+                                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "input-fild", @id = "CUemil", @name = "Email" } })
+                                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.PhoneNumber, htmlAttributes: new { @class = "control-label col-md-4", @style = "float:right" })
+                                    <div class="col-md-8" style="float:right">
+                                        @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "input-fild", @id = "CUphoneNumber", @name = "PhoneNumber" } })
+                                        @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Role, htmlAttributes: new { @class = "control-label col-md-4", @style = "float:right" })
+                                    <div class="col-md-8" style="float:right">
+                                        @Html.DropDownList("Roles", null, htmlAttributes: new { @class = "input-fild", @name = "Role" })
+                                        @Html.ValidationMessageFor(model => model.Role, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-4", @style = "float:right" })
+                                    <div class="col-md-8" style="float:right">
+                                        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "input-fild", @id = "CUpassword", @name = "Password" } })
+                                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.ConfirmPassword, htmlAttributes: new { @class = "control-label col-md-4", @style = "float:right" })
+                                    <div class="col-md-8" style="float:right">
+                                        @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "input-fild", @id = "CUconfirmpassword", @name = "ConfirmPassword" } })
+                                        @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="modal-footer">
+                <div class="form-group">
+                    <div class="col-md-offset-3 col-md-6">
+                        <button type="button" id="AddAccount" name="AddAccount" class="btn btn-success modal-BtnCreate">اضافة</button>
+                        <button id="btnCreateColse" type="button" class="btn modal-BtnClose" data-dismiss="modal" onclick="resetFilds('AddUserForm',event)">أغلاق</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
