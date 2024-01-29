@@ -340,10 +340,14 @@ body {
     grid-template-columns: repeat(auto-fill  ,minmax(220px , 1fr));
     gap: 15px;
 }
+
 .pricing .plans .plan {
-   background-color: #fcfcfc;
-   text-align: center;
+    background-color: #fcfcfc;
+    text-align: center;
+    border-radius: 0.5rem;
+    box-shadow: 1px 1px 6px lightgray;
 }
+
 .pricing .plans .plan .head {
     padding: 35px 20px;
     border-top: 1px solid var(--main-color);
@@ -373,13 +377,15 @@ body {
    bottom: 0;
    font-size: 10px;
 }
+
 .pricing .plans .plan ul {
-    border-bottom: 1px solid var(--main-color);
-    
+border-bottom: 1px solid var(--main-color);
+    list-style: none;
 }
 .pricing .plans .plan ul li {
     padding: 20px;
     position: relative;
+    font-weight:bold;
 }
 .pricing .plans .plan ul li:not(:last-child)::after {
     content: "";
@@ -393,8 +399,8 @@ body {
 
 }
 .pricing .plans .plan .foot a {
-    display: block;
-    padding: 20px;
+display: block;
+    padding: 15px 40px;
     text-decoration: none;
     border: 1px solid var(--main-color);
     width: fit-content;
