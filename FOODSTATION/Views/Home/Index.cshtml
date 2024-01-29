@@ -242,8 +242,28 @@
                     <ul>
                         @foreach (var item in part.Features)
                         {
-                            <li>@item.Name - @item.Numb</li>
+                            if (item.Name == "Item")
+                            {
+                                <li>@item.Numb Menu items</li>
+                            }
+                            else if (item.Name == "Access")
+                            {
+                                <li>@item.Numb% Access to users</li>
+                            }
+                            else
+                            {
+                                <li>@item.Numb - @item.Name</li>
+                            }
                         }
+
+                            @if (part.Name == "BASIC")
+                            {
+                                 <li>Basic analytics and reporting</li>
+                            } else
+                            {
+                                 <li>Advanced analytics and reporting</li>
+                                 <li>Priority listing in search results</li>
+                            }
 
                     </ul>
                     <div class="foot">
