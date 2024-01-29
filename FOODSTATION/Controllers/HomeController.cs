@@ -153,9 +153,25 @@ namespace FOODSTATION.Controllers
 
             var bills = db.Bills.Where(b => b.Items.Any(i => i.Item.Restaurant.UserId == userId)).ToList();
 
+            var restaurantsList = new SelectList(db.Restaurants.Where(r => r.UserId == userId).ToList(), "Id", "Name");
+
+            var selectall = new SelectListItem
+            {
+                Text = "عرض الكل",
+                Value = "00"
+            };
+
+            var updatedRestaurantsList = new List<SelectListItem>(restaurantsList)
+            {
+                selectall
+            };
+
+            ViewBag.Restaurants = new SelectList(updatedRestaurantsList, "Id", "Name");
 
             return View(bills);
-        }
+        }  
+
+
         [Authorize]
         public ActionResult MyRequsts()
         {

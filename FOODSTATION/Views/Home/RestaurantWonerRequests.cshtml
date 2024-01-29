@@ -7,8 +7,12 @@
     var userId = User.Identity.GetUserId();
     var CurrentUser = db.Users.Where(a => a.Id == userId).SingleOrDefault().UserName;
 }
-<div>
+<div style="position: relative; width: 100%; height: 100px; min-height: 100px; margin-bottom: 20px; ">
     <h2 style="text-align: center; color: #a94442; font-family: 'myfont3'; font-size: xx-large; ">قائمة الطلبات</h2>
+    <div style="position: absolute; right: 70px;">
+        <label class="col">فلترة بحسب المطعم </label>
+        @Html.DropDownList("Restaurants", null, htmlAttributes: new { @class = "col input-fild" })
+    </div>
 </div>
 <table class="table" id="itemTable" dir="rtl">
     <tr class="TableRow">
