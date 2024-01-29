@@ -345,7 +345,12 @@ body {
     background-color: #fcfcfc;
     text-align: center;
     border-radius: 0.5rem;
+    height:fit-content;
     box-shadow: 1px 1px 6px lightgray;
+}
+
+.pricing .plans .plan:nth-of-type(2) {
+    transform: scale(1.05);
 }
 
 .pricing .plans .plan .head {
