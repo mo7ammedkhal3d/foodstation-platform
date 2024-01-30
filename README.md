@@ -34,4 +34,3 @@ FOODSTATION leverages cutting-edge technologies to deliver a smooth and intuitiv
 To get started with FOODSTATION, simply clone the repository and follow the setup instructions in the `README.md` file of the respective subprojects.
 
 Thank you for considering contributing to FOODSTATION. Together, let's redefine the way people experience dining!
-
